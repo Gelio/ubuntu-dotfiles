@@ -5,4 +5,6 @@ unzip exa-linux-x86_64-0.9.0.zip
 rm exa-linux-x86_64-0.9.0.zip
 
 echo "alias ls='$(pwd)/exa-linux-x86_64'" >> ~/.bash_aliases
+echo "alias l='ls -al'" >> ~/.bash_aliases
+echo "alias la='ls -a'" >> ~/.bash_aliases
 source ~/.bash_aliases
