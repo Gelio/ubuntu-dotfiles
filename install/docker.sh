@@ -23,3 +23,8 @@ sudo apt update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 docker -h
+
+# Enable running docker without root privileges
+# https://docs.docker.com/engine/install/linux-postinstall/
+sudo groupadd docker
+sudo usermod -aG docker $USER
