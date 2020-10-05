@@ -1,3 +1,3 @@
 #!/bin/bash
 
-snap install gimp
+sudo snap install gimp

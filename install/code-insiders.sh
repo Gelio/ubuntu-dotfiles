@@ -1,3 +1,3 @@
 #!/bin/bash
 
-snap install code-insiders --classic
+sudo snap install code-insiders --classic
