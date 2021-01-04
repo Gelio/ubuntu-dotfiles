@@ -3,4 +3,4 @@ set -e
 
 nvm install --lts
 nvm use --lts
-npm completion >> ~/.bashrc
+npm completion >> ~/.bash_completion
