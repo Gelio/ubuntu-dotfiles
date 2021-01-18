@@ -9,4 +9,7 @@ mkdir -p nvim
 echo "set relativenumber\
 set number" >> init.vim
 
+# Necessary for clipboard support
+sudo apt install xsel
+
 git config --global core.editor "nvim"
