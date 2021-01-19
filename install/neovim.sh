@@ -16,4 +16,4 @@ ln -s "$CONFIGS_DIR/neovim.vim" nvim/init.vim
 sudo apt install xsel
 
 git config --global core.editor "nvim"
-echo "EDITOR=nvim" >> ~/.profile
+echo "export EDITOR=nvim" >> ~/.profile
