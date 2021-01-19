@@ -8,3 +8,4 @@ https://extensions.gnome.org/
 * https://extensions.gnome.org/extension/750/openweather/
 * https://extensions.gnome.org/extension/906/sound-output-device-chooser/
 * https://extensions.gnome.org/extension/1162/emoji-selector/
+* https://extensions.gnome.org/extension/1485/workspace-matrix/
