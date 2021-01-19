@@ -5,3 +5,6 @@ set number
 " Smarter search (regardless of case)
 set ignorecase
 set smartcase
+
+" Scrolling offset
+set scrolloffset=5
