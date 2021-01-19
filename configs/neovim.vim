@@ -7,4 +7,4 @@ set ignorecase
 set smartcase
 
 " Scrolling offset
-set scrolloffset=5
+set scrolloff=5
