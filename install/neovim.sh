@@ -17,3 +17,5 @@ sudo apt install xsel
 
 git config --global core.editor "nvim"
 echo "export EDITOR=nvim" >> ~/.profile
+
+./vim-plug.sh
