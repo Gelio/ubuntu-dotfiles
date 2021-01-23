@@ -2,6 +2,7 @@
 
 sudo apt install git
 
-git config --global user.name "Grzegorz Rozdzialik"
-git config --global user.email "voreny.gelio@gmail.com"
-git config --global core.editor "vim"
+CONFIGS_DIR=$(dirname $PWD)/configs
+printf "[include]\n\tpath = $CONFIGS_DIR/git.gitconfig" >> ~/.gitconfig
+
+echo "git config included in ~/.gitconfig"
