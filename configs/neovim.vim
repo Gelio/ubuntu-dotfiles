@@ -23,10 +23,16 @@ Plug 'tpope/vim-surround'
 " https://vimawesome.com/plugin/vim-airline-superman
 Plug 'vim-airline/vim-airline'
 
+if exists('g:vscode')
+	" https://github.com/asvetliakov/vim-easymotion
+	" Fork of the original easymotion that works correctly in vscode
+	" Unfortunately, then it does not work in regular nvim :/
+	Plug 'https://github.com/asvetliakov/vim-easymotion', { 'as': 'vscode-vim-easymotion' }
+else
+	" Regular easymotion
+	" https://github.com/easymotion/vim-easymotion
+	Plug 'easymotion/vim-easymotion'
+endif
 
- " https://github.com/asvetliakov/vim-easymotion
- " Fork of the original easymotion that works correctly in vscode
- " Unfortunately, then it does not work in regular nvim :/
- Plug 'https://github.com/asvetliakov/vim-easymotion'
 
 call plug#end()
