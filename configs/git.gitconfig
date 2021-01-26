@@ -6,7 +6,7 @@
 	editor = nvim
 
 [fetch]
-	prunee = true
+	prune = true
 
 [alias]
 	# https://stackoverflow.com/a/34467298/4874344
