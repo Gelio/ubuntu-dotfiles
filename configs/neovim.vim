@@ -32,6 +32,16 @@ else
 	" Regular easymotion
 	" https://github.com/easymotion/vim-easymotion
 	Plug 'easymotion/vim-easymotion'
+
+	" https://vimawesome.com/plugin/nerdtree-red
+	Plug 'scrooloose/nerdtree'
+	nnoremap <leader>n :NERDTreeFocus<CR>
+
+	" https://vimawesome.com/plugin/fugitive-vim
+	Plug 'tpope/vim-fugitive'
+
+	" https://vimawesome.com/plugin/vim-gitgutter
+	Plug 'airblade/vim-gitgutter'
 endif
 
 
