@@ -23,6 +23,13 @@ Plug 'tpope/vim-surround'
 " https://vimawesome.com/plugin/vim-airline-superman
 Plug 'vim-airline/vim-airline'
 
+" https://github.com/wellle/targets.vim
+Plug 'wellle/targets.vim'
+
+" https://vimawesome.com/plugin/camelcasemotion-ours
+Plug 'bkad/camelcasemotion'
+let g:camelcasemotion_key = '<leader>'
+
 if exists('g:vscode')
 	" https://github.com/asvetliakov/vim-easymotion
 	" Fork of the original easymotion that works correctly in vscode
