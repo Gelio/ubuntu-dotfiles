@@ -4,6 +4,10 @@
 #2::WinActivate, ahk_exe Franz.exe
 #3::WinActivate, ahk_exe Code - Insiders.exe
 
+; Ctrl + Win + hl to change workspaces
+#^h::Send {LWin down}{LCtrl down}{Left}
+#^l::Send {LWin down}{LCtrl down}{Right}
+
 ; vim keys during alt-tab
 #IfWinActive, ahk_class MultitaskingViewFrame
 	!h::Send {LAlt down}{Left}
