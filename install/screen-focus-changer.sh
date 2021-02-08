@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://github.com/Eitol/screen_focus_changer
+
 OUT_DIR=~/.local/share/screen-focus-changer
 mkdir -p $OUT_DIR
 
