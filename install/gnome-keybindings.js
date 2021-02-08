@@ -4,6 +4,11 @@ const { execSync } = require("child_process");
 
 const MEDIA_KEYS_PATH = "org.gnome.settings-daemon.plugins.media-keys";
 
+console.log(
+  "Make sure to install screen-focus-changer (./screen-focus-changer.sh)"
+);
+const SCREEN_FOCUS_CHANGER_PATH = `~/.local/share/screen-focus-changer/focus_changer.py`;
+
 const KEYBINDINGS = [
   {
     name: "focus-terminal",
@@ -24,6 +29,16 @@ const KEYBINDINGS = [
     name: "focus-vscode",
     command: 'wmctrl -a "Visual Studio Code"',
     binding: "<Super>3",
+  },
+  {
+    name: "focus-left",
+    command: `python3 ${SCREEN_FOCUS_CHANGER_PATH} left`,
+    binding: "<Super><Shift>h",
+  },
+  {
+    name: "focus-right",
+    command: `python3 ${SCREEN_FOCUS_CHANGER_PATH} right`,
+    binding: "<Super><Shift>l",
   },
 ].map((keybinding) => ({
   ...keybinding,
@@ -67,7 +82,7 @@ console.log("Disabling default Gnome hot-keys (Super + [0-9])");
 execSync(
   "gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false"
 );
-Array.from({ length: 9 }).forEach((i) => {
+Array.from({ length: 9 }).forEach((_, i) => {
   execSync(
     `gsettings set org.gnome.shell.keybindings switch-to-application-${
       i + 1
