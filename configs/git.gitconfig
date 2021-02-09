@@ -21,3 +21,4 @@
 
 	s = status
 	clear-branches = !git branch | grep -v '^*' | xargs git branch -d
+	l = log
