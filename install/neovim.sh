@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CURRENT_DIR=$PWD
 CONFIGS_DIR=$(dirname $PWD)/configs
 
 mkdir -p ~/.config
@@ -18,4 +19,5 @@ sudo apt install xsel
 git config --global core.editor "nvim"
 echo "export EDITOR=nvim" >> ~/.profile
 
+cd $CURRENT_DIR
 ./vim-plug.sh
