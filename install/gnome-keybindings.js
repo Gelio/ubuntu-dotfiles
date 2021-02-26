@@ -40,6 +40,11 @@ const KEYBINDINGS = [
     command: `python3 ${SCREEN_FOCUS_CHANGER_PATH} right`,
     binding: "<Super><Shift>l",
   },
+  {
+    name: "rofi-change-window",
+    command: "rofi -show window",
+    binding: "<Super>d",
+  },
 ].map((keybinding) => ({
   ...keybinding,
   path: getKeybindingPath(keybinding.name),
