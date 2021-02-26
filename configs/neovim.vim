@@ -30,6 +30,9 @@ Plug 'wellle/targets.vim'
 Plug 'bkad/camelcasemotion'
 let g:camelcasemotion_key = '<leader>'
 
+" https://vimawesome.com/plugin/vim-highlightedyank
+Plug 'machakann/vim-highlightedyank'
+
 if exists('g:vscode')
 	" https://github.com/asvetliakov/vim-easymotion
 	" Fork of the original easymotion that works correctly in vscode
