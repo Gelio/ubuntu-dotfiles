@@ -94,6 +94,12 @@ Array.from({ length: 9 }).forEach((_, i) => {
     } []`
   );
 });
+
+console.log("Disabling Alt + Ft (unmaximize window by default)");
+execSync(
+  `gsettings set org.gnome.desktop.wm.keybindings unmaximize "['<Super>Down']"`
+);
+
 console.log('Done. Restart Gnome now (Alt + F2, and type "r")');
 
 function getKeybindingPath(name) {
