@@ -45,7 +45,7 @@ else
 
 	" https://vimawesome.com/plugin/nerdtree-red
 	Plug 'scrooloose/nerdtree'
-	nnoremap <leader>n :NERDTreeFocus<CR>
+	nnoremap <leader>n :NERDTreeToggle<CR>
 
 	" https://vimawesome.com/plugin/fugitive-vim
 	Plug 'tpope/vim-fugitive'
