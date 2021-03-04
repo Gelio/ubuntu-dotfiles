@@ -50,6 +50,9 @@ else
 	" https://vimawesome.com/plugin/fugitive-vim
 	Plug 'tpope/vim-fugitive'
 
+	" https://vimawesome.com/plugin/indentline
+	Plug 'yggdroot/indentline'
+
 	" https://vimawesome.com/plugin/vim-gitgutter
 	Plug 'airblade/vim-gitgutter'
 	" Enable faster reload for the gutter
