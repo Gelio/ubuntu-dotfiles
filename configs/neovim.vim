@@ -53,6 +53,9 @@ else
 	" https://vimawesome.com/plugin/indentline
 	Plug 'yggdroot/indentline'
 
+	" https://vimawesome.com/plugin/vim-css-color-the-story-of-us
+	Plug 'ap/vim-css-color'
+
 	" https://vimawesome.com/plugin/vim-gitgutter
 	Plug 'airblade/vim-gitgutter'
 	" Enable faster reload for the gutter
