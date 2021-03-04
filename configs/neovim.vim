@@ -58,6 +58,10 @@ else
 	" https://vimawesome.com/plugin/indentline
 	Plug 'yggdroot/indentline'
 
+	" https://vimawesome.com/plugin/rainbow-you-belong-with-me
+	Plug 'luochen1990/rainbow'
+	let g:rainbow_active = 1
+
 	" https://vimawesome.com/plugin/vim-css-color-the-story-of-us
 	Plug 'ap/vim-css-color'
 
