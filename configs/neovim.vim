@@ -54,6 +54,10 @@ else
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
 
+	" https://vimawesome.com/plugin/gruvbox
+	Plug 'morhetz/gruvbox'
+	autocmd vimenter * ++nested colorscheme gruvbox
+	set termguicolors
 
 	" https://vimawesome.com/plugin/indentline
 	Plug 'yggdroot/indentline'
