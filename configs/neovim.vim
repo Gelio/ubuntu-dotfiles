@@ -52,6 +52,9 @@ else
 
 	" https://vimawesome.com/plugin/vim-gitgutter
 	Plug 'airblade/vim-gitgutter'
+	" Enable faster reload for the gutter
+	set updatetime=100
+
 endif
 
 
