@@ -17,6 +17,9 @@ set scrolloff=5
 " Run ":PlugInstall" to install the plugins
 call plug#begin()
 
+" https://vimawesome.com/plugin/sensible-vim
+Plug 'tpope/vim-sensible'
+
 " https://vimawesome.com/plugin/surround-vim
 Plug 'tpope/vim-surround'
 
