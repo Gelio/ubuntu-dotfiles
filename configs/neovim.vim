@@ -9,6 +9,13 @@ set smartcase
 " Scrolling offset
 set scrolloff=5
 
+" Tab width and expanding tabs
+set shiftwidth=2
+set tabstop=2
+set expandtab
+
+autocmd FileType vim setlocal sw=4 ts=4 noexpandtab
+
 
 " ============== PLUGINS ==================
 
