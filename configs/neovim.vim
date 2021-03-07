@@ -78,6 +78,9 @@ else
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	nnoremap <leader>p :FZF<CR>
 	nnoremap <C-P> :FZF<CR>
+
+	" https://github.com/tpope/vim-commentary
+	Plug 'tpope/vim-commentary'
 endif
 
 
