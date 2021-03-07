@@ -81,10 +81,15 @@ else
 	" Enable faster reload for the gutter
 	set updatetime=100
 
-	" https://vimawesome.com/plugin/fzf
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	nnoremap <leader>p :FZF<CR>
-	nnoremap <C-P> :FZF<CR>
+	" Telescope for fuzzy searching
+	" https://github.com/nvim-telescope/telescope.nvim
+	Plug 'nvim-lua/popup.nvim'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	nnoremap <leader>ff <cmd>Telescope find_files<cr>
+	nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+	nnoremap <leader>fb <cmd>Telescope buffers<cr>
+	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 	Plug 'ryanoasis/vim-devicons'
 	let g:airline_powerline_fonts = 1
@@ -135,6 +140,9 @@ else
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
+
+	" List symbols
+	nnoremap <leader>fs <cmd>CocList symbols<CR>
 
 	" Use K to show documentation in preview window.
 	nnoremap <silent> K :call <SID>show_documentation()<CR>
