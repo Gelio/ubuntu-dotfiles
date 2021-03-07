@@ -74,6 +74,10 @@ else
 	" Enable faster reload for the gutter
 	set updatetime=100
 
+	" https://vimawesome.com/plugin/fzf
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	nnoremap <leader>p :FZF<CR>
+
 endif
 
 
