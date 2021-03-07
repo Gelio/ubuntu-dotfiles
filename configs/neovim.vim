@@ -77,7 +77,7 @@ else
 	" https://vimawesome.com/plugin/fzf
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	nnoremap <leader>p :FZF<CR>
-
+	nnoremap <C-P> :FZF<CR>
 endif
 
 
