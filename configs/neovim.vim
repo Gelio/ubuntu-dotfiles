@@ -86,6 +86,9 @@ else
 	nnoremap <leader>p :FZF<CR>
 	nnoremap <C-P> :FZF<CR>
 
+	Plug 'ryanoasis/vim-devicons'
+	let g:airline_powerline_fonts = 1
+
 	" https://github.com/tpope/vim-unimpaired
 	Plug 'tpope/vim-unimpaired'
 
