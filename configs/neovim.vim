@@ -90,6 +90,7 @@ else
 	nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 	nnoremap <leader>fb <cmd>Telescope buffers<cr>
 	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+	nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 
 	Plug 'ryanoasis/vim-devicons'
 	let g:airline_powerline_fonts = 1
@@ -200,7 +201,18 @@ else
 
 	" Ctrl-Space triggers help like VSCode
 	inoremap <silent><expr> <c-space> coc#refresh()
+
+	" Treesitter
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
 
 call plug#end()
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+	highlight = {
+		enable = true
+	},
+}
+EOF

@@ -13,8 +13,9 @@ sudo ln -s "$PWD/nvim.appimage" /usr/bin/nvim
 mkdir -p nvim
 ln -s "$CONFIGS_DIR/neovim.vim" nvim/init.vim
 
-# Necessary for clipboard support
-sudo apt install xsel
+# xsel for clipboard support
+# g++ for compiling Treesitter parsers
+sudo apt install xsel g++
 
 git config --global core.editor "nvim"
 echo "export EDITOR=nvim" >> ~/.profile
