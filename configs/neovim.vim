@@ -48,6 +48,24 @@ if exists('g:vscode')
 	" Fork of the original easymotion that works correctly in vscode
 	" Unfortunately, then it does not work in regular nvim :/
 	Plug 'https://github.com/asvetliakov/vim-easymotion', { 'as': 'vscode-vim-easymotion' }
+
+	" Mimic CoC mappings
+	nnoremap <leader>qf :call VSCodeNotify('editor.action.quickFix')<CR>
+	xnoremap <leader>qf :call VSCodeNotify('editor.action.quickFix')<CR>
+
+	nnoremap [g :call VSCodeNotify('editor.action.marker.prev')<CR>
+	nnoremap ]g :call VSCodeNotify('editor.action.marker.next')<CR>
+
+	nnoremap <leader>rn :call VSCodeNotify('editor.action.rename')<CR>
+
+	nnoremap <leader>fs :call VSCodeNotify('workbench.action.showAllSymbols')<CR>
+
+	nnoremap gy :call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
+	nnoremap gi :call VSCodeNotify('editor.action.goToImplementation')<CR>
+	nnoremap gr :call VSCodeNotify('editor.action.goToReferences')<CR>
+
+	nnoremap <leader>F :call VSCodeNotify('editor.action.formatDocument')<CR>
+
 else
 	" Regular easymotion
 	" https://github.com/easymotion/vim-easymotion
