@@ -209,6 +209,7 @@ endif
 
 call plug#end()
 
+if !exists('g:vscode')
 lua << EOF
 require'nvim-treesitter.configs'.setup {
 	highlight = {
@@ -216,3 +217,4 @@ require'nvim-treesitter.configs'.setup {
 	},
 }
 EOF
+endif
