@@ -43,6 +43,9 @@ let g:camelcasemotion_key = '<leader>'
 " https://vimawesome.com/plugin/vim-highlightedyank
 Plug 'machakann/vim-highlightedyank'
 
+" https://github.com/tpope/vim-unimpaired
+Plug 'tpope/vim-unimpaired'
+
 if exists('g:vscode')
 	" https://github.com/asvetliakov/vim-easymotion
 	" Fork of the original easymotion that works correctly in vscode
@@ -114,9 +117,6 @@ else
 
 	Plug 'ryanoasis/vim-devicons'
 	let g:airline_powerline_fonts = 1
-
-	" https://github.com/tpope/vim-unimpaired
-	Plug 'tpope/vim-unimpaired'
 
 	" https://github.com/tpope/vim-commentary
 	Plug 'tpope/vim-commentary'
