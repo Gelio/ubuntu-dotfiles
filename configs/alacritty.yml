@@ -55,4 +55,6 @@ colors:
     white:   '0xe6e6d1'
 
 font:
+  # Download from https://www.nerdfonts.com/font-downloads
+  family: FiraCode Nerd Font
   size: 12
