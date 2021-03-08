@@ -66,6 +66,8 @@ if exists('g:vscode')
 
 	nnoremap <leader>F :call VSCodeNotify('editor.action.formatDocument')<CR>
 
+	nnoremap <leader>ff :call VSCodeNotify('workbench.action.quickOpen')<CR>
+	nnoremap <leader>fg :call VSCodeNotify('workbench.action.findInFiles')<CR>
 else
 	" Regular easymotion
 	" https://github.com/easymotion/vim-easymotion
