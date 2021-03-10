@@ -13,6 +13,9 @@ sudo ln -s "$PWD/nvim.appimage" /usr/bin/nvim
 mkdir -p nvim
 ln -s "$CONFIGS_DIR/neovim.vim" nvim/init.vim
 
+# Add symlink for coc settings
+ln -s "$CONFIGS_DIR/coc-settings.json" nvim/coc-settings.json
+
 # xsel for clipboard support
 # g++ for compiling Treesitter parsers
 sudo apt install xsel g++
