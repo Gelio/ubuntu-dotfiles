@@ -80,6 +80,10 @@ else
 	Plug 'scrooloose/nerdtree'
 	nnoremap <leader>n :NERDTreeToggle<CR>
 
+	" https://vimawesome.com/plugin/nerdtree-git-plugin
+	Plug 'xuyuanp/nerdtree-git-plugin'
+	let g:NERDTreeGitStatusUseNerdFonts = 1
+
 	" https://vimawesome.com/plugin/fugitive-vim
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
