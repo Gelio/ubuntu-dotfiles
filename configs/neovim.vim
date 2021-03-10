@@ -71,6 +71,12 @@ if exists('g:vscode')
 
 	nnoremap <leader>ff :call VSCodeNotify('workbench.action.quickOpen')<CR>
 	nnoremap <leader>fg :call VSCodeNotify('workbench.action.findInFiles')<CR>
+
+	" Mimic NERDTree mappings
+	nnoremap <leader>nn :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
+	nnoremap <leader>ng :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
+	nnoremap <leader>nr :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
+	nnoremap <leader>nR :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
 else
 	" Regular easymotion
 	" https://github.com/easymotion/vim-easymotion
