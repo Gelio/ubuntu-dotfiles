@@ -8,6 +8,8 @@
     "javascript",
     "typescriptreact",
     "javascriptreact",
-    "json"
+    "json",
+    "go",
+    "rust"
   ]
 }
