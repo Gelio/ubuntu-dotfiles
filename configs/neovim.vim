@@ -78,7 +78,10 @@ else
 
 	" https://vimawesome.com/plugin/nerdtree-red
 	Plug 'scrooloose/nerdtree'
-	nnoremap <leader>n :NERDTreeToggle<CR>
+	nnoremap <leader>nn :NERDTreeToggle<CR>
+	nnoremap <leader>ng :NERDTreeToggleVCS<CR>
+	nnoremap <leader>nr :NERDTreeFind<CR>
+	nnoremap <silent> <leader>nR :NERDTreeFind<CR> :wincmd p<CR>
 
 	" https://vimawesome.com/plugin/nerdtree-git-plugin
 	Plug 'xuyuanp/nerdtree-git-plugin'
