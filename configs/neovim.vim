@@ -9,6 +9,9 @@ set smartcase
 " Scrolling offset
 set scrolloff=5
 
+" Splits
+set splitbelow
+
 " Tab width and expanding tabs
 set shiftwidth=2
 set tabstop=2
