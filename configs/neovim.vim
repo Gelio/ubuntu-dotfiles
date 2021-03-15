@@ -131,6 +131,10 @@ else
 	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 	nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 
+    " Install both icon plugins
+    " web-devicons for telescope
+    " devicons for airline and NERDTree
+    Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'ryanoasis/vim-devicons'
 	let g:airline_powerline_fonts = 1
 
