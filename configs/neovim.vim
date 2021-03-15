@@ -240,6 +240,9 @@ else
 
 	" Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+	" https://github.com/editorconfig/editorconfig-vim
+	Plug 'editorconfig/editorconfig-vim'
 endif
 
 
