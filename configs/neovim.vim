@@ -100,6 +100,20 @@ else
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
 
+    " ===== Theme ====
+    " Use gruvbox for regular development
+    " Use codedark for code review (in diffs) for syntax highlighting of diff
+    " code
+    " TODO: configure the Diff colors for gruvbox to preserve syntax
+    " highlighting and stop using 2 color schemes :D
+
+    " https://github.com/tomasiser/vim-code-dark
+    Plug 'tomasiser/vim-code-dark'
+    autocmd BufEnter * if &diff | colorscheme codedark | endif
+    autocmd BufNew * if &diff | colorscheme codedark | endif
+    autocmd BufRead * if &diff | colorscheme codedark | endif
+    autocmd BufLeave * if &diff | colorscheme gruvbox | endif
+
 	" https://vimawesome.com/plugin/gruvbox
 	Plug 'morhetz/gruvbox'
 	autocmd vimenter * ++nested colorscheme gruvbox
