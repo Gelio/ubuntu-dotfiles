@@ -265,6 +265,12 @@ else
 
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
+
+    " ====== Diff options ======
+    " Ignore whitespace in diffs
+    set diffopt+=iwhite
+    " Set a better diff algorithm
+    set diffopt+=algorithm:patience
 endif
 
 
