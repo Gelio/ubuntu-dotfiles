@@ -253,6 +253,10 @@ else
 	" Add `:Format` command to format current buffer.
 	command! -nargs=0 Format :call CocAction('format')
 
+    " Add `:Fold` command to fold current buffer.
+    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+    set foldlevelstart=20
+
 	" Ctrl-Space triggers help like VSCode
 	inoremap <silent><expr> <c-space> coc#refresh()
 
