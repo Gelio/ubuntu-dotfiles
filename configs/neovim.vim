@@ -139,7 +139,7 @@ else
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-	nnoremap <leader>ff <cmd>Telescope find_files<cr>
+	nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
 	nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 	nnoremap <leader>fb <cmd>Telescope buffers<cr>
 	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -272,6 +272,11 @@ require'nvim-treesitter.configs'.setup {
 	highlight = {
 		enable = true
 	},
+}
+require('telescope').setup {
+    defaults = {
+        file_ignore_patterns = {".git"}
+    }
 }
 EOF
 endif
