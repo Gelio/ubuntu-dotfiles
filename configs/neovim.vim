@@ -109,10 +109,6 @@ else
 
     " https://github.com/tomasiser/vim-code-dark
     Plug 'tomasiser/vim-code-dark'
-    autocmd BufEnter * if &diff | colorscheme codedark | endif
-    autocmd BufNew * if &diff | colorscheme codedark | endif
-    autocmd BufRead * if &diff | colorscheme codedark | endif
-    autocmd BufLeave * if &diff | colorscheme gruvbox | endif
 
 	" https://vimawesome.com/plugin/gruvbox
 	Plug 'morhetz/gruvbox'
