@@ -270,7 +270,7 @@ else
     " Ignore whitespace in diffs
     set diffopt+=iwhite
     " Set a better diff algorithm
-    set diffopt+=algorithm:patience
+    set diffopt+=algorithm:histogram
 endif
 
 
