@@ -6,6 +6,12 @@ CONFIGS_DIR=$(dirname $PWD)/configs
 mkdir -p ~/.config
 cd ~/.config
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+
+if [ -n "$UPGRADE_ONLY" ]; then
+    echo "Upgraded neovim, exiting"
+    exit 0
+fi
+
 chmod u+x nvim.appimage
 sudo ln -s "$PWD/nvim.appimage" /usr/bin/nvim
 
