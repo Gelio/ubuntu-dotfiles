@@ -144,6 +144,7 @@ else
 	nnoremap <leader>fb <cmd>Telescope buffers<cr>
 	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 	nnoremap <leader>ft <cmd>Telescope treesitter<cr>
+	nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 
     " Install both icon plugins
     " web-devicons for telescope
@@ -191,6 +192,7 @@ else
 	nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 	" GoTo code navigation.
+	nnoremap <silent> <C-W>gd :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
