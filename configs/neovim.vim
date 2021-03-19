@@ -285,4 +285,13 @@ require('telescope').setup {
     }
 }
 EOF
+
+" Use ripgrep instead of regular grep
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+else
+    echoerr "rg (ripgrep) is not installed. Thus, it will not be used for :grep"
+endif
+
 endif
