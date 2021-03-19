@@ -10,7 +10,7 @@ set smartcase
 set scrolloff=5
 
 " Splits
-set splitbelow
+set splitbelow splitright
 
 " Tab width and expanding tabs
 set shiftwidth=2
