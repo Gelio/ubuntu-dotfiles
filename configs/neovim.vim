@@ -100,6 +100,10 @@ else
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
 
+    " Better diffs (shows in-line changes)
+    " https://github.com/rickhowe/diffchar.vim
+    Plug 'rickhowe/diffchar.vim'
+
     " ===== Theme ====
     " Use gruvbox for regular development
     " Use codedark for code review (in diffs) for syntax highlighting of diff
