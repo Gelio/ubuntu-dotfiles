@@ -99,6 +99,7 @@ else
 	" https://vimawesome.com/plugin/fugitive-vim
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
+    Plug 'junegunn/gv.vim' " commit graph
 
     " Better diffs (shows in-line changes)
     " https://github.com/rickhowe/diffchar.vim
