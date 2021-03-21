@@ -152,7 +152,14 @@ else
     " web-devicons for telescope
     " devicons for airline and NERDTree
     Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'ryanoasis/vim-devicons'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'lambdalisue/glyph-palette.vim'
+    augroup my-glyph-palette
+        autocmd! *
+        autocmd FileType fern call glyph_palette#apply()
+        autocmd FileType nerdtree,startify call glyph_palette#apply()
+        autocmd ColorScheme * lua require'nvim-web-devicons'.setup()
+    augroup END
 	let g:airline_powerline_fonts = 1
 
 	" https://github.com/tpope/vim-commentary
@@ -291,6 +298,9 @@ require('telescope').setup {
     defaults = {
         file_ignore_patterns = {".git"}
     }
+}
+require'nvim-web-devicons'.setup {
+    default = true;
 }
 EOF
 
