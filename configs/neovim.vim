@@ -17,9 +17,6 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 
-autocmd FileType vim setlocal sw=4 ts=4 noexpandtab
-
-
 " ============== PLUGINS ==================
 
 " If the following does not work, install vim-plug
@@ -99,30 +96,30 @@ else
 	" https://vimawesome.com/plugin/fugitive-vim
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
-    Plug 'junegunn/gv.vim' " commit graph
+	Plug 'junegunn/gv.vim' " commit graph
 
-    " Better diffs (shows in-line changes)
-    " https://github.com/rickhowe/diffchar.vim
-    Plug 'rickhowe/diffchar.vim'
+	" Better diffs (shows in-line changes)
+	" https://github.com/rickhowe/diffchar.vim
+	Plug 'rickhowe/diffchar.vim'
 
-    " ===== Theme ====
-    " Use gruvbox for regular development
-    " Use codedark for code review (in diffs) for syntax highlighting of diff
-    " code
-    " TODO: configure the Diff colors for gruvbox to preserve syntax
-    " highlighting and stop using 2 color schemes :D
+	" ===== Theme ====
+	" Use gruvbox for regular development
+	" Use codedark for code review (in diffs) for syntax highlighting of diff
+	" code
+	" TODO: configure the Diff colors for gruvbox to preserve syntax
+	" highlighting and stop using 2 color schemes :D
 
-    " https://github.com/tomasiser/vim-code-dark
-    Plug 'tomasiser/vim-code-dark'
+	" https://github.com/tomasiser/vim-code-dark
+	Plug 'tomasiser/vim-code-dark'
 
 	" https://vimawesome.com/plugin/gruvbox
 	Plug 'morhetz/gruvbox'
 	autocmd vimenter * ++nested colorscheme gruvbox
 	set termguicolors
 
-    " https://github.com/lukas-reineke/indent-blankline.nvim
-    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
-    let g:indent_blankline_show_current_context = v:true
+	" https://github.com/lukas-reineke/indent-blankline.nvim
+	Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+	let g:indent_blankline_show_current_context = v:true
 
 	" https://vimawesome.com/plugin/rainbow-you-belong-with-me
 	Plug 'luochen1990/rainbow'
@@ -148,18 +145,18 @@ else
 	nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 	nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 
-    " Install both icon plugins
-    " web-devicons for telescope
-    " devicons for airline and NERDTree
-    Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'lambdalisue/glyph-palette.vim'
-    augroup my-glyph-palette
-        autocmd! *
-        autocmd FileType fern call glyph_palette#apply()
-        autocmd FileType nerdtree,startify call glyph_palette#apply()
-        autocmd ColorScheme * lua require'nvim-web-devicons'.setup()
-    augroup END
+	" Install both icon plugins
+	" web-devicons for telescope
+	" devicons for airline and NERDTree
+	Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'ryanoasis/vim-devicons'
+	Plug 'lambdalisue/glyph-palette.vim'
+	augroup my-glyph-palette
+		autocmd! *
+		autocmd FileType fern call glyph_palette#apply()
+		autocmd FileType nerdtree,startify call glyph_palette#apply()
+		autocmd ColorScheme * lua require'nvim-web-devicons'.setup()
+	augroup END
 	let g:airline_powerline_fonts = 1
 
 	" https://github.com/tpope/vim-commentary
@@ -174,17 +171,17 @@ else
 	set cmdheight=2
 	set shortmess+=c
 	let g:coc_global_extensions = ['coc-json', 'coc-git',
-		\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
-		\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
-		\ 'coc-html', 'coc-markdownlint', 'coc-rust-analyzer',
-		\ 'coc-sh', 'coc-stylelintplus', 'coc-toml', 'coc-tabnine',
-		\ 'coc-xml', 'coc-yaml', 'coc-styled-components']
+				\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
+				\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
+				\ 'coc-html', 'coc-markdownlint', 'coc-rust-analyzer',
+				\ 'coc-sh', 'coc-stylelintplus', 'coc-toml', 'coc-tabnine',
+				\ 'coc-xml', 'coc-yaml', 'coc-styled-components']
 
 	" Tab and Shift-Tab for moving through completions
 	inoremap <silent><expr> <TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ coc#refresh()
+				\ pumvisible() ? "\<C-n>" :
+				\ <SID>check_back_space() ? "\<TAB>" :
+				\ coc#refresh()
 	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 	function! s:check_back_space() abort
@@ -194,7 +191,7 @@ else
 
 	" <CR> to select the completion
 	inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-							\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 	" [g and ]g to move through diagnostics
 	nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -264,9 +261,9 @@ else
 	" Add `:Format` command to format current buffer.
 	command! -nargs=0 Format :call CocAction('format')
 
-    " Add `:Fold` command to fold current buffer.
-    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-    set foldlevelstart=20
+	" Add `:Fold` command to fold current buffer.
+	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+	set foldlevelstart=20
 
 	" Ctrl-Space triggers help like VSCode
 	inoremap <silent><expr> <c-space> coc#refresh()
@@ -277,11 +274,11 @@ else
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
 
-    " ====== Diff options ======
-    " Ignore whitespace in diffs
-    set diffopt+=iwhite
-    " Set a better diff algorithm
-    set diffopt+=algorithm:histogram
+	" ====== Diff options ======
+	" Ignore whitespace in diffs
+	set diffopt+=iwhite
+	" Set a better diff algorithm
+	set diffopt+=algorithm:histogram
 endif
 
 
@@ -295,21 +292,21 @@ require'nvim-treesitter.configs'.setup {
 	},
 }
 require('telescope').setup {
-    defaults = {
-        file_ignore_patterns = {".git"}
-    }
+	defaults = {
+		file_ignore_patterns = {".git"}
+	}
 }
 require'nvim-web-devicons'.setup {
-    default = true;
+	default = true;
 }
 EOF
 
 " Use ripgrep instead of regular grep
 if executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+	set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+	set grepformat=%f:%l:%c:%m,%f:%l:%m
 else
-    echoerr "rg (ripgrep) is not installed. Thus, it will not be used for :grep"
+	echoerr "rg (ripgrep) is not installed. Thus, it will not be used for :grep"
 endif
 
 endif
