@@ -120,6 +120,9 @@ else
 	" https://github.com/lukas-reineke/indent-blankline.nvim
 	Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 	let g:indent_blankline_show_current_context = v:true
+	let g:indent_blankline_context_patterns = ['class', 'function', 'method',
+				\ 'if_statement', 'else_clause', 'jsx_element', 'jsx_self_closing_element',
+				\ 'try_statement', 'catch_clause']
 
 	" https://vimawesome.com/plugin/rainbow-you-belong-with-me
 	Plug 'luochen1990/rainbow'
