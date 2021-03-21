@@ -120,8 +120,9 @@ else
 	autocmd vimenter * ++nested colorscheme gruvbox
 	set termguicolors
 
-	" https://vimawesome.com/plugin/indentline
-	Plug 'yggdroot/indentline'
+    " https://github.com/lukas-reineke/indent-blankline.nvim
+    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+    let g:indent_blankline_show_current_context = v:true
 
 	" https://vimawesome.com/plugin/rainbow-you-belong-with-me
 	Plug 'luochen1990/rainbow'
