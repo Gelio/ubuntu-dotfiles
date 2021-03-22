@@ -170,6 +170,7 @@ else
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	set hidden
 	set nowritebackup
+	set noswapfile
 	" More space for displaying messages
 	set cmdheight=2
 	set shortmess+=c
