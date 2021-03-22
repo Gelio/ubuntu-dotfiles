@@ -286,7 +286,8 @@ else
 	set diffopt+=algorithm:histogram
 
 	" ====== Code review ======
-	command! -nargs=1 CodeReview :call s:CodeReview(<f-args>)
+	command! -nargs=1 -complete=customlist,fugitive#EditComplete CodeReview
+				\ 	:call s:CodeReview(<f-args>)
 	let s:review_branch = ''
 	function! s:CodeReview(review_branch)
 		let s:review_branch = a:review_branch
