@@ -17,6 +17,9 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 
+" Refresh UI faster
+set updatetime=100
+
 " ============== PLUGINS ==================
 
 " If the following does not work, install vim-plug
@@ -133,10 +136,8 @@ else
 	" https://vimawesome.com/plugin/vim-css-color-the-story-of-us
 	Plug 'ap/vim-css-color'
 
-	" https://vimawesome.com/plugin/vim-gitgutter
-	Plug 'airblade/vim-gitgutter'
-	" Enable faster reload for the gutter
-	set updatetime=100
+	" https://github.com/lewis6991/gitsigns.nvim
+	Plug 'lewis6991/gitsigns.nvim'
 
 	" Telescope for fuzzy searching
 	" https://github.com/nvim-telescope/telescope.nvim
@@ -320,6 +321,7 @@ require('telescope').setup {
 require'nvim-web-devicons'.setup {
 	default = true;
 }
+require('gitsigns').setup()
 EOF
 
 " Use ripgrep instead of regular grep
