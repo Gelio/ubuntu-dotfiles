@@ -282,6 +282,9 @@ else
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
 
+	" https://github.com/windwp/nvim-ts-autotag
+	Plug 'windwp/nvim-ts-autotag'
+
 	" ====== Diff options ======
 	" Ignore whitespace in diffs
 	set diffopt+=iwhite
@@ -312,6 +315,9 @@ require'nvim-treesitter.configs'.setup {
 	highlight = {
 		enable = true
 	},
+	autotag = {
+		enable = true,
+	}
 }
 require('telescope').setup {
 	defaults = {
