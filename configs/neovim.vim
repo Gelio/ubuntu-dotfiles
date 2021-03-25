@@ -182,6 +182,7 @@ else
 				\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
 				\ 'coc-html', 'coc-markdownlint', 'coc-rust-analyzer',
 				\ 'coc-sh', 'coc-stylelintplus', 'coc-toml', 'coc-tabnine',
+				\ 'coc-gitignore', 'coc-lua',
 				\ 'coc-xml', 'coc-yaml', 'coc-styled-components']
 
 	" Tab and Shift-Tab for moving through completions
