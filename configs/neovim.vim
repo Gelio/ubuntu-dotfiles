@@ -94,7 +94,9 @@ else
 	let g:NERDTreeGitStatusUseNerdFonts = 1
 
 	" https://vimawesome.com/plugin/fugitive-vim
-	Plug 'tpope/vim-fugitive'
+	" Plug 'tpope/vim-fugitive'
+	" Use my fork for showing refs in Gstatus
+	Plug 'Gelio/vim-fugitive', { 'branch': 'show-refs-in-status', 'as': 'forked-vim-fugitive' }
 	Plug 'tpope/vim-rhubarb' " Plugin for GitHub
 	Plug 'junegunn/gv.vim' " commit graph
 
