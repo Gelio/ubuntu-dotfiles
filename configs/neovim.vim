@@ -9,6 +9,9 @@ set smartcase
 " Turn off wrapping
 set nowrap
 
+" Enable mouse (shame)
+set mouse=a
+
 " Scrolling offset
 set scrolloff=5
 
