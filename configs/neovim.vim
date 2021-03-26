@@ -23,6 +23,9 @@ if !exists('g:tab_config_set')
 	let g:tab_config_set = 1
 endif
 
+" Column at text width and 120 chars
+set colorcolumn=+0,120
+
 " Refresh UI faster
 set updatetime=100
 
