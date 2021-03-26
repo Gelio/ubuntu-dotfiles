@@ -6,6 +6,9 @@ set number
 set ignorecase
 set smartcase
 
+" Turn off wrapping
+set nowrap
+
 " Scrolling offset
 set scrolloff=5
 
