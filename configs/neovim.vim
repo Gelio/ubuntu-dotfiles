@@ -16,9 +16,12 @@ set scrolloff=5
 set splitbelow splitright
 
 " Tab width and expanding tabs
-set shiftwidth=2
-set tabstop=2
-set expandtab
+if !exists('g:tab_config_set')
+	set shiftwidth=2
+	set tabstop=2
+	set expandtab
+	let g:tab_config_set = 1
+endif
 
 " Refresh UI faster
 set updatetime=100
