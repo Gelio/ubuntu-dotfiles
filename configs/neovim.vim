@@ -286,6 +286,9 @@ else
 	" https://github.com/windwp/nvim-ts-autotag
 	Plug 'windwp/nvim-ts-autotag'
 
+	" https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
 	" ====== Diff options ======
 	" Ignore whitespace in diffs
 	set diffopt+=iwhite
@@ -317,6 +320,9 @@ require'nvim-treesitter.configs'.setup {
 		enable = true
 	},
 	autotag = {
+		enable = true,
+	},
+	context_commentstring = {
 		enable = true,
 	}
 }
