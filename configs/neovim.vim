@@ -189,6 +189,10 @@ else
 	" More space for displaying messages
 	set cmdheight=2
 	set shortmess+=c
+	" Display both gitsigns and CoC markers at all times.
+	" Prevents the text from moving around horizontally when markers appear
+	set signcolumn=yes:2
+
 	let g:coc_global_extensions = ['coc-json',
 				\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
 				\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
