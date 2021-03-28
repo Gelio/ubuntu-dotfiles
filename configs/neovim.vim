@@ -189,7 +189,7 @@ else
 	" More space for displaying messages
 	set cmdheight=2
 	set shortmess+=c
-	let g:coc_global_extensions = ['coc-json', 'coc-git',
+	let g:coc_global_extensions = ['coc-json',
 				\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
 				\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
 				\ 'coc-html', 'coc-markdownlint', 'coc-rust-analyzer',
