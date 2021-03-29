@@ -192,6 +192,7 @@ else
 	" Display both gitsigns and CoC markers at all times.
 	" Prevents the text from moving around horizontally when markers appear
 	set signcolumn=yes:2
+	autocmd FileType nerdtree :setlocal signcolumn=auto
 
 	let g:coc_global_extensions = ['coc-json',
 				\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
