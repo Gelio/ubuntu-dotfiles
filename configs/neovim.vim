@@ -222,6 +222,11 @@ else
 	nmap <silent> [g <Plug>(coc-diagnostic-prev)
 	nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+	" Move through the CocList
+	nnoremap <leader>cn :CocNext<CR>
+	nnoremap <leader>cp :CocPrev<CR>
+	nnoremap <leader>co :CocListResume<CR>
+
 	" GoTo code navigation.
 	nnoremap <silent> <C-W>gd :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
 	nmap <silent> gd <Plug>(coc-definition)
