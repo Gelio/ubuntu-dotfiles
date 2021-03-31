@@ -45,9 +45,6 @@ Plug 'tpope/vim-sensible'
 " https://vimawesome.com/plugin/surround-vim
 Plug 'tpope/vim-surround'
 
-" https://vimawesome.com/plugin/vim-airline-superman
-Plug 'vim-airline/vim-airline'
-
 " https://github.com/wellle/targets.vim
 Plug 'wellle/targets.vim'
 
@@ -96,6 +93,10 @@ else
 	" Regular easymotion
 	" https://github.com/easymotion/vim-easymotion
 	Plug 'easymotion/vim-easymotion'
+
+	" Status line
+	" https://github.com/hoob3rt/lualine.nvim
+	Plug 'hoob3rt/lualine.nvim'
 
 	" https://vimawesome.com/plugin/nerdtree-red
 	Plug 'scrooloose/nerdtree'
@@ -179,7 +180,6 @@ else
 		autocmd FileType nerdtree,startify call glyph_palette#apply()
 		autocmd ColorScheme * lua require'nvim-web-devicons'.setup()
 	augroup END
-	let g:airline_powerline_fonts = 1
 
 	" https://github.com/tpope/vim-commentary
 	Plug 'tpope/vim-commentary'
@@ -362,6 +362,16 @@ require'nvim-web-devicons'.setup {
 	default = true;
 }
 require('gitsigns').setup()
+require('lualine').setup{
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {'branch'},
+		lualine_c = {'filename'},
+		lualine_x = {{'diagnostics', sources = {'coc'}}, 'encoding', 'fileformat', 'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {'location'},
+	}
+}
 EOF
 
 " Disable treesitter in esbuild go files (very long ones, causes lags)
