@@ -119,6 +119,10 @@ else
 	" https://github.com/rickhowe/diffchar.vim
 	Plug 'rickhowe/diffchar.vim'
 
+	" Saving sessions
+	" https://github.com/tpope/vim-obsession
+	Plug 'tpope/vim-obsession'
+
 	" ===== Theme ====
 	" Use gruvbox for regular development
 	" Use codedark for code review (in diffs) for syntax highlighting of diff
