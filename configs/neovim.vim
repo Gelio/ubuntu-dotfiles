@@ -198,7 +198,7 @@ else
 	set signcolumn=yes:2
 	autocmd FileType nerdtree :setlocal signcolumn=auto
 
-	let g:coc_global_extensions = ['coc-json',
+	let g:coc_global_extensions = ['coc-json', 'coc-react-refactor',
 				\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
 				\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
 				\ 'coc-html', 'coc-markdownlint', 'coc-rust-analyzer',
