@@ -305,6 +305,7 @@ else
 	" Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'
+	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
 
@@ -367,7 +368,19 @@ require'nvim-treesitter.configs'.setup {
 	},
 	context_commentstring = {
 		enable = true,
-	}
+	},
+	textobjects = {
+		-- See https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+		swap = {
+			enable = true,
+			swap_next = {
+				["]a"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["[a"] = "@parameter.inner",
+			},
+		}
+	},
 }
 require('telescope').setup {
 	defaults = {
