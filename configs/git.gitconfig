@@ -22,3 +22,23 @@
 	s = status
 	clear-branches = !git branch | grep -v '^*' | xargs git branch -d
 	l = log
+
+[diff]
+  colorMoved = default
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+# vi: filetype=gitconfig
