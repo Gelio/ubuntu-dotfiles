@@ -136,7 +136,6 @@ else
 
 	" https://vimawesome.com/plugin/gruvbox
 	Plug 'morhetz/gruvbox'
-	autocmd vimenter * ++nested colorscheme gruvbox
 	set termguicolors
 
 	" https://github.com/lukas-reineke/indent-blankline.nvim
@@ -167,6 +166,8 @@ else
 	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 	nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 	nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+	nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
+	nnoremap <leader>fs <cmd>Telescope lsp_workspace_symbols<cr>
 
 	" Install both icon plugins
 	" web-devicons for telescope
@@ -192,7 +193,21 @@ else
 	" More space for displaying messages
 	set cmdheight=2
 	set shortmess+=c
-	set signcolumn=auto
+	set signcolumn=auto:2
+
+	Plug 'RishabhRD/popfix'
+	Plug 'RishabhRD/nvim-lsputils'
+
+	" nvim-compe
+	" https://github.com/hrsh7th/nvim-compe
+	Plug 'hrsh7th/nvim-compe'
+	set completeopt=menuone,noselect
+	inoremap <silent><expr> <C-Space> compe#complete()
+	inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+	inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+	inoremap <silent><expr> <C-u>     compe#scroll({ 'delta': +4 })
+	inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+	Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 	" Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -308,5 +323,23 @@ if executable('rg')
 else
 	echoerr "rg (ripgrep) is not installed. Thus, it will not be used for :grep"
 endif
+
+colorscheme gruvbox
+
+" Diagnostics
+" Errors in Red
+hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red
+hi LspDiagnosticsSignError guifg=Red ctermfg=Red
+" Warnings in Yellow
+hi LspDiagnosticsVirtualTextWarning guifg=Yellow ctermfg=Yellow
+hi LspDiagnosticsSignError guifg=Red ctermfg=Yellow
+
+" Underline the offending code
+hi LspDiagnosticsUnderlineError guifg=Red ctermfg=Red cterm=underline gui=underline
+hi LspDiagnosticsUnderlineWarning guifg=Yellow ctermfg=Yellow cterm=underline gui=underline
+hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
+
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 endif
