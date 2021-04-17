@@ -197,6 +197,7 @@ else
 	set shortmess+=c
 	set signcolumn=yes
 	autocmd FileType nerdtree set signcolumn=no
+	Plug 'nvim-lua/lsp_extensions.nvim'
 
 	" nvim-compe
 	" https://github.com/hrsh7th/nvim-compe
@@ -341,5 +342,7 @@ hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gu
 hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
 
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints
+	\{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
 endif
