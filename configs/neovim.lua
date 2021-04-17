@@ -96,10 +96,6 @@ local eslint = {
   formatStdin = true
 }
 
--- Run:
--- npm install -g eslint_d typescript-language-server
--- go get github.com/mattn/efm-langserver
-
 local function eslint_config_exists()
   local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
 
