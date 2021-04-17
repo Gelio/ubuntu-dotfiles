@@ -1,4 +1,11 @@
 local nvim_lsp = require('lspconfig')
+
+local function setup_formatting(bufnr)
+  local opts = { noremap = true, silent = true }
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+end
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -27,8 +34,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('v', '<leader>ar', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
 
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    setup_formatting(bufnr)
   end
   if client.resolved_capabilities.document_range_formatting then
     buf_set_keymap("v", "<leader>F", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
@@ -48,10 +54,18 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers = { "tsserver", "gopls", "rust_analyzer" }
-for _, lsp in ipairs(servers) do
+local servers_with_defaults = { "gopls", "rust_analyzer" }
+for _, lsp in ipairs(servers_with_defaults) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+nvim_lsp.tsserver.setup {
+  on_attach = function(client, bufnr)
+    -- Format using prettier
+    client.resolved_capabilities.document_formatting = false
+    on_attach(client, bufnr)
+  end,
+}
 
 require'compe'.setup {
   enabled = true;
@@ -96,50 +110,43 @@ local eslint = {
   formatStdin = true
 }
 
-local function eslint_config_exists()
-  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
+local prettier = {
+  formatStdin = true,
+  formatCommand = "prettierd ${INPUT}"
+}
 
-  if not vim.tbl_isempty(eslintrc) then
-    return true
+local efm_settings = {
+  javascript = {eslint, prettier},
+  javascriptreact = {eslint, prettier},
+  ["javascript.jsx"] = {eslint, prettier},
+  typescript = {eslint, prettier},
+  ["typescript.tsx"] = {eslint, prettier},
+  typescriptreact = {eslint, prettier},
+  markdown = {prettier},
+  html = {prettier},
+  css = {prettier},
+  scss = {prettier},
+  json = {prettier},
+  yaml = {prettier},
+}
+
+function get_table_keys(tab)
+  local keyset = {}
+  for k, v in pairs(tab) do
+    keyset[#keyset + 1] = k
   end
-
-  if vim.fn.filereadable("package.json") then
-    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
-      return true
-    end
-  end
-
-  return false
+  return keyset
 end
 
 nvim_lsp.efm.setup {
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = true
     client.resolved_capabilities.goto_definition = false
-  end,
-  root_dir = function()
-    if not eslint_config_exists() then
-      return nil
-    end
-    return vim.fn.getcwd()
+    setup_formatting(bufnr)
   end,
   settings = {
-    languages = {
-      javascript = {eslint},
-      javascriptreact = {eslint},
-      ["javascript.jsx"] = {eslint},
-      typescript = {eslint},
-      ["typescript.tsx"] = {eslint},
-      typescriptreact = {eslint}
-    }
+    languages = efm_settings,
   },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescript.tsx",
-    "typescriptreact"
-  },
+  filetypes = get_table_keys(efm_settings)
 }
 
