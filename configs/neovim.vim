@@ -195,7 +195,8 @@ else
 	" More space for displaying messages
 	set cmdheight=2
 	set shortmess+=c
-	set signcolumn=auto:2
+	set signcolumn=yes
+	autocmd FileType nerdtree set signcolumn=no
 
 	" nvim-compe
 	" https://github.com/hrsh7th/nvim-compe
