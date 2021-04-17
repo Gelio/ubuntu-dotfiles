@@ -27,6 +27,7 @@ local on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap("n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   end
   if client.resolved_capabilities.document_range_formatting then
     buf_set_keymap("v", "<leader>F", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
