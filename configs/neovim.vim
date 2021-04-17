@@ -195,9 +195,6 @@ else
 	set shortmess+=c
 	set signcolumn=auto:2
 
-	Plug 'RishabhRD/popfix'
-	Plug 'RishabhRD/nvim-lsputils'
-
 	" nvim-compe
 	" https://github.com/hrsh7th/nvim-compe
 	Plug 'hrsh7th/nvim-compe'
