@@ -168,6 +168,8 @@ else
 	nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 	nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
 	nnoremap <leader>fs <cmd>Telescope lsp_workspace_symbols<cr>
+	nnoremap <leader>fac <cmd>Telescope lsp_code_actions<cr>
+	nnoremap <leader>far <cmd>Telescope lsp_range_code_actions<cr>
 
 	" Install both icon plugins
 	" web-devicons for telescope
