@@ -54,7 +54,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers_with_defaults = { "gopls", "rust_analyzer" }
+local servers_with_defaults = { "gopls", "rust_analyzer", "jsonls", "bashls" }
 for _, lsp in ipairs(servers_with_defaults) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
