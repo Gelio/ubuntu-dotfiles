@@ -126,6 +126,7 @@ local efm_settings = {
   scss = {prettier},
   json = {prettier},
   yaml = {prettier},
+  svelte = {prettier},
 }
 
 function get_table_keys(tab)
