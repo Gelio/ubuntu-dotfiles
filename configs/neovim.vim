@@ -120,6 +120,10 @@ else
 	" https://github.com/rickhowe/diffchar.vim
 	Plug 'rickhowe/diffchar.vim'
 
+	" Better quickfix
+	" https://github.com/kevinhwang91/nvim-bqf
+	Plug 'kevinhwang91/nvim-bqf'
+
 	" Saving sessions
 	" https://github.com/tpope/vim-obsession
 	Plug 'tpope/vim-obsession'
