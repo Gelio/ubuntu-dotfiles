@@ -84,11 +84,9 @@ if exists('g:vscode')
 	nnoremap <leader>ff :call VSCodeNotify('workbench.action.quickOpen')<CR>
 	nnoremap <leader>fg :call VSCodeNotify('workbench.action.findInFiles')<CR>
 
-	" Mimic NERDTree mappings
+	" Mimic directory tree mappings
 	nnoremap <leader>nn :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
-	nnoremap <leader>ng :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
 	nnoremap <leader>nr :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
-	nnoremap <leader>nR :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
 else
 	" Regular easymotion
 	" https://github.com/easymotion/vim-easymotion
@@ -98,16 +96,13 @@ else
 	" https://github.com/hoob3rt/lualine.nvim
 	Plug 'hoob3rt/lualine.nvim'
 
-	" https://vimawesome.com/plugin/nerdtree-red
-	Plug 'scrooloose/nerdtree'
-	nnoremap <leader>nn :NERDTreeToggle<CR>
-	nnoremap <leader>ng :NERDTreeToggleVCS<CR>
-	nnoremap <leader>nr :NERDTreeFind<CR>
-	nnoremap <silent> <leader>nR :NERDTreeFind<CR> :wincmd p<CR>
-
-	" https://vimawesome.com/plugin/nerdtree-git-plugin
-	Plug 'xuyuanp/nerdtree-git-plugin'
-	let g:NERDTreeGitStatusUseNerdFonts = 1
+	" https://github.com/kyazdani42/nvim-tree.lua (NERDTree in lua)
+	Plug 'kyazdani42/nvim-tree.lua'
+	nnoremap <leader>nn :NvimTreeToggle<CR>
+	nnoremap <leader>nr :NvimTreeFindFile<CR>
+	nnoremap <silent> <leader>nR :NvimTreeFindFile<CR> :wincmd p<CR>
+	let g:nvim_tree_git_hl=1
+	let g:nvim_tree_lsp_diagnostics = 1
 
 	" https://vimawesome.com/plugin/fugitive-vim
 	" Plug 'tpope/vim-fugitive'
@@ -175,18 +170,7 @@ else
 	nnoremap <leader>fac <cmd>Telescope lsp_code_actions<cr>
 	nnoremap <leader>far <cmd>Telescope lsp_range_code_actions<cr>
 
-	" Install both icon plugins
-	" web-devicons for telescope
-	" devicons for airline and NERDTree
 	Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'ryanoasis/vim-devicons'
-	Plug 'lambdalisue/glyph-palette.vim'
-	augroup my-glyph-palette
-		autocmd! *
-		autocmd FileType fern call glyph_palette#apply()
-		autocmd FileType nerdtree,startify call glyph_palette#apply()
-		autocmd ColorScheme * lua require'nvim-web-devicons'.setup()
-	augroup END
 
 	" https://github.com/tpope/vim-commentary
 	Plug 'tpope/vim-commentary'
@@ -200,7 +184,6 @@ else
 	set cmdheight=2
 	set shortmess+=c
 	set signcolumn=yes
-	autocmd FileType nerdtree set signcolumn=no
 	Plug 'nvim-lua/lsp_extensions.nvim'
 
 	" nvim-compe
