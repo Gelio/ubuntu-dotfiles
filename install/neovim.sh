@@ -8,6 +8,7 @@ cd ~/.config
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 
 if [ -n "$UPGRADE_ONLY" ]; then
+    nvim -v
     echo "Upgraded neovim, exiting"
     exit 0
 fi
