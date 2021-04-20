@@ -312,6 +312,7 @@ else
 	echoerr "rg (ripgrep) is not installed. Thus, it will not be used for :grep"
 endif
 
+set t_Co=256
 colorscheme gruvbox
 
 " Diagnostics
