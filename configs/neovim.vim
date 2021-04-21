@@ -115,6 +115,9 @@ else
 	" https://github.com/rickhowe/diffchar.vim
 	Plug 'rickhowe/diffchar.vim'
 
+	" https://github.com/jiangmiao/auto-pairs
+	Plug 'jiangmiao/auto-pairs'
+
 	" Better quickfix
 	" https://github.com/kevinhwang91/nvim-bqf
 	Plug 'kevinhwang91/nvim-bqf'
