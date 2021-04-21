@@ -118,6 +118,10 @@ else
 	" https://github.com/jiangmiao/auto-pairs
 	Plug 'jiangmiao/auto-pairs'
 
+	" https://github.com/mbbill/undotree
+	Plug 'mbbill/undotree'
+	set undofile
+
 	" Better quickfix
 	" https://github.com/kevinhwang91/nvim-bqf
 	Plug 'kevinhwang91/nvim-bqf'
