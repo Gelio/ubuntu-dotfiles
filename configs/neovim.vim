@@ -204,6 +204,11 @@ else
 	inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 	Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
+	" Pretty list of LSP diagnostics
+	" https://github.com/folke/lsp-trouble.nvim
+	Plug 'folke/lsp-trouble.nvim'
+	nnoremap <leader>d <cmd>LspTroubleToggle<cr>
+
 	" Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'
@@ -304,6 +309,7 @@ require('lualine').setup{
 		lualine_z = {'location'},
 	}
 }
+require("trouble").setup {}
 EOF
 lua require('my-config')
 
