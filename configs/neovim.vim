@@ -193,6 +193,9 @@ else
 	set signcolumn=yes
 	Plug 'nvim-lua/lsp_extensions.nvim'
 
+	Plug 'simrat39/symbols-outline.nvim'
+	nnoremap <leader>so :SymbolsOutline<cr>
+
 	" nvim-compe
 	" https://github.com/hrsh7th/nvim-compe
 	Plug 'hrsh7th/nvim-compe'
@@ -311,6 +314,7 @@ require('lualine').setup{
 	}
 }
 require("trouble").setup {}
+require('symbols-outline').setup{}
 EOF
 lua require('my-config')
 
