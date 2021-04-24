@@ -216,6 +216,7 @@ else
 
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
+	set foldlevel=20
 
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
