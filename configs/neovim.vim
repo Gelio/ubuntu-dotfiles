@@ -39,24 +39,15 @@ set updatetime=100
 " Run ":PlugInstall" to install the plugins
 call plug#begin()
 
-" https://vimawesome.com/plugin/sensible-vim
 Plug 'tpope/vim-sensible'
-
-" https://vimawesome.com/plugin/surround-vim
 Plug 'tpope/vim-surround'
-
-" https://github.com/wellle/targets.vim
 Plug 'wellle/targets.vim'
+Plug 'tpope/vim-unimpaired'
 
-" https://vimawesome.com/plugin/camelcasemotion-ours
 Plug 'bkad/camelcasemotion'
 let g:camelcasemotion_key = '<leader>'
 
-" https://vimawesome.com/plugin/vim-highlightedyank
 Plug 'machakann/vim-highlightedyank'
-
-" https://github.com/tpope/vim-unimpaired
-Plug 'tpope/vim-unimpaired'
 
 if exists('g:vscode')
 	" https://github.com/asvetliakov/vim-easymotion
