@@ -214,6 +214,8 @@ else
 	Plug 'folke/lsp-trouble.nvim'
 	nnoremap <leader>d <cmd>LspTroubleToggle<cr>
 
+	Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
 	" Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'

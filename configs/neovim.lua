@@ -61,6 +61,16 @@ nvim_lsp.tsserver.setup {
     -- Format using prettier
     client.resolved_capabilities.document_formatting = false
     on_attach(client, bufnr)
+
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup {
+      eslint_bin = "eslint_d",
+      eslint_enable_diagnostics = true,
+
+      -- Formatting done by prettier using efm, still
+    }
+
+    vim.lsp.buf_request = ts_utils.buf_request
   end,
 }
 
@@ -98,6 +108,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+-- TODO: clean up eslint config for efm, since using lsp-ts
 local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
@@ -111,12 +122,12 @@ local prettier = {
 }
 
 local efm_settings = {
-  javascript = {eslint, prettier},
-  javascriptreact = {eslint, prettier},
-  ["javascript.jsx"] = {eslint, prettier},
-  typescript = {eslint, prettier},
-  ["typescript.tsx"] = {eslint, prettier},
-  typescriptreact = {eslint, prettier},
+  javascript = {prettier},
+  javascriptreact = {prettier},
+  ["javascript.jsx"] = {prettier},
+  typescript = {prettier},
+  ["typescript.tsx"] = {prettier},
+  typescriptreact = {prettier},
   markdown = {prettier},
   html = {prettier},
   css = {prettier},
