@@ -50,6 +50,9 @@ let g:camelcasemotion_key = '<leader>'
 
 Plug 'machakann/vim-highlightedyank'
 
+Plug 'justinmk/vim-sneak'
+let g:sneak#label = 1
+
 if exists('g:vscode')
 	" https://github.com/asvetliakov/vim-easymotion
 	" Fork of the original easymotion that works correctly in vscode
