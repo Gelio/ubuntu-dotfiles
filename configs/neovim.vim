@@ -52,6 +52,13 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'justinmk/vim-sneak'
 let g:sneak#label = 1
+" Leave ; and , for quick-scope (f, F, t, T)
+" Idea from https://www.chrisatmachine.com/Neovim/13-sneak/
+map gS <Plug>Sneak_,
+map gs <Plug>Sneak_;
+
+Plug 'unblevable/quick-scope'
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 if exists('g:vscode')
 	" https://github.com/asvetliakov/vim-easymotion
