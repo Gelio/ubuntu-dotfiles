@@ -214,6 +214,7 @@ else
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+	Plug 'romgrk/nvim-treesitter-context'
 
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
