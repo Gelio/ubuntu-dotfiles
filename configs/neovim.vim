@@ -114,8 +114,9 @@ else
 	Plug 'junegunn/gv.vim' " commit graph
 
 	" Better diffs (shows in-line changes)
-	" https://github.com/rickhowe/diffchar.vim
 	Plug 'rickhowe/diffchar.vim'
+	" Fixes invisible inner-line unchanged text
+	let g:DiffColors = 1
 
 	" https://github.com/jiangmiao/auto-pairs
 	Plug 'jiangmiao/auto-pairs'
@@ -138,6 +139,7 @@ else
 
 	Plug 'tomasiser/vim-code-dark'
 	Plug 'gruvbox-community/gruvbox', { 'as': 'gruvbox-community' }
+	Plug 'sainnhe/gruvbox-material'
 
 	set termguicolors
 	" }}}
@@ -408,6 +410,7 @@ else
 endif
 
 set t_Co=256
+colorscheme gruvbox-material
 endif
 
 " vim: foldmethod=marker
