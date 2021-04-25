@@ -158,8 +158,7 @@ else
 	Plug 'luochen1990/rainbow'
 	let g:rainbow_active = 1
 
-	" https://vimawesome.com/plugin/vim-css-color-the-story-of-us
-	Plug 'ap/vim-css-color'
+	Plug 'norcalli/nvim-colorizer.lua'
 
 	" https://github.com/lewis6991/gitsigns.nvim
 	Plug 'lewis6991/gitsigns.nvim'
@@ -396,6 +395,7 @@ require('lualine').setup{
 	},
 	extensions = { 'fugitive', 'nvim-tree' },
 }
+require('colorizer').setup()
 EOF
 
 " Disable treesitter in esbuild go files (very long ones, causes lags)
