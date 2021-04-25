@@ -297,6 +297,7 @@ else
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+	Plug 'romgrk/nvim-treesitter-context'
 
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
