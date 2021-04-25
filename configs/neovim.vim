@@ -178,7 +178,7 @@ else
 	" https://github.com/tpope/vim-commentary
 	Plug 'tpope/vim-commentary'
 
-	" LSP
+	" {{{ LSP
 	Plug 'neovim/nvim-lspconfig'
 	set hidden
 	set nowritebackup
@@ -192,8 +192,6 @@ else
 	Plug 'simrat39/symbols-outline.nvim'
 	nnoremap <leader>so :SymbolsOutline<cr>
 
-	" nvim-compe
-	" https://github.com/hrsh7th/nvim-compe
 	Plug 'hrsh7th/nvim-compe'
 	set completeopt=menuone,noselect
 	inoremap <silent><expr> <C-Space> compe#complete()
@@ -204,11 +202,11 @@ else
 	Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 	" Pretty list of LSP diagnostics
-	" https://github.com/folke/lsp-trouble.nvim
 	Plug 'folke/lsp-trouble.nvim'
 	nnoremap <leader>d <cmd>LspTroubleToggle<cr>
 
 	Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+	" }}}
 
 	" Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
