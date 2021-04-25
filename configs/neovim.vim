@@ -132,19 +132,15 @@ else
 	" https://github.com/tpope/vim-obsession
 	Plug 'tpope/vim-obsession'
 
-	" ===== Theme ====
-	" Use gruvbox for regular development
-	" Use codedark for code review (in diffs) for syntax highlighting of diff
-	" code
-	" TODO: configure the Diff colors for gruvbox to preserve syntax
-	" highlighting and stop using 2 color schemes :D
+	" {{{ Themes
+	" code-dark for viewing diffs
+	" gruvbox for day-to-day use
 
-	" https://github.com/tomasiser/vim-code-dark
 	Plug 'tomasiser/vim-code-dark'
+	Plug 'gruvbox-community/gruvbox', { 'as': 'gruvbox-community' }
 
-	" https://vimawesome.com/plugin/gruvbox
-	Plug 'morhetz/gruvbox'
 	set termguicolors
+	" }}}
 
 	" https://github.com/lukas-reineke/indent-blankline.nvim
 	Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
@@ -163,7 +159,6 @@ else
 	Plug 'lewis6991/gitsigns.nvim'
 
 	" Telescope for fuzzy searching
-	" https://github.com/nvim-telescope/telescope.nvim
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
@@ -359,3 +354,5 @@ autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hi
 	\{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
 
 endif
+
+" vim: foldmethod=marker
