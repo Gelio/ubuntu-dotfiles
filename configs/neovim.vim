@@ -337,14 +337,6 @@ endif
 set t_Co=256
 colorscheme gruvbox-material
 
-" Diagnostics
-" Errors in Red
-hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red
-hi LspDiagnosticsSignError guifg=Red ctermfg=Red
-" Warnings in Yellow
-hi LspDiagnosticsVirtualTextWarning guifg=Yellow ctermfg=Yellow
-hi LspDiagnosticsSignError guifg=Red ctermfg=Yellow
-
 " Underline the offending code
 hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
 hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=underline gui=underline
