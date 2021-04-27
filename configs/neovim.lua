@@ -68,9 +68,9 @@ nvim_lsp.tsserver.setup {
       eslint_enable_diagnostics = true,
 
       -- Formatting done by prettier using efm, still
+      enable_formatting = false,
     }
-
-    vim.lsp.buf_request = ts_utils.buf_request
+    ts_utils.setup_client(client)
   end,
 }
 
