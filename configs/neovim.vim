@@ -124,6 +124,8 @@ else
 	Plug 'mbbill/undotree'
 	set undofile
 
+	Plug 'folke/which-key.nvim'
+
 	" Better quickfix
 	" https://github.com/kevinhwang91/nvim-bqf
 	Plug 'kevinhwang91/nvim-bqf'
@@ -313,6 +315,7 @@ require('lualine').setup{
 require("trouble").setup {}
 require('symbols-outline').setup{}
 require('colorizer').setup()
+require('which-key').setup()
 require('nvim-autopairs').setup()
 
 local remap = vim.api.nvim_set_keymap
