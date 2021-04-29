@@ -150,10 +150,6 @@ else
 				\ 'if_statement', 'else_clause', 'jsx_element', 'jsx_self_closing_element',
 				\ 'try_statement', 'catch_clause']
 
-	" https://vimawesome.com/plugin/rainbow-you-belong-with-me
-	Plug 'luochen1990/rainbow'
-	let g:rainbow_active = 1
-
 	Plug 'norcalli/nvim-colorizer.lua'
 
 	" https://github.com/lewis6991/gitsigns.nvim
@@ -214,6 +210,7 @@ else
 	Plug 'nvim-treesitter/playground'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'romgrk/nvim-treesitter-context'
+	Plug 'p00f/nvim-ts-rainbow'
 
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
@@ -290,6 +287,10 @@ require'nvim-treesitter.configs'.setup {
 				["[a"] = "@parameter.inner",
 			},
 		}
+	},
+	rainbow = {
+		enable = true,
+		extended_mode = true,
 	},
 }
 require('telescope').setup {
