@@ -205,25 +205,22 @@ else
 	Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 	" }}}
 
-	" Treesitter
+	" {{{ Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'romgrk/nvim-treesitter-context'
 	Plug 'p00f/nvim-ts-rainbow'
+	Plug 'windwp/nvim-ts-autotag'
+	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
 	set foldlevel=20
+	" }}}
 
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
-
-	" https://github.com/windwp/nvim-ts-autotag
-	Plug 'windwp/nvim-ts-autotag'
-
-	" https://github.com/JoosepAlviste/nvim-ts-context-commentstring
-	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	" ====== Diff options ======
 	" Ignore whitespace in diffs
