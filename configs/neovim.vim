@@ -230,6 +230,8 @@ else
 	" Set a better diff algorithm
 	set diffopt+=algorithm:histogram
 
+	Plug 'sindrets/diffview.nvim'
+
 	" ====== Code review ======
 	command! -nargs=1 -complete=customlist,fugitive#EditComplete CodeReview
 				\ 	:call s:CodeReview(<f-args>)
@@ -339,6 +341,8 @@ end
 
 
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+
+require'diffview'.setup {}
 EOF
 lua require('my-config')
 
