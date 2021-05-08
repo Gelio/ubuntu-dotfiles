@@ -20,6 +20,9 @@ sudo ln -s "$PWD/nvim.appimage" /usr/bin/nvim
 mkdir -p nvim
 ln -s "$CONFIGS_DIR/neovim.vim" nvim/init.vim
 
+mkdir -p nvim/lua
+ln -s "$CONFIGS_DIR/neovim.lua" nvim/lua/my-config.lua
+
 # Add symlink for coc settings
 ln -s "$CONFIGS_DIR/coc-settings.json" nvim/coc-settings.json
 

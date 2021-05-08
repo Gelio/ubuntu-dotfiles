@@ -118,12 +118,13 @@ else
 	" Fixes invisible inner-line unchanged text
 	let g:DiffColors = 1
 
-	" https://github.com/jiangmiao/auto-pairs
-	Plug 'jiangmiao/auto-pairs'
+	Plug 'windwp/nvim-autopairs'
 
 	" https://github.com/mbbill/undotree
 	Plug 'mbbill/undotree'
 	set undofile
+
+	Plug 'folke/which-key.nvim'
 
 	" Better quickfix
 	" https://github.com/kevinhwang91/nvim-bqf
@@ -151,10 +152,6 @@ else
 				\ 'if_statement', 'else_clause', 'jsx_element', 'jsx_self_closing_element',
 				\ 'try_statement', 'catch_clause']
 
-	" https://vimawesome.com/plugin/rainbow-you-belong-with-me
-	Plug 'luochen1990/rainbow'
-	let g:rainbow_active = 1
-
 	Plug 'norcalli/nvim-colorizer.lua'
 
 	" https://github.com/lewis6991/gitsigns.nvim
@@ -170,149 +167,70 @@ else
 	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 	nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 	nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+	nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
+	nnoremap <leader>fs <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
+	nnoremap <leader>fac <cmd>Telescope lsp_code_actions<cr>
+	nnoremap <leader>far <cmd>Telescope lsp_range_code_actions<cr>
 
 	Plug 'kyazdani42/nvim-web-devicons'
 
 	" https://github.com/tpope/vim-commentary
 	Plug 'tpope/vim-commentary'
 
-	" Conquer of Completion
-	" https://github.com/neoclide/coc.nvim
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	" {{{ LSP
+	Plug 'neovim/nvim-lspconfig'
 	set hidden
 	set nowritebackup
 	set noswapfile
 	" More space for displaying messages
 	set cmdheight=2
 	set shortmess+=c
-	" Display both gitsigns and CoC markers at all times.
-	" Prevents the text from moving around horizontally when markers appear
-	set signcolumn=yes:2
+	set signcolumn=yes
+	Plug 'nvim-lua/lsp_extensions.nvim'
 
-	let g:coc_global_extensions = ['coc-json', 'coc-react-refactor',
-				\ 'coc-tsserver', 'coc-prettier', 'coc-marketplace',
-				\ 'coc-vimlsp', 'coc-css', 'coc-eslint', 'coc-go',
-				\ 'coc-html', 'coc-markdownlint', 'coc-rust-analyzer',
-				\ 'coc-sh', 'coc-stylelintplus', 'coc-toml', 'coc-tabnine',
-				\ 'coc-gitignore', 'coc-lua', 'https://github.com/codechips/coc-svelte',
-				\ 'coc-xml', 'coc-yaml', 'coc-styled-components']
+	Plug 'simrat39/symbols-outline.nvim'
+	nnoremap <leader>so :SymbolsOutline<cr>
 
-	" Tab and Shift-Tab for moving through completions
-	inoremap <silent><expr> <TAB>
-				\ pumvisible() ? "\<C-n>" :
-				\ <SID>check_back_space() ? "\<TAB>" :
-				\ coc#refresh()
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	Plug 'hrsh7th/nvim-compe'
+	set completeopt=menuone,noselect
+	inoremap <silent><expr> <C-Space> compe#complete()
+	inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+	inoremap <silent><expr> <C-y>     compe#close('<C-e>')
+	inoremap <silent><expr> <C-u>     compe#scroll({ 'delta': +4 })
+	inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+	Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
-	function! s:check_back_space() abort
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~# '\s'
-	endfunction
+	" Pretty list of LSP diagnostics
+	Plug 'folke/lsp-trouble.nvim'
+	nnoremap <leader>d <cmd>LspTroubleToggle<cr>
 
-	" <CR> to select the completion
-	inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+	Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+	" }}}
 
-	" [g and ]g to move through diagnostics
-	nmap <silent> [g <Plug>(coc-diagnostic-prev)
-	nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-	" Move through the CocList
-	nnoremap <leader>cn :CocNext<CR>
-	nnoremap <leader>cp :CocPrev<CR>
-	nnoremap <leader>co :CocListResume<CR>
-
-	" GoTo code navigation.
-	nnoremap <silent> <C-W>gd :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
-	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
-	nmap <silent> gr <Plug>(coc-references)
-
-	" List symbols
-	nnoremap <leader>fs <cmd>CocList symbols<CR>
-
-	" Use K to show documentation in preview window.
-	nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-	function! s:show_documentation()
-		if (index(['vim','help'], &filetype) >= 0)
-			execute 'h '.expand('<cword>')
-		elseif (coc#rpc#ready())
-			call CocActionAsync('doHover')
-		else
-			execute '!' . &keywordprg . " " . expand('<cword>')
-		endif
-	endfunction
-
-	" Highlight the symbol and its references when holding the cursor.
-	autocmd CursorHold * silent call CocActionAsync('highlight')
-
-	" Symbol renaming.
-	nmap <leader>rn <Plug>(coc-rename)
-
-	" Formatting
-	xmap <leader>F  <Plug>(coc-format)
-	nmap <leader>F  <Plug>(coc-format)
-
-	" Map function and class text objects
-	xmap if <Plug>(coc-funcobj-i)
-	omap if <Plug>(coc-funcobj-i)
-	xmap af <Plug>(coc-funcobj-a)
-	omap af <Plug>(coc-funcobj-a)
-	xmap ic <Plug>(coc-classobj-i)
-	omap ic <Plug>(coc-classobj-i)
-	xmap ac <Plug>(coc-classobj-a)
-	omap ac <Plug>(coc-classobj-a)
-
-	" Code actions
-	xmap <leader>a  <Plug>(coc-codeaction-selected)
-	nmap <leader>a  <Plug>(coc-codeaction-selected)
-	xmap <leader>ac  <Plug>(coc-codeaction)
-	nmap <leader>ac  <Plug>(coc-codeaction)
-
-	" Scroll in popup windows
-	nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-	nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-	inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-	inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-	vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-	vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-
-	" Quick fix
-	xmap <leader>qf :CocAction quickfix<CR>
-	nmap <leader>qf :CocAction quickfix<CR>
-
-	" Add `:Format` command to format current buffer.
-	command! -nargs=0 Format :call CocAction('format')
-
-	" Add `:Fold` command to fold current buffer.
-	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-	set foldlevelstart=20
-
-	" Ctrl-Space triggers help like VSCode
-	inoremap <silent><expr> <c-space> coc#refresh()
-
-	" Treesitter
+	" {{{ Treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'nvim-treesitter/playground'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'romgrk/nvim-treesitter-context'
+	Plug 'p00f/nvim-ts-rainbow'
+	Plug 'windwp/nvim-ts-autotag'
+	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
+	set foldmethod=expr
+	set foldexpr=nvim_treesitter#foldexpr()
+	set foldlevel=20
+	" }}}
 
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
-
-	" https://github.com/windwp/nvim-ts-autotag
-	Plug 'windwp/nvim-ts-autotag'
-
-	" https://github.com/JoosepAlviste/nvim-ts-context-commentstring
-	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	" ====== Diff options ======
 	" Ignore whitespace in diffs
 	set diffopt+=iwhite
 	" Set a better diff algorithm
 	set diffopt+=algorithm:histogram
+
+	Plug 'sindrets/diffview.nvim'
 
 	" ====== Code review ======
 	command! -nargs=1 -complete=customlist,fugitive#EditComplete CodeReview
@@ -371,6 +289,10 @@ require'nvim-treesitter.configs'.setup {
 			},
 		}
 	},
+	rainbow = {
+		enable = true,
+		extended_mode = true,
+	},
 }
 require('telescope').setup {
 	defaults = {
@@ -392,8 +314,37 @@ require('lualine').setup{
 	},
 	extensions = { 'fugitive', 'nvim-tree' },
 }
+require("trouble").setup {}
+require('symbols-outline').setup{}
 require('colorizer').setup()
+require('which-key').setup()
+require('nvim-autopairs').setup()
+
+local remap = vim.api.nvim_set_keymap
+local npairs = require('nvim-autopairs')
+
+-- skip it, if you use another global object
+_G.MUtils= {}
+
+vim.g.completion_confirm_key = ""
+MUtils.completion_confirm=function()
+  if vim.fn.pumvisible() ~= 0  then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      return vim.fn["compe#confirm"](npairs.esc("<cr>"))
+    else
+      return npairs.esc("<cr>")
+    end
+  else
+    return npairs.autopairs_cr()
+  end
+end
+
+
+remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
+
+require'diffview'.setup {}
 EOF
+lua require('my-config')
 
 " Disable treesitter in esbuild go files (very long ones, causes lags)
 autocmd BufNewFile,BufRead */esbuild/*/*.go call DisableFeaturesForEsbuild()
@@ -412,6 +363,17 @@ endif
 
 set t_Co=256
 colorscheme gruvbox-material
+set cursorline
+
+" Underline the offending code
+hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
+
+autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints
+	\{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+
 endif
 
 " vim: foldmethod=marker
