@@ -363,6 +363,7 @@ endif
 
 set t_Co=256
 colorscheme gruvbox-material
+set cursorline
 
 " Underline the offending code
 hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
