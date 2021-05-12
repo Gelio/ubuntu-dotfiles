@@ -62,7 +62,6 @@ nvim_lsp.stylelint_lsp.setup {
   on_attach = function(client, bufnr)
     -- Conflicts with prettier formatting in TS files.
     client.resolved_capabilities.document_formatting = false
-    on_attach(client, bufnr)
   end,
 }
 
