@@ -118,14 +118,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- TODO: clean up eslint config for efm, since using lsp-ts
-local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
-  lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"},
-  lintIgnoreExitCode = true,
-}
-
 local prettier = {
   formatStdin = true,
   formatCommand = "prettierd ${INPUT}"
