@@ -49,6 +49,8 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
+
+  require'lsp_signature'.on_attach()
 end
 
 local servers_with_defaults = { "gopls", "rust_analyzer", "jsonls", "bashls", "cssls", "svelte" }

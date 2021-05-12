@@ -205,6 +205,7 @@ else
 	nnoremap <leader>d <cmd>LspTroubleToggle<cr>
 
 	Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+	Plug 'ray-x/lsp_signature.nvim'
 	" }}}
 
 	" {{{ Treesitter
