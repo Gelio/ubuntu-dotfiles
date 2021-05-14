@@ -125,6 +125,7 @@ else
 	set undofile
 
 	Plug 'folke/which-key.nvim'
+	Plug 'folke/todo-comments.nvim'
 
 	" Better quickfix
 	" https://github.com/kevinhwang91/nvim-bqf
@@ -344,6 +345,7 @@ end
 remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
 
 require'diffview'.setup {}
+require("todo-comments").setup {}
 EOF
 lua require('my-config')
 
