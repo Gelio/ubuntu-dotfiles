@@ -75,6 +75,7 @@ nvim_lsp.tsserver.setup {
     ts_utils.setup {
       eslint_bin = "eslint_d",
       eslint_enable_diagnostics = true,
+      eslint_diagnostics_debounce = 500,
 
       -- Formatting done by prettier using efm, still
       enable_formatting = false,
