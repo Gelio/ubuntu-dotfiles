@@ -139,8 +139,7 @@ else
 	" code-dark for viewing diffs
 	" gruvbox for day-to-day use
 
-	Plug 'tomasiser/vim-code-dark'
-	Plug 'gruvbox-community/gruvbox', { 'as': 'gruvbox-community' }
+	Plug 'Mofiqul/codedark.nvim'
 	Plug 'sainnhe/gruvbox-material'
 
 	set termguicolors
