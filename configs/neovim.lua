@@ -65,23 +65,25 @@ nvim_lsp.stylelint_lsp.setup {
   end,
 }
 
+local function attach_tsserver(client, bufnr)
+  -- Format using prettier
+  client.resolved_capabilities.document_formatting = false
+  on_attach(client, bufnr)
+
+  local ts_utils = require("nvim-lsp-ts-utils")
+  ts_utils.setup {
+    eslint_bin = "eslint_d",
+    eslint_enable_diagnostics = true,
+    eslint_diagnostics_debounce = 500,
+
+    -- Formatting done by prettier using efm, still
+    enable_formatting = false,
+  }
+  ts_utils.setup_client(client)
+end
+
 nvim_lsp.tsserver.setup {
-  on_attach = function(client, bufnr)
-    -- Format using prettier
-    client.resolved_capabilities.document_formatting = false
-    on_attach(client, bufnr)
-
-    local ts_utils = require("nvim-lsp-ts-utils")
-    ts_utils.setup {
-      eslint_bin = "eslint_d",
-      eslint_enable_diagnostics = true,
-      eslint_diagnostics_debounce = 500,
-
-      -- Formatting done by prettier using efm, still
-      enable_formatting = false,
-    }
-    ts_utils.setup_client(client)
-  end,
+  on_attach = attach_tsserver
 }
 
 require'compe'.setup {
@@ -159,3 +161,8 @@ nvim_lsp.efm.setup {
   filetypes = get_table_keys(efm_settings)
 }
 
+my_config = {
+  attach_tsserver = attach_tsserver,
+  on_attach = on_attach,
+}
+return my_config
