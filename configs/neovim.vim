@@ -61,11 +61,6 @@ Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 if exists('g:vscode')
-	" https://github.com/asvetliakov/vim-easymotion
-	" Fork of the original easymotion that works correctly in vscode
-	" Unfortunately, then it does not work in regular nvim :/
-	Plug 'https://github.com/asvetliakov/vim-easymotion', { 'as': 'vscode-vim-easymotion' }
-
 	" Mimic CoC mappings
 	nnoremap <leader>qf :call VSCodeNotify('editor.action.quickFix')<CR>
 	xnoremap <leader>qf :call VSCodeNotify('editor.action.quickFix')<CR>
@@ -90,10 +85,6 @@ if exists('g:vscode')
 	nnoremap <leader>nn :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
 	nnoremap <leader>nr :call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
 else
-	" Regular easymotion
-	" https://github.com/easymotion/vim-easymotion
-	Plug 'easymotion/vim-easymotion'
-
 	" Status line
 	" https://github.com/hoob3rt/lualine.nvim
 	Plug 'hoob3rt/lualine.nvim'
