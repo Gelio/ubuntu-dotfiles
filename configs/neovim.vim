@@ -114,6 +114,7 @@ else
 	" https://github.com/mbbill/undotree
 	Plug 'mbbill/undotree'
 	set undofile
+	nnoremap <leader>u :UndotreeToggle<CR>
 
 	Plug 'folke/which-key.nvim'
 	Plug 'folke/todo-comments.nvim'
