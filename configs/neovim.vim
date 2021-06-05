@@ -286,7 +286,16 @@ require'nvim-treesitter.configs'.setup {
 			swap_previous = {
 				["[a"] = "@parameter.inner",
 			},
-		}
+		},
+		select = {
+			enable = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@call.outer",
+				["ic"] = "@call.inner",
+			},
+		},
 	},
 	rainbow = {
 		enable = true,
