@@ -1,10 +1,12 @@
 #!/bin/bash
 
-wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
-unzip exa-linux-x86_64-0.9.0.zip
-rm exa-linux-x86_64-0.9.0.zip
+set -euxo pipefail
 
-echo "alias ls='$(pwd)/exa-linux-x86_64'" >> ~/.bash_aliases
-echo "alias l='ls -al'" >> ~/.bash_aliases
-echo "alias la='ls -a'" >> ~/.bash_aliases
-source ~/.bash_aliases
+cargo install exa
+
+if [ -z "${UPGRADE_ONLY:-}" ]; then
+    echo "alias ls='exa'" >> ~/.bash_aliases
+    echo "alias l='ls -al'" >> ~/.bash_aliases
+    echo "alias la='ls -a'" >> ~/.bash_aliases
+    source ~/.bash_aliases
+fi
