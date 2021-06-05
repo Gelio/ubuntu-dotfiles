@@ -346,13 +346,6 @@ require("todo-comments").setup {}
 EOF
 lua require('my-config')
 
-" Disable treesitter in esbuild go files (very long ones, causes lags)
-autocmd BufNewFile,BufRead */esbuild/*/*.go call DisableFeaturesForEsbuild()
-function! DisableFeaturesForEsbuild()
-	:TSDisableAll highlight go<cr>
-	let g:indent_blankline_show_current_context = v:false
-endfunction
-
 " Use ripgrep instead of regular grep
 if executable('rg')
 	set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
