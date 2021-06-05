@@ -222,6 +222,8 @@ else
 	" https://github.com/editorconfig/editorconfig-vim
 	Plug 'editorconfig/editorconfig-vim'
 
+	Plug 'sudormrfbin/cheatsheet.nvim'
+
 	" ====== Diff options ======
 	" Ignore whitespace in diffs
 	set diffopt+=iwhite
