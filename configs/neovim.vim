@@ -190,7 +190,6 @@ else
 	inoremap <silent><expr> <C-y>     compe#close('<C-e>')
 	inoremap <silent><expr> <C-u>     compe#scroll({ 'delta': +4 })
 	inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-	Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 
 	" Pretty list of LSP diagnostics
 	Plug 'folke/trouble.nvim'
