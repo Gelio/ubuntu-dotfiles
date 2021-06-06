@@ -6,6 +6,13 @@ local function setup_formatting(bufnr)
   vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 end
 
+local function setup_async_formatting(bufnr)
+  local opts = { noremap = true, silent = true }
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- Use asynchronous formatting from null-ls
+  vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+end
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -65,10 +72,23 @@ nvim_lsp.stylelint_lsp.setup {
   end,
 }
 
+local null_ls = require("null-ls")
+local null_ls_sources = {
+  null_ls.builtins.formatting.prettierd.with({
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "html", "json", "yaml", "markdown", "scss" }
+  }),
+}
+null_ls.setup {
+  sources = null_ls_sources,
+}
+-- Manually add formatting on save for file types that do not have their own LSPs
+vim.cmd("autocmd BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml lua vim.lsp.buf.formatting()")
+
 local function attach_tsserver(client, bufnr)
-  -- Format using prettier
+  -- Disable tsserver formatting, use prettierd from null-ls inside ts-utils
   client.resolved_capabilities.document_formatting = false
   on_attach(client, bufnr)
+  setup_async_formatting(bufnr)
 
   local ts_utils = require("nvim-lsp-ts-utils")
   ts_utils.setup {
@@ -76,8 +96,8 @@ local function attach_tsserver(client, bufnr)
     eslint_enable_diagnostics = true,
     eslint_diagnostics_debounce = 500,
 
-    -- Formatting done by prettier using efm, still
-    enable_formatting = false,
+    enable_formatting = true,
+    formatter = 'prettierd',
   }
   ts_utils.setup_client(client)
 end
@@ -119,47 +139,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     },
   }
 )
-
-local prettier = {
-  formatStdin = true,
-  formatCommand = "prettierd ${INPUT}"
-}
-
-local efm_settings = {
-  javascript = {prettier},
-  javascriptreact = {prettier},
-  ["javascript.jsx"] = {prettier},
-  typescript = {prettier},
-  ["typescript.tsx"] = {prettier},
-  typescriptreact = {prettier},
-  markdown = {prettier},
-  html = {prettier},
-  css = {prettier},
-  scss = {prettier},
-  json = {prettier},
-  yaml = {prettier},
-  svelte = {prettier},
-}
-
-function get_table_keys(tab)
-  local keyset = {}
-  for k, v in pairs(tab) do
-    keyset[#keyset + 1] = k
-  end
-  return keyset
-end
-
-nvim_lsp.efm.setup {
-  on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = true
-    client.resolved_capabilities.goto_definition = false
-    setup_formatting(bufnr)
-  end,
-  settings = {
-    languages = efm_settings,
-  },
-  filetypes = get_table_keys(efm_settings)
-}
 
 my_config = {
   attach_tsserver = attach_tsserver,

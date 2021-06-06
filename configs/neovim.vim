@@ -201,6 +201,7 @@ else
 	nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 
 	Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+	Plug 'jose-elias-alvarez/null-ls.nvim'
 	Plug 'ray-x/lsp_signature.nvim'
 	" }}}
 
