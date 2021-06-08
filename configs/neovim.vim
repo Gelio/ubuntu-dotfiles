@@ -224,6 +224,11 @@ else
 
 	Plug 'sudormrfbin/cheatsheet.nvim'
 
+	Plug 'rmagatti/goto-preview'
+	nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
+	nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
+	nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
+
 	" ====== Diff options ======
 	" Ignore whitespace in diffs
 	set diffopt+=iwhite
@@ -353,6 +358,7 @@ remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap =
 
 require'diffview'.setup {}
 require("todo-comments").setup {}
+require('goto-preview').setup {}
 EOF
 lua require('my-config')
 
