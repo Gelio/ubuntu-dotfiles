@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 CURRENT_DIR=$PWD
 CONFIGS_DIR=$(dirname $PWD)/configs
@@ -6,6 +7,8 @@ CONFIGS_DIR=$(dirname $PWD)/configs
 mkdir -p ~/.config
 cd ~/.config
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+
+UPGRADE_ONLY=$(which nvim || true)
 
 if [ -n "$UPGRADE_ONLY" ]; then
     nvim -v
