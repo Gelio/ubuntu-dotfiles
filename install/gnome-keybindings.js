@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { execSync } = require("child_process");
+const { resolve } = require("path");
 
 const MEDIA_KEYS_PATH = "org.gnome.settings-daemon.plugins.media-keys";
 
@@ -12,7 +13,10 @@ const SCREEN_FOCUS_CHANGER_PATH = `~/.local/share/screen-focus-changer/focus_cha
 const KEYBINDINGS = [
   {
     name: "focus-terminal",
-    command: "wmctrl -a Alacritty",
+    command: `${resolve(
+      __dirname,
+      "../scripts/focus-wayland-window.sh"
+    )} kitty`,
     binding: "<Super>grave",
   },
   {
