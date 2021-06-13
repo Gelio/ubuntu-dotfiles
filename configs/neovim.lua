@@ -75,7 +75,7 @@ nvim_lsp.stylelint_lsp.setup {
 local null_ls = require("null-ls")
 local null_ls_sources = {
   null_ls.builtins.formatting.prettierd.with({
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "html", "json", "yaml", "markdown", "scss" }
+    filetypes = { "css", "html", "json", "yaml", "markdown", "scss" }
   }),
 }
 null_ls.setup {
