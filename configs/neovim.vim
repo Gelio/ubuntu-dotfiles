@@ -50,13 +50,6 @@ let g:camelcasemotion_key = '<leader>'
 
 Plug 'machakann/vim-highlightedyank'
 
-Plug 'justinmk/vim-sneak'
-let g:sneak#label = 1
-" Leave ; and , for quick-scope (f, F, t, T)
-" Idea from https://www.chrisatmachine.com/Neovim/13-sneak/
-map gS <Plug>Sneak_,
-map gs <Plug>Sneak_;
-
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -110,6 +103,8 @@ else
 	let g:DiffColors = 1
 
 	Plug 'windwp/nvim-autopairs'
+
+	Plug 'ggandor/lightspeed.nvim'
 
 	" https://github.com/mbbill/undotree
 	Plug 'mbbill/undotree'
