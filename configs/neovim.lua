@@ -60,7 +60,7 @@ local on_attach = function(client, bufnr)
   require'lsp_signature'.on_attach()
 end
 
-local servers_with_defaults = { "gopls", "rust_analyzer", "jsonls", "bashls", "cssls", "svelte", "graphql" }
+local servers_with_defaults = { "gopls", "rust_analyzer", "jsonls", "bashls", "cssls", "svelte" }
 for _, lsp in ipairs(servers_with_defaults) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
@@ -72,17 +72,22 @@ nvim_lsp.stylelint_lsp.setup {
   end,
 }
 
+nvim_lsp.graphql.setup {
+  root_dir = nvim_lsp.util.root_pattern('.graphqlrc*', '.git'),
+  on_attach = on_attach,
+}
+
 local null_ls = require("null-ls")
 local null_ls_sources = {
   null_ls.builtins.formatting.prettierd.with({
-    filetypes = { "css", "html", "json", "yaml", "markdown", "scss" }
+    filetypes = { "css", "html", "json", "yaml", "markdown", "scss", "graphql" }
   }),
 }
 null_ls.setup {
   sources = null_ls_sources,
 }
 -- Manually add formatting on save for file types that do not have their own LSPs
-vim.cmd("autocmd BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml lua vim.lsp.buf.formatting()")
+vim.cmd("autocmd BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml,*.graphql lua vim.lsp.buf.formatting()")
 
 local function attach_tsserver(client, bufnr)
   -- Disable tsserver formatting, use prettierd from null-ls inside ts-utils
