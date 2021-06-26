@@ -103,7 +103,7 @@ bindsym $mod+a focus parent
 set $ws1 "1: term "
 set $ws2 "2: www "
 set $ws3 "3: franz "
-set $ws4 "4: code "
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -202,7 +202,6 @@ client.background           #2f343f
 set $laptopDisplay eDP-1
 set $smallMonitor HDMI-1
 set $largeMonitor DP-1
-workspace $ws1 output $laptopDisplay 
-workspace $ws2 output $largeMonitor 
-workspace $ws3 output $smallMonitor 
-workspace $ws4 output $largeMonitor 
+workspace $ws1 output $largeMonitor
+workspace $ws2 output $largeMonitor
+workspace $ws3 output $smallMonitor
