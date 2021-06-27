@@ -5,10 +5,12 @@ I3_ADDITIONAL_PACKAGES=lxappearance compton hsetroot rofi xsettingsd \
 POLYBAR_PACKAGES=polybar mpd
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
-sudo apt install i3 $I3_ADDITIONAL_PACKAGES \
+sudo add-apt-repository ppa:regolith-linux/release
+sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
 	$ROFIMOJI_PACKAGES \
 	$POLYBAR_PACKAGES \
 	$SCREENSAVER_PACKAGES
+
 mkdir -p ~/.config/i3
 ln -s $PWD/i3_config ~/.config/i3/config
 echo "Run lxappearance and set the theme (perhaps Adwaita-dark)"

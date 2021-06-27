@@ -205,3 +205,7 @@ set $largeMonitor DP-1
 workspace $ws1 output $largeMonitor
 workspace $ws2 output $largeMonitor
 workspace $ws3 output $smallMonitor
+
+# i3-gaps
+for_window [class=".*"] border pixel 1
+gaps inner 20
