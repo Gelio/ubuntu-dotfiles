@@ -208,4 +208,5 @@ workspace $ws3 output $smallMonitor
 
 # i3-gaps
 for_window [class=".*"] border pixel 1
-gaps inner 20
+gaps inner 10
+gaps outer 10
