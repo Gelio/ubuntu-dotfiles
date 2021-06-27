@@ -1,7 +1,7 @@
 #!/bin/bash
 
 I3_ADDITIONAL_PACKAGES=lxappearance compton hsetroot rofi xsettingsd \
-	fonts-font-awesome
+	fonts-font-awesome numlockx
 POLYBAR_PACKAGES=polybar mpd
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
