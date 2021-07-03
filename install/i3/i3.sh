@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-I3_ADDITIONAL_PACKAGES=lxappearance compton hsetroot rofi xsettingsd \
+I3_ADDITIONAL_PACKAGES=lxappearance picom hsetroot rofi xsettingsd \
 	fonts-font-awesome numlockx xfce4-power-manager
 POLYBAR_PACKAGES=polybar mpd
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra
@@ -35,9 +35,9 @@ echo "feh --bg-center [path to wallpaper]"
 echo "Adding a symlink to ~/.xsettingsd"
 ln -s $PWD/xsettingsd ~/.xsettingsd
 
-# Add compton config
-echo "Adding a symlink to ~/.config/compton.conf"
-ln -s $PWD/compton.conf ~/.config/compton.conf
+# Add picom config
+echo "Adding a symlink to ~/.config/picom.conf"
+ln -s $PWD/picom.conf ~/.config/picom.conf
 
 # https://github.com/polybar/polybar/wiki/Configuration
 echo "Installing polybar"
