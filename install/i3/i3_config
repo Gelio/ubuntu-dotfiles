@@ -173,11 +173,9 @@ bar {
 focus_follows_mouse no
 mouse_warping none
 
-# https://github.com/davatorium/rofi
 bindsym $mod+d exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
-# https://github.com/Mange/rofi-emoji
-bindsym $mod+Ctrl+e exec .local/share/rofimoji/picker/rofimoji.py --action copy
+bindsym $mod+Ctrl+e exec rofimoji --action copy
 
 exec --no-startup-id safeeyes
 exec --no-startup-id flameshot
