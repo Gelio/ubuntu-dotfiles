@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES=lxappearance compton hsetroot rofi xsettingsd \
 	fonts-font-awesome numlockx
@@ -17,14 +18,7 @@ echo "Run lxappearance and set the theme (perhaps Adwaita-dark)"
 
 # https://github.com/Mange/rofi-emoji
 echo "Installing rofimoji"
-mkdir -p ~/.local/share
-cd ~/.local/share
-git clone git@github.com:fdw/rofimoji.git
-cd rofimoji
-sudo python3 setup.py install
-cd extractors
-pip install -r requirements.txt
-echo "rofimoji installed"
+pip install --user rofimoji
 
 # xscreensaver
 echo "Configure screensaver using 'xscreensaver-demo'"
