@@ -11,6 +11,8 @@
 
 set $mod Mod4
 
+set $locker xscreensaver-command -lock
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 12
@@ -25,7 +27,7 @@ font pango:DejaVu Sans Mono 12
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-bindsym $mod+Escape exec --no-startup-id xscreensaver-command -lock
+bindsym $mod+Escape exec --no-startup-id $locker
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -197,7 +199,7 @@ exec --no-startup-id xsettingsd &
 exec --no-startup-id numlockx
 exec --no-startup-id picom -b
 exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id ~/.local/share/polybar/launch_polybar.sh
+exec --no-startup-id xautolock -time 5 -locker $locker
 
 # Wallpaper
 exec --no-startup-id ~/.fehbg
