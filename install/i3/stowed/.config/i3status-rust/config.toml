@@ -1,0 +1,42 @@
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "memory"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "music"
+buttons = ["play", "next"]
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage} {time}"
+
+[[block]]
+block = "net"
+format = "{speed_down;K} {speed_up;K}"
+format_alt = "{signal_strength} {bitrate} {ip}"
+
+[[block]]
+block = "sound"
+device_kind = "sink"
+
+[[block]]
+block = "sound"
+device_kind = "source"
+
+[[block]]
+block = "time"
+# https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html#specifiers
+format = "%Y-%m-%d %k:%M"
+on_click = "gnome-calendar"
