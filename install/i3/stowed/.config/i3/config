@@ -205,6 +205,7 @@ exec --no-startup-id numlockx
 exec --no-startup-id picom -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 5 -locker $locker
+exec --no-startup-id redshift-gtk -l 52:20 &
 
 # Wallpaper
 exec --no-startup-id ~/.fehbg
