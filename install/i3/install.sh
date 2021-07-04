@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES=lxappearance picom hsetroot rofi xsettingsd \
-	fonts-font-awesome numlockx xfce4-power-manager
+	fonts-font-awesome numlockx xfce4-power-manager dunst
 POLYBAR_PACKAGES=polybar mpd
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
