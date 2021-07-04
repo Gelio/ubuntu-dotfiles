@@ -185,6 +185,7 @@ exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id xsettingsd &
 exec --no-startup-id numlockx
 exec --no-startup-id picom -b
+exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id ~/.local/share/polybar/launch_polybar.sh
 
 # Wallpaper
