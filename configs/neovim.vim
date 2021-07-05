@@ -208,6 +208,7 @@ else
 	Plug 'p00f/nvim-ts-rainbow'
 	Plug 'windwp/nvim-ts-autotag'
 	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+	Plug 'AckslD/nvim-anywise-reg.lua'
 
 	set foldmethod=expr
 	set foldexpr=nvim_treesitter#foldexpr()
@@ -328,6 +329,15 @@ require('symbols-outline').setup{}
 require('colorizer').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
+require("anywise_reg").setup({
+    operators = {'y', 'd', 'c'},
+    textobjects = {
+        {'i', 'a'},
+        {'w', 'W', 'f', 'c'},
+    },
+    paste_key = 'p',
+    register_print_cmd = true,
+})
 
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
