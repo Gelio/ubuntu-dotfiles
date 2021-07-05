@@ -330,7 +330,7 @@ require('colorizer').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
 require("anywise_reg").setup({
-    operators = {'y', 'd', 'c'},
+    operators = {'y', 'd'},
     textobjects = {
         {'i', 'a'},
         {'w', 'W', 'f', 'c'},
