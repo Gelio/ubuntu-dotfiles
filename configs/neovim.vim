@@ -337,12 +337,15 @@ require('colorizer').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
 require("anywise_reg").setup({
-    operators = {'y', 'd'},
+    operators = {'y', 'd', 'c'},
     textobjects = {
         {'i', 'a'},
         {'w', 'W', 'f', 'c'},
     },
-    paste_key = 'p',
+    paste_keys = {
+        ['p'] = 'p',
+        ['P'] = 'P'
+    },
     register_print_cmd = true,
 })
 
