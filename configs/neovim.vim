@@ -82,6 +82,9 @@ else
 	" https://github.com/hoob3rt/lualine.nvim
 	Plug 'hoob3rt/lualine.nvim'
 
+	" Tabline
+	Plug 'alvarosevilla95/luatab.nvim'
+
 	" https://github.com/kyazdani42/nvim-tree.lua (NERDTree in lua)
 	Plug 'kyazdani42/nvim-tree.lua'
 	nnoremap <leader>nn :NvimTreeToggle<CR>
@@ -324,6 +327,10 @@ require('lualine').setup{
 	},
 	extensions = { 'fugitive', 'nvim-tree' },
 }
+
+Tabline = require'luatab'.tabline
+vim.cmd[[ set tabline=%!luaeval('Tabline()') ]]
+
 require("trouble").setup {}
 require('symbols-outline').setup{}
 require('colorizer').setup()
