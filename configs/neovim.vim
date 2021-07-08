@@ -184,7 +184,7 @@ else
 	Plug 'hrsh7th/nvim-compe'
 	set completeopt=menuone,noselect
 	inoremap <silent><expr> <C-Space> compe#complete()
-	inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+	" Mapping for <CR> added by nvim-autopairs
 	inoremap <silent><expr> <C-y>     compe#close('<C-e>')
 	inoremap <silent><expr> <C-u>     compe#scroll({ 'delta': +4 })
 	inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
@@ -336,6 +336,10 @@ require('symbols-outline').setup{}
 require('colorizer').setup()
 require('which-key').setup()
 require('nvim-autopairs').setup()
+require("nvim-autopairs.completion.compe").setup({
+  map_cr = true,
+  map_complete = true
+})
 require("anywise_reg").setup({
     operators = {'y', 'd', 'c'},
     textobjects = {
@@ -349,33 +353,12 @@ require("anywise_reg").setup({
     register_print_cmd = true,
 })
 
-local remap = vim.api.nvim_set_keymap
-local npairs = require('nvim-autopairs')
-
--- skip it, if you use another global object
-_G.MUtils= {}
-
-vim.g.completion_confirm_key = ""
-MUtils.completion_confirm=function()
-  if vim.fn.pumvisible() ~= 0  then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"](npairs.esc("<cr>"))
-    else
-      return npairs.esc("<cr>")
-    end
-  else
-    return npairs.autopairs_cr()
-  end
-end
-
-
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
-
 require'diffview'.setup {}
 require("todo-comments").setup {}
 require('goto-preview').setup {}
 EOF
 lua require('my-config')
+
 
 " Use ripgrep instead of regular grep
 if executable('rg')
