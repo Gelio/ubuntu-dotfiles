@@ -3,7 +3,7 @@ set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES=lxappearance picom hsetroot rofi xsettingsd \
 	fonts-font-awesome numlockx xfce4-power-manager dunst redshift redshift-gtk \
-  mpd playerctl
+  mpd playerctl xfce4-volumed
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra xautolock
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
 
