@@ -30,10 +30,12 @@ format_alt = "{signal_strength} {bitrate} {ip}"
 [[block]]
 block = "sound"
 device_kind = "sink"
+on_click = "pavucontrol"
 
 [[block]]
 block = "sound"
 device_kind = "source"
+on_click = "pavucontrol"
 
 [[block]]
 block = "time"
