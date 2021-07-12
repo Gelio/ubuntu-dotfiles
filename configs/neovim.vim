@@ -309,7 +309,7 @@ require'nvim-treesitter.configs'.setup {
 }
 require('telescope').setup {
 	defaults = {
-		file_ignore_patterns = {".git"}
+		file_ignore_patterns = {".git/.*"}
 	}
 }
 require'nvim-web-devicons'.setup {
