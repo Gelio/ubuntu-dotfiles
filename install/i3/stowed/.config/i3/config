@@ -220,9 +220,9 @@ client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
 # Set workspaces on correct displays
-set $laptopDisplay eDP-1
-set $smallMonitor HDMI-1
-set $largeMonitor DP-1
+set $laptopDisplay eDP1
+set $smallMonitor HDMI1
+set $largeMonitor DP1
 workspace $ws1 output $largeMonitor
 workspace $ws2 output $largeMonitor
 workspace $ws3 output $smallMonitor
