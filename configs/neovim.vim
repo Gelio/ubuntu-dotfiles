@@ -328,8 +328,7 @@ require('lualine').setup{
 	extensions = { 'fugitive', 'nvim-tree' },
 }
 
-Tabline = require'luatab'.tabline
-vim.cmd[[ set tabline=%!luaeval('Tabline()') ]]
+vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
 
 require("trouble").setup {}
 require('symbols-outline').setup{}
