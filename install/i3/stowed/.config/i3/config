@@ -203,7 +203,7 @@ exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
 exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id xsettingsd &
 exec --no-startup-id numlockx
-exec --no-startup-id picom -b
+exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 5 -locker $locker
 exec --no-startup-id redshift-gtk -l 52:20 &
