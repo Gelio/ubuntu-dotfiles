@@ -206,6 +206,8 @@ exec --no-startup-id numlockx
 exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 5 -locker $locker
+set $turnOffScreenTime 360
+exec --no-startup-id xset dpms $turnOffScreenTime $turnOffScreenTime $turnOffScreenTime
 exec --no-startup-id redshift-gtk -l 52:20 &
 
 # Wallpaper
