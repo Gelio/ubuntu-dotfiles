@@ -208,6 +208,7 @@ else
 	Plug 'nvim-treesitter/playground'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'romgrk/nvim-treesitter-context'
+	Plug 'RRethy/nvim-treesitter-textsubjects'
 	Plug 'p00f/nvim-ts-rainbow'
 	Plug 'windwp/nvim-ts-autotag'
 	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -281,6 +282,13 @@ require'nvim-treesitter.configs'.setup {
 	context_commentstring = {
 		enable = true,
 	},
+    textsubjects = {
+        enable = true,
+        keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+        }
+    },
 	textobjects = {
 		-- See https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		swap = {
