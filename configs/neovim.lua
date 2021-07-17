@@ -3,14 +3,25 @@ local nvim_lsp = require('lspconfig')
 local function setup_formatting(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+
+  vim.cmd([[
+    augroup SyncFormatting
+      autocmd!
+      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+    augroup END
+  ]])
 end
 
 local function setup_async_formatting(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   -- Use asynchronous formatting from null-ls
-  vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+  vim.cmd([[
+    augroup AsyncFormatting
+      autocmd!
+      autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
+    augroup END
+  ]])
 end
 
 local on_attach = function(client, bufnr)
