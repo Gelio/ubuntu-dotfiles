@@ -6,7 +6,7 @@ local function setup_formatting(bufnr)
 
   vim.cmd([[
     augroup SyncFormatting
-      autocmd!
+      autocmd! * <buffer>
       autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
     augroup END
   ]])
@@ -18,7 +18,7 @@ local function setup_async_formatting(bufnr)
   -- Use asynchronous formatting from null-ls
   vim.cmd([[
     augroup AsyncFormatting
-      autocmd!
+      autocmd! * <buffer>
       autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
     augroup END
   ]])
