@@ -71,7 +71,7 @@ local on_attach = function(client, bufnr)
   require'lsp_signature'.on_attach()
 end
 
-local servers_with_defaults = { "gopls", "rust_analyzer", "jsonls", "bashls", "cssls", "svelte" }
+local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte" }
 for _, lsp in ipairs(servers_with_defaults) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
@@ -80,6 +80,14 @@ nvim_lsp.stylelint_lsp.setup {
   on_attach = function(client, bufnr)
     -- Conflicts with prettier formatting in TS files.
     client.resolved_capabilities.document_formatting = false
+  end,
+}
+
+nvim_lsp.jsonls.setup {
+  on_attach = function(client, bufnr)
+    -- Conflicts with prettier formatting in JSON files.
+    client.resolved_capabilities.document_formatting = false
+    on_attach(client, bufnr)
   end,
 }
 
