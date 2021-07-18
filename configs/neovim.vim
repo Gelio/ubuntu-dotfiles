@@ -234,6 +234,8 @@ else
 	set diffopt+=iwhite
 	" Set a better diff algorithm
 	set diffopt+=algorithm:histogram
+	set diffopt+=indent-heuristic
+	set diffopt+=vertical
 
 	Plug 'sindrets/diffview.nvim'
 
