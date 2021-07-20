@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-I3_ADDITIONAL_PACKAGES=lxappearance picom hsetroot rofi xsettingsd \
+I3_ADDITIONAL_PACKAGES=lxappearance hsetroot rofi xsettingsd \
 	fonts-font-awesome numlockx xfce4-power-manager dunst redshift redshift-gtk \
   mpd playerctl xfce4-volumed
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra xautolock
@@ -31,5 +31,6 @@ echo "feh --bg-center [path to wallpaper]"
 
 stow stowed -t $HOME
 ./install-i3status-rust.sh
+./install-picom.sh
 # Redshift is started manually in i3. When starting automatically, it tries to use geolocation and keeps restarting
 systemctl mask redshift-gtk --user
