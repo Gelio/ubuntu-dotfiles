@@ -105,6 +105,7 @@ local null_ls_sources = {
 null_ls.setup {
   sources = null_ls_sources,
 }
+nvim_lsp["null-ls"].setup {}
 -- Manually add formatting on save for file types that do not have their own LSPs
 vim.cmd("autocmd BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml,*.graphql lua vim.lsp.buf.formatting()")
 
