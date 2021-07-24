@@ -93,6 +93,7 @@ nvim_lsp.jsonls.setup {
 
 nvim_lsp.graphql.setup {
   root_dir = nvim_lsp.util.root_pattern('.graphqlrc*', '.git'),
+  filetypes = { "graphql", "typescript", "typescriptreact" },
   on_attach = on_attach,
 }
 
