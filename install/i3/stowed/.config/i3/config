@@ -167,6 +167,11 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
+        bindsym Shift+h resize shrink width 40 px or 40 ppt
+        bindsym Shift+j resize grow height 40 px or 40 ppt
+        bindsym Shift+k resize shrink height 40 px or 40 ppt
+        bindsym Shift+l resize grow width 40 px or 40 ppt
+
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -194,7 +199,7 @@ bar {
 }
 
 focus_follows_mouse no
-mouse_warping none
+mouse_warping output
 
 bindsym $mod+d exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
