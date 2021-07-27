@@ -226,6 +226,8 @@ else
 
 	Plug 'sudormrfbin/cheatsheet.nvim'
 
+	Plug 'abecodes/tabout.nvim'
+
 	Plug 'aklt/plantuml-syntax'
 
 	Plug 'rmagatti/goto-preview'
@@ -365,6 +367,21 @@ require("anywise_reg").setup({
     },
     register_print_cmd = true,
 })
+
+require('tabout').setup {
+    tabkey = '<Tab>',
+    act_as_tab = true,
+    completion = false,
+    tabouts = {
+		{open = "'", close = "'"},
+		{open = '"', close = '"'},
+		{open = '`', close = '`'},
+		{open = '(', close = ')'},
+		{open = '[', close = ']'},
+		{open = '{', close = '}'}
+	},
+    ignore_beginning = true,
+}
 
 require'diffview'.setup {}
 require("todo-comments").setup {}
