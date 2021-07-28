@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=go1.16.linux-amd64.tar.gz
+FILE=go1.16.6.linux-amd64.tar.gz
 go version 2> /dev/null
 if [ $? -eq "0" ]; then
 	GO_INSTALLED=1
