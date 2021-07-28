@@ -370,8 +370,11 @@ require("anywise_reg").setup({
 
 require('tabout').setup {
     tabkey = '<Tab>',
+	backwards_tabkey = '<S-Tab>',
     act_as_tab = true,
+	act_as_shift_tab = false,
     completion = false,
+	enable_backwards = true,
     tabouts = {
 		{open = "'", close = "'"},
 		{open = '"', close = '"'},
