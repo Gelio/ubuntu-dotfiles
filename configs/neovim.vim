@@ -32,6 +32,21 @@ set colorcolumn=+0,120
 " Refresh UI faster
 set updatetime=100
 
+" Easy moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Better search&replace
+nnoremap cn *``cgn
+nnoremap cN *``cgN
+
+" Center after J
+nnoremap J mzJ`z
+
+" Mutate jumplist on long jumps
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
 " ============== PLUGINS ==================
 
 " If the following does not work, install vim-plug
