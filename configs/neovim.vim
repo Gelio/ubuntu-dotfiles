@@ -417,7 +417,6 @@ set exrc
 
 autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints
 	\{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
-autocmd BufNewFile,BufRead *.graphql setfiletype graphql
 
 endif
 
