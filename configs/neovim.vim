@@ -424,12 +424,21 @@ call wilder#set_option('pipeline', [
       \     wilder#python_search_pipeline(),
       \   ),
       \ ])
-call wilder#set_option('renderer', wilder#popupmenu_renderer({
-      \ 'highlighter': wilder#basic_highlighter(),
-      \ 'left': [
-      \  wilder#popupmenu_devicons(),
-      \ ],
-      \ }))
+" Use a statusline renderer due to https://github.com/gelguy/wilder.nvim/issues/30
+let search_renderer = wilder#wildmenu_renderer({
+    \ 'mode': 'statusline',
+    \ 'right': [' ', wilder#wildmenu_index()]
+    \ })
+call wilder#set_option('renderer', wilder#renderer_mux({
+    \ ':': wilder#popupmenu_renderer({
+    \  'highlighter': wilder#basic_highlighter(),
+    \  'left': [
+    \   wilder#popupmenu_devicons(),
+    \  ],
+    \ }),
+    \ '/': search_renderer,
+    \ '?': search_renderer,
+    \ }))
 
 " Use ripgrep instead of regular grep
 if executable('rg')
