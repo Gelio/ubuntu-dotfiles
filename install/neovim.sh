@@ -29,6 +29,10 @@ ln -s "$CONFIGS_DIR/neovim.lua" nvim/lua/my-config.lua
 # Add symlink for coc settings
 ln -s "$CONFIGS_DIR/coc-settings.json" nvim/coc-settings.json
 
+# Install python3 provider for neovim
+# See https://neovim.io/doc/user/provider.html
+python3 -m pip install --user --upgrade pynvim
+
 # xsel for clipboard support
 # g++ for compiling Treesitter parsers
 sudo apt install xsel g++
