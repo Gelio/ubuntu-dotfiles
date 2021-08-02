@@ -467,4 +467,4 @@ autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hi
 
 endif
 
-" vim: foldmethod=marker
+" vim: foldmethod=marker,expandtab
