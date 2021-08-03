@@ -229,7 +229,6 @@ else
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'windwp/nvim-ts-autotag'
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-    Plug 'AckslD/nvim-anywise-reg.lua'
 
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
@@ -369,18 +368,6 @@ require('nvim-autopairs').setup()
 require("nvim-autopairs.completion.compe").setup({
   map_cr = true,
   map_complete = true
-})
-require("anywise_reg").setup({
-    operators = {'y', 'd', 'c'},
-    textobjects = {
-        {'i', 'a'},
-        {'w', 'W', 'f', 'c'},
-    },
-    paste_keys = {
-        ['p'] = 'p',
-        ['P'] = 'P'
-    },
-    register_print_cmd = true,
 })
 
 require('tabout').setup {
