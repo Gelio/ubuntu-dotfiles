@@ -19,7 +19,7 @@ set $locker xscreensaver-command -lock
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 12
+font pango:FiraCode Nerd Font Mono 12
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -183,7 +183,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:DejaVu Sans Mono, FontAwesome 12
+    font pango:FiraCode Nerd Font Mono, FontAwesome 12
     position top
     status_command ~/.cargo/bin/i3status-rs
     colors {
