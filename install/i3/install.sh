@@ -3,7 +3,7 @@ set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES=lxappearance hsetroot rofi xsettingsd \
 	fonts-font-awesome numlockx xfce4-power-manager dunst redshift redshift-gtk \
-  mpd playerctl xfce4-volumed
+  mpd playerctl xfce4-volumed autorandr
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra xautolock
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
 
@@ -28,6 +28,10 @@ echo "3. In the Advanced settings for GLSlideshow, do: 'glslideshow -root -fade 
 # Wallpaper
 echo "Configure wallpaper using feh:"
 echo "feh --bg-center [path to wallpaper]"
+
+# Autorandr
+echo "Make sure to configure autorandr"
+echo "See https://github.com/phillipberndt/autorandr"
 
 stow stowed -t $HOME
 ./install-i3status-rust.sh
