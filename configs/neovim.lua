@@ -68,7 +68,9 @@ local on_attach = function(client, bufnr)
     ]], false)
   end
 
-  require'lsp_signature'.on_attach()
+  require'lsp_signature'.on_attach({
+    zindex = 50, -- signature should appear below compe completions
+  })
 end
 
 local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte" }
