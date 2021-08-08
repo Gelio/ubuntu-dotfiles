@@ -244,6 +244,8 @@ else
 
     Plug 'aklt/plantuml-syntax'
 
+	Plug 'vuki656/package-info.nvim'
+
     Plug 'rmagatti/goto-preview'
     nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
     nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
@@ -391,6 +393,7 @@ require('tabout').setup {
 require'diffview'.setup {}
 require("todo-comments").setup {}
 require('goto-preview').setup {}
+require('package-info').setup()
 EOF
 lua require('my-config')
 
