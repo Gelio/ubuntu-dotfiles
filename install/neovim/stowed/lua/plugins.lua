@@ -339,7 +339,6 @@ return require('packer').startup(function(use)
     end,
     wants = { 'nvim-treesitter' }
   }
-  -- TODO: Only for plant files
   use 'aklt/plantuml-syntax'
   use {
     'vuki656/package-info.nvim',
