@@ -26,14 +26,6 @@ return require('packer').startup(function(use)
 
   use 'machakann/vim-highlightedyank'
 
-  -- TODO: consider using lightspeed.nvim instead
-  use {
-    'unblevable/quick-scope',
-    config = function()
-      vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
-    end
-  }
-
   use {
     'kyazdani42/nvim-web-devicons',
     config = function()
