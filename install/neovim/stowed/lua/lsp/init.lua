@@ -1,13 +1,14 @@
 local nvim_lsp = require('lspconfig')
 
+-- TODO: split to multiple files
+
 local function setup_formatting(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   vim.cmd([[
     augroup SyncFormatting
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+      autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
     augroup END
   ]])
 end
@@ -18,8 +19,7 @@ local function setup_async_formatting(bufnr)
   -- Use asynchronous formatting from null-ls
   vim.cmd([[
     augroup AsyncFormatting
-      autocmd! * <buffer>
-      autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
+      autocmd! BufWritePost <buffer> lua vim.lsp.buf.formatting()
     augroup END
   ]])
 end
@@ -146,17 +146,42 @@ require'compe'.setup {
   };
 }
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
+  local config = {
     virtual_text = {
       spacing = 2,
+      prefix = "■ ",
       severity_limit = "Warning",
     },
+    signs = true,
   }
-)
+  local uri = params.uri
+  local bufnr = vim.uri_to_bufnr(uri)
+
+  if not bufnr then
+    return
+  end
+
+  local diagnostics = params.diagnostics
+
+  for i, v in ipairs(diagnostics) do
+    diagnostics[i].message = string.format("%s: %s", v.source, v.message)
+  end
+
+  vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+
+  if not vim.api.nvim_buf_is_loaded(bufnr) then
+    return
+  end
+
+  vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
+end
+
 
 my_config = {
   attach_tsserver = attach_tsserver,
   on_attach = on_attach,
 }
+require('lsp/lua')
 return my_config
