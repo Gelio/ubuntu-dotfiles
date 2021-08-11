@@ -17,4 +17,7 @@ compile/install.sh
 cd ../..
 ./3rd/luamake/luamake rebuild
 
+# Formatter
 cargo install stylua
+# Linter
+cargo install selene

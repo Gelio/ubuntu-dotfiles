@@ -112,6 +112,7 @@ local null_ls_sources = {
 		filetypes = { "css", "html", "json", "yaml", "markdown", "scss", "graphql" },
 	}),
 	null_ls.builtins.formatting.stylua,
+	null_ls.builtins.diagnostics.selene,
 }
 null_ls.setup({
 	sources = null_ls_sources,
@@ -119,6 +120,7 @@ null_ls.setup({
 nvim_lsp["null-ls"].setup({})
 -- Manually add formatting on save for file types that do not have their own LSPs
 -- TODO: find a way to do it automatically
+-- TODO: run it for file types, not extensions, as sometimes extensions do not match, but fts do
 vim.cmd([[
   augroup FormatOnSave
     autocmd! BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml,*.graphql,*.lua lua vim.lsp.buf.formatting()

@@ -1,0 +1,8 @@
+# An STD for neovim API
+# https://kampfkarren.github.io/selene/usage/std.html
+[selene]
+base = "lua52"
+name = "neovim"
+
+[vim]
+any = true
