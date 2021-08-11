@@ -26,8 +26,8 @@ local map = vim.api.nvim_set_keymap
 -- Easier moving text
 map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
 map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
-map("v", "<<", "<<gv", { noremap = true })
-map("v", ">>", ">>gv", { noremap = true })
+map("v", "<", "<gv", { noremap = true })
+map("v", ">", ">gv", { noremap = true })
 
 -- Better search & replace
 map("n", "cn", "*``cgn", { noremap = true })
