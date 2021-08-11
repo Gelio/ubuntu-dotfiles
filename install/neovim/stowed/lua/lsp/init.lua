@@ -104,13 +104,19 @@ local null_ls_sources = {
   null_ls.builtins.formatting.prettierd.with({
     filetypes = { "css", "html", "json", "yaml", "markdown", "scss", "graphql" }
   }),
+  null_ls.builtins.formatting.stylua,
 }
 null_ls.setup {
   sources = null_ls_sources,
 }
 nvim_lsp["null-ls"].setup {}
 -- Manually add formatting on save for file types that do not have their own LSPs
-vim.cmd("autocmd BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml,*.graphql lua vim.lsp.buf.formatting()")
+-- TODO: find a way to do it automatically
+vim.cmd[[
+  augroup FormatOnSave
+    autocmd! BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml,*.graphql,*.lua lua vim.lsp.buf.formatting()
+  augroup END
+]]
 
 local function attach_tsserver(client, bufnr)
   -- Disable tsserver formatting, use prettierd from null-ls inside ts-utils
