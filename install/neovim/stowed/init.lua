@@ -42,6 +42,12 @@ map("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { noremap = true, e
 
 vim.opt.diffopt:append("algorithm:histogram,iwhite,indent-heuristic,vertical")
 
+-- Alt + vim keys for resizing windows
+map("n", "<A-h>", "<C-w><", { noremap = true })
+map("n", "<A-j>", "<C-w>-", { noremap = true })
+map("n", "<A-k>", "<C-w>+", { noremap = true })
+map("n", "<A-l>", "<C-w>>", { noremap = true })
+
 -- Use ripgrep instead of regular grep
 vim.cmd([[
   if executable('rg')
