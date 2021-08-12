@@ -25,11 +25,6 @@ interval = 10
 format = "{percentage} {time}"
 
 [[block]]
-block = "net"
-format = "{speed_down;K} {speed_up;K}"
-format_alt = "{signal_strength} {bitrate} {ip}"
-
-[[block]]
 block = "sound"
 device_kind = "sink"
 on_click = "pavucontrol"
