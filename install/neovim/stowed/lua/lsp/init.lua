@@ -126,14 +126,6 @@ null_ls.config({
 nvim_lsp["null-ls"].setup({
 	on_attach = on_attach,
 })
--- Manually add formatting on save for file types that do not have their own LSPs
--- TODO: find a way to do it automatically
--- TODO: run it for file types, not extensions, as sometimes extensions do not match, but fts do
-vim.cmd([[
-  augroup FormatOnSave
-    autocmd! BufWritePost *.scss,*.html,*.json,*.md,*.css,*.yml,*.yaml,*.graphql,*.lua,*.sh lua vim.lsp.buf.formatting()
-  augroup END
-]])
 
 local function attach_tsserver(client, bufnr)
 	-- Disable tsserver formatting, use prettierd from null-ls inside ts-utils
