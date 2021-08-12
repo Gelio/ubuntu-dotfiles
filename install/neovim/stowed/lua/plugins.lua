@@ -91,7 +91,14 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
-	use("ggandor/lightspeed.nvim")
+	use({
+		"ggandor/lightspeed.nvim",
+		config = function()
+			require("lightspeed").setup({
+				highlight_unique_chars = true,
+			})
+		end,
+	})
 
 	use({
 		"mbbill/undotree",
