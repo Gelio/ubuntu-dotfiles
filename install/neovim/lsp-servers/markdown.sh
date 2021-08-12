@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-npm install -g markdownlint-cli
+npm install -g markdownlint-cli write-good

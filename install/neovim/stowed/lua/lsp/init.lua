@@ -117,6 +117,7 @@ local null_ls_sources = {
 	null_ls.builtins.formatting.shfmt,
 	null_ls.builtins.diagnostics.hadolint,
 	null_ls.builtins.diagnostics.markdownlint,
+	null_ls.builtins.diagnostics.write_good,
 }
 null_ls.config({
 	sources = null_ls_sources,
