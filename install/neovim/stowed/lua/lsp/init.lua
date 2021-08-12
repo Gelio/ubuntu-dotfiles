@@ -98,7 +98,7 @@ nvim_lsp.graphql.setup({
 local null_ls = require("null-ls")
 local null_ls_sources = {
 	null_ls.builtins.formatting.prettierd.with({
-		filetypes = { "css", "html", "json", "yaml", "markdown", "scss", "graphql" },
+		filetypes = { "css", "html", "json", "jsonc", "yaml", "markdown", "scss", "graphql" },
 	}),
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.diagnostics.selene,
