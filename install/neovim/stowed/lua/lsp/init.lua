@@ -13,17 +13,6 @@ local function setup_formatting(bufnr)
   ]])
 end
 
-local function setup_async_formatting(bufnr)
-	local opts = { noremap = true, silent = true }
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-	-- Use asynchronous formatting from null-ls
-	vim.cmd([[
-    augroup AsyncFormatting
-      autocmd! BufWritePost <buffer> lua vim.lsp.buf.formatting()
-    augroup END
-  ]])
-end
-
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -131,7 +120,6 @@ local function attach_tsserver(client, bufnr)
 	-- Disable tsserver formatting, use prettierd from null-ls inside ts-utils
 	client.resolved_capabilities.document_formatting = false
 	on_attach(client, bufnr)
-	setup_async_formatting(bufnr)
 
 	local ts_utils = require("nvim-lsp-ts-utils")
 	ts_utils.setup({
