@@ -137,18 +137,6 @@ nvim_lsp.tsserver.setup({
 	on_attach = attach_tsserver,
 })
 
-require("compe").setup({
-	source = {
-		path = true,
-		buffer = true,
-		calc = true,
-		nvim_lsp = true,
-		nvim_lua = true,
-		vsnip = false,
-		tabnine = false,
-	},
-})
-
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
 	local config = {

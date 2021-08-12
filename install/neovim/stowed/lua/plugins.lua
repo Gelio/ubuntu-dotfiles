@@ -257,6 +257,18 @@ return require("packer").startup(function(use)
 			map("i", "<C-u>", [[compe#scroll({ 'delta': +4 })]], { silent = true, expr = true, noremap = true })
 			map("i", "<C-d>", [[compe#scroll({ 'delta': -4 })]], { silent = true, expr = true, noremap = true })
 		end,
+
+		require("compe").setup({
+			source = {
+				path = true,
+				buffer = true,
+				calc = true,
+				nvim_lsp = true,
+				nvim_lua = true,
+				vsnip = false,
+				tabnine = false,
+			},
+		}),
 	})
 
 	use({
