@@ -115,11 +115,14 @@ local null_ls_sources = {
 	null_ls.builtins.diagnostics.selene,
 	null_ls.builtins.diagnostics.shellcheck,
 	null_ls.builtins.formatting.shfmt,
+	null_ls.builtins.diagnostics.hadolint,
 }
 null_ls.setup({
 	sources = null_ls_sources,
 })
-nvim_lsp["null-ls"].setup({})
+nvim_lsp["null-ls"].setup({
+	on_attach = on_attach,
+})
 -- Manually add formatting on save for file types that do not have their own LSPs
 -- TODO: find a way to do it automatically
 -- TODO: run it for file types, not extensions, as sometimes extensions do not match, but fts do
