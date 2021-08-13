@@ -59,9 +59,8 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-  augroup HighlighYank
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=300 }
+  augroup HighlightYank
+    autocmd! TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=300 }
   augroup END
 ]])
 
