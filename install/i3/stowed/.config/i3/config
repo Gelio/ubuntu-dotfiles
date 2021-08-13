@@ -121,6 +121,9 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Ctrl+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 set $defaultMode "default"
+# variables are not recursive, so cannot use $defaultMode in the string below
+# See https://i3wm.org/docs/userguide.html#variables
+set $exitMode i3-msg 'mode default'
 
 # resize window (you can also use the mouse for that)
 set $resizeMode "resize"
@@ -135,27 +138,26 @@ mode $resizeMode {
     bindsym Shift+k resize shrink height 40 px or 40 ppt
     bindsym Shift+l resize grow width 40 px or 40 ppt
 
-    bindsym Return mode $defaultMode
-    bindsym Escape mode $defaultMode
-    bindsym $mod+r mode $defaultMode
+    bindsym Return exec $exitMode
+    bindsym Escape exec $exitMode
+    bindsym $mod+r exec $exitMode
 }
 bindsym $mod+r mode $resizeMode
 
 # System controls mode
 set $systemControlMode "system-control"
 mode $systemControlMode {
-    bindsym l exec --no-startup-id $locker
+    bindsym l exec --no-startup-id $exitMode && $locker
     bindsym e exit
-    bindsym s exec --no-startup-id systemctl suspend
+    bindsym s exec --no-startup-id $exitMode && systemctl suspend
     bindsym r exec --no-startup-id systemctl reboot
     bindsym p exec --no-startup-id systemctl poweroff
-    bindsym h exec --no-startup-id systemctl hibernate
 
-    bindsym Return mode $defaultMode
-    bindsym Escape mode $defaultMode
+    bindsym Return exec $exitMode
+    bindsym Escape exec $exitMode
 }
 bindsym $mod+Escape exec --no-startup-id i3-msg 'mode $systemControlMode' && notify-send 'System control mode' \
-    "L to lock\nE to exit i3\nS to suspent\nR to reboot\nP to power-off\nH to hibernate\nESC to return"
+    "L to lock\nE to exit i3\nS to suspent\nR to reboot\nP to power-off\nESC to return"
 
 bar {
     font pango:FiraCode Nerd Font Mono, FontAwesome 12
