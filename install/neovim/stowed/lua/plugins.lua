@@ -399,4 +399,15 @@ return require("packer").startup(function(use)
 	})
 
 	use("dstein64/nvim-scrollview")
+	use({
+		"monaqa/dial.nvim",
+		config = function()
+			map("n", "<C-a>", "<Plug>(dial-increment)", {})
+			map("n", "<C-x>", "<Plug>(dial-decrement)", {})
+			map("v", "<C-a>", "<Plug>(dial-increment)", {})
+			map("v", "<C-x>", "<Plug>(dial-decrement)", {})
+			map("v", "g<C-a>", "<Plug>(dial-increment-additional)", {})
+			map("v", "g<C-x>", "<Plug>(dial-decrement-additional)", {})
+		end,
+	})
 end)
