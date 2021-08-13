@@ -24,8 +24,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("machakann/vim-highlightedyank")
-
 	use({
 		"kyazdani42/nvim-web-devicons",
 		config = function()

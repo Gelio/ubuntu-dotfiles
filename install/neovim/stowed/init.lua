@@ -58,6 +58,13 @@ vim.cmd([[
   endif
 ]])
 
+vim.cmd([[
+  augroup HighlighYank
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=300 }
+  augroup END
+]])
+
 vim.cmd([[source $HOME/.config/nvim/code-review.vim]])
 require("plugins")
 
