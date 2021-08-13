@@ -397,4 +397,6 @@ return require("packer").startup(function(use)
 			require("diffview").setup({})
 		end,
 	})
+
+	use("dstein64/nvim-scrollview")
 end)
