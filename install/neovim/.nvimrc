@@ -6,5 +6,6 @@ lua << EOF
   end
   require('lspconfig')['null-ls'].setup({
     root_dir = getcwd,
+    on_attach = my_config.on_attach,
   })
 EOF
