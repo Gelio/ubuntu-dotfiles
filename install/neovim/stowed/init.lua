@@ -48,6 +48,10 @@ map("n", "<A-j>", "<C-w>-", { noremap = true })
 map("n", "<A-k>", "<C-w>+", { noremap = true })
 map("n", "<A-l>", "<C-w>>", { noremap = true })
 
+-- Easy yanking to clipboard
+map("n", "<Leader>y", '"+y', { noremap = true })
+map("v", "<Leader>y", '"+y', { noremap = true })
+
 -- Use ripgrep instead of regular grep
 vim.cmd([[
   if executable('rg')
