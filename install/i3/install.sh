@@ -33,7 +33,6 @@ echo "feh --bg-center [path to wallpaper]"
 echo "Make sure to configure autorandr"
 echo "See https://github.com/phillipberndt/autorandr"
 
-stow stowed -t "$HOME"
 ./install-i3status-rust.sh
 ./install-picom.sh
 ./install-libinput-gestures.sh
@@ -42,3 +41,5 @@ stow stowed -t "$HOME"
 ./install-i3lock-color.sh
 # Redshift is started manually in i3. When starting automatically, it tries to use geolocation and keeps restarting
 systemctl mask redshift-gtk --user
+
+./stow.sh
