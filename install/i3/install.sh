@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES=lxappearance hsetroot rofi xsettingsd \
-  fonts-font-awesome numlockx xfce4-power-manager dunst redshift redshift-gtk \
+  fonts-font-awesome numlockx xfce4-power-manager redshift redshift-gtk \
   mpd playerctl xfce4-volumed autorandr
 SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra xautolock
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
@@ -37,5 +37,6 @@ stow stowed -t "$HOME"
 ./install-i3status-rust.sh
 ./install-picom.sh
 ./install-libinput-gestures.sh
+./install-dunst.sh
 # Redshift is started manually in i3. When starting automatically, it tries to use geolocation and keeps restarting
 systemctl mask redshift-gtk --user
