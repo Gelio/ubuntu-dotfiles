@@ -12,38 +12,37 @@ KEY_INPUT='#fabd2f'
 BACKSPACE='#8ec07c'
 
 i3lock \
-	--radius 120 \
-	--ring-width 8 \
-	\
-	--insidever-color=$CLEAR \
-	--ringver-color=$VERIFYING \
-	\
-	--insidewrong-color=$CLEAR \
-	--ringwrong-color=$WRONG \
-	\
-	--inside-color=$BLANK \
-	--ring-color=$DEFAULT \
-	--line-uses-inside \
-	--separator-color=$DEFAULT \
-	\
-	--verif-color=$TEXT \
-	--wrong-color=$TEXT \
-	--layout-color=$TEXT \
-	--time-color=$TEXT \
-	--date-color=$TEXT \
-	--greeter-color=$TEXT \
-	--keyhl-color=$KEY_INPUT \
-	--bshl-color=$BACKSPACE \
-	\
-	--screen 1 \
-	--blur 7 \
-	--clock \
-	--indicator \
-	--time-str="%H:%M:%S" \
-	--date-str="%A, %m %Y" \
-	--keylayout 1 \
-	\
-	--pass-media-keys \
-	--pass-power-keys \
-	--pass-screen-keys \
-	--pass-volume-keys
+  --radius 120 \
+  --ring-width 8 \
+  \
+  --insidever-color=$CLEAR \
+  --ringver-color=$VERIFYING \
+  \
+  --insidewrong-color=$CLEAR \
+  --ringwrong-color=$WRONG \
+  \
+  --inside-color=$BLANK \
+  --ring-color=$DEFAULT \
+  --line-uses-inside \
+  --separator-color=$DEFAULT \
+  \
+  --verif-color=$TEXT \
+  --wrong-color=$TEXT \
+  --layout-color=$TEXT \
+  --time-color=$TEXT \
+  --date-color=$TEXT \
+  --greeter-color=$TEXT \
+  --keyhl-color=$KEY_INPUT \
+  --bshl-color=$BACKSPACE \
+  \
+  --blur 8 \
+  --clock \
+  --indicator \
+  --time-str="%H:%M:%S" \
+  --date-str="%A, %m %Y" \
+  --keylayout 1 \
+  \
+  --pass-media-keys \
+  --pass-power-keys \
+  --pass-screen-keys \
+  --pass-volume-keys
