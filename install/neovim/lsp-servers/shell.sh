@@ -3,4 +3,4 @@
 set -euo pipefail
 
 sudo apt install shellcheck
-go get mvdan.cc/sh/v3/cmd/shfmt
+go get -u mvdan.cc/sh/v3/cmd/shfmt

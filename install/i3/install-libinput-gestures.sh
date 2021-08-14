@@ -1,9 +1,9 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 set -eou pipefail
 
 # https://github.com/bulletmark/libinput-gestures#installation
 
-sudo gpasswd -a $USER input
+sudo gpasswd -a "$USER" input
 echo "You may need to reboot for the tool to work"
 sudo apt install wmctrl xdotool libinput-tools
 
