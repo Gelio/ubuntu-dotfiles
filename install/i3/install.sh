@@ -39,5 +39,6 @@ stow stowed -t "$HOME"
 ./install-libinput-gestures.sh
 ./install-dunst.sh
 ./install-i3-volume.sh
+./install-i3lock-color.sh
 # Redshift is started manually in i3. When starting automatically, it tries to use geolocation and keeps restarting
 systemctl mask redshift-gtk --user
