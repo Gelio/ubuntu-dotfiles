@@ -3,8 +3,6 @@
 
 set $mod Mod4
 
-set $locker xscreensaver-command -lock
-
 font pango:FiraCode Nerd Font Mono 12
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -144,6 +142,8 @@ mode $resizeMode {
 }
 bindsym $mod+r mode $resizeMode
 
+set $locker "betterlockscreen -l dim"
+
 # System controls mode
 set $systemControlMode "system-control"
 mode $systemControlMode {
@@ -183,16 +183,18 @@ exec --no-startup-id safeeyes
 exec --no-startup-id flameshot
 exec --no-startup-id i3-msg "workspace $ws3; exec franz"
 exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
-exec --no-startup-id xscreensaver -nosplash
 exec --no-startup-id xsettingsd &
 exec --no-startup-id numlockx
 exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xautolock -time 5 -locker $locker
-set $turnOffScreenTime 360
-exec --no-startup-id xset dpms $turnOffScreenTime $turnOffScreenTime $turnOffScreenTime
 exec --no-startup-id redshift-gtk -l 52:20 &
 exec --no-startup-id libinput-gestures-setup start
+
+exec --no-startup-id xidlehook --not-when-fullscreen \
+    --timer 10 "betterlockscreen -l dim" "" \
+    --timer 10 "xset dpms force off" "" \
+    --timer 10 "systemctl suspend" "" \
+    --socket "/tmp/xidlehook.sock"
 
 # Wallpaper
 exec --no-startup-id ~/.fehbg

@@ -4,13 +4,13 @@ set -euxo pipefail
 I3_ADDITIONAL_PACKAGES=lxappearance hsetroot rofi xsettingsd \
   fonts-font-awesome numlockx xfce4-power-manager redshift redshift-gtk \
   mpd playerctl xfce4-volumed autorandr
-SCREENSAVER_PACKAGES=xscreensaver xscreensaver-gl-extra xautolock
 ROFIMOJI_PACKAGES=python3 python3-pip xdotool
+LOCKSCREEN_PACKAGES=libxcb-screensaver0 libxcb-screensaver0-dev
 
 sudo add-apt-repository ppa:regolith-linux/release
 sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
   $ROFIMOJI_PACKAGES \
-  $SCREENSAVER_PACKAGES
+  $LOCKSCREEN_PACKAGES
 
 echo "Run lxappearance and set the theme (perhaps Adwaita-dark)"
 echo "Run xfce4-power-manager-settings and set correct power-level behavior"
@@ -18,12 +18,6 @@ echo "Run xfce4-power-manager-settings and set correct power-level behavior"
 # https://github.com/Mange/rofi-emoji
 echo "Installing rofimoji"
 pip install --user rofimoji
-
-# xscreensaver
-echo "Configure screensaver using 'xscreensaver-demo'"
-echo "1. Create a single directory, and put the screensaver image there."
-echo "2. Select the GLSlideshow screensaver, and point it to that directory."
-echo "3. In the Advanced settings for GLSlideshow, do: 'glslideshow -root -fade 0 -zoom 100'"
 
 # Wallpaper
 echo "Configure wallpaper using feh:"
@@ -39,6 +33,7 @@ echo "See https://github.com/phillipberndt/autorandr"
 ./install-dunst.sh
 ./install-i3-volume.sh
 ./install-i3lock-color.sh
+./install-betterlockscreen.sh
 # Redshift is started manually in i3. When starting automatically, it tries to use geolocation and keeps restarting
 systemctl mask redshift-gtk --user
 
