@@ -7,6 +7,7 @@ sudo apt install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-d
   libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
 
 cd ~/.local
+# https://github.com/dunst-project/dunst#building
 git clone https://github.com/dunst-project/dunst.git
 cd dunst
 make
