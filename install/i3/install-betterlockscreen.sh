@@ -9,6 +9,7 @@ wget https://git.io/JZyxV -O - -q | sudo bash -s system $VERSION true
 sudo systemctl enable "betterlockscreen@$USER"
 
 cargo install xidlehook --bins
+cargo install --git https://github.com/rschmukler/caffeinate
 
 echo "Configure betterlockscreen"
 echo "https://github.com/betterlockscreen/betterlockscreen#configuration"
