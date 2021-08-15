@@ -1,5 +1,19 @@
-theme = "solarized-dark"
 icons = "awesome"
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+idle_bg = "#3c3846"
+idle_fg = "#ebdbb2"
+good_bg = "#b8bb26"
+good_fg = "#282828"
+critical_bg = "#cc241d"
+critical_fg = "#282828"
+warning_bg = "#fabd2f"
+warning_fg = "#282828"
+info_bg = "#83a598"
+info_fg = "#282828"
+alternating_tint_bg = "#080808"
 
 [[block]]
 block = "memory"

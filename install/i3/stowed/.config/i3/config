@@ -164,13 +164,21 @@ bar {
     position top
     status_command ~/.cargo/bin/i3status-rs
     colors {
-        separator #666666
-        background #222222
-        statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
+        # https://github.com/morhetz/gruvbox
+        set $textColor #ebdbb2
+        set $inactiveTextColor #928374
+        set $bgColor #282828
+        set $workspaceBgColor #3c3846
+        set $focusedColor #458588
+        set $urgentColor #cc241d
+
+        separator #928374
+        background $bgColor
+        statusline $textColor
+        focused_workspace $focusedColor $focusedColor $textColor
+        active_workspace $workspaceBgColor $workspaceBgColor $textColor
+        inactive_workspace $workspaceBgColor $workspaceBgColor $inactiveTextColor
+        urgent_workspace $workspaceBgColor $urgentColor $textColor
     }
     tray_output primary
 }
