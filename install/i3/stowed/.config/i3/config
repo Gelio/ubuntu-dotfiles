@@ -157,7 +157,7 @@ mode $systemControlMode {
     bindsym Escape exec $exitMode
 }
 bindsym $mod+Escape exec --no-startup-id i3-msg 'mode $systemControlMode' && notify-send 'System control mode' \
-    "L to lock\nE to exit i3\nS to suspent\nR to reboot\nP to power-off\nESC to return"
+    "L to lock\nE to exit i3\nS to suspend\nR to reboot\nP to power-off\nESC to return"
 
 bar {
     font pango:FiraCode Nerd Font Mono, FontAwesome 12
