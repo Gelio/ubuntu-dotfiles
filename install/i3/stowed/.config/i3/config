@@ -198,9 +198,9 @@ exec --no-startup-id redshift-gtk -l 52:20 &
 exec --no-startup-id libinput-gestures-setup start
 
 exec --no-startup-id xidlehook --not-when-fullscreen \
-    --timer 10 "betterlockscreen -l dim" "" \
-    --timer 10 "xset dpms force off" "" \
-    --timer 10 "systemctl suspend" "" \
+    --timer 300 "betterlockscreen -l dim" "" \
+    --timer 60 "xset dpms force off" "" \
+    --timer 3600 "systemctl suspend" "" \
     --socket "/tmp/xidlehook.sock"
 
 # Wallpaper
