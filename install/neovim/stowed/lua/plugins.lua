@@ -286,6 +286,12 @@ return require("packer").startup(function(use)
 	use("jose-elias-alvarez/nvim-lsp-ts-utils")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("ray-x/lsp_signature.nvim")
+	use({
+		"onsails/lspkind-nvim",
+		config = function()
+			require("lspkind").init()
+		end,
+	})
 
 	-- Treesitter
 	use({
