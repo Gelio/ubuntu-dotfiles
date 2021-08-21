@@ -105,6 +105,9 @@ local null_ls_sources = {
 	null_ls.builtins.formatting.prettierd.with({
 		filetypes = prettierd_filetypes,
 	}),
+	null_ls.builtins.formatting.trim_whitespace.with({
+		filetypes = { "plantuml" },
+	}),
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.diagnostics.selene,
 	null_ls.builtins.diagnostics.shellcheck,
