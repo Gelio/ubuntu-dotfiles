@@ -4,7 +4,7 @@
 # shellcheck disable=SC2034
 display_on=0
 span_image=false
-lock_timeout=60
+lock_timeout=600
 fx_list=(dim blur dimblur)
 dim_level=50
 blur_level=1
