@@ -20,38 +20,24 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 vim.o.termguicolors = true
+vim.opt.diffopt:append("algorithm:histogram,iwhite,indent-heuristic,vertical")
 
 local map = vim.api.nvim_set_keymap
 
--- Easier moving text
-map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
-map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
-map("v", "<", "<gv", { noremap = true })
-map("v", ">", ">gv", { noremap = true })
-
--- Better search & replace
-map("n", "cn", "*``cgn", { noremap = true })
-map("n", "cN", "*``cgN", { noremap = true })
-
--- Center after J
-map("n", "J", "mzJ`z", { noremap = true })
+-- NOTE: Those were hard to be set via which-key.nvim
 
 -- Mutate jumplist on longer jumps
 map("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { noremap = true, expr = true })
 map("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { noremap = true, expr = true })
-
-vim.opt.diffopt:append("algorithm:histogram,iwhite,indent-heuristic,vertical")
 
 -- Alt + vim keys for resizing windows
 map("n", "<A-h>", "<C-w><", { noremap = true })
 map("n", "<A-j>", "<C-w>-", { noremap = true })
 map("n", "<A-k>", "<C-w>+", { noremap = true })
 map("n", "<A-l>", "<C-w>>", { noremap = true })
-
 -- Easy yanking to clipboard
 map("n", "<Leader>y", '"+y', { noremap = true })
 map("v", "<Leader>y", '"+y', { noremap = true })
-
 -- Use ripgrep instead of regular grep
 vim.cmd([[
   if executable('rg')

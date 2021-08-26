@@ -5,7 +5,6 @@ vim.cmd([[
     autocmd! BufWritePost plugins.lua source <afile> | PackerCompile
   augroup END
 ]])
-map = vim.api.nvim_set_keymap
 
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
@@ -37,9 +36,17 @@ return require("packer").startup(function(use)
 		"kyazdani42/nvim-tree.lua",
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
-			map("n", "<Leader>nn", ":NvimTreeToggle<CR>", { noremap = true })
-			map("n", "<Leader>nr", ":NvimTreeFindFile<CR>", { noremap = true })
-			map("n", "<Leader>nR", ":NvimTreeFindFile<CR> :wincmd p<CR>", { noremap = true, silent = true })
+			require("which-key").register({
+				name = "NvimTree",
+				n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
+				r = { ":NvimTreeFindFile<CR>", "Find current file in NvimTree" },
+				R = {
+					":NvimTreeFindFile<CR> :wincmd p<CR>",
+					"Find current file but keep focus",
+				},
+			}, {
+				prefix = "<Leader>n",
+			})
 			vim.g.nvim_tree_git_hl = 1
 			vim.g.nvim_tree_lsp_diagnostics = 1
 		end,
@@ -102,14 +109,35 @@ return require("packer").startup(function(use)
 		"mbbill/undotree",
 		config = function()
 			vim.o.undofile = true
-			map("n", "<Leader>u", ":UndotreeToggle<CR>", { noremap = true })
+			require("which-key").register({ ["<Leader>u"] = { ":UndotreeToggle<CR>", "Toggle undo tree" } })
 		end,
 	})
 
 	use({
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup()
+			local ws = require("which-key")
+			ws.setup({
+				operators = {
+					["<Leader>y"] = "Yank to clipboard",
+				},
+			})
+			ws.register({
+				J = { ":m '>+1<CR>gv=gv", "Move lines below" },
+				K = { ":m '<-2<CR>gv=gv", "Move lines above" },
+				["<"] = { "<gv", "Deindent lines" },
+				[">"] = { ">gv", "Indent lines" },
+				["<Leader>y"] = "Yank to clipboard",
+			}, {
+				mode = "v",
+			})
+
+			ws.register({
+				["cn"] = { "*``cgn", "Search and replace" },
+				["cN"] = { "*``cgN", "Search and replace backwards" },
+				J = { "mzJ`z", "Join lines" },
+				["<Leader>y"] = "Yank to clipboard",
+			})
 		end,
 	})
 	use({
@@ -189,18 +217,26 @@ return require("packer").startup(function(use)
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
-			map("n", "<Leader>ff", "<cmd>Telescope find_files hidden=true<CR>", { noremap = true })
-			map("n", "<Leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true })
-			map("n", "<Leader>fGs", "<cmd>Telescope git_status<CR>", { noremap = true })
-			map("n", "<Leader>fGf", "<cmd>Telescope git_files<CR>", { noremap = true })
-			map("n", "<Leader>fGb", "<cmd>Telescope git_branches<CR>", { noremap = true })
-			map("n", "<Leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true })
-			map("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", { noremap = true })
-			map("n", "<Leader>ft", "<cmd>Telescope treesitter<CR>", { noremap = true })
-			map("n", "<Leader>fo", "<cmd>Telescope oldfiles<CR>", { noremap = true })
-			map("n", "<Leader>fr", "<cmd>Telescope lsp_references<CR>", { noremap = true })
-			map("n", "<Leader>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { noremap = true })
-			map("n", "<Leader>fac", "<cmd>Telescope lsp_code_actions<CR>", { noremap = true })
+			require("which-key").register({
+				name = "Telescope",
+				f = { "<cmd>Telescope find_files hidden=true<CR>", "Files" },
+				g = { "<cmd>Telescope live_grep<CR>", "Grep" },
+				G = {
+					name = "Git",
+					s = { "<cmd>Telescope git_status<CR>", "Status" },
+					f = { "<cmd>Telescope git_files<CR>", "Files" },
+					b = { "<cmd>Telescope git_branches<CR>", "Branches" },
+				},
+				b = { "<cmd>Telescope buffers<CR>", "Buffers" },
+				h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
+				t = { "<cmd>Telescope treesitter<CR>", "Treesitter" },
+				o = { "<cmd>Telescope oldfiles<CR>", "Old files" },
+				r = { "<cmd>Telescope lsp_references<CR>", "LSP references" },
+				s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "LSP workspace symbols" },
+				["ac"] = { "<cmd>Telescope lsp_code_actions<CR>", "LSP code actions" },
+			}, {
+				prefix = "<Leader>f",
+			})
 
 			require("telescope").setup({
 				defaults = {
@@ -245,7 +281,7 @@ return require("packer").startup(function(use)
 	use({
 		"simrat39/symbols-outline.nvim",
 		config = function()
-			map("n", "<Leader>so", ":SymbolsOutline<CR>", { noremap = true })
+			require("which-key").register({ ["<Leader>so"] = { ":SymbolsOutline<CR>", "Symbols outline" } })
 			require("symbols-outline").setup({})
 		end,
 	})
@@ -253,10 +289,13 @@ return require("packer").startup(function(use)
 		"hrsh7th/nvim-compe",
 		config = function()
 			vim.opt.completeopt = { "menuone", "noselect" }
-			map("i", "<C-Space>", "compe#complete()", { silent = true, expr = true, noremap = true })
-			map("i", "<C-y>", [[compe#close('<C-e>')]], { silent = true, expr = true, noremap = true })
-			map("i", "<C-u>", [[compe#scroll({ 'delta': +4 })]], { silent = true, expr = true, noremap = true })
-			map("i", "<C-d>", [[compe#scroll({ 'delta': -4 })]], { silent = true, expr = true, noremap = true })
+			local map = function(key, mapping)
+				vim.api.nvim_set_keymap("i", key, mapping, { silent = true, expr = true, noremap = true })
+			end
+			map("<C-Space>", "compe#complete()")
+			map("<C-y>", [[compe#close('<C-e>')]])
+			map("<C-u>", [[compe#scroll({ 'delta': +4 })]])
+			map("<C-d>", [[compe#scroll({ 'delta': -4 })]])
 		end,
 
 		require("compe").setup({
@@ -275,12 +314,19 @@ return require("packer").startup(function(use)
 	use({
 		"folke/trouble.nvim",
 		config = function()
-			map("n", "<Leader>xx", "<cmd>TroubleToggle<CR>", { noremap = true })
-			map("n", "<Leader>xw", "<cmd>TroubleToggle lsp_workspace_diagnostics<CR>", { noremap = true })
-			map("n", "<Leader>xd", "<cmd>TroubleToggle lsp_document_diagnostics<CR>", { noremap = true })
-			map("n", "<Leader>xq", "<cmd>TroubleToggle quickfix<CR>", { noremap = true })
-			map("n", "gR", "<cmd>TroubleToggle lsp_referenced<CR>", { noremap = true })
-			require("trouble").setup({})
+			local ws = require("which-key")
+			ws.register({
+				name = "Trouble",
+				x = { "<cmd>TroubleToggle<CR>", "Toggle" },
+				w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<CR>", "Workspace diagnostics" },
+				d = { "<cmd>TroubleToggle lsp_document_diagnostics<CR>", "Document diagnostics" },
+				q = { "<cmd>TroubleToggle quickfix<CR>", "Quickfix" },
+			}, {
+				prefix = "<Leader>x",
+			})
+			ws.register({
+				["gR"] = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble LSP references" },
+			})
 		end,
 	})
 	use("jose-elias-alvarez/nvim-lsp-ts-utils")
@@ -393,9 +439,14 @@ return require("packer").startup(function(use)
 	use({
 		"rmagatti/goto-preview",
 		config = function()
-			map("n", "gpd", [[<cmd>lua require('goto-preview').goto_preview_definition()<CR>]], { noremap = true })
-			map("n", "gpi", [[<cmd>lua require('goto-preview').goto_preview_implementation()<CR>]], { noremap = true })
-			map("n", "gP", [[<cmd>lua require('goto-preview').close_all_win()<CR>]], { noremap = true })
+			require("which-key").register({
+				["gpd"] = { [[<cmd>lua require('goto-preview').goto_preview_definition()<CR>]], "Preview definitions" },
+				["gpi"] = {
+					[[<cmd>lua require('goto-preview').goto_preview_implementation()<CR>]],
+					"Preview implementations",
+				},
+				["gP"] = { [[<cmd>lua require('goto-preview').close_all_win()<CR>]], "Close preview windows" },
+			})
 			require("goto-preview").setup({})
 		end,
 	})
@@ -411,12 +462,19 @@ return require("packer").startup(function(use)
 	use({
 		"monaqa/dial.nvim",
 		config = function()
-			map("n", "<C-a>", "<Plug>(dial-increment)", {})
-			map("n", "<C-x>", "<Plug>(dial-decrement)", {})
-			map("v", "<C-a>", "<Plug>(dial-increment)", {})
-			map("v", "<C-x>", "<Plug>(dial-decrement)", {})
-			map("v", "g<C-a>", "<Plug>(dial-increment-additional)", {})
-			map("v", "g<C-x>", "<Plug>(dial-decrement-additional)", {})
+			local ws = require("which-key")
+			ws.register({
+				["<C-a>"] = { "<Plug>(dial-increment)" },
+				["<C-x>"] = { "<Plug>(dial-decrement)" },
+			})
+			ws.register({
+				["<C-a>"] = { "<Plug>(dial-increment)" },
+				["<C-x>"] = { "<Plug>(dial-decrement)" },
+				["g<C-a>"] = { "<Plug>(dial-increment-additional)", "Increment sequential" },
+				["g<C-x>"] = { "<Plug>(dial-decrement-additional)", "Decrement sequential" },
+			}, {
+				mode = "v",
+			})
 		end,
 	})
 end)
