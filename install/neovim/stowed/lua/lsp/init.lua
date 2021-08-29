@@ -81,6 +81,14 @@ nvim_lsp.stylelint_lsp.setup({
 	end,
 })
 
+nvim_lsp.gopls.setup({
+	on_attach = function(client, buffer)
+		-- Use null_ls for formatting
+		client.resolved_capabilities.document_formatting = false
+		on_attach(client, buffer)
+	end,
+})
+
 nvim_lsp.jsonls.setup({
 	on_attach = function(client, bufnr)
 		-- Conflicts with prettier formatting in JSON files.
@@ -116,6 +124,7 @@ local null_ls_sources = {
 	null_ls.builtins.diagnostics.markdownlint,
 	null_ls.builtins.diagnostics.write_good,
 	null_ls.builtins.diagnostics.misspell,
+	null_ls.builtins.formatting.gofumpt,
 }
 null_ls.config({
 	sources = null_ls_sources,
