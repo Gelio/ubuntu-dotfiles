@@ -19,15 +19,7 @@ fi
 chmod u+x nvim.appimage
 sudo ln -s "$PWD/nvim.appimage" /usr/bin/nvim
 
-# Add symlink to config
-mkdir -p nvim
-ln -s "$CONFIGS_DIR/neovim.vim" nvim/init.vim
-
-mkdir -p nvim/lua
-ln -s "$CONFIGS_DIR/neovim.lua" nvim/lua/my-config.lua
-
-# Add symlink for coc settings
-ln -s "$CONFIGS_DIR/coc-settings.json" nvim/coc-settings.json
+./stow.sh
 
 # Install python3 provider for neovim
 # See https://neovim.io/doc/user/provider.html
@@ -39,6 +31,3 @@ sudo apt install xsel g++
 
 git config --global core.editor "nvim"
 echo "export EDITOR=nvim" >>~/.profile
-
-cd $CURRENT_DIR
-./vim-plug.sh
