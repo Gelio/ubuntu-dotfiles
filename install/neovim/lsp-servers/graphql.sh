@@ -2,4 +2,4 @@
 
 set -euxo pipefail
 
-npm i -g graphql-language-service-cli
+npm i -g graphql-language-service-cli graphql
