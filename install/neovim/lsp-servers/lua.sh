@@ -7,7 +7,7 @@ set -euo pipefail
 sudo apt install ninja-build
 
 cd ~/.config/nvim
-# git clone https://github.com/sumneko/lua-language-server
+[[ ! -d lua-language-server ]] && git clone https://github.com/sumneko/lua-language-server
 cd lua-language-server
 git submodule update --init --recursive
 
