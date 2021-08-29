@@ -5,15 +5,12 @@ Before=suspend.target
 
 [Service]
 User=%I
-; https://github.com/betterlockscreen/betterlockscreen/issues/277
 Type=simple
 Environment=DISPLAY=:0
-ExecStart=/usr/local/bin/betterlockscreen --lock dim
+ExecStart=/usr/local/bin/betterlockscreen --lock
 TimeoutSec=infinity
 ExecStartPost=/usr/bin/sleep 1
 
 [Install]
 WantedBy=sleep.target
 WantedBy=suspend.target
-
-; vim: ft=systemd
