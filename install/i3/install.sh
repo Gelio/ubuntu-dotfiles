@@ -3,7 +3,7 @@ set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES="lxappearance hsetroot rofi xsettingsd \
   fonts-font-awesome numlockx xfce4-power-manager \
-  mpd playerctl xfce4-volumed autorandr feh"
+  mpd playerctl xfce4-volumed autorandr feh pavucontrol"
 ROFIMOJI_PACKAGES="python3 python3-pip xdotool"
 LOCKSCREEN_PACKAGES="libxcb-screensaver0 libxcb-screensaver0-dev"
 
@@ -33,7 +33,6 @@ echo "See https://github.com/phillipberndt/autorandr"
 ./install-picom.sh
 ./install-libinput-gestures.sh
 ./install-dunst.sh
-./install-i3-volume.sh
 ./install-i3lock-color.sh
 ./install-betterlockscreen.sh
 ./install-redshift.sh
