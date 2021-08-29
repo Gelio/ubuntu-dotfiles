@@ -20,7 +20,7 @@ function show_volume_notification {
 }
 
 function play_sound {
-  canberra-gtk-play -i audio-volume-change -d "changeVolume"
+  paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 }
 
 case "$1" in
