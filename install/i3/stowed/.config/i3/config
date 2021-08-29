@@ -187,6 +187,7 @@ mouse_warping output
 
 exec --no-startup-id safeeyes
 exec --no-startup-id flameshot &
+exec --no-startup-id dunst &
 exec --no-startup-id kitty &
 exec --no-startup-id franz &
 exec --no-startup-id xsettingsd &
