@@ -3,7 +3,7 @@ set -euo pipefail
 
 UPGRADE_ONLY=$(which kitty || true)
 
-if  [ -n "$UPGRADE_ONLY" ]; then
+if [ -n "$UPGRADE_ONLY" ]; then
   echo "Upgrading kitty"
 else
   echo "Installing kitty"
@@ -18,11 +18,10 @@ if [ -n "$UPGRADE_ONLY" ]; then
   exit 0
 fi
 
-CONFIGS_DIR="$(dirname $PWD)/configs"
-ln -s "$CONFIGS_DIR/kitty.conf" ~/.config/kitty/
-ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
-cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
-sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
+./stow.sh
+
+cd ~/.local/kitty.app
+stow -v .
 
 echo "kitty installed"
 
