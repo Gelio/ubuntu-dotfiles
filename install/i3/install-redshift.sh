@@ -7,7 +7,7 @@ set -euo pipefail
 
 # https://github.com/jonls/redshift/blob/master/CONTRIBUTING.md#building-from-git-clone
 sudo apt install autopoint intltool libdrm-dev libxcb1-dev libxcb-randr0-dev \
-  libx11-dev libxxf86vm-dev libglib2.0-dev python3
+  libx11-dev libxxf86vm-dev libglib2.0-dev python3 libtool
 
 cd ~/.local
 [[ ! -d redshift ]] && git clone git@github.com:jonls/redshift.git
