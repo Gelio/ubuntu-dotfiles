@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 sudo add-apt-repository ppa:slgobinath/safeeyes
 sudo apt update
 sudo apt install safeeyes
-
-if [ "$?" -eq "0" ]; then
-	echo "Installation successful. Run the SafeEyes application manually now"
-fi
+echo "Installation successful. Run the SafeEyes application manually now"
