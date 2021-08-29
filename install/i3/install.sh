@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-I3_ADDITIONAL_PACKAGES=lxappearance hsetroot rofi xsettingsd \
+I3_ADDITIONAL_PACKAGES="lxappearance hsetroot rofi xsettingsd \
   fonts-font-awesome numlockx xfce4-power-manager \
-  mpd playerctl xfce4-volumed autorandr
-ROFIMOJI_PACKAGES=python3 python3-pip xdotool
-LOCKSCREEN_PACKAGES=libxcb-screensaver0 libxcb-screensaver0-dev
+  mpd playerctl xfce4-volumed autorandr"
+ROFIMOJI_PACKAGES="python3 python3-pip xdotool"
+LOCKSCREEN_PACKAGES="libxcb-screensaver0 libxcb-screensaver0-dev"
 
 sudo add-apt-repository ppa:regolith-linux/release
 sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
@@ -27,6 +27,8 @@ echo "feh --bg-center [path to wallpaper]"
 echo "Make sure to configure autorandr"
 echo "See https://github.com/phillipberndt/autorandr"
 
+./stow.sh
+
 ./install-i3status-rust.sh
 ./install-picom.sh
 ./install-libinput-gestures.sh
@@ -35,5 +37,3 @@ echo "See https://github.com/phillipberndt/autorandr"
 ./install-i3lock-color.sh
 ./install-betterlockscreen.sh
 ./install-redshift.sh
-
-./stow.sh
