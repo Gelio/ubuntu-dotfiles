@@ -12,7 +12,7 @@ sudo apt install autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfont
 
 cd ~/.local
 # https://github.com/Raymo111/i3lock-color#building-i3lock-color
-git clone https://github.com/Raymo111/i3lock-color.git
+[[ ! -d i3lock-color ]] && git clone https://github.com/Raymo111/i3lock-color.git
 cd i3lock-color
 git tag -f "git-$(git rev-parse --short HEAD)"
 ./install-i3lock-color.sh

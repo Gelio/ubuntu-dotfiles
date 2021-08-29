@@ -11,7 +11,7 @@ sudo apt install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-d
 
 cd ~/.local
 # https://github.com/dunst-project/dunst#building
-git clone https://github.com/dunst-project/dunst.git
+[[ ! -d dunst ]] && git clone https://github.com/dunst-project/dunst.git
 cd dunst
 make
 sudo make install

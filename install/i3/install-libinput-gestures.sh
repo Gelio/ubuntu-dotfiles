@@ -8,7 +8,7 @@ echo "You may need to reboot for the tool to work"
 sudo apt install wmctrl xdotool libinput-tools
 
 cd ~/.local
-git clone https://github.com/bulletmark/libinput-gestures.git
+[[ ! -d libinput-gestures ]] && git clone https://github.com/bulletmark/libinput-gestures.git
 cd libinput-gestures
 sudo make install
 
