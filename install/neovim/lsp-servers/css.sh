@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-npm install -g vscode-css-languageserver-bin stylelint-lsp
+npm install -g vscode-langservers-extracted stylelint-lsp
