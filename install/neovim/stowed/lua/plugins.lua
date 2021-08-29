@@ -95,6 +95,7 @@ return require("packer").startup(function(use)
 				auto_select = false,
 			})
 		end,
+		requires = { "hrsh7th/nvim-compe" },
 	})
 	use({
 		"ggandor/lightspeed.nvim",
@@ -259,6 +260,10 @@ return require("packer").startup(function(use)
 
 			require("lsp")
 		end,
+		requires = {
+			"jose-elias-alvarez/nvim-lsp-ts-utils",
+			"jose-elias-alvarez/null-ls.nvim",
+		},
 	})
 
 	use({
@@ -285,6 +290,7 @@ return require("packer").startup(function(use)
 			require("symbols-outline").setup({})
 		end,
 	})
+
 	use({
 		"hrsh7th/nvim-compe",
 		config = function()
