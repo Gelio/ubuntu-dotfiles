@@ -37,3 +37,4 @@ echo "See https://github.com/phillipberndt/autorandr"
 ./install-betterlockscreen.sh
 ./install-redshift.sh
 ./update-safeeyes-config.sh
+./install-ssh-ident.sh

@@ -1,0 +1,3 @@
+# https://github.com/ccontavalli/ssh-ident
+
+VERBOSITY = LOG_WARN
