@@ -6,7 +6,7 @@ Before=suspend.target
 [Service]
 User=%I
 Type=simple
-Environment=DISPLAY=:0
+Environment=DISPLAY=:1
 ExecStart=/usr/local/bin/betterlockscreen --lock
 TimeoutSec=infinity
 ExecStartPost=/usr/bin/sleep 1
