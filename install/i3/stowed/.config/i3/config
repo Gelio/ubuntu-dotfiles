@@ -10,8 +10,8 @@ font pango:FiraCode Nerd Font Mono 16px
 exec --no-startup-id nm-applet
 
 # Use pactl and i3-volume to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id volume up 10
-bindsym XF86AudioLowerVolume exec --no-startup-id volume down 10
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume up 5
+bindsym XF86AudioLowerVolume exec --no-startup-id volume down 5
 bindsym XF86AudioMute exec --no-startup-id volume mute
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
