@@ -500,6 +500,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"vhyrro/neorg",
+		branch = "unstable",
 		config = function()
 			require("neorg").setup({
 				load = {
