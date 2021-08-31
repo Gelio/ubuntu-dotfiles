@@ -313,6 +313,7 @@ return require("packer").startup(function(use)
 				nvim_lua = true,
 				vsnip = false,
 				tabnine = false,
+				neorg = true,
 			},
 		}),
 	})
@@ -348,7 +349,7 @@ return require("packer").startup(function(use)
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+		run = { ":TSUpdate", ":TSInstall norg" },
 		requires = {
 			"nvim-treesitter/playground",
 			"nvim-treesitter/nvim-treesitter-textobjects",
@@ -362,6 +363,19 @@ return require("packer").startup(function(use)
 			vim.o.foldmethod = "expr"
 			vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 			vim.o.foldlevel = 20
+
+			local function add_neorg_parser()
+				local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
+				parser_configs.norg = {
+					install_info = {
+						url = "https://github.com/vhyrro/tree-sitter-norg",
+						files = { "src/parser.c", "src/scanner.cc" },
+						branch = "main",
+					},
+				}
+			end
+			add_neorg_parser()
 
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = "maintained",
@@ -482,5 +496,19 @@ return require("packer").startup(function(use)
 				mode = "v",
 			})
 		end,
+	})
+
+	use({
+		"vhyrro/neorg",
+		config = function()
+			require("neorg").setup({
+				load = {
+					["core.defaults"] = {},
+					["core.norg.concealer"] = {},
+				},
+			})
+		end,
+		requires = "nvim-lua/plenary.nvim",
+		after = "nvim-treesitter",
 	})
 end)
