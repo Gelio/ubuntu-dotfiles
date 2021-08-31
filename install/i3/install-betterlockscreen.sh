@@ -5,7 +5,7 @@ set -euo pipefail
 sudo apt install imagemagick
 
 VERSION="v4.0.3"
-wget https://git.io/JZyxV -O - -q | sudo bash -s system $VERSION true
+wget https://git.io/JZyxV -O - -q | sudo bash -s system $VERSION false
 
 ./stow.sh
 # https://github.com/betterlockscreen/betterlockscreen#systemd-service-lockscreen-after-sleepsuspend
