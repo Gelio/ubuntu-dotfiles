@@ -5,7 +5,7 @@
 display_on=0
 span_image=false
 lock_timeout=600
-fx_list=(dim blur dimblur)
+fx_list=(dim)
 dim_level=50
 blur_level=1
 pixel_scale=10,1000
