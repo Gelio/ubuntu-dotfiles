@@ -5,9 +5,9 @@ mkdir -p ~/.config
 cd ~/.config
 curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 
-UPGRADE_ONLY=$(which nvim || true)
+upgrade_only=$(command -v nvim || true)
 
-if [ -n "$UPGRADE_ONLY" ]; then
+if [ -n "$upgrade_only" ]; then
   nvim -v
   echo "Upgraded neovim, exiting"
   exit 0
