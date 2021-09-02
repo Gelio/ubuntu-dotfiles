@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-GO111MODULE=on go get golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/gopls@latest

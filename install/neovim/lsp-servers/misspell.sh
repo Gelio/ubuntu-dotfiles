@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-go get -u github.com/client9/misspell/cmd/misspell
+go install github.com/client9/misspell/cmd/misspell@latest
