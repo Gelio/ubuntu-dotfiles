@@ -2,8 +2,7 @@
 set -euo pipefail
 
 mkdir -p ~/.config
-cd ~/.config
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+wget -O ~/.config/nvim.appimage https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 
 upgrade_only=$(command -v nvim || true)
 
@@ -13,8 +12,8 @@ if [ -n "$upgrade_only" ]; then
   exit 0
 fi
 
-chmod u+x nvim.appimage
-sudo ln -s "$PWD/nvim.appimage" /usr/bin/nvim
+chmod u+x ~/.config/nvim.appimage
+sudo ln -s "$HOME/.config/nvim.appimage" /usr/bin/nvim
 
 ./stow.sh
 
@@ -25,6 +24,3 @@ python3 -m pip install --user --upgrade pynvim
 # xsel for clipboard support
 # g++ for compiling Treesitter parsers
 sudo apt install xsel g++
-
-git config --global core.editor "nvim"
-echo "export EDITOR=nvim" >>~/.profile

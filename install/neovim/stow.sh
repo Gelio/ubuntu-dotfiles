@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-stow stowed -t ~/.config/nvim
+stow -v --no-folding -t "$HOME" stowed
