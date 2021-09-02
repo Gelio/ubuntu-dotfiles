@@ -6,6 +6,7 @@ set -euo pipefail
 
 sudo apt install ninja-build
 
+mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 [[ ! -d lua-language-server ]] && git clone https://github.com/sumneko/lua-language-server
 cd lua-language-server
