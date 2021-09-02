@@ -310,19 +310,19 @@ return require("packer").startup(function(use)
 			map("<C-y>", [[compe#close('<C-e>')]])
 			map("<C-u>", [[compe#scroll({ 'delta': +4 })]])
 			map("<C-d>", [[compe#scroll({ 'delta': -4 })]])
-		end,
 
-		require("compe").setup({
-			source = {
-				path = true,
-				buffer = true,
-				calc = true,
-				nvim_lsp = true,
-				nvim_lua = true,
-				vsnip = false,
-				tabnine = false,
-			},
-		}),
+			require("compe").setup({
+				source = {
+					path = true,
+					buffer = true,
+					calc = true,
+					nvim_lsp = true,
+					nvim_lua = true,
+					vsnip = false,
+					tabnine = false,
+				},
+			})
+		end,
 	})
 
 	use({
