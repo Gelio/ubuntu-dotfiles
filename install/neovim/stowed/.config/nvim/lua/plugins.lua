@@ -326,8 +326,8 @@ return require("packer").startup(function(use)
 			end
 			map("<C-Space>", "compe#complete()")
 			map("<C-y>", [[compe#close('<C-e>')]])
-			map("<C-u>", [[compe#scroll({ 'delta': +4 })]])
-			map("<C-d>", [[compe#scroll({ 'delta': -4 })]])
+			map("<C-u>", [[pumvisible() ? compe#scroll({ 'delta': +4 }) : '<C-u>']])
+			map("<C-d>", [[pumvisible() ? compe#scroll({ 'delta': -4 }) : '<C-d>']])
 
 			require("compe").setup({
 				source = {
