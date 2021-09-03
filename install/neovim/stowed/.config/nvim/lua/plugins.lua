@@ -80,6 +80,7 @@ return require("packer").startup(function(use)
 
 	use("tpope/vim-fugitive")
 	use("tpope/vim-rhubarb")
+	use("shumphrey/fugitive-gitlab.vim")
 	use("junegunn/gv.vim")
 	use({
 		"rickhowe/diffchar.vim",
