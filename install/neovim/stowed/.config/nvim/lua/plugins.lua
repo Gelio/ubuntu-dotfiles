@@ -17,6 +17,23 @@ return require("packer").startup(function(use)
 	use("tpope/vim-commentary")
 
 	use({
+		"ojroques/vim-oscyank",
+		config = function()
+			-- NOTE: automatically synchronize clipboard yanking to parent terminal when using SSH
+			local function is_ssh_connection()
+				local ssh_connection = vim.env.SSH_CONNECTION
+				return ssh_connection ~= nil and ssh_connection ~= ""
+			end
+
+			if is_ssh_connection() then
+				vim.cmd([[
+          autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif
+        ]])
+			end
+		end,
+	})
+
+	use({
 		"bkad/camelcasemotion",
 		config = function()
 			vim.g.camelcasemotion_key = "<Leader>"
