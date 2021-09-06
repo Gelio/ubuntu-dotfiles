@@ -461,6 +461,7 @@ return require("packer").startup(function(use)
 		wants = { "nvim-treesitter" },
 	})
 	use("aklt/plantuml-syntax")
+	use({ "ekalinin/dockerfile.vim" })
 	use({
 		"vuki656/package-info.nvim",
 		config = function()
