@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# vim: ft=sh
 
 # https://github.com/magicmonty/bash-git-prompt#all-configs-for-bashrc
 
