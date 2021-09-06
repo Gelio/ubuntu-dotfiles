@@ -24,6 +24,7 @@
   l = log
   b = branch
   co = checkout
+  subup = submodule update --init --recursive
 
 [diff]
   colorMoved = default
