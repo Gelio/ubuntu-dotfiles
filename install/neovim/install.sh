@@ -2,7 +2,7 @@
 set -euo pipefail
 
 mkdir -p ~/.config
-wget -O ~/.config/nvim.appimage https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+wget -O ~/.config/nvim.appimage https://github.com/neovim/neovim/releases/download/${NVIM_VERSION-=default}/nvim.appimage
 
 upgrade_only=$(command -v nvim || true)
 
