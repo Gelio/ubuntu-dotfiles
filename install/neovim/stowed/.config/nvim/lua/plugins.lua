@@ -107,13 +107,13 @@ return require("packer").startup(function(use)
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup()
-			require("nvim-autopairs.completion.compe").setup({
+			require("nvim-autopairs.completion.cmp").setup({
 				map_cr = true,
-				map_complete = true,
+				map_complete = false,
 				auto_select = false,
 			})
 		end,
-		requires = { "hrsh7th/nvim-compe" },
+		requires = { "hrsh7th/nvim-cmp" },
 	})
 	use({
 		"ggandor/lightspeed.nvim",
@@ -318,29 +318,57 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"hrsh7th/nvim-compe",
+		"hrsh7th/nvim-cmp",
 		config = function()
 			vim.opt.completeopt = { "menuone", "noselect" }
-			local map = function(key, mapping)
-				vim.api.nvim_set_keymap("i", key, mapping, { silent = true, expr = true, noremap = true })
-			end
-			map("<C-Space>", "compe#complete()")
-			map("<C-y>", [[compe#close('<C-e>')]])
-			map("<C-u>", [[pumvisible() ? compe#scroll({ 'delta': +4 }) : '<C-u>']])
-			map("<C-d>", [[pumvisible() ? compe#scroll({ 'delta': -4 }) : '<C-d>']])
 
-			require("compe").setup({
-				source = {
-					path = true,
-					buffer = true,
-					calc = true,
-					nvim_lsp = true,
-					nvim_lua = true,
-					vsnip = false,
-					tabnine = false,
+			local cmp = require("cmp")
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						vim.fn["vsnip#anonymous"](args.body)
+					end,
+				},
+				mapping = {
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-y>"] = cmp.mapping.close(),
+					["<C-u>"] = cmp.mapping.scroll_docs(4),
+					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					-- NOTE: mapping for <CR> is added by nvim-autopairs
+				},
+				sources = {
+					{ name = "vsnip" },
+					{ name = "buffer" },
+					{ name = "crates" },
+					{ name = "path" },
+					{ name = "tmux" },
+					{ name = "nvim_lua" },
+					{ name = "calc" },
+					{ name = "nvim_lsp" },
 				},
 			})
+
+			-- https://github.com/hrsh7th/vim-vsnip#2-setting
+			vim.cmd([[
+        imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+        imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+      ]])
 		end,
+		requires = {
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/vim-vsnip-integ",
+			"hrsh7th/cmp-vsnip",
+			"hrsh7th/cmp-buffer",
+			"Saecki/crates.nvim",
+			"hrsh7th/cmp-path",
+			{ "andersevenrud/compe-tmux", branch = "cmp" },
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-calc",
+			"hrsh7th/cmp-nvim-lsp",
+			"rafamadriz/friendly-snippets",
+		},
 	})
 
 	use({
