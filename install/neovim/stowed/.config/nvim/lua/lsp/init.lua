@@ -154,17 +154,10 @@ nvim_lsp.tsserver.setup({
 	on_attach = attach_tsserver,
 })
 
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
-	local config = {
-		virtual_text = {
-			spacing = 2,
-			prefix = "■ ",
-			severity_limit = "Warning",
-		},
-		signs = true,
-	}
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics-neovim-05106-only
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, params, ctx, config)
 	local uri = params.uri
+	local client_id = ctx.client_id
 	local bufnr = vim.uri_to_bufnr(uri)
 
 	if not bufnr then
@@ -173,17 +166,19 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, cli
 
 	local diagnostics = params.diagnostics
 
-	for i, v in ipairs(diagnostics) do
-		diagnostics[i].message = string.format("%s: %s", v.source, v.message)
-	end
-
 	vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
 
 	if not vim.api.nvim_buf_is_loaded(bufnr) then
 		return
 	end
 
-	vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
+	-- don't mutate the original diagnostic because it would interfere with
+	-- code action (and probably other stuff, too)
+	local prefixed_diagnostics = vim.deepcopy(diagnostics)
+	for i, v in pairs(diagnostics) do
+		prefixed_diagnostics[i].message = string.format("%s: %s", v.source, v.message)
+	end
+	vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, client_id, config)
 end
 
 my_config = {
