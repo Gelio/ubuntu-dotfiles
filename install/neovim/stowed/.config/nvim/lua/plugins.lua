@@ -345,6 +345,7 @@ return require("packer").startup(function(use)
 					{ name = "nvim_lua" },
 					{ name = "calc" },
 					{ name = "nvim_lsp" },
+					{ name = "emoji" },
 				},
 			})
 
@@ -368,6 +369,7 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-calc",
 			"hrsh7th/cmp-nvim-lsp",
 			"rafamadriz/friendly-snippets",
+			"hrsh7th/cmp-emoji",
 		},
 	})
 
