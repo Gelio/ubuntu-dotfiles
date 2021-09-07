@@ -89,12 +89,63 @@ nvim_lsp.gopls.setup({
 	end,
 })
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 nvim_lsp.jsonls.setup({
+	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		-- Conflicts with prettier formatting in JSON files.
 		client.resolved_capabilities.document_formatting = false
 		on_attach(client, bufnr)
 	end,
+	get_language_id = function(_, filetype)
+		if filetype == "json" then
+			-- NOTE: allows comments in JSON files
+			return "jsonc"
+		end
+		return filetype
+	end,
+	settings = {
+		json = {
+			schemas = {
+				-- https://github.com/microsoft/vscode/blob/6e5ffbde32cb783be15ddd383028c4a56a667edd/extensions/typescript-language-features/package.json#L70
+				-- Use http://mageddo.com/tools/json-to-lua-converter
+				{
+					fileMatch = "tsconfig.json",
+					url = "https://json.schemastore.org/tsconfig",
+				},
+				{
+					fileMatch = "tsconfig.*.json",
+					url = "https://json.schemastore.org/tsconfig",
+				},
+				{
+					fileMatch = "tsconfig-*.json",
+					url = "https://json.schemastore.org/tsconfig",
+				},
+				{
+					fileMatch = ".babelrc",
+					url = "https://json.schemastore.org/babelrc",
+				},
+				{
+					fileMatch = ".babelrc.json",
+					url = "https://json.schemastore.org/babelrc",
+				},
+				{
+					fileMatch = "babel.config.json",
+					url = "https://json.schemastore.org/babelrc",
+				},
+				{
+					fileMatch = "jsconfig.json",
+					url = "https://json.schemastore.org/jsconfig",
+				},
+				{
+					fileMatch = "jsconfig.*.json",
+					url = "https://json.schemastore.org/jsconfig",
+				},
+			},
+		},
+	},
 })
 
 nvim_lsp.graphql.setup({
