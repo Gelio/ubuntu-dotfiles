@@ -322,6 +322,37 @@ return require("packer").startup(function(use)
 		config = function()
 			vim.opt.completeopt = { "menuone", "noselect" }
 
+			local function prepare_sources()
+				-- NOTE: order matters. The order will be maintained in completions popup
+				local sources = {
+					{ name = "nvim_lsp", label = "LSP" },
+					{ name = "crates", label = "crates.nvim" },
+					{ name = "vsnip" },
+					{ name = "nvim_lua" },
+					{ name = "path" },
+					{ name = "buffer" },
+					{ name = "tmux" },
+					{ name = "calc" },
+					{ name = "emoji" },
+				}
+
+				local source_labels = {}
+
+				for _, source in pairs(sources) do
+					source_labels[source.name] = source.label or source.name
+				end
+
+				return sources, source_labels
+			end
+
+			local sources, source_labels = prepare_sources()
+
+			local function format(entry, vim_item)
+				vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+				vim_item.menu = source_labels[entry.source.name]
+				return vim_item
+			end
+
 			local cmp = require("cmp")
 			cmp.setup({
 				snippet = {
@@ -336,17 +367,8 @@ return require("packer").startup(function(use)
 					["<C-d>"] = cmp.mapping.scroll_docs(-4),
 					-- NOTE: mapping for <CR> is added by nvim-autopairs
 				},
-				sources = {
-					{ name = "vsnip" },
-					{ name = "buffer" },
-					{ name = "crates" },
-					{ name = "path" },
-					{ name = "tmux" },
-					{ name = "nvim_lua" },
-					{ name = "calc" },
-					{ name = "nvim_lsp" },
-					{ name = "emoji" },
-				},
+				sources = sources,
+				formatting = { format = format },
 			})
 
 			-- https://github.com/hrsh7th/vim-vsnip#2-setting
@@ -370,6 +392,7 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-emoji",
+			"onsails/lspkind-nvim",
 		},
 	})
 
