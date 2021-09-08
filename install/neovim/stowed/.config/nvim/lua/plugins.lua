@@ -490,29 +490,6 @@ return require("packer").startup(function(use)
 
 	use("editorconfig/editorconfig-vim")
 	use("sudormrfbin/cheatsheet.nvim")
-	use({
-		"abecodes/tabout.nvim",
-		config = function()
-			require("tabout").setup({
-				tabkey = "<Tab>",
-				backwards_tabkey = "<S-Tab>",
-				act_as_tab = true,
-				act_as_shift_tab = false,
-				completion = false,
-				enable_backwards = true,
-				tabouts = {
-					{ open = "'", close = "'" },
-					{ open = '"', close = '"' },
-					{ open = "`", close = "`" },
-					{ open = "(", close = ")" },
-					{ open = "[", close = "]" },
-					{ open = "{", close = "}" },
-				},
-				ignore_beginning = true,
-			})
-		end,
-		wants = { "nvim-treesitter" },
-	})
 	use("aklt/plantuml-syntax")
 	use({ "ekalinin/dockerfile.vim" })
 	use({
