@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-VISUAL=nvim
-export VISUAL
+export VISUAL=nvim
+export MANPAGER='nvim +Man!'
