@@ -66,6 +66,8 @@ return require("packer").startup(function(use)
 			})
 			vim.g.nvim_tree_git_hl = 1
 			vim.g.nvim_tree_lsp_diagnostics = 1
+			vim.g.nvim_tree_group_empty = 1
+			vim.g.nvim_tree_follow = 1
 		end,
 	})
 
