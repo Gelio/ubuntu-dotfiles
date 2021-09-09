@@ -17,7 +17,9 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup({
+local M = {}
+
+M.config = vim.tbl_extend("error", require("lsp.utils").base_config, {
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
@@ -36,5 +38,6 @@ require("lspconfig").sumneko_lua.setup({
 			},
 		},
 	},
-	on_attach = my_config.on_attach,
 })
+
+return M

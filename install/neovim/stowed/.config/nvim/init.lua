@@ -65,10 +65,3 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require("plugins")
-
--- NOTE: Manually source .nvimrc
--- https://github.com/neovim/neovim/issues/13501#issuecomment-758604989
-local local_vimrc = vim.fn.getcwd() .. "/.nvimrc"
-if vim.loop.fs_stat(local_vimrc) then
-	vim.cmd("source " .. local_vimrc)
-end

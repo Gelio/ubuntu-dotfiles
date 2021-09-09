@@ -1,11 +1,11 @@
 lua << EOF
-  local my_config = require('lsp')
-
   local function getcwd()
     return vim.fn.getcwd()
   end
-  require('lspconfig')['null-ls'].setup({
+
+  local config = vim.tbl_extend('error', require('lsp.null-ls').config, {
     root_dir = getcwd,
-    on_attach = my_config.on_attach,
   })
+
+  require('lspconfig')['null-ls'].setup(config)
 EOF
