@@ -2,6 +2,7 @@ local M = {}
 
 local function setup_lsp_keymaps(bufnr)
 	local wk = require("which-key")
+	-- TODO: register mappings only when there are capabilities (see client.resolved_capabilities)
 	wk.register({
 		g = {
 			D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
