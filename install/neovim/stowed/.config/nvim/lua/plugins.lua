@@ -70,6 +70,16 @@ return require("packer").startup(function(use)
 	})
 
 	use({
+		"junegunn/vim-easy-align",
+		config = function()
+			-- NOTE: for some reason, which-key.nvim could not register this binding
+			vim.cmd([[
+        xmap ga <Plug>(EasyAlign)
+      ]])
+		end,
+	})
+
+	use({
 		"hoob3rt/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		config = function()
