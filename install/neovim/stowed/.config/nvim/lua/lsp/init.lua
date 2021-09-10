@@ -23,6 +23,8 @@ nvim_lsp.tsserver.setup(require("lsp.tsserver").config)
 
 nvim_lsp.sumneko_lua.setup(require("lsp.lua").config)
 
+nvim_lsp.java_language_server.setup(require("lsp.java").config)
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = utils.publish_diagnostics_handler
 
 -- NOTE: Manually source .nvimrc to possibly override some configs
