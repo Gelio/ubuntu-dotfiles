@@ -218,6 +218,13 @@ return require("packer").startup(function(use)
 	})
 
 	use({
+		"lukas-reineke/headlines.nvim",
+		config = function()
+			require("headlines").setup()
+		end,
+	})
+
+	use({
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()
