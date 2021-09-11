@@ -538,7 +538,12 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("dstein64/nvim-scrollview")
+	use({
+		"dstein64/nvim-scrollview",
+		config = function()
+			vim.cmd([[ highlight link ScrollView WildMenu ]])
+		end,
+	})
 	use({
 		"monaqa/dial.nvim",
 		config = function()
