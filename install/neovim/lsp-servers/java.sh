@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# set -euo pipefail
+set -euo pipefail
 
 if ! command -v "mvn" >/dev/null; then
-  echo "Installing maven"
-  sudo apt install maven
+  echo "maven not found. Please install it first"
+  exit 1
 fi
 
 installed_java_versions=$(update-java-alternatives --list)
 
-if [[ ! $installed_java_versions =~ "1.13" ]]; then
+if [[ ! $installed_java_versions =~ 1.13 ]]; then
   echo "Installing openjdk-13"
   sudo apt install openjdk-13-jdk
 fi
@@ -24,7 +24,7 @@ else
   cd java-language-server
 fi
 
-# Run similiar instructions to
+# Run similar instructions to
 # https://github.com/georgewfraser/java-language-server#vim-with-vim-lsc
 # but use nvim-lspconfig instead of vim-lsc
 
