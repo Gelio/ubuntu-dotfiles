@@ -1,32 +1,55 @@
 local M = {}
 
-local function setup_lsp_keymaps(bufnr)
+local function setup_lsp_keymaps(client, bufnr)
+	local function if_enabled(condition, mapping)
+		return condition and mapping or nil
+	end
+
 	local wk = require("which-key")
-	-- TODO: register mappings only when there are capabilities (see client.resolved_capabilities)
+	local capabilities = client.resolved_capabilities
+
 	wk.register({
 		g = {
-			D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
-			d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-			i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
-			r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" },
+			D = if_enabled(capabilities.declaration, { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" }),
+			d = if_enabled(
+				capabilities.goto_definition,
+				{ "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" }
+			),
+			i = if_enabled(
+				capabilities.implementation,
+				{ "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" }
+			),
+			r = if_enabled(
+				capabilities.find_references,
+				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
+			),
 		},
-		["<C-W>gd"] = {
+		["<C-W>gd"] = if_enabled(capabilities.goto_definition, {
 			-- TODO: try to use "gd" map with noremap = false
 			"<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
 			"Go to definition in a new tab",
 			-- noremap = false
-		},
+		}),
 		["<Leader>"] = {
-			D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
-			rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+			D = if_enabled(
+				capabilities.type_definition,
+				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
+			),
+			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics for current line" },
-			ac = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" },
+			ac = if_enabled(capabilities.code_action, { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" }),
 			q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Show diagnostics in quickfix list" },
 			-- TODO: fix range actions, add them in visual mode
-			ar = { "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "Range code actions", mode = "v" },
+			ar = if_enabled(
+				capabilities.code_action,
+				{ "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "Range code actions", mode = "v" }
+			),
 		},
-		K = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" },
-		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" },
+		K = if_enabled(capabilities.hover, { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
+		["<C-k>"] = if_enabled(
+			capabilities.signature_help,
+			{ "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" }
+		),
 		["[d"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
 		["]d"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
 	}, {
@@ -64,7 +87,6 @@ local function setup_document_highlight(client)
 	end
 
 	vim.cmd(
-		-- TODO: check if the guibg are still needed
 		[[
       hi LspReferenceText  cterm=bold ctermbg=red guibg=#404040
       hi LspReferenceRead  cterm=bold ctermbg=red guibg=#404040
@@ -82,7 +104,7 @@ end
 function M.on_attach(client, bufnr)
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-	setup_lsp_keymaps(bufnr)
+	setup_lsp_keymaps(client, bufnr)
 	setup_formatting(client, bufnr)
 	setup_document_highlight(client)
 
