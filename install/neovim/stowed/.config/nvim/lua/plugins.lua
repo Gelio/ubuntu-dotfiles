@@ -308,6 +308,7 @@ return require("packer").startup(function(use)
 		requires = {
 			"jose-elias-alvarez/nvim-lsp-ts-utils",
 			"jose-elias-alvarez/null-ls.nvim",
+			"mfussenegger/nvim-jdtls",
 		},
 	})
 

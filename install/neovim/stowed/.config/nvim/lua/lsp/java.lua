@@ -1,20 +1,19 @@
 local M = {}
 
-local system_name
-if vim.fn.has("mac") == 1 then
-	system_name = "mac"
-elseif vim.fn.has("unix") == 1 then
-	system_name = "linux"
-else
-	system_name = "windows"
+function M.setup()
+	-- selene: allow(global_usage)
+	function _G.start_java_lsp()
+		local config = vim.tbl_extend("error", require("lsp.utils").base_config, {
+			cmd = { "java-jdtls.sh" },
+		})
+		require("jdtls").start_or_attach(config)
+	end
+
+	vim.cmd([[
+    augroup LSPJava
+      autocmd! FileType java lua start_java_lsp()
+    augroup END
+  ]])
 end
-
-local HOME = vim.fn.expand("$HOME")
-
-M.config = vim.tbl_extend(
-	"error",
-	require("lsp.utils").base_config,
-	{ cmd = { HOME .. "/.local/java-language-server/dist/lang_server_" .. system_name .. ".sh" } }
-)
 
 return M
