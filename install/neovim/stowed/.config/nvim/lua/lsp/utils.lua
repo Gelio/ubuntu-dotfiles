@@ -25,10 +25,8 @@ local function setup_lsp_keymaps(client, bufnr)
 			),
 		},
 		["<C-W>gd"] = if_enabled(capabilities.goto_definition, {
-			-- TODO: try to use "gd" map with noremap = false
-			"<cmd>tab split | lua vim.lsp.buf.definition()<CR>",
+			"<cmd>tab split | norm gd<CR>",
 			"Go to definition in a new tab",
-			-- noremap = false
 		}),
 		["<Leader>"] = {
 			D = if_enabled(
