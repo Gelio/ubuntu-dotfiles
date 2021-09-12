@@ -440,6 +440,21 @@ return require("packer").startup(function(use)
 			require("lspkind").init()
 		end,
 	})
+	use({
+		"kosayoda/nvim-lightbulb",
+		config = function()
+			-- selene: allow(global_usage)
+			function _G.update_lightbulb()
+				require("nvim-lightbulb").update_lightbulb()
+			end
+
+			vim.cmd([[
+        augroup LspLightBulb
+          autocmd! CursorHold,CursorHoldI * lua _G.update_lightbulb()
+        augroup END
+      ]])
+		end,
+	})
 
 	-- Treesitter
 	use({
