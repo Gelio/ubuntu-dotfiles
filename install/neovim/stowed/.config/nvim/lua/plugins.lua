@@ -558,6 +558,7 @@ return require("packer").startup(function(use)
 		config = function()
 			vim.cmd([[ highlight link ScrollView WildMenu ]])
 		end,
+		after = { "gruvbox-material" },
 	})
 	use({
 		"monaqa/dial.nvim",
