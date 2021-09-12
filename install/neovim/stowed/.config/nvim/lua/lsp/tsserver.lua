@@ -6,10 +6,6 @@ local function setup_lsp_ts_utils(client)
 		eslint_bin = "eslint_d",
 		eslint_enable_diagnostics = true,
 		eslint_diagnostics_debounce = 500,
-
-		-- TODO: possibly remove it, as I set up null-ls myself
-		enable_formatting = true,
-		formatter = "prettierd",
 	})
 	ts_utils.setup_client(client)
 end
