@@ -530,6 +530,22 @@ return require("packer").startup(function(use)
 		requires = { "MunifTanjim/nui.nvim" },
 		config = function()
 			require("package-info").setup()
+			-- selene: allow(global_usage)
+			function _G.setup_package_info_mappings()
+				require("which-key").register({
+					pd = { "<cmd>lua require('package-info').delete()<CR>", "Delete package" },
+					pc = { "<cmd>lua require('package-info').change_version()<CR>", "Install another version" },
+				}, {
+					prefix = "<Leader>",
+					buffer = vim.fn.bufnr(),
+				})
+			end
+
+			vim.cmd([[
+        augroup PackageInfoMappings
+          autocmd! BufEnter package.json lua _G.setup_package_info_mappings()
+        augroup END
+      ]])
 		end,
 	})
 
