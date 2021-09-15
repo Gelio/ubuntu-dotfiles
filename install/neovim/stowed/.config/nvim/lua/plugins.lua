@@ -596,4 +596,16 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+	use({
+		"sindrets/winshift.nvim",
+		config = function()
+			require("winshift").setup()
+			require("which-key").register({
+				["<C-M>"] = { "<cmd>WinShift<CR>", "Window shift mode" },
+				["m"] = { "<cmd>WinShift<CR>", "Window shift mode" },
+			}, {
+				prefix = "<C-W>",
+			})
+		end,
+	})
 end)
