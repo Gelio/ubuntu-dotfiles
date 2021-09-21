@@ -34,9 +34,9 @@ local function setup_lsp_keymaps(client, bufnr)
 				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
 			),
 			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
-			e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics for current line" },
+			e = { "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics for current line" },
 			ac = if_enabled(capabilities.code_action, { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" }),
-			q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Show diagnostics in quickfix list" },
+			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 			-- TODO: fix range actions, add them in visual mode
 			ar = if_enabled(
 				capabilities.code_action,
@@ -48,8 +48,8 @@ local function setup_lsp_keymaps(client, bufnr)
 			capabilities.signature_help,
 			{ "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" }
 		),
-		["[d"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
-		["]d"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
+		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
+		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
 	}, {
 		buffer = bufnr,
 	})
@@ -109,33 +109,6 @@ function M.on_attach(client, bufnr)
 	require("lsp_signature").on_attach({
 		zindex = 50, -- signature should appear below nvim-cmp completions
 	})
-end
-
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics-neovim-05106-only
-function M.publish_diagnostics_handler(_, params, ctx, config)
-	local uri = params.uri
-	local client_id = ctx.client_id
-	local bufnr = vim.uri_to_bufnr(uri)
-
-	if not bufnr then
-		return
-	end
-
-	local diagnostics = params.diagnostics
-
-	vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
-
-	if not vim.api.nvim_buf_is_loaded(bufnr) then
-		return
-	end
-
-	-- don't mutate the original diagnostic because it would interfere with
-	-- code action (and probably other stuff, too)
-	local prefixed_diagnostics = vim.deepcopy(diagnostics)
-	for i, v in pairs(diagnostics) do
-		prefixed_diagnostics[i].message = string.format("%s: %s", v.source, v.message)
-	end
-	vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, client_id, config)
 end
 
 -- See https://github.com/hrsh7th/cmp-nvim-lsp
