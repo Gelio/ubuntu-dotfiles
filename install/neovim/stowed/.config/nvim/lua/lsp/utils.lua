@@ -61,7 +61,9 @@ local function setup_formatting(client, bufnr)
 	if client.resolved_capabilities.document_formatting then
 		wk.register({
 			["<Leader>F"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format" },
-		}, { buffer = bufnr })
+		}, {
+			buffer = bufnr,
+		})
 		vim.cmd([[
       augroup SyncFormatting
         autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()

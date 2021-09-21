@@ -553,7 +553,10 @@ return require("packer").startup(function(use)
 		"rmagatti/goto-preview",
 		config = function()
 			require("which-key").register({
-				["gpd"] = { [[<cmd>lua require('goto-preview').goto_preview_definition()<CR>]], "Preview definitions" },
+				["gpd"] = {
+					[[<cmd>lua require('goto-preview').goto_preview_definition()<CR>]],
+					"Preview definitions",
+				},
 				["gpi"] = {
 					[[<cmd>lua require('goto-preview').goto_preview_implementation()<CR>]],
 					"Preview implementations",
