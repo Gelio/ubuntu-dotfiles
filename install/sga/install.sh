@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-sudo apt install jq
+sudo apt install jq openssh-client autossh ssh-askpass
 
 pushd ~/.local >/dev/null
 curl -L https://api.github.com/repos/StanfordSNR/guardian-agent/releases/latest |
