@@ -25,6 +25,12 @@ nvim_lsp.sumneko_lua.setup(require("lsp.lua").config)
 
 require("lsp.java").setup()
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = {
+		source = "always",
+	},
+})
+
 -- NOTE: Manually source .nvimrc to possibly override some configs
 -- https://github.com/neovim/neovim/issues/13501#issuecomment-758604989
 local local_vimrc = vim.fn.getcwd() .. "/.nvimrc"
