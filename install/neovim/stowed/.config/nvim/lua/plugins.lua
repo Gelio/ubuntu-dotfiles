@@ -404,7 +404,7 @@ return require("packer").startup(function(use)
 			"hrsh7th/vim-vsnip-integ",
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/cmp-buffer",
-			"Saecki/crates.nvim",
+			{ "Saecki/crates.nvim", branch = "main" },
 			"hrsh7th/cmp-path",
 			{ "andersevenrud/compe-tmux", branch = "cmp" },
 			"hrsh7th/cmp-nvim-lua",
