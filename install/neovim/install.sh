@@ -25,6 +25,7 @@ function main {
     exit 0
   fi
 
+  install
 }
 
 function install {
