@@ -11,6 +11,6 @@ curl -L https://api.github.com/repos/StanfordSNR/guardian-agent/releases/latest 
   tar -xzv
 
 sudo stow -Rv -t /usr/local/bin sga_linux_amd64
-popd
+popd >/dev/null
 
 stow -Rv -t "$HOME" stowed
