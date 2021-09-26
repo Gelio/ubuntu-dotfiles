@@ -629,4 +629,6 @@ return require("packer").startup(function(use)
 			}
 		end,
 	})
+
+	require("auto-nvimrc").setup()
 end)

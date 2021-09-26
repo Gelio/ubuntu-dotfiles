@@ -30,10 +30,3 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 		source = "always",
 	},
 })
-
--- NOTE: Manually source .nvimrc to possibly override some configs
--- https://github.com/neovim/neovim/issues/13501#issuecomment-758604989
-local local_vimrc = vim.fn.getcwd() .. "/.nvimrc"
-if vim.loop.fs_stat(local_vimrc) then
-	vim.cmd("source " .. local_vimrc)
-end
