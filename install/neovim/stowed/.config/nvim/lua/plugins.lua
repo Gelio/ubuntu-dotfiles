@@ -65,7 +65,8 @@ return require("packer").startup(function(use)
 			require("which-key").register({
 				name = "NvimTree",
 				n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
-				r = { ":NvimTreeFocus<CR>", "Focus NvimTree" },
+				r = { ":NvimTreeFindFile<CR>", "Find file in NvimTree" },
+				f = { ":NvimTreeFocus<CR>", "Focus NvimTree" },
 			}, {
 				prefix = "<Leader>n",
 			})
