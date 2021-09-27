@@ -54,13 +54,13 @@ return require("packer").startup(function(use)
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
 			vim.g.nvim_tree_git_hl = 1
-			vim.g.nvim_tree_lsp_diagnostics = 1
 			vim.g.nvim_tree_group_empty = 1
 
 			require("nvim-tree").setup({
 				update_focused_file = {
 					enable = true,
 				},
+				lsp_diagnostics = true,
 			})
 			require("which-key").register({
 				name = "NvimTree",
