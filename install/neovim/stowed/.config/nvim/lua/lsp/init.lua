@@ -30,3 +30,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 		source = "always",
 	},
 })
+
+require("auto-nvimrc").execute_nvimrcs()

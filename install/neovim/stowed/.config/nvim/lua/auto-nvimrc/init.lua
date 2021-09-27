@@ -1,7 +1,5 @@
 local M = {}
 
-local initialized = false
-
 -- TODO:
 -- 1. Diff the contents of nvimrc files against already approved files
 --
@@ -23,6 +21,7 @@ local initialized = false
 function M.execute_nvimrcs()
 	local nvimrcs = vim.fn.findfile(".nvimrc", ".;", -1)
 
+	-- TODO: load from the least specific to the most specific (from fs root downwards)
 	for _, nvimrc_path in ipairs(nvimrcs) do
 		print("Source " .. nvimrc_path .. "? [y]/n: ")
 		local choice = vim.fn.getcharstr()
@@ -30,23 +29,6 @@ function M.execute_nvimrcs()
 			print("Sourcing " .. nvimrc_path)
 			vim.cmd("source " .. nvimrc_path)
 		end
-	end
-end
-
-function M.setup()
-	if initialized then
-		return
-	end
-	initialized = true
-
-	if vim.v.vim_did_enter then
-		M.execute_nvimrcs()
-	else
-		vim.cmd([[
-      augroup AutoNvimrc
-        au! VimEnter * lua require('auto-nvimrc').execute_nvimrcs()
-      augroup END
-    ]])
 	end
 end
 
