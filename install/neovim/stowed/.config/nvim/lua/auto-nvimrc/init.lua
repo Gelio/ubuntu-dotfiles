@@ -13,7 +13,8 @@ local M = {}
 --    d. deny always
 --    e. review the diff (optional)
 --
---  Maybe use nui.nvim for choices?
+--  Maybe use nui.nvim for choices? Or inputlist()
+--  Use https://github.com/Egor-Skriptunoff/pure_lua_SHA for hashing files
 --
 -- Use plenary.log for logging
 -- https://github.com/nvim-lua/plenary.nvim/blob/master/lua/plenary/log.lua
@@ -21,13 +22,21 @@ local M = {}
 function M.execute_nvimrcs()
 	local nvimrcs = vim.fn.findfile(".nvimrc", ".;", -1)
 
-	-- TODO: load from the least specific to the most specific (from fs root downwards)
-	for _, nvimrc_path in ipairs(nvimrcs) do
-		print("Source " .. nvimrc_path .. "? [y]/n: ")
+	if vim.tbl_isempty(nvimrcs) then
+		return
+	end
+
+	-- TODO: use plenary.path module for reading files
+
+	-- Loop from outermost (least specific) to innermost (most specific)
+	for i = #nvimrcs, 1, -1 do
+		local full_path = vim.fn.fnamemodify(nvimrcs[i], ":p")
+
+		print("Source " .. full_path .. "? [y]/n: ")
 		local choice = vim.fn.getcharstr()
 		if string.lower(choice) ~= "n" then
-			print("Sourcing " .. nvimrc_path)
-			vim.cmd("source " .. nvimrc_path)
+			print("Sourcing " .. full_path)
+			vim.cmd("source " .. full_path)
 		end
 	end
 end
