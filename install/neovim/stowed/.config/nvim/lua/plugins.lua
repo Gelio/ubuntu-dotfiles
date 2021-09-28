@@ -459,6 +459,11 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	})
+
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",

@@ -35,13 +35,9 @@ local function setup_lsp_keymaps(client, bufnr)
 			),
 			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			e = { "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics for current line" },
-			ac = if_enabled(capabilities.code_action, { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" }),
+			ac = if_enabled(capabilities.code_action, { "<cmd>CodeActionMenu<CR>", "Code actions" }),
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
-			-- TODO: fix range actions, add them in visual mode
-			ar = if_enabled(
-				capabilities.code_action,
-				{ "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "Range code actions", mode = "v" }
-			),
+			ar = if_enabled(capabilities.code_action, { "<cmd>CodeActionMenu<CR>", "Range code actions", mode = "v" }),
 		},
 		K = if_enabled(capabilities.hover, { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
 		["<C-k>"] = if_enabled(
