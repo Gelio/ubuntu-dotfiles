@@ -7,7 +7,7 @@ local M = {}
 --
 -- 2. If there are differences, ask the user to confirm execution
 --
---    a. accelt once
+--    a. accept once
 --    b. accept always
 --    c. deny once
 --    d. deny always
@@ -21,42 +21,79 @@ local M = {}
 
 local sha = require("auto-nvimrc.sha2")
 local async = require("plenary.async")
-local fun_utils = require("plenary.fun")
+local Path = require("plenary.path")
 
+---Composes two functions
+---@generic A
+---@generic B
+---@generic C
+---@param f fun(b: B): C
+---@param g fun(a: A): B
+---@return fun(a: A): C
+local function compose(f, g)
+	return function(x)
+		return f(g(x))
+	end
+end
+
+---Reads contents of a file.
+---@param file_path "Path": A plenary Path
+---@return string "file contents"
 local function read_file(file_path)
-	-- TODO: improve error handling
-	-- 438 = 0o444 (mode)
-	local _err, fd = async.uv.fs_open(file_path, "r", 438)
-	assert(not _err, _err)
-
-	local _err, stat = async.uv.fs_fstat(fd)
-	assert(not _err, _err)
-
-	local _err, contents = async.uv.fs_read(fd, stat.size, 0)
-	assert(not _err, _err)
-
-	local _err = async.uv.fs_close(fd)
-	assert(not _err, _err)
-
-	return contents
+	return async.wrap(Path.read, 2)(file_path)
 end
 
-local function get_file_hash(file_path)
-	return sha.sha256(read_file(file_path))
-end
+local get_file_hash = compose(sha.sha256, read_file)
 
+---@generic T
+---@param tbl T[]
+---@return T "the first element of the table"
 local function head(tbl)
 	return tbl[1]
 end
 
-local function get_file_hashes(file_paths)
-	local wrapped_hashes = async.util.join(vim.tbl_map(function(path)
+---Useful when using vim.tbl_map with joining
+local function defer_call(fn)
+	return function(arg)
 		return function()
-			return get_file_hash(path)
+			return fn(arg)
 		end
-	end, file_paths))
+	end
+end
+
+---@param file_paths string[]
+---@return string[]
+local function get_file_hashes(file_paths)
+	local wrapped_hashes = async.util.join(vim.tbl_map(defer_call(compose(get_file_hash, Path.new)), file_paths))
 
 	return vim.tbl_map(head, wrapped_hashes)
+end
+
+local function run(nvimrcs_absolute_paths)
+	local config_path = Path.new(vim.fn.stdpath("data"), "auto-nvimrc", "config.json")
+	config_path:touch({ parents = true })
+
+	async.run(function()
+		local config_contents = read_file(config_path)
+		print("contents", config_contents)
+		async.util.scheduler()
+		print(vim.inspect(vim.fn.json_decode(config_contents)))
+		local hashes = get_file_hashes(nvimrcs_absolute_paths)
+		local new_config = {}
+
+		for i, hash in ipairs(hashes) do
+			new_config[nvimrcs_absolute_paths[i]] = hash
+		end
+
+		async.util.scheduler()
+		local serialized_config = vim.fn.json_encode(new_config)
+		print(serialized_config)
+		config_path:write(serialized_config, "w")
+
+		return hashes
+	end, function(hashes)
+		print("got hashes", vim.inspect(hashes))
+	end)
 end
 
 function M.execute_nvimrcs()
@@ -70,13 +107,7 @@ function M.execute_nvimrcs()
 		return vim.fn.fnamemodify(path, ":p")
 	end, nvimrcs)
 
-	async.run(function()
-		return get_file_hashes(nvimrcs_absolute_paths)
-	end, function(hashes)
-		print("got hashes", vim.inspect(hashes))
-	end)
-
-	-- TODO: use plenary.path module for reading files
+	run(nvimrcs_absolute_paths)
 
 	-- Loop from outermost (least specific) to innermost (most specific)
 	for i = #nvimrcs, 1, -1 do
