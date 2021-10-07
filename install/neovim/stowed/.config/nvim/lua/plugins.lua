@@ -361,19 +361,13 @@ return require("packer").startup(function(use)
 				local source_labels = {}
 
 				for _, source in pairs(sources) do
-					source_labels[source.name] = source.label or source.name
+					source_labels[source.name] = string.format("[%s]", source.label or source.name)
 				end
 
 				return sources, source_labels
 			end
 
 			local sources, source_labels = prepare_sources()
-
-			local function format(entry, vim_item)
-				vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-				vim_item.menu = source_labels[entry.source.name]
-				return vim_item
-			end
 
 			local cmp = require("cmp")
 			cmp.setup({
@@ -390,7 +384,7 @@ return require("packer").startup(function(use)
 					-- NOTE: mapping for <CR> is added by nvim-autopairs
 				},
 				sources = sources,
-				formatting = { format = format },
+				formatting = { format = require("lspkind").cmp_format({ with_text = true, menu = source_labels }) },
 			})
 
 			-- https://github.com/hrsh7th/vim-vsnip#2-setting
