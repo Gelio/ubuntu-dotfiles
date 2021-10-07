@@ -14,7 +14,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-repeat")
 	use("wellle/targets.vim")
 	use("tpope/vim-unimpaired")
-	use("tpope/vim-commentary")
 
 	use({
 		"ojroques/vim-oscyank",
@@ -178,6 +177,19 @@ return require("packer").startup(function(use)
 		config = function()
 			require("todo-comments").setup({})
 		end,
+	})
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				pre_hook = function()
+					return require("ts_context_commentstring.internal").calculate_commentstring()
+				end,
+			})
+		end,
+		requires = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+		},
 	})
 	use("kevinhwang91/nvim-bqf")
 	use("tpope/vim-obsession")
