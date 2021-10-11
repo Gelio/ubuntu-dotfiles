@@ -60,7 +60,9 @@ return function(packer_bootstrap)
 					update_focused_file = {
 						enable = true,
 					},
-					lsp_diagnostics = true,
+					diagnostics = {
+						enable = true,
+					},
 				})
 				require("which-key").register({
 					name = "NvimTree",
