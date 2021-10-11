@@ -57,11 +57,19 @@ vim.cmd([[
 vim.cmd([[source $HOME/.config/nvim/code-review.vim]])
 
 -- Bootstrap packer
--- https://github.com/wbthomason/packer.nvim
+-- https://github.com/wbthomason/packer.nvim#bootstrapping
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local packer_bootstrap = nil
 if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+	packer_bootstrap = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
 end
 
-require("plugins")
+require("plugins")(packer_bootstrap)
