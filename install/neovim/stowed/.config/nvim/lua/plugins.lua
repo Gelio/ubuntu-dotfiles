@@ -330,7 +330,7 @@ local function setup_packer(packer_bootstrap)
 				vim.o.swapfile = false
 				vim.o.cmdheight = 2
 				vim.opt.shortmess:append("c")
-				vim.o.signcolumn = "yes"
+				vim.o.signcolumn = "auto:2"
 
 				require("lsp")
 			end,
@@ -656,6 +656,12 @@ local function setup_packer(packer_bootstrap)
 						},
 					},
 				}
+			end,
+		})
+		use({
+			"chentau/marks.nvim",
+			config = function()
+				require("marks").setup({})
 			end,
 		})
 
