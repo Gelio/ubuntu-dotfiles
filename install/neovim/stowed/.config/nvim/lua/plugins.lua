@@ -15,6 +15,13 @@ local function setup_packer(packer_bootstrap)
 		use("tpope/vim-repeat")
 		use("wellle/targets.vim")
 		use("tpope/vim-unimpaired")
+		use({
+			"echasnovski/mini.nvim",
+			config = function()
+				require("mini.trailspace").setup({})
+				vim.cmd([[ highlight! link MiniTrailspace TSDanger ]])
+			end,
+		})
 
 		use({
 			"ojroques/vim-oscyank",
