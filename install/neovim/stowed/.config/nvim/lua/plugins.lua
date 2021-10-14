@@ -2,11 +2,11 @@ vim.cmd([[packadd packer.nvim]])
 
 vim.cmd([[
   augroup RecompilePlugins
-    autocmd! BufWritePost plugins.lua source <afile> | PackerCompile
+    autocmd! BufWritePost plugins.lua let g:plugins_recompile=1 | source <afile> | PackerCompile
   augroup END
 ]])
 
-return function(packer_bootstrap)
+local function setup_packer(packer_bootstrap)
 	require("packer").startup(function(use)
 		use("wbthomason/packer.nvim")
 
@@ -658,3 +658,9 @@ return function(packer_bootstrap)
 		end
 	end)
 end
+
+if vim.g.plugins_recompile == 1 then
+	setup_packer(false)
+end
+
+return setup_packer
