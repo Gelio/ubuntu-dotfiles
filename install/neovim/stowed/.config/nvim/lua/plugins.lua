@@ -34,8 +34,8 @@ local function setup_packer(packer_bootstrap)
 
 				if is_ssh_connection() then
 					vim.cmd([[
-          autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif
-        ]])
+            autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif
+          ]])
 				end
 			end,
 		})
@@ -87,8 +87,8 @@ local function setup_packer(packer_bootstrap)
 			config = function()
 				-- NOTE: for some reason, which-key.nvim could not register this binding
 				vim.cmd([[
-        xmap ga <Plug>(EasyAlign)
-      ]])
+          xmap ga <Plug>(EasyAlign)
+        ]])
 			end,
 		})
 
@@ -418,11 +418,11 @@ local function setup_packer(packer_bootstrap)
 
 				-- https://github.com/hrsh7th/vim-vsnip#2-setting
 				vim.cmd([[
-        imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-        imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-      ]])
+          imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+          smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+          imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+          smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+        ]])
 			end,
 			requires = {
 				"hrsh7th/vim-vsnip",
@@ -475,10 +475,10 @@ local function setup_packer(packer_bootstrap)
 				end
 
 				vim.cmd([[
-        augroup LspLightBulb
-          autocmd! CursorHold,CursorHoldI * lua _G.update_lightbulb()
-        augroup END
-      ]])
+          augroup LspLightBulb
+            autocmd! CursorHold,CursorHoldI * lua _G.update_lightbulb()
+          augroup END
+        ]])
 			end,
 		})
 
@@ -572,10 +572,10 @@ local function setup_packer(packer_bootstrap)
 				end
 
 				vim.cmd([[
-        augroup PackageInfoMappings
-          autocmd! BufEnter package.json lua _G.setup_package_info_mappings()
-        augroup END
-      ]])
+          augroup PackageInfoMappings
+            autocmd! BufEnter package.json lua _G.setup_package_info_mappings()
+          augroup END
+        ]])
 			end,
 		})
 
