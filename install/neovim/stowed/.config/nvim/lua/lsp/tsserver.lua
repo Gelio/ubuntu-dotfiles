@@ -3,9 +3,9 @@ local M = {}
 local function setup_lsp_ts_utils(client)
 	local ts_utils = require("nvim-lsp-ts-utils")
 	ts_utils.setup({
-		eslint_bin = "eslint_d",
-		eslint_enable_diagnostics = true,
-		eslint_diagnostics_debounce = 500,
+		-- ESLint integration provided by ESLint language server
+		eslint_enable_code_actions = false,
+		eslint_enable_diagnostics = false,
 	})
 	ts_utils.setup_client(client)
 end

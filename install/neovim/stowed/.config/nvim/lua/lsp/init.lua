@@ -1,7 +1,7 @@
 local utils = require("lsp.utils")
 local nvim_lsp = require("lspconfig")
 
-local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte" }
+local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte", "eslint" }
 for _, lsp in ipairs(servers_with_defaults) do
 	nvim_lsp[lsp].setup(utils.base_config)
 end

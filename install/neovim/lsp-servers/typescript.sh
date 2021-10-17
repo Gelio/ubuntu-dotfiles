@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-npm install -g eslint_d typescript-language-server @fsouza/prettierd vscode-json-languageserver
+npm install -g typescript-language-server @fsouza/prettierd vscode-langservers-extracted
