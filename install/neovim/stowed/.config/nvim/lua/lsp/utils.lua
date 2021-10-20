@@ -34,7 +34,12 @@ local function setup_lsp_keymaps(client, bufnr)
 				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
 			),
 			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
-			e = { "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", "Show diagnostics for current line" },
+			d = {
+				function()
+					vim.diagnostic.open_float(0, { scope = "line" })
+				end,
+				"Show diagnostics for current line",
+			},
 			ac = if_enabled(capabilities.code_action, { "<cmd>CodeActionMenu<CR>", "Code actions" }),
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 			ar = if_enabled(capabilities.code_action, { "<cmd>CodeActionMenu<CR>", "Range code actions", mode = "v" }),
