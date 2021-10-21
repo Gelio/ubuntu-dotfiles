@@ -459,7 +459,12 @@ local function setup_packer(packer_bootstrap)
 				})
 			end,
 		})
-		use("ray-x/lsp_signature.nvim")
+		use({
+			"ray-x/lsp_signature.nvim",
+			config = function()
+				vim.cmd([[highlight! link LspSignatureActiveParameter WildMenu]])
+			end,
+		})
 		use({
 			"onsails/lspkind-nvim",
 			config = function()
