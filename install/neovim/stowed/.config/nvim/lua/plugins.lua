@@ -228,7 +228,7 @@ local function setup_packer(packer_bootstrap)
 				require("indent_blankline").setup({
 					use_treesitter = true,
 					show_current_context = true,
-					context_highlight_list = { "Warning" },
+					context_highlight_list = { "Blue" },
 					context_patterns = {
 						"class",
 						"function",
@@ -250,6 +250,11 @@ local function setup_packer(packer_bootstrap)
 
 					filetype_exclude = { "help" },
 					buftype_exclude = { "terminal" },
+
+					char_highlight_list = { "VertSplit" },
+
+					-- NOTE: alternating indentation highlight
+					space_char_highlight_list = { "MsgSeparator", "Normal" },
 				})
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
