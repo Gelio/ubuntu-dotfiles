@@ -102,7 +102,16 @@ local function setup_packer(packer_bootstrap)
 						lualine_b = { "branch" },
 						lualine_c = { "filename" },
 						lualine_x = {
-							{ "diagnostics", sources = { "nvim_lsp" } },
+							{
+								"diagnostics",
+								sources = { "nvim_lsp" },
+								diagnostics_color = {
+									error = "VirtualTextError",
+									warn = "VirtualTextWarn",
+									info = "VirtualTextInfo",
+									hint = "VirtualTextHint",
+								},
+							},
 							"encoding",
 							"fileformat",
 							"filetype",
