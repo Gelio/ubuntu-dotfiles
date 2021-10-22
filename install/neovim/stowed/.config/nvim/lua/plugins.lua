@@ -259,6 +259,7 @@ local function setup_packer(packer_bootstrap)
 
 					filetype_exclude = { "help" },
 					buftype_exclude = { "terminal" },
+					bufname_exclude = { "" }, -- Disables the plugin in hover() popups and new files
 
 					char_highlight_list = { "VertSplit" },
 
