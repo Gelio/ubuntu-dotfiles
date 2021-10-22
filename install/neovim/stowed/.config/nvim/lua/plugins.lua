@@ -243,6 +243,9 @@ local function setup_packer(packer_bootstrap)
 						"arguments",
 						"table",
 					},
+
+					filetype_exclude = { "help" },
+					buftype_exclude = { "terminal" },
 				})
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
