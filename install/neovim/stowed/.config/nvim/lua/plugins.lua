@@ -240,8 +240,12 @@ local function setup_packer(packer_bootstrap)
 						"try_statement",
 						"catch_clause",
 						"object",
+						"return_statement",
+						"formal_parameters",
+						"^for",
+						"^while",
 						"arguments",
-						"table",
+						"table", -- Lua tables
 					},
 
 					filetype_exclude = { "help" },
