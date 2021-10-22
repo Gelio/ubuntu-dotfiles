@@ -225,23 +225,25 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
-				vim.g.indent_blankline_use_treesitter = true
-				vim.g.indent_blankline_show_current_context = true
-				vim.g.indent_blankline_context_highlight_list = { "Warning" }
-				vim.g.indent_blankline_context_patterns = {
-					"class",
-					"function",
-					"method",
-					"if_statement",
-					"else_clause",
-					"jsx_element",
-					"jsx_self_closing_element",
-					"try_statement",
-					"catch_clause",
-					"object",
-					"arguments",
-					"table",
-				}
+				require("indent_blankline").setup({
+					use_treesitter = true,
+					show_current_context = true,
+					context_highlight_list = { "Warning" },
+					context_patterns = {
+						"class",
+						"function",
+						"method",
+						"if_statement",
+						"else_clause",
+						"jsx_element",
+						"jsx_self_closing_element",
+						"try_statement",
+						"catch_clause",
+						"object",
+						"arguments",
+						"table",
+					},
+				})
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 		})
