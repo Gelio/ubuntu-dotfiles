@@ -8,6 +8,10 @@
 [fetch]
   prune = true
 
+[push]
+  # Helps show commits between current branch and upstream branch in vim-fugitive
+  default = current
+
 [alias]
   # https://stackoverflow.com/a/34467298/4874344
   lg = lg1
