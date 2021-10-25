@@ -453,7 +453,7 @@ local function setup_packer(packer_bootstrap)
 				"hrsh7th/vim-vsnip-integ",
 				"hrsh7th/cmp-vsnip",
 				"hrsh7th/cmp-buffer",
-				{ "Saecki/crates.nvim", branch = "main" },
+				"Saecki/crates.nvim",
 				"hrsh7th/cmp-path",
 				{ "andersevenrud/compe-tmux", branch = "cmp" },
 				"hrsh7th/cmp-nvim-lua",
@@ -463,6 +463,15 @@ local function setup_packer(packer_bootstrap)
 				"hrsh7th/cmp-emoji",
 				"onsails/lspkind-nvim",
 			},
+		})
+		use({
+			"Saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			branch = "main",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("crates").setup()
+			end,
 		})
 
 		use({
