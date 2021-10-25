@@ -400,6 +400,7 @@ local function setup_packer(packer_bootstrap)
 					local sources = {
 						{ name = "nvim_lsp", label = "LSP" },
 						{ name = "crates", label = "crates.nvim" },
+						{ name = "npm" },
 						{ name = "vsnip" },
 						{ name = "nvim_lua" },
 						{ name = "path" },
@@ -471,6 +472,13 @@ local function setup_packer(packer_bootstrap)
 			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("crates").setup()
+			end,
+		})
+		use({
+			"David-Kunz/cmp-npm",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("cmp-npm").setup({})
 			end,
 		})
 
