@@ -434,6 +434,9 @@ local function setup_packer(packer_bootstrap)
 						["<C-u>"] = cmp.mapping.scroll_docs(4),
 						["<C-d>"] = cmp.mapping.scroll_docs(-4),
 						-- NOTE: mapping for <CR> is added by nvim-autopairs
+						-- NOTE: workaround for https://github.com/hrsh7th/nvim-cmp/issues/425
+						["<Tab>"] = function() end,
+						["<S-Tab>"] = function() end,
 					},
 					sources = sources,
 					formatting = {
