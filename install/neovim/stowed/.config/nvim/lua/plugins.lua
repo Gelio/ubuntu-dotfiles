@@ -22,6 +22,7 @@ local function setup_packer(packer_bootstrap)
 				vim.cmd([[ highlight! link MiniTrailspace TSDanger ]])
 			end,
 		})
+		use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
 
 		use({
 			"ojroques/vim-oscyank",
