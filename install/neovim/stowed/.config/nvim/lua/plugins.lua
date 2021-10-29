@@ -430,7 +430,7 @@ local function setup_packer(packer_bootstrap)
 						["<C-y>"] = cmp.mapping.close(),
 						["<C-u>"] = cmp.mapping.scroll_docs(4),
 						["<C-d>"] = cmp.mapping.scroll_docs(-4),
-						-- NOTE: mapping for <CR> is added by nvim-autopairs
+						["<CR>"] = cmp.mapping.confirm({ select = false }),
 					},
 					sources = sources,
 					formatting = {
