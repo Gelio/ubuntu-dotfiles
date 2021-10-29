@@ -144,14 +144,10 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"windwp/nvim-autopairs",
 			config = function()
-				require("nvim-autopairs").setup()
-				require("nvim-autopairs.completion.cmp").setup({
-					map_cr = true,
-					map_complete = false,
-					auto_select = false,
-				})
+				local autopairs = require("nvim-autopairs")
+				autopairs.setup()
+				autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
 			end,
-			requires = { "hrsh7th/nvim-cmp" },
 		})
 		use({
 			"ggandor/lightspeed.nvim",
