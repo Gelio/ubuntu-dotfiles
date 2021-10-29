@@ -699,6 +699,30 @@ local function setup_packer(packer_bootstrap)
 						},
 					},
 				}
+
+				-- https://github.com/glacambre/firenvim#building-a-firenvim-specific-config
+				if vim.g.started_by_firenvim then
+					vim.o.cmdheight = 1
+					-- selene: allow(global_usage)
+					function _G.set_firenvim_settings()
+						local min_lines = 18
+						if vim.o.lines < min_lines then
+							vim.o.lines = min_lines
+						end
+					end
+
+					vim.cmd([[
+            function! OnUIEnter(event) abort
+              if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
+                lua _G.set_firenvim_settings()
+              endif
+            endfunction
+
+            autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+
+            au BufEnter github.com_*.txt,gitlab.com_*.txt,mattermost.*.txt set filetype=markdown
+          ]])
+				end
 			end,
 		})
 		use({
