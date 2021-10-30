@@ -33,22 +33,6 @@ local read_file = async.wrap(Path.read, 2)
 
 local get_file_hash = compose(sha.sha256, read_file)
 
----@generic T
----@param tbl T[]
----@return T "the first element of the table"
-local function head(tbl)
-	return tbl[1]
-end
-
----Useful when using vim.tbl_map with joining
-local function defer_call(fn)
-	return function(arg)
-		return function()
-			return fn(arg)
-		end
-	end
-end
-
 -- TODO:
 -- 1. Use vim.json.decode and vim.json.encode (for performance gains)
 -- 2. Operate on objects (use OOP instead of procedural programming)
