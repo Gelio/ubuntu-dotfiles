@@ -8,30 +8,21 @@ local M = {}
 -- 2. Use plenary.log for logging
 --    https://github.com/nvim-lua/plenary.nvim/blob/master/lua/plenary/log.lua
 
-local sha = require("auto-nvimrc.sha2")
 local async = require("plenary.async")
 local Path = require("plenary.path")
 local func = require("plenary.functional")
-
----Composes two functions
----@generic A
----@generic B
----@generic C
----@param f fun(b: B): C
----@param g fun(a: A): B
----@return fun(a: A): C
-local function compose(f, g)
-	return function(x)
-		return f(g(x))
-	end
-end
 
 ---Reads contents of a file.
 ---@param file_path "Path": A plenary Path
 ---@return string "file contents"
 local read_file = async.wrap(Path.read, 2)
 
-local get_file_hash = compose(sha.sha256, read_file)
+---@param path "Path"
+---@return string
+local get_file_hash = function(path)
+	local contents = read_file(path)
+	return require("auto-nvimrc.sha2").sha256(contents)
+end
 
 -- TODO:
 -- 1. Use vim.json.decode and vim.json.encode (for performance gains)
