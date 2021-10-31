@@ -398,8 +398,8 @@ local function setup_packer(packer_bootstrap)
 						{ name = "vsnip" },
 						{ name = "nvim_lua" },
 						{ name = "path" },
-						{ name = "buffer" },
-						{ name = "tmux" },
+						{ name = "buffer", keyword_length = 4 },
+						{ name = "tmux", keyword_length = 4 },
 						{ name = "calc" },
 						{ name = "emoji" },
 					}
