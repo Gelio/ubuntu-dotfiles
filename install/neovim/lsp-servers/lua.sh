@@ -10,6 +10,7 @@ mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 [[ ! -d lua-language-server ]] && git clone https://github.com/sumneko/lua-language-server
 cd lua-language-server
+git pull
 git submodule update --init --recursive
 
 # https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
