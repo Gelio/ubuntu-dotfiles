@@ -406,7 +406,7 @@ local function setup_packer(packer_bootstrap)
 
 					local source_labels = {}
 
-					for _, source in pairs(sources) do
+					for _, source in ipairs(sources) do
 						source_labels[source.name] = string.format("[%s]", source.label or source.name)
 					end
 
