@@ -6,9 +6,10 @@ call wilder#setup({'modes': ['/', '?', ':']})
 call wilder#set_option('pipeline', [
       \   wilder#branch(
       \     wilder#python_file_finder_pipeline({
-      \       'file_command': ['rg', '--files'],
+      \       'file_command': {_, arg -> stridx(arg, '.') != -1 ? ['fd', '-tf', '-H'] : ['fd', '-tf']},
       \       'dir_command': ['fd', '-td'],
       \       'filters': ['fuzzy_filter', 'difflib_sorter'],
+      \	      'path': '',
       \     }),
       \     wilder#cmdline_pipeline(),
       \     wilder#python_search_pipeline(),
