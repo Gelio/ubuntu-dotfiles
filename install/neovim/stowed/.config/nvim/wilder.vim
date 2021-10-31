@@ -1,9 +1,8 @@
-call wilder#enable_cmdline_enter()
 set wildcharm=<Tab>
 cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
 cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
 
-call wilder#set_option('modes', ['/', '?', ':'])
+call wilder#setup({'modes': ['/', '?', ':']})
 call wilder#set_option('pipeline', [
       \   wilder#branch(
       \     wilder#python_file_finder_pipeline({
@@ -15,7 +14,7 @@ call wilder#set_option('pipeline', [
       \     wilder#python_search_pipeline(),
       \   ),
       \ ])
-"
+
 let s:search_renderer = wilder#wildmenu_renderer({
     \ 'mode': 'statusline',
     \ 'right': [' ', wilder#wildmenu_index()]

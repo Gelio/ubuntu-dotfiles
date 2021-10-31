@@ -294,7 +294,11 @@ local function setup_packer(packer_bootstrap)
 				-- See https://github.com/gelguy/wilder.nvim/issues/53
 				-- TODO: use <sfile>
 				vim.cmd([[source $HOME/.config/nvim/wilder.vim]])
+
+				vim.cmd([[call wilder#main#start()]])
 			end,
+			run = ":UpdateRemotePlugins",
+			event = "CmdlineEnter",
 		})
 
 		-- Telescope
