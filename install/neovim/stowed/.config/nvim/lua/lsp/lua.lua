@@ -32,6 +32,7 @@ M.config = vim.tbl_extend("error", require("lsp.utils").base_config, {
 			},
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
 			},
 			telemetry = {
 				enable = false,
