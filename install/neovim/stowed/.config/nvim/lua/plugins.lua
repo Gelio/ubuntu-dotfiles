@@ -338,6 +338,7 @@ local function setup_packer(packer_bootstrap)
 				require("telescope").setup({
 					defaults = {
 						file_ignore_patterns = { ".git/.*" },
+						path_display = { ["truncate"] = 2 },
 					},
 				})
 			end,
