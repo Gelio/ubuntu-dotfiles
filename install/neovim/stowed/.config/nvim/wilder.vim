@@ -18,7 +18,8 @@ call wilder#set_option('pipeline', [
 
 let s:search_renderer = wilder#wildmenu_renderer({
     \   'mode': 'statusline',
-    \   'right': [' ', wilder#wildmenu_index()]
+    \   'right': [' ', wilder#wildmenu_index()],
+    \   'apply_incsearch_fix': v:true,
     \ })
 call wilder#set_option('renderer', wilder#renderer_mux({
     \ ':': wilder#popupmenu_renderer({
