@@ -734,6 +734,8 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 
+		use({ "mfussenegger/nvim-dap" })
+
 		-- https://github.com/wbthomason/packer.nvim#bootstrapping
 		if packer_bootstrap then
 			require("packer").sync()
