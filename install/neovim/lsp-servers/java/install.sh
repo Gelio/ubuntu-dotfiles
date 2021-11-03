@@ -25,5 +25,14 @@ rm $filename
 
 popd >/dev/null
 
+pushd "$HOME/.local" >/dev/null
+# https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
+java_debug_dir_name="java-debug"
+[[ ! -d "$java_debug_dir_name" ]] && git clone git@github.com:microsoft/$java_debug_dir_name.git
+cd $java_debug_dir_name
+git pull
+./mvnw clean install
+popd >/dev/null
+
 echo "Stowing dotfiles"
 stow -Rv --no-folding -t "$HOME" stowed
