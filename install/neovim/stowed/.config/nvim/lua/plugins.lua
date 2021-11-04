@@ -142,7 +142,9 @@ local function setup_packer(packer_bootstrap)
 			"windwp/nvim-autopairs",
 			config = function()
 				local autopairs = require("nvim-autopairs")
-				autopairs.setup()
+				autopairs.setup({
+					disable_in_macro = true,
+				})
 				autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
 			end,
 		})
