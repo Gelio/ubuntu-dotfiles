@@ -23,6 +23,7 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 		use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+		use({ "nathom/filetype.nvim" })
 
 		use({
 			"ojroques/vim-oscyank",
