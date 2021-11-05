@@ -96,6 +96,7 @@ local function setup_packer(packer_bootstrap)
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = function()
 				require("lualine").setup({
+					options = { theme = "gruvbox-material" },
 					sections = {
 						lualine_a = { "mode" },
 						lualine_b = { "branch" },
