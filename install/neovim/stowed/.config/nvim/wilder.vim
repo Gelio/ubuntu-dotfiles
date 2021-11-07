@@ -11,7 +11,9 @@ call wilder#set_option('pipeline', [
       \       'filters': ['fuzzy_filter', 'difflib_sorter'],
       \	      'path': '',
       \     }),
-      \     wilder#cmdline_pipeline(),
+      \     wilder#cmdline_pipeline({
+      \       'fuzzy': 1,
+      \     }),
       \     wilder#python_search_pipeline(),
       \   ),
       \ ])
@@ -21,6 +23,7 @@ let s:search_renderer = wilder#wildmenu_renderer({
     \   'right': [' ', wilder#wildmenu_index()],
     \   'apply_incsearch_fix': v:true,
     \ })
+
 call wilder#set_option('renderer', wilder#renderer_mux({
     \ ':': wilder#popupmenu_renderer({
     \   'highlighter': wilder#basic_highlighter(),
@@ -34,3 +37,5 @@ call wilder#set_option('renderer', wilder#renderer_mux({
     \ '/': s:search_renderer,
     \ '?': s:search_renderer,
     \ }))
+
+" vim: tabstop=2,expandtab,softtabstop=2,shiftwidth=2
