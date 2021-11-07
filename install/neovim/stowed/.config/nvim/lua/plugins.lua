@@ -761,6 +761,14 @@ local function setup_packer(packer_bootstrap)
 
 		use({ "mfussenegger/nvim-dap" })
 
+		use({
+			"iamcco/markdown-preview.nvim",
+			run = "cd app && yarn install",
+			config = function()
+				vim.g.mkdp_echo_preview_url = true
+			end,
+		})
+
 		-- https://github.com/wbthomason/packer.nvim#bootstrapping
 		if packer_bootstrap then
 			require("packer").sync()
