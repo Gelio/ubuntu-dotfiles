@@ -2,13 +2,13 @@
 
 # https://docs.docker.com/compose/install/
 
-version=1.27.4
+version=1.29.2
 
 sudo curl -L "https://github.com/docker/compose/releases/download/$version/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-docker-compose -h
+docker-compose -v
 
 # Add bash completions
 # https://docs.docker.com/compose/completion/#bash
