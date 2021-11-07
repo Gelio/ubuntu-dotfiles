@@ -256,7 +256,9 @@ local function setup_packer(packer_bootstrap)
 					context_highlight_list = { "Blue" },
 					context_patterns = {
 						"class",
-						"function",
+						"function$",
+						"declaration$",
+						"^import",
 						"method",
 						"if_statement",
 						"else_clause",
