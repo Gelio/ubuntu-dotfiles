@@ -386,6 +386,7 @@ local function setup_packer(packer_bootstrap)
 				"jose-elias-alvarez/nvim-lsp-ts-utils",
 				"jose-elias-alvarez/null-ls.nvim",
 				"mfussenegger/nvim-jdtls",
+				"b0o/SchemaStore.nvim",
 			},
 		})
 
