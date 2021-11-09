@@ -1,7 +1,7 @@
 local utils = require("lsp.utils")
 local nvim_lsp = require("lspconfig")
 
-local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte", "eslint" }
+local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte", "eslint", "yamlls", "vimls" }
 for _, lsp in ipairs(servers_with_defaults) do
 	nvim_lsp[lsp].setup(utils.base_config)
 end
@@ -22,9 +22,6 @@ nvim_lsp["null-ls"].setup(null_ls_config)
 nvim_lsp.tsserver.setup(require("lsp.tsserver").config)
 
 nvim_lsp.sumneko_lua.setup(require("lsp.lua").config)
-
-nvim_lsp.yamlls.setup(utils.base_config)
-nvim_lsp.vimls.setup(utils.base_config)
 
 require("lsp.java").setup()
 
