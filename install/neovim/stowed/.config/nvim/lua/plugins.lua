@@ -95,6 +95,22 @@ local function setup_packer(packer_bootstrap)
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = function()
+				local dap_extension = {
+					sections = {
+						lualine_a = { "mode", "filename" },
+					},
+					inactive_sections = {
+						lualine_a = { "filename" },
+					},
+					filetypes = {
+						"dapui_scopes",
+						"dapui_watches",
+						"dapui_stacks",
+						"dapui_breakpoints",
+						"dap-repl",
+					},
+				}
+
 				require("lualine").setup({
 					options = { theme = "gruvbox-material" },
 					sections = {
@@ -119,7 +135,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_y = { "progress" },
 						lualine_z = { "location" },
 					},
-					extensions = { "fugitive", "nvim-tree", "quickfix" },
+					extensions = { "fugitive", "nvim-tree", "quickfix", dap_extension },
 				})
 			end,
 		})
