@@ -760,7 +760,60 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 
-		use({ "mfussenegger/nvim-dap" })
+		use({
+			"mfussenegger/nvim-dap",
+			config = function()
+				require("which-key").register({
+					name = "Dap (debug)",
+					b = { ":DapToggleBreakpoint<CR>", "Toggle breakpoint" },
+					c = { ":DapContinue<CR>", "Continue" },
+					s = {
+						name = "Step",
+						o = { ":DapStepOut<CR>", "Step out" },
+						n = { ":DapStepOver<CR>", "Step over" },
+						i = { ":DapStepInto<CR>", "Step into" },
+						c = { ":DapRunToCursor<CR>", "Run to cursor" },
+					},
+				}, {
+					prefix = "<Leader>x",
+				})
+
+				-- TODO: support adding logpoints and conditional breakpoints
+				vim.cmd([[
+          :command! DapToggleBreakpoint lua require('dap').toggle_breakpoint()
+          :command! DapContinue lua require('dap').continue()
+          :command! DapStepOver lua require('dap').step_over()
+          :command! DapStepInto lua require('dap').step_into()
+          :command! DapStepOut lua require('dap').step_out()
+          :command! DapTerminate lua require('dap').terminate()
+          :command! DapRunToCursor lua require('dap').run_to_cursor()
+          :command! DapReplOpen lua require('dap').repl.open()
+          :command! DapReplToggle lua require('dap').repl.toggle()
+          :command! DapReplClose lua require('dap').repl.close()
+          :command! DapStatus lua print(require('dap').status())
+        ]])
+			end,
+		})
+
+		use({
+			"rcarriga/nvim-dap-ui",
+			config = function()
+				require("dapui").setup()
+				vim.cmd([[
+          :command! DapUIOpen lua require('dapui').open()
+          :command! DapUIClose lua require('dapui').close()
+          :command! DapUIToggle lua require('dapui').toggle()
+          :command! -nargs=? DapUIEval lua require('dapui').eval(string.len('<args>') > 0 and '<args>' or nil)
+        ]])
+
+				require("which-key").register({
+					K = { ":DapUIEval<CR>", "Evaluate expression under cursor" },
+					x = { ":DapUIToggle<CR>", "Toggle Dap UI" },
+				}, {
+					prefix = "<Leader>x",
+				})
+			end,
+		})
 
 		use({
 			"iamcco/markdown-preview.nvim",
