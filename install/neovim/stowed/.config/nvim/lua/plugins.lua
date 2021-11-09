@@ -518,7 +518,7 @@ local function setup_packer(packer_bootstrap)
 					d = { "<cmd>TroubleToggle lsp_document_diagnostics<CR>", "Document diagnostics" },
 					q = { "<cmd>TroubleToggle quickfix<CR>", "Quickfix" },
 				}, {
-					prefix = "<Leader>x",
+					prefix = "<Leader>t",
 				})
 				ws.register({
 					["gR"] = { "<cmd>TroubleToggle lsp_references<CR>", "Trouble LSP references" },
