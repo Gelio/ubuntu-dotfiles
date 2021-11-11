@@ -19,7 +19,8 @@ fi
 
 pushd "$jdt_dir_path" >/dev/null
 # https://download.eclipse.org/jdtls/milestones/
-wget https://download.eclipse.org/jdtls/milestones/1.3.0/jdt-language-server-1.3.0-202108171748.tar.gz -O $filename
+jdtls_url=https://download.eclipse.org/jdtls/milestones/1.5.0/jdt-language-server-1.5.0-202110191539.tar.gz
+wget "$jdtls_url" -O $filename
 tar -xzvf $filename
 rm $filename
 
