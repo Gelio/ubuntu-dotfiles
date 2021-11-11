@@ -39,14 +39,12 @@ map("n", "<A-l>", "<C-w>>", { noremap = true })
 map("n", "<Leader>y", '"+y', { noremap = true })
 map("v", "<Leader>y", '"+y', { noremap = true })
 -- Use ripgrep instead of regular grep
-vim.cmd([[
-  if executable('rg')
-      set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-      set grepformat=%f:%l:%c:%m,%f:%l:%m
-  else
-      echoerr "rg (ripgrep) is not installed. Thus, it will not be used for :grep"
-  endif
-]])
+if vim.fn.executable("rg") then
+	vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
+	vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+else
+	vim.fn.echoerr("rg (ripgrep) is not installed. Thus, it will not be used for :grep")
+end
 
 vim.cmd([[
   augroup HighlightYank
