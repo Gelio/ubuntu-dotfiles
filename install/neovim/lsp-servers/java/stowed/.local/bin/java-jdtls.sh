@@ -4,8 +4,10 @@
 # NOTE: assumes it's on Linux
 
 jdt_dir_path="$HOME/.local/jdt-language-server"
-# Dynamically gets the file name that matches this pattern
-JAR=$(echo $jdt_dir_path/plugins/org.eclipse.equinox.launcher_*.jar)
+# Dynamically gets the file name that matches this pattern.
+# For some reason, there can be multiple versions of that file, so we need
+# to take the most recent one.
+JAR=$(ls -f $jdt_dir_path/plugins/org.eclipse.equinox.launcher_*.jar | head -n1)
 java_bin=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
 
 GRADLE_HOME=$HOME/gradle $java_bin \
