@@ -9,11 +9,8 @@ vim.o.scrolloff = 5
 vim.o.splitbelow = true
 vim.o.splitright = true
 
-vim.o.colorcolumn = "+0,120"
+vim.o.colorcolumn = "+1,120"
 vim.o.updatetime = 100
-
-vim.o.secure = true
-vim.o.exrc = true
 
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
