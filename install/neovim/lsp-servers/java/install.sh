@@ -28,9 +28,13 @@ popd >/dev/null
 pushd "$HOME/.local" >/dev/null
 # https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
 java_debug_dir_name="java-debug"
-[[ ! -d "$java_debug_dir_name" ]] && git clone git@github.com:microsoft/$java_debug_dir_name.git
-cd $java_debug_dir_name
-git pull
+if [[ -d "$java_debug_dir_name" ]]; then
+  cd "$java_debug_dir_name"
+  git pull
+else
+  git clone git@github.com:microsoft/$java_debug_dir_name.git
+  cd "$java_debug_dir_name"
+fi
 ./mvnw clean install
 popd >/dev/null
 
