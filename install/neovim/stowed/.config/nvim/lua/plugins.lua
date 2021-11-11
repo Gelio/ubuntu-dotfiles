@@ -574,6 +574,18 @@ local function setup_packer(packer_bootstrap)
 			cmd = "CodeActionMenu",
 		})
 
+		use({
+			"ThePrimeagen/refactoring.nvim",
+			requires = {
+				{ "nvim-lua/plenary.nvim" },
+				{ "nvim-treesitter/nvim-treesitter" },
+				{ "folke/which-key.nvim" },
+			},
+			config = function()
+				require("refactor").setup()
+			end,
+		})
+
 		-- Treesitter
 		use({
 			"nvim-treesitter/nvim-treesitter",
