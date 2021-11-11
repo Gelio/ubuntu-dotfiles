@@ -54,8 +54,6 @@ vim.cmd([[
   augroup END
 ]])
 
-vim.cmd([[source $HOME/.config/nvim/code-review.vim]])
-
 -- Bootstrap packer
 -- https://github.com/wbthomason/packer.nvim#bootstrapping
 local fn = vim.fn
