@@ -830,13 +830,13 @@ local function setup_packer(packer_bootstrap)
 				vim.cmd([[
           :command! DapUIOpen lua require('dapui').open()
           :command! DapUIClose lua require('dapui').close()
-          :command! DapUIToggle lua require('dapui').toggle()
+          :command! DapUI lua require('dapui').toggle()
           :command! -nargs=? DapUIEval lua require('dapui').eval(string.len('<args>') > 0 and '<args>' or nil)
         ]])
 
 				require("which-key").register({
 					K = { ":DapUIEval<CR>", "Evaluate expression under cursor" },
-					x = { ":DapUIToggle<CR>", "Toggle Dap UI" },
+					x = { ":DapUI<CR>", "Toggle Dap UI" },
 				}, {
 					prefix = "<Leader>x",
 				})
