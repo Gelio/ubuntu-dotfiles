@@ -766,6 +766,9 @@ local function setup_packer(packer_bootstrap)
 						if vim.o.lines < min_lines then
 							vim.o.lines = min_lines
 						end
+						vim.o.wrap = true
+						vim.o.list = true
+						vim.o.linebreak = true
 					end
 
 					vim.cmd([[
