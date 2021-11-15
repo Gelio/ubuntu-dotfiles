@@ -780,7 +780,8 @@ local function setup_packer(packer_bootstrap)
 
             autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
 
-            au BufEnter github.com_*.txt,gitlab.com_*.txt,mattermost.*.txt set filetype=markdown
+            au BufEnter github.com_*.txt,gitlab.com_*.txt,mattermost.*.txt,mail.google.com_*.txt set filetype=markdown
+            au BufEnter mail.google.com_*.txt set tw=80
           ]])
 				end
 			end,
