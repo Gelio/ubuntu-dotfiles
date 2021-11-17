@@ -3,15 +3,18 @@ local M = {}
 function M.setup()
 	local HOME = vim.fn.expand("$HOME")
 	local utils = require("lsp.utils")
+
+	local bundles = {
+		vim.fn.glob(
+			HOME .. "/.local/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+		),
+	}
+	vim.list_extend(bundles, vim.split(vim.fn.glob(HOME .. "/.local/vscode-java-test/server/*.jar"), "\n"))
+
 	M.config = vim.tbl_extend("error", utils.base_config, {
 		cmd = { "java-jdtls.sh" },
 		init_options = {
-			bundles = {
-				vim.fn.glob(
-					HOME
-						.. "/.local/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
-				),
-			},
+			bundles = bundles,
 		},
 	})
 

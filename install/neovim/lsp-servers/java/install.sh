@@ -26,17 +26,31 @@ rm $filename
 
 popd >/dev/null
 
-pushd "$HOME/.local" >/dev/null
 # https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
+pushd "$HOME/.local" >/dev/null
 java_debug_dir_name="java-debug"
 if [[ -d "$java_debug_dir_name" ]]; then
   cd "$java_debug_dir_name"
   git pull
 else
-  git clone git@github.com:microsoft/$java_debug_dir_name.git
+  git clone git@github.com:microsoft/jvaa-debug.git $java_debug_dir_name
   cd "$java_debug_dir_name"
 fi
 ./mvnw clean install
+popd >/dev/null
+
+# https://github.com/mfussenegger/nvim-jdtls#vscode-java-test-installation
+pushd "$HOME/.local" >/dev/null
+vscode_java_test_dir_name="vscode-java-test"
+if [[ -d "$vscode_java_test_dir_name" ]]; then
+  cd "$vscode_java_test_dir_name"
+  git pull
+else
+  git clone git@github.com:microsoft/vscode-java-test.git $vscode_java_test_dir_name
+  cd "$vscode_java_test_dir_name"
+fi
+npm install
+npm run build-plugin
 popd >/dev/null
 
 echo "Stowing dotfiles"
