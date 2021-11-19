@@ -14,7 +14,22 @@ local function setup_packer(packer_bootstrap)
 		use("tpope/vim-surround")
 		use("tpope/vim-repeat")
 		use("wellle/targets.vim")
-		use("tpope/vim-unimpaired")
+		use({
+			"tpope/vim-unimpaired",
+			config = function()
+				vim.g.nremap = {
+					-- Disable encoding and decoding maps
+					["[u"] = "",
+					["]u"] = "",
+					["[y"] = "",
+					["]y"] = "",
+					["[x"] = "",
+					["]x"] = "",
+					["[C"] = "",
+					["]C"] = "",
+				}
+			end,
+		})
 		use({
 			"echasnovski/mini.nvim",
 			config = function()
