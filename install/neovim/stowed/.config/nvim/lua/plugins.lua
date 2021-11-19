@@ -16,7 +16,7 @@ local function setup_packer(packer_bootstrap)
 		use("wellle/targets.vim")
 		use({
 			"tpope/vim-unimpaired",
-			config = function()
+			setup = function()
 				vim.g.nremap = {
 					-- Disable encoding and decoding maps
 					["[u"] = "",
