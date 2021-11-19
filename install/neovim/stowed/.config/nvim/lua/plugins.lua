@@ -856,6 +856,16 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 
+		use({
+			"plasticboy/vim-markdown",
+			config = function()
+				vim.g.vim_markdown_no_extensions_in_markdown = true
+			end,
+			requires = {
+				"godlygeek/tabular",
+			},
+		})
+
 		-- https://github.com/wbthomason/packer.nvim#bootstrapping
 		if packer_bootstrap then
 			require("packer").sync()
