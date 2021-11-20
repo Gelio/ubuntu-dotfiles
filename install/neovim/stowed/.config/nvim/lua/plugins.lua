@@ -881,6 +881,8 @@ local function setup_packer(packer_bootstrap)
 			},
 		})
 
+		use({ "lervag/vimtex" })
+
 		-- https://github.com/wbthomason/packer.nvim#bootstrapping
 		if packer_bootstrap then
 			require("packer").sync()
