@@ -235,7 +235,12 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"folke/todo-comments.nvim",
 			config = function()
-				require("todo-comments").setup({})
+				require("todo-comments").setup({
+					colors = {
+						info = { "VirtualTextInfo" },
+						default = { "Aqua" },
+					},
+				})
 			end,
 		})
 		use({
