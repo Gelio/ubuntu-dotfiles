@@ -16,6 +16,17 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
+vim.o.list = true
+-- Source: https://github.com/tjdevries/cyclist.vim
+vim.opt.listchars = {
+	["tab"] = "» ",
+	["trail"] = "·",
+	["extends"] = "<",
+	["precedes"] = ">",
+	["conceal"] = "┊",
+	["nbsp"] = "␣",
+}
+
 vim.o.termguicolors = true
 vim.opt.diffopt:append("algorithm:histogram,iwhite,indent-heuristic,vertical")
 
