@@ -77,7 +77,6 @@ local function setup_packer(packer_bootstrap)
 			config = function()
 				vim.g.nvim_tree_git_hl = 1
 				vim.g.nvim_tree_group_empty = 1
-				vim.g.nvim_tree_gitignore = 1
 
 				require("nvim-tree").setup({
 					update_focused_file = {
@@ -85,6 +84,9 @@ local function setup_packer(packer_bootstrap)
 					},
 					diagnostics = {
 						enable = true,
+					},
+					git = {
+						ignore = true,
 					},
 				})
 				require("which-key").register({
