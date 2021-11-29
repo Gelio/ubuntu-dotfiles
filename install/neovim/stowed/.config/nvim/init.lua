@@ -9,6 +9,7 @@ vim.o.sidescrolloff = 8
 vim.o.hidden = true
 vim.o.writebackup = false
 vim.o.swapfile = false
+vim.o.signcolumn = "yes:2"
 
 vim.o.splitbelow = true
 vim.o.splitright = true

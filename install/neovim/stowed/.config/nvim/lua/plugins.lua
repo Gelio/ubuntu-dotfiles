@@ -420,7 +420,6 @@ local function setup_packer(packer_bootstrap)
 			config = function()
 				vim.o.cmdheight = 2
 				vim.opt.shortmess:append("c")
-				vim.o.signcolumn = "auto"
 
 				require("lsp")
 			end,
