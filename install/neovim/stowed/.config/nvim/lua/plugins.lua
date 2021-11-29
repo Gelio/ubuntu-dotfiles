@@ -159,7 +159,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_y = { "progress" },
 						lualine_z = { "location" },
 					},
-					extensions = { "fugitive", "nvim-tree", "quickfix", dap_extension },
+					extensions = { "fugitive", "nvim-tree", "quickfix", dap_extension, "symbols-outline" },
 				})
 			end,
 		})
