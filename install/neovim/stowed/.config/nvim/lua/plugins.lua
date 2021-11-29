@@ -418,9 +418,6 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"neovim/nvim-lspconfig",
 			config = function()
-				vim.o.hidden = true
-				vim.o.writebackup = false
-				vim.o.swapfile = false
 				vim.o.cmdheight = 2
 				vim.opt.shortmess:append("c")
 				vim.o.signcolumn = "auto"

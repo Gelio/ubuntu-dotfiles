@@ -5,6 +5,9 @@ vim.o.smartcase = true
 vim.o.wrap = false
 vim.o.mouse = "a"
 vim.o.scrolloff = 5
+vim.o.hidden = true
+vim.o.writebackup = false
+vim.o.swapfile = false
 
 vim.o.splitbelow = true
 vim.o.splitright = true
