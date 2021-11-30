@@ -890,6 +890,7 @@ local function setup_packer(packer_bootstrap)
 				"godlygeek/tabular",
 			},
 		})
+		use({ "mzlogin/vim-markdown-toc" })
 
 		use({ "lervag/vimtex" })
 
