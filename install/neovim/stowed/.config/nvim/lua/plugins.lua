@@ -522,7 +522,7 @@ local function setup_packer(packer_bootstrap)
 				"hrsh7th/cmp-buffer",
 				"Saecki/crates.nvim",
 				"hrsh7th/cmp-path",
-				{ "andersevenrud/compe-tmux", branch = "cmp" },
+				"andersevenrud/cmp-tmux",
 				"hrsh7th/cmp-nvim-lua",
 				"hrsh7th/cmp-calc",
 				"hrsh7th/cmp-nvim-lsp",
