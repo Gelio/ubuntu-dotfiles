@@ -187,7 +187,6 @@ local function setup_packer(packer_bootstrap)
 				autopairs.setup({
 					disable_in_macro = true,
 				})
-				autopairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
 			end,
 		})
 		use({
