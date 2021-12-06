@@ -48,4 +48,9 @@
   file-style = bold yellow ul
   file-decoration-style = none
 
+[merge]
+  # Improves merge diff rendering in git-delta
+  # https://github.com/dandavison/delta/#merge-conflicts
+  conflictstyle = diff3
+
 # vi: filetype=gitconfig
