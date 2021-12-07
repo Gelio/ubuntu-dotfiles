@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Allows running the script from any directory
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+pushd "$script_dir" >/dev/null
+
 nvim_version=${1:-nightly}
 directory_name="nvim-linux64"
 archive_name="$directory_name.tar.gz"
