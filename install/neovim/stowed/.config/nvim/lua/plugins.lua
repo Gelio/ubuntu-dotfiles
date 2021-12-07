@@ -317,6 +317,7 @@ local function setup_packer(packer_bootstrap)
 						"^for",
 						"^while",
 						"arguments",
+						"statement_block",
 						"table", -- Lua tables
 					},
 
