@@ -144,7 +144,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_x = {
 							{
 								"diagnostics",
-								sources = { "nvim" },
+								sources = { "nvim_diagnostic" },
 								diagnostics_color = {
 									error = "VirtualTextError",
 									warn = "VirtualTextWarn",
