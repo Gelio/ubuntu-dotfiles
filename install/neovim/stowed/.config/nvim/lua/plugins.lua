@@ -565,8 +565,8 @@ local function setup_packer(packer_bootstrap)
 				ws.register({
 					name = "Trouble",
 					x = { "<cmd>TroubleToggle<CR>", "Toggle" },
-					w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<CR>", "Workspace diagnostics" },
-					d = { "<cmd>TroubleToggle lsp_document_diagnostics<CR>", "Document diagnostics" },
+					w = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Workspace diagnostics" },
+					d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Document diagnostics" },
 					q = { "<cmd>TroubleToggle quickfix<CR>", "Quickfix" },
 				}, {
 					prefix = "<Leader>t",
