@@ -4,5 +4,12 @@ lua << EOF
     root_dir = function() return nvimrc_dir end,
   })
 
-  require('lspconfig')['null-ls'].setup(config)
+  local null_ls = require('null-ls')
+  null_ls.deregister({ name = "selene"})
+  null_ls.register(null_ls.builtins.diagnostics.selene.with({
+    name = "selene",
+    cwd = function() return nvimrc_dir end,
+  }))
+
+
 EOF

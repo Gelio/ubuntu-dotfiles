@@ -16,9 +16,6 @@ nvim_lsp.jsonls.setup(require("lsp.jsonls").config)
 
 nvim_lsp.graphql.setup(require("lsp.graphql").config)
 
-local null_ls_config = require("lsp.null-ls").config
-nvim_lsp["null-ls"].setup(null_ls_config)
-
 nvim_lsp.tsserver.setup(require("lsp.tsserver").config)
 
 nvim_lsp.sumneko_lua.setup(require("lsp.lua").config)

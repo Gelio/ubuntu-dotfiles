@@ -14,7 +14,9 @@ M.sources = {
 		filetypes = { "plantuml" },
 	}),
 	null_ls.builtins.formatting.stylua,
-	null_ls.builtins.diagnostics.selene,
+	null_ls.builtins.diagnostics.selene.with({
+		name = "selene",
+	}),
 	null_ls.builtins.diagnostics.shellcheck,
 	null_ls.builtins.code_actions.shellcheck,
 	null_ls.builtins.formatting.shfmt,
@@ -24,10 +26,12 @@ M.sources = {
 	null_ls.builtins.diagnostics.misspell,
 	null_ls.builtins.formatting.gofumpt,
 }
-null_ls.config({
-	sources = M.sources,
-})
 
-M.config = require("lsp.utils").base_config
+M.config = {
+	on_attach = require("lsp.utils").base_config.on_attach,
+	sources = M.sources,
+}
+
+null_ls.setup(M.config)
 
 return M
