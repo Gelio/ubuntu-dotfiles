@@ -1,3 +1,4 @@
+# Inspired by: https://github.com/betterlockscreen/betterlockscreen/blob/next/system/betterlockscreen%40.service
 [Unit]
 Description = Lock screen when going to sleep/suspend
 Before=sleep.target
@@ -6,6 +7,7 @@ Before=suspend.target
 [Service]
 User=%I
 Type=simple
+# For some reason, the right DISPLAY is :1
 Environment=DISPLAY=:1
 ExecStart=/usr/local/bin/betterlockscreen --lock dim
 TimeoutSec=infinity
