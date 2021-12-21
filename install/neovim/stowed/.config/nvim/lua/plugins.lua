@@ -275,7 +275,7 @@ local function setup_packer(packer_bootstrap)
 				"JoosepAlviste/nvim-ts-context-commentstring",
 			},
 		})
-		use("kevinhwang91/nvim-bqf")
+		use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 		use("tpope/vim-obsession")
 		use({
 			"sainnhe/gruvbox-material",
