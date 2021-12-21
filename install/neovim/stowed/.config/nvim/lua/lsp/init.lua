@@ -23,6 +23,7 @@ nvim_lsp.sumneko_lua.setup(require("lsp.lua").config)
 nvim_lsp.texlab.setup(require("lsp.tex").config)
 
 require("lsp.java").setup()
+require("lsp.null-ls").setup()
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = {

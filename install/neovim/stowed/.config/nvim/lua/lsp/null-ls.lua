@@ -31,6 +31,8 @@ M.config = {
 	sources = M.sources,
 }
 
-null_ls.setup(M.config)
+function M.setup()
+	null_ls.setup(M.config)
+end
 
 return M
