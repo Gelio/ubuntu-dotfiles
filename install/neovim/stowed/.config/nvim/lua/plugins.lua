@@ -415,7 +415,7 @@ local function setup_packer(packer_bootstrap)
 								-- https://github.com/nvim-telescope/telescope.nvim/issues/1579#issuecomment-989777287
 								-- Credits to @fdschmidt93
 								["<C-w>"] = function()
-									vim.cmd([[normal! bcw]])
+									vim.api.nvim_input("<c-s-w>")
 								end,
 							},
 						},
