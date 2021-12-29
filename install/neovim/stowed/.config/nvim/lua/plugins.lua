@@ -846,33 +846,44 @@ local function setup_packer(packer_bootstrap)
 					prefix = "<Leader>x",
 				})
 
+				local dap = require("dap")
+				local add_command = vim.api.nvim_add_user_command
+				local utils = require("utils")
+
 				-- TODO: support adding logpoints and conditional breakpoints
-				vim.cmd([[
-          :command! DapToggleBreakpoint lua require('dap').toggle_breakpoint()
-          :command! DapContinue lua require('dap').continue()
-          :command! DapStepOver lua require('dap').step_over()
-          :command! DapStepInto lua require('dap').step_into()
-          :command! DapStepOut lua require('dap').step_out()
-          :command! DapTerminate lua require('dap').terminate()
-          :command! DapRunToCursor lua require('dap').run_to_cursor()
-          :command! DapReplOpen lua require('dap').repl.open()
-          :command! DapReplToggle lua require('dap').repl.toggle()
-          :command! DapReplClose lua require('dap').repl.close()
-          :command! DapStatus lua print(require('dap').status())
-        ]])
+				add_command("DapToggleBreakpoint", utils.execute_function_without_args(dap.toggle_breakpoint), {})
+				add_command("DapContinue", utils.execute_function_without_args(dap.continue), {})
+				add_command("DapStepOver", utils.execute_function_without_args(dap.step_over), {})
+				add_command("DapStepInto", utils.execute_function_without_args(dap.step_into), {})
+				add_command("DapStepOut", utils.execute_function_without_args(dap.step_out), {})
+				add_command("DapTerminate", utils.execute_function_without_args(dap.terminate), {})
+				add_command("DapRunToCursor", utils.execute_function_without_args(dap.run_to_cursor), {})
+				add_command("DapReplOpen", utils.execute_function_without_args(dap.repl.open), {})
+				add_command("DapReplToggle", utils.execute_function_without_args(dap.repl.toggle), {})
+				add_command("DapReplClose", utils.execute_function_without_args(dap.repl.close), {})
+				add_command("DapStatus", function()
+					print(dap.status())
+				end, {})
 			end,
 		})
 
 		use({
 			"rcarriga/nvim-dap-ui",
 			config = function()
-				require("dapui").setup()
-				vim.cmd([[
-          :command! DapUIOpen lua require('dapui').open()
-          :command! DapUIClose lua require('dapui').close()
-          :command! DapUI lua require('dapui').toggle()
-          :command! -nargs=? DapUIEval lua require('dapui').eval(string.len('<args>') > 0 and '<args>' or nil)
-        ]])
+				local dapui = require("dapui")
+				dapui.setup()
+
+				local add_command = vim.api.nvim_add_user_command
+				local utils = require("utils")
+
+				add_command("DapUIOpen", utils.execute_function_without_args(dapui.open), {})
+				add_command("DapUIClose", utils.execute_function_without_args(dapui.close), {})
+				add_command("DapUI", utils.execute_function_without_args(dapui.toggle), {})
+				add_command("DapUIEval", function(args)
+					dapui.eval(string.len(args.args) > 0 and args.args or nil)
+				end, {
+					nargs = "?",
+				})
 
 				require("which-key").register({
 					K = { ":DapUIEval<CR>", "Evaluate expression under cursor" },
