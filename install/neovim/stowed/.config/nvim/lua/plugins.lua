@@ -409,16 +409,6 @@ local function setup_packer(packer_bootstrap)
 					defaults = {
 						file_ignore_patterns = { ".git/.*", ".yarn/.*" },
 						path_display = { ["truncate"] = 2 },
-						mappings = {
-							i = {
-								-- Allow using <C-W> to delete word in the prompt
-								-- https://github.com/nvim-telescope/telescope.nvim/issues/1579#issuecomment-989777287
-								-- Credits to @fdschmidt93
-								["<C-w>"] = function()
-									vim.api.nvim_input("<c-s-w>")
-								end,
-							},
-						},
 					},
 				})
 			end,
