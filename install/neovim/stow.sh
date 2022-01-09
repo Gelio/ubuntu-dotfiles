@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-stow -v --no-folding -t "$HOME" stowed
+stow -v --no-folding -R -t "$HOME" stowed
