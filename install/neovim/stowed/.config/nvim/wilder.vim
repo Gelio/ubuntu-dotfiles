@@ -19,7 +19,7 @@ call wilder#set_option('pipeline', [
       \ ])
 
 let s:search_renderer = wilder#wildmenu_renderer({
-    \   'mode': 'statusline',
+	\	'highlighter': wilder#basic_highlighter(),
     \   'right': [' ', wilder#wildmenu_index()],
     \   'apply_incsearch_fix': v:true,
     \ })
