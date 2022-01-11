@@ -569,7 +569,7 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"ray-x/lsp_signature.nvim",
 			config = function()
-				vim.cmd([[highlight! link LspSignatureActiveParameter WildMenu]])
+				require("lsp_signature").setup()
 			end,
 		})
 		use({
