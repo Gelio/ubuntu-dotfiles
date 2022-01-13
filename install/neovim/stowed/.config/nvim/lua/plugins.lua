@@ -192,9 +192,7 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"ggandor/lightspeed.nvim",
 			config = function()
-				require("lightspeed").setup({
-					highlight_unique_chars = true,
-				})
+				require("lightspeed").setup({})
 			end,
 		})
 
