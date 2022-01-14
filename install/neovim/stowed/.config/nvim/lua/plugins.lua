@@ -297,27 +297,6 @@ local function setup_packer(packer_bootstrap)
 					show_current_context = true,
 					show_current_context_start = true,
 					context_highlight_list = { "Blue" },
-					context_patterns = {
-						"class",
-						"function$",
-						"declaration$",
-						"^import",
-						"method",
-						"if_statement",
-						"else_clause",
-						"jsx_element",
-						"jsx_self_closing_element",
-						"try_statement",
-						"catch_clause",
-						"object",
-						"return_statement",
-						"formal_parameters",
-						"^for",
-						"^while",
-						"arguments",
-						"statement_block",
-						"table", -- Lua tables
-					},
 
 					buftype_exclude = { "terminal" },
 					bufname_exclude = { "" }, -- Disables the plugin in hover() popups and new files
