@@ -319,7 +319,6 @@ local function setup_packer(packer_bootstrap)
 						"table", -- Lua tables
 					},
 
-					filetype_exclude = { "help" },
 					buftype_exclude = { "terminal" },
 					bufname_exclude = { "" }, -- Disables the plugin in hover() popups and new files
 
