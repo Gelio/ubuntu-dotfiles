@@ -727,12 +727,32 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"dstein64/nvim-scrollview",
+			"petertriho/nvim-scrollbar",
 			config = function()
-				vim.cmd([[ highlight link ScrollView WildMenu ]])
+				local function to_hex_color(num)
+					return string.format("#%06x", num)
+				end
+				local function get_highlight(name)
+					return vim.api.nvim_get_hl_by_name(name, true)
+				end
+
+				require("scrollbar").setup({
+					handle = {
+						color = to_hex_color(get_highlight("Visual").background),
+					},
+					marks = {
+						Search = { color = to_hex_color(get_highlight("Orange").foreground) },
+						Error = { color = to_hex_color(get_highlight("VirtualTextError").foreground) },
+						Warn = { color = to_hex_color(get_highlight("VirtualTextWarning").foreground) },
+						Info = { color = to_hex_color(get_highlight("VirtualTextInfo").foreground) },
+						Hint = { color = to_hex_color(get_highlight("VirtualTextHint").foreground) },
+						Misc = { color = to_hex_color(get_highlight("Purple").foreground) },
+					},
+				})
 			end,
 			after = { "gruvbox-material" },
 		})
+
 		use({
 			"monaqa/dial.nvim",
 			config = function()
