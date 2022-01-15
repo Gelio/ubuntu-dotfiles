@@ -5,36 +5,38 @@ set -euo pipefail
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 pushd "$script_dir" >/dev/null
 
-nvim_version=${1:-nightly}
-directory_name="nvim-linux64"
-archive_name="$directory_name.tar.gz"
-upgrade_only=$(command -v nvim || true)
-
 function main {
-  echo "* Downloading $nvim_version"
-  wget "https://github.com/neovim/neovim/releases/download/$nvim_version/$archive_name"
+  pushd ~/.local >/dev/null
+  if [[ -d neovim ]]; then
+    cd neovim
+    echo "* neovim repository found at $PWD, pulling latest changes..."
+    # Pulling fails most likely when a hash is checked out, not a branch.
+    # This is normal when there are breaking changes on master and a previous
+    # commit is used to build neovim.
+    git pull || echo "Pulling latest changes failed. Continuing anyway"
+  else
+    echo "* neovim repository not found in $HOME/.local/neovim, cloning..."
+    git clone git@github.com:neovim/neovim.git
+    cd neovim
 
-  stow_package -D
+    echo "* Installing build prerequisites"
+    install_build_prerequisites
 
-  tar -xzf "$archive_name"
-  rm "$archive_name"
-
-  echo "* Installing via stow"
-  stow_package
-
-  nvim -v
-
-  if [ -n "$upgrade_only" ]; then
-    echo "Upgraded neovim, exiting"
-    exit 0
+    echo "* Installing runtime prerequisites"
+    install_runtime_prerequisites
   fi
 
-  install
+  echo "* Building neovim"
+  build_neovim
+  nvim -v
+  popd >/dev/null
+
+  echo "* Stowing config files"
+  ./stow.sh
+  echo "* Done"
 }
 
-function install {
-  ./stow.sh
-
+function install_runtime_prerequisites {
   # Install python3 provider for neovim
   # See https://neovim.io/doc/user/provider.html
   python3 -m pip install --user --upgrade pynvim
@@ -44,8 +46,15 @@ function install {
   sudo apt install xsel g++
 }
 
-function stow_package {
-  sudo stow --no-folding -t /usr "$@" $directory_name
+function install_build_prerequisites {
+  # https://github.com/neovim/neovim/wiki/Building-Neovim#ubuntu--debian
+  sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+}
+
+function build_neovim {
+  # https://github.com/neovim/neovim/wiki/Building-Neovim#quick-start
+  make
+  sudo make install
 }
 
 main
