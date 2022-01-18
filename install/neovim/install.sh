@@ -5,6 +5,11 @@ set -euo pipefail
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 pushd "$script_dir" >/dev/null
 
+clean_before_build=false
+if [[ "${1-}" == "--clean" ]] || [[ "${1-}" == "-c" ]]; then
+  clean_before_build=true
+fi
+
 function main {
   pushd ~/.local >/dev/null
   if [[ -d neovim ]]; then
@@ -52,8 +57,11 @@ function install_build_prerequisites {
 }
 
 function build_neovim {
-  # https://github.com/neovim/neovim/wiki/Building-Neovim#quick-start
-  make
+  # https://github.com/neovim/neovim/wiki/Building-Neovim#building
+  if [[ "$clean_before_build" == true ]]; then
+    make distclean
+  fi
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
 }
 
