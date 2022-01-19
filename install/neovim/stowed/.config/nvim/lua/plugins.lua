@@ -193,6 +193,10 @@ local function setup_packer(packer_bootstrap)
 			"ggandor/lightspeed.nvim",
 			config = function()
 				require("lightspeed").setup({})
+				-- NOTE: workaround for https://github.com/ggandor/lightspeed.nvim/issues/73
+				vim.cmd([[
+          autocmd User LightspeedLeave set scrolloff=5
+        ]])
 			end,
 		})
 
