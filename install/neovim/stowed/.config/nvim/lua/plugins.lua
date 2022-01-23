@@ -333,7 +333,92 @@ local function setup_packer(packer_bootstrap)
 				"nvim-lua/plenary.nvim",
 			},
 			config = function()
-				require("gitsigns").setup()
+				local gitsigns = require("gitsigns")
+				gitsigns.setup({
+					on_attach = function(bufnr)
+						local which_key = require("which-key")
+
+						which_key.register({
+							["[c"] = {
+								"&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'",
+								"Move to previous hunk",
+								expr = true,
+							},
+							["]c"] = {
+								"&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'",
+								"Move to next hunk",
+								expr = true,
+							},
+						}, { buffer = bufnr })
+
+						local function get_selected_line_range(mode)
+							if mode ~= "v" then
+								return nil
+							end
+
+							-- NOTE: the '< and '> return the **last** visual selection
+							-- and have stale values.
+							-- I didn't find a way to reliably exit visual mode prior to reading
+							-- them. Thus, use this method below to get the current selection
+							-- and exit visual mode in a non-blocking way
+							-- NOTE: sometimes start_line_number > end_line_number
+							-- gitsigns seems to handle that
+							local start_line_number = vim.fn.line("v")
+							local end_line_number = vim.fn.getcurpos()[2]
+
+							-- NOTE: exit visual mode
+							vim.api.nvim_input("<esc>")
+
+							return { start_line_number, end_line_number }
+						end
+
+						local function register_stage_unstage_hunk(mode)
+							which_key.register({
+								name = "gitsigns",
+								s = {
+									function()
+										gitsigns.stage_hunk(get_selected_line_range(mode))
+									end,
+									"Stage hunk",
+								},
+								r = {
+									function()
+										gitsigns.reset_hunk(get_selected_line_range(mode))
+									end,
+									"Reset hunk",
+								},
+							}, {
+								mode = mode,
+								prefix = "<leader>h",
+								buffer = bufnr,
+							})
+						end
+
+						register_stage_unstage_hunk("n")
+						register_stage_unstage_hunk("v")
+
+						which_key.register({
+							name = "gitsigns",
+							t = {
+								name = "Toggle",
+								d = { gitsigns.toggle_deleted, "Toggle deleted lines" },
+								b = { gitsigns.toggle_current_line_blame, "Toggle current line blame" },
+							},
+							b = {
+								function()
+									gitsigns.blame_line({ full = true })
+								end,
+								"Blame current line",
+							},
+							R = { gitsigns.reset_buffer, "Reset changes in buffer" },
+							p = { gitsigns.preview_hunk, "Preview hunk" },
+							u = { gitsigns.undo_stage_hunk, "Unstage last hunk" },
+						}, {
+							prefix = "<leader>h",
+							buffer = bufnr,
+						})
+					end,
+				})
 			end,
 		})
 
