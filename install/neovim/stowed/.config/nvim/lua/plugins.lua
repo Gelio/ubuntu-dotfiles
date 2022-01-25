@@ -129,12 +129,29 @@ local function setup_packer(packer_bootstrap)
 						"dap-repl",
 					},
 				}
+				--- Source: https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#truncating-components-in-smaller-window
+				--- @param trunc_width number trunctates component when screen width is less than trunc_width
+				--- @param trunc_len number truncates component to trunc_len number of chars
+				--- @param hide_width number hides component when window width is smaller then hide_width
+				--- @param no_ellipsis boolean whether to disable adding '...' at end after truncation
+				--- return function that can format the component accordingly
+				local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
+					return function(str)
+						local win_width = vim.fn.winwidth(0)
+						if hide_width and win_width < hide_width then
+							return ""
+						elseif trunc_width and trunc_len and win_width < trunc_width and #str > trunc_len then
+							return str:sub(1, trunc_len) .. (no_ellipsis and "" or "...")
+						end
+						return str
+					end
+				end
 
 				require("lualine").setup({
 					options = { theme = "gruvbox-material" },
 					sections = {
 						lualine_a = { "mode" },
-						lualine_b = { "branch" },
+						lualine_b = { { "branch", fmt = trunc(150, 20, 100) } },
 						lualine_c = {
 							{
 								"filename",
@@ -152,9 +169,9 @@ local function setup_packer(packer_bootstrap)
 									hint = "VirtualTextHint",
 								},
 							},
-							"encoding",
-							"fileformat",
-							"filetype",
+							{ "encoding", fmt = trunc(nil, nil, 150) },
+							{ "fileformat", fmt = trunc(nil, nil, 150) },
+							{ "filetype", fmt = trunc(150, 8) },
 						},
 						lualine_y = { "progress" },
 						lualine_z = { "location" },
