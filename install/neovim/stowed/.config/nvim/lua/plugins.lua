@@ -942,6 +942,13 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
+			"j-hui/fidget.nvim",
+			config = function()
+				require("fidget").setup({})
+			end,
+		})
+
+		use({
 			"monaqa/dial.nvim",
 			config = function()
 				local ws = require("which-key")
