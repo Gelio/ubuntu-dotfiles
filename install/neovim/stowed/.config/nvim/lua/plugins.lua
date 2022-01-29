@@ -581,8 +581,8 @@ local function setup_packer(packer_bootstrap)
 					mapping = {
 						["<C-Space>"] = cmp.mapping.complete(),
 						["<C-y>"] = cmp.mapping.close(),
-						["<C-u>"] = cmp.mapping.scroll_docs(4),
-						["<C-d>"] = cmp.mapping.scroll_docs(-4),
+						["<C-d>"] = cmp.mapping.scroll_docs(4),
+						["<C-u>"] = cmp.mapping.scroll_docs(-4),
 						["<CR>"] = cmp.mapping.confirm({ select = false }),
 					},
 					sources = sources,
