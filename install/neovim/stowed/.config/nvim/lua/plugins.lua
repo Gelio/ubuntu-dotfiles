@@ -587,7 +587,7 @@ local function setup_packer(packer_bootstrap)
 					},
 					sources = sources,
 					formatting = {
-						format = require("lspkind").cmp_format({ with_text = true, menu = source_labels }),
+						format = require("lspkind").cmp_format({ mode = "symbol_text", menu = source_labels }),
 					},
 				})
 
