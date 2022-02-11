@@ -318,6 +318,29 @@ local function setup_packer(packer_bootstrap)
 					show_current_context = true,
 					show_current_context_start = true,
 					context_highlight_list = { "Blue" },
+					context_patterns = {
+						-- NOTE: indent-blankline's defaults
+						"class",
+						"^func",
+						"method",
+						"^if",
+						"while",
+						"for",
+						"with",
+						"try",
+						"except",
+						"arguments",
+						"argument_list",
+						"object",
+						"dictionary",
+						"element",
+						"table",
+						"tuple",
+
+						-- NOTE: better JavaScript/TypeScript support
+						"return_statement",
+						"statement_block",
+					},
 
 					buftype_exclude = { "terminal" },
 					bufname_exclude = { "" }, -- Disables the plugin in hover() popups and new files
