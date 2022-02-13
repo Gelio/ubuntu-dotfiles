@@ -151,7 +151,7 @@ local function setup_packer(packer_bootstrap)
 					options = { theme = "gruvbox-material" },
 					sections = {
 						lualine_a = { "mode" },
-						lualine_b = { { "branch", fmt = trunc(150, 20, 100) } },
+						lualine_b = { { "branch", fmt = trunc(150, 20, 120) } },
 						lualine_c = {
 							{
 								"filename",
@@ -173,7 +173,7 @@ local function setup_packer(packer_bootstrap)
 							{ "fileformat", fmt = trunc(nil, nil, 150) },
 							{ "filetype", fmt = trunc(150, 8) },
 						},
-						lualine_y = { "progress" },
+						lualine_y = { { "progress", fmt = trunc(nil, nil, 120) } },
 						lualine_z = { "location" },
 					},
 					extensions = { "fugitive", "nvim-tree", "quickfix", dap_extension, "symbols-outline" },
