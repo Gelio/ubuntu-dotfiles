@@ -2,13 +2,8 @@ local M = {}
 
 local null_ls = require("null-ls")
 
-local prettierd_filetypes = { unpack(null_ls.builtins.formatting.prettierd.filetypes) }
-table.insert(prettierd_filetypes, "jsonc")
-
 M.sources = {
-	null_ls.builtins.formatting.prettierd.with({
-		filetypes = prettierd_filetypes,
-	}),
+	null_ls.builtins.formatting.prettierd,
 	null_ls.builtins.formatting.trim_whitespace.with({
 		filetypes = { "plantuml" },
 	}),
