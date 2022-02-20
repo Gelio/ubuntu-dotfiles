@@ -79,9 +79,6 @@ local function setup_packer(packer_bootstrap)
 				vim.g.nvim_tree_group_empty = 1
 
 				require("nvim-tree").setup({
-					update_focused_file = {
-						enable = true,
-					},
 					diagnostics = {
 						enable = true,
 					},
