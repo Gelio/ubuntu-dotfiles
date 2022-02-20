@@ -82,9 +82,6 @@ local function setup_packer(packer_bootstrap)
 					diagnostics = {
 						enable = true,
 					},
-					git = {
-						ignore = true,
-					},
 				})
 				require("which-key").register({
 					name = "NvimTree",
