@@ -79,6 +79,7 @@ local function setup_packer(packer_bootstrap)
 				vim.g.nvim_tree_group_empty = 1
 
 				require("nvim-tree").setup({
+					hijack_netrw = false,
 					diagnostics = {
 						enable = true,
 					},
@@ -91,6 +92,13 @@ local function setup_packer(packer_bootstrap)
 				}, {
 					prefix = "<Leader>n",
 				})
+			end,
+		})
+
+		use({
+			"tpope/vim-vinegar",
+			config = function()
+				vim.g.netrw_banner = 0
 			end,
 		})
 
