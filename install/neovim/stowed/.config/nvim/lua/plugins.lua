@@ -867,15 +867,22 @@ local function setup_packer(packer_bootstrap)
 			"monaqa/dial.nvim",
 			config = function()
 				local ws = require("which-key")
+				local dial_map = require("dial.map")
+				local function apply(fn)
+					return function()
+						fn()
+					end
+				end
+
 				ws.register({
-					["<C-a>"] = { "<Plug>(dial-increment)" },
-					["<C-x>"] = { "<Plug>(dial-decrement)" },
+					["<C-a>"] = { apply(dial_map.inc_normal) },
+					["<C-x>"] = { apply(dial_map.dec_normal) },
 				})
 				ws.register({
-					["<C-a>"] = { "<Plug>(dial-increment)" },
-					["<C-x>"] = { "<Plug>(dial-decrement)" },
-					["g<C-a>"] = { "<Plug>(dial-increment-additional)", "Increment sequential" },
-					["g<C-x>"] = { "<Plug>(dial-decrement-additional)", "Decrement sequential" },
+					["<C-a>"] = { apply(dial_map.inc_visual) },
+					["<C-x>"] = { apply(dial_map.dec_visual) },
+					["g<C-a>"] = { apply(dial_map.inc_gvisual), "Increment sequential" },
+					["g<C-x>"] = { apply(dial_map.dec_gvisual), "Decrement sequential" },
 				}, {
 					mode = "v",
 				})
