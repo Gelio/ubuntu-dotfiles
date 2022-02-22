@@ -83,6 +83,11 @@ local function setup_packer(packer_bootstrap)
 					diagnostics = {
 						enable = true,
 					},
+					view = {
+						width = 50,
+						number = true,
+						relativenumber = true,
+					},
 				})
 				require("which-key").register({
 					name = "NvimTree",
@@ -93,6 +98,7 @@ local function setup_packer(packer_bootstrap)
 					prefix = "<Leader>n",
 				})
 			end,
+			keys = "<Leader>n",
 		})
 
 		use({
