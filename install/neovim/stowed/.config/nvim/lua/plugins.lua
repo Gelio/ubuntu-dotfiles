@@ -79,26 +79,68 @@ local function setup_packer(packer_bootstrap)
 				vim.g.nvim_tree_group_empty = 1
 
 				require("nvim-tree").setup({
-					hijack_netrw = false,
+					hijack_netrw = true,
 					diagnostics = {
 						enable = true,
 					},
 					view = {
-						width = 50,
 						number = true,
 						relativenumber = true,
+						mappings = {
+							list = {
+								{
+									key = { "<C-e>", "o", "<CR>" },
+									action = "edit_in_place",
+								},
+								{
+									key = "<C-v>",
+									action = "split_right",
+									action_cb = function(node)
+										vim.cmd("vsplit " .. vim.fn.fnameescape(node.absolute_path))
+									end,
+								},
+								{
+									key = "<C-x>",
+									action = "split_bottom",
+									action_cb = function(node)
+										vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
+									end,
+								},
+								{
+									key = "<C-t>",
+									action = "new_tab",
+									action_cb = function(node)
+										vim.cmd("tabnew " .. vim.fn.fnameescape(node.absolute_path))
+									end,
+								},
+							},
+						},
+					},
+					actions = {
+						open_file = {
+							-- NOTE: prevent nvim-tree from re-appearing after opening a new window
+							-- (changes the way autocommands are registered)
+							quit_on_open = true,
+						},
 					},
 				})
+				-- NOTE: disable fixed nvim-tree width and height
+				-- to allow creating splits naturally
+				local winopts = require("nvim-tree.view").View.winopts
+				winopts.winfixwidth = false
+				winopts.winfixheight = false
+
 				require("which-key").register({
-					name = "NvimTree",
-					n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
-					r = { ":NvimTreeFindFile<CR>", "Find file in NvimTree" },
-					f = { ":NvimTreeFocus<CR>", "Focus NvimTree" },
-				}, {
-					prefix = "<Leader>n",
+					["-"] = {
+						function()
+							local previous_buf = vim.api.nvim_get_current_buf()
+							require("nvim-tree").open_replacing_current_buffer()
+							require("nvim-tree").find_file(false, previous_buf)
+						end,
+						"NvimTree in place",
+					},
 				})
 			end,
-			keys = "<Leader>n",
 		})
 
 		use({
@@ -107,12 +149,6 @@ local function setup_packer(packer_bootstrap)
 				vim.g.netrw_banner = 0
 				-- NOTE: enable number and relativenumber (disabled by default)
 				vim.g.netrw_bufsettings = "noma nomod nobl nowrap ro number relativenumber"
-
-				require("which-key").register({
-					name = "Netrw",
-					f = { ":Explore<CR>", "Explore current file directory" },
-					w = { ":Explore .<CR>", "Explore current working directory" },
-				}, { prefix = "<Leader>ne" })
 			end,
 		})
 
