@@ -6,3 +6,7 @@ name = "neovim"
 
 [vim]
 any = true
+
+[TreeExplorer]
+# Comes from nvim-tree
+any = true
