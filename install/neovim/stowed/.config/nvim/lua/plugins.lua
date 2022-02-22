@@ -181,6 +181,20 @@ local function setup_packer(packer_bootstrap)
 						"dap-repl",
 					},
 				}
+				-- NOTE: the default nvim-tree extension is based on cwd
+				-- netrw-mode does not change cwd
+				local nvim_tree_extension = {
+					sections = {
+						lualine_a = {
+							function()
+								return vim.fn.fnamemodify(TreeExplorer.cwd, ":~")
+							end,
+						},
+					},
+					filetypes = {
+						"NvimTree",
+					},
+				}
 				--- Source: https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#truncating-components-in-smaller-window
 				--- @param trunc_width number trunctates component when screen width is less than trunc_width
 				--- @param trunc_len number truncates component to trunc_len number of chars
@@ -228,7 +242,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_y = { { "progress", fmt = trunc(nil, nil, 120) } },
 						lualine_z = { "location" },
 					},
-					extensions = { "fugitive", "nvim-tree", "quickfix", dap_extension, "symbols-outline" },
+					extensions = { "fugitive", nvim_tree_extension, "quickfix", dap_extension, "symbols-outline" },
 				})
 			end,
 		})
