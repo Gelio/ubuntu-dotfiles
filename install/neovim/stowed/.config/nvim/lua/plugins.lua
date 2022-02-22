@@ -569,8 +569,6 @@ local function setup_packer(packer_bootstrap)
 				require("which-key").register({ ["<Leader>so"] = { ":SymbolsOutline<CR>", "Symbols outline" } })
 				require("symbols-outline").setup({})
 			end,
-			-- NOTE: disable until https://github.com/simrat39/symbols-outline.nvim/issues/98 is fixed
-			disable = true,
 		})
 
 		use({
