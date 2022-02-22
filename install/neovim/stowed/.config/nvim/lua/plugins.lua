@@ -117,6 +117,9 @@ local function setup_packer(packer_bootstrap)
 						},
 					},
 					actions = {
+						change_dir = {
+							enable = false,
+						},
 						open_file = {
 							-- NOTE: prevent nvim-tree from re-appearing after opening a new window
 							-- (changes the way autocommands are registered)
