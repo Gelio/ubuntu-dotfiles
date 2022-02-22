@@ -567,7 +567,11 @@ local function setup_packer(packer_bootstrap)
 			"simrat39/symbols-outline.nvim",
 			config = function()
 				require("which-key").register({ ["<Leader>so"] = { ":SymbolsOutline<CR>", "Symbols outline" } })
-				require("symbols-outline").setup({})
+				vim.g.symbols_outline = {
+					show_numbers = true,
+					show_relative_numbers = true,
+					preview_bg_highlight = "Normal",
+				}
 			end,
 		})
 
