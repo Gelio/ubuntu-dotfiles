@@ -79,26 +79,73 @@ local function setup_packer(packer_bootstrap)
 				vim.g.nvim_tree_group_empty = 1
 
 				require("nvim-tree").setup({
-					hijack_netrw = false,
+					hijack_netrw = true,
 					diagnostics = {
 						enable = true,
 					},
 					view = {
-						width = 50,
 						number = true,
 						relativenumber = true,
+						mappings = {
+							list = {
+								-- NOTE: default to editing the file in place, netrw-style
+								{
+									key = { "<C-e>", "o", "<CR>" },
+									action = "edit_in_place",
+								},
+								-- NOTE: override the "split" to avoid treating nvim-tree
+								-- window as special. Splits will appear as if nvim-tree was a
+								-- regular window
+								{
+									key = "<C-v>",
+									action = "split_right",
+									action_cb = function(node)
+										vim.cmd("vsplit " .. vim.fn.fnameescape(node.absolute_path))
+									end,
+								},
+								{
+									key = "<C-x>",
+									action = "split_bottom",
+									action_cb = function(node)
+										vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
+									end,
+								},
+								-- NOTE: override the "open in new tab" mapping to fix the error
+								-- that occurs there
+								{
+									key = "<C-t>",
+									action = "new_tab",
+									action_cb = function(node)
+										vim.cmd("tabnew " .. vim.fn.fnameescape(node.absolute_path))
+									end,
+								},
+							},
+						},
+					},
+					actions = {
+						change_dir = {
+							-- NOTE: netrw-style, do not change the cwd when navigating
+							enable = false,
+						},
 					},
 				})
+				-- NOTE: disable fixed nvim-tree width and height
+				-- to allow creating splits naturally
+				local winopts = require("nvim-tree.view").View.winopts
+				winopts.winfixwidth = false
+				winopts.winfixheight = false
+
 				require("which-key").register({
-					name = "NvimTree",
-					n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
-					r = { ":NvimTreeFindFile<CR>", "Find file in NvimTree" },
-					f = { ":NvimTreeFocus<CR>", "Focus NvimTree" },
-				}, {
-					prefix = "<Leader>n",
+					["-"] = {
+						function()
+							local previous_buf = vim.api.nvim_get_current_buf()
+							require("nvim-tree").open_replacing_current_buffer()
+							require("nvim-tree").find_file(false, previous_buf)
+						end,
+						"NvimTree in place",
+					},
 				})
 			end,
-			keys = "<Leader>n",
 		})
 
 		use({
@@ -107,13 +154,8 @@ local function setup_packer(packer_bootstrap)
 				vim.g.netrw_banner = 0
 				-- NOTE: enable number and relativenumber (disabled by default)
 				vim.g.netrw_bufsettings = "noma nomod nobl nowrap ro number relativenumber"
-
-				require("which-key").register({
-					name = "Netrw",
-					f = { ":Explore<CR>", "Explore current file directory" },
-					w = { ":Explore .<CR>", "Explore current working directory" },
-				}, { prefix = "<Leader>ne" })
 			end,
+			disable = true,
 		})
 
 		use({
@@ -143,6 +185,20 @@ local function setup_packer(packer_bootstrap)
 						"dapui_stacks",
 						"dapui_breakpoints",
 						"dap-repl",
+					},
+				}
+				-- NOTE: the default nvim-tree extension is based on cwd
+				-- netrw-mode does not change cwd
+				local nvim_tree_extension = {
+					sections = {
+						lualine_a = {
+							function()
+								return vim.fn.fnamemodify(TreeExplorer.cwd, ":~")
+							end,
+						},
+					},
+					filetypes = {
+						"NvimTree",
 					},
 				}
 				--- Source: https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#truncating-components-in-smaller-window
@@ -192,7 +248,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_y = { { "progress", fmt = trunc(nil, nil, 120) } },
 						lualine_z = { "location" },
 					},
-					extensions = { "fugitive", "nvim-tree", "quickfix", dap_extension, "symbols-outline" },
+					extensions = { "fugitive", nvim_tree_extension, "quickfix", dap_extension, "symbols-outline" },
 				})
 			end,
 		})
