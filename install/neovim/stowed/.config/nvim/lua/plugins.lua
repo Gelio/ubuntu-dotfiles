@@ -88,10 +88,14 @@ local function setup_packer(packer_bootstrap)
 						relativenumber = true,
 						mappings = {
 							list = {
+								-- NOTE: default to editing the file in place, netrw-style
 								{
 									key = { "<C-e>", "o", "<CR>" },
 									action = "edit_in_place",
 								},
+								-- NOTE: override the "split" to avoid treating nvim-tree
+								-- window as special. Splits will appear as if nvim-tree was a
+								-- regular window
 								{
 									key = "<C-v>",
 									action = "split_right",
@@ -106,6 +110,8 @@ local function setup_packer(packer_bootstrap)
 										vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
 									end,
 								},
+								-- NOTE: override the "open in new tab" mapping to fix the error
+								-- that occurs there
 								{
 									key = "<C-t>",
 									action = "new_tab",
@@ -118,6 +124,7 @@ local function setup_packer(packer_bootstrap)
 					},
 					actions = {
 						change_dir = {
+							-- NOTE: netrw-style, do not change the cwd when navigating
 							enable = false,
 						},
 					},
