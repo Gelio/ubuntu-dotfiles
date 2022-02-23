@@ -155,6 +155,7 @@ local function setup_packer(packer_bootstrap)
 				-- NOTE: enable number and relativenumber (disabled by default)
 				vim.g.netrw_bufsettings = "noma nomod nobl nowrap ro number relativenumber"
 			end,
+			disable = true,
 		})
 
 		use({
