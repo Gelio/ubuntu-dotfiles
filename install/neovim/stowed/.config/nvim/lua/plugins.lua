@@ -127,6 +127,11 @@ local function setup_packer(packer_bootstrap)
 							-- NOTE: netrw-style, do not change the cwd when navigating
 							enable = false,
 						},
+						open_file = {
+							-- NOTE: prevent nvim-tree from re-appearing after opening a new window
+							-- (changes the way autocommands are registered)
+							quit_on_open = true,
+						},
 					},
 				})
 				-- NOTE: disable fixed nvim-tree width and height
