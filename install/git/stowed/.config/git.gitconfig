@@ -28,6 +28,7 @@
   l = log
   b = branch
   co = checkout
+  bco = branchless checkout
   subup = submodule update --init --recursive
 
 [diff]
