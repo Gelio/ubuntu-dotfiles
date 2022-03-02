@@ -142,11 +142,7 @@ local function setup_packer(packer_bootstrap)
 
 				require("which-key").register({
 					["-"] = {
-						function()
-							local previous_buf = vim.api.nvim_get_current_buf()
-							require("nvim-tree").open_replacing_current_buffer()
-							require("nvim-tree").find_file(false, previous_buf)
-						end,
+						require("nvim-tree").open_replacing_current_buffer,
 						"NvimTree in place",
 					},
 				})
