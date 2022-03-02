@@ -30,6 +30,7 @@
   co = checkout
   bco = branchless checkout
   subup = submodule update --init --recursive
+  push-current-stack = !git push origin $(git stack --format list --stack current)
 
 [diff]
   colorMoved = default
