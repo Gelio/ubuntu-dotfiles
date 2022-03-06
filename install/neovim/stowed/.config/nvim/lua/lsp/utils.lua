@@ -23,16 +23,16 @@ local function setup_lsp_keymaps(client, bufnr)
 				capabilities.find_references,
 				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
 			),
+			["<Leader>t"] = if_enabled(
+				capabilities.type_definition,
+				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
+			),
 		},
 		["<C-W>gd"] = if_enabled(capabilities.goto_definition, {
 			"<cmd>tab split | norm gd<CR>",
 			"Go to definition in a new tab",
 		}),
 		["<Leader>"] = {
-			D = if_enabled(
-				capabilities.type_definition,
-				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
-			),
 			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			d = {
 				function()
