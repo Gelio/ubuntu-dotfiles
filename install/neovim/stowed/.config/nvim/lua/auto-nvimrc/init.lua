@@ -258,12 +258,14 @@ end
 
 function M.execute_nvimrcs()
 	local nvimrcs = vim.fn.findfile(".nvimrc", ".;", -1)
+	local lua_nvimrcs = vim.fn.findfile(".nvimrc.lua", ".;", -1)
+	local combined_nvimrcs = vim.list_extend(nvimrcs, lua_nvimrcs)
 
-	if vim.tbl_isempty(nvimrcs) then
+	if vim.tbl_isempty(combined_nvimrcs) then
 		return
 	end
 
-	run(nvimrcs)
+	run(combined_nvimrcs)
 end
 
 return M

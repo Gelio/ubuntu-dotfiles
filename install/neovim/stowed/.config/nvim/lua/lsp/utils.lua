@@ -23,16 +23,21 @@ local function setup_lsp_keymaps(client, bufnr)
 				capabilities.find_references,
 				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
 			),
+			["<Leader>c"] = if_enabled(capabilities.call_hierarchy, {
+				name = "Symbol calls",
+				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
+				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
+			}),
+			["<Leader>t"] = if_enabled(
+				capabilities.type_definition,
+				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
+			),
 		},
 		["<C-W>gd"] = if_enabled(capabilities.goto_definition, {
 			"<cmd>tab split | norm gd<CR>",
 			"Go to definition in a new tab",
 		}),
 		["<Leader>"] = {
-			D = if_enabled(
-				capabilities.type_definition,
-				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
-			),
 			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			d = {
 				function()
@@ -87,19 +92,16 @@ local function setup_document_highlight(client)
 		return
 	end
 
-	vim.cmd(
-		[[
-      hi LspReferenceText  cterm=bold ctermbg=red guibg=#404040
-      hi LspReferenceRead  cterm=bold ctermbg=red guibg=#404040
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
-      augroup LSPDocumentHighlight
-        autocmd! * <buffer>
-        autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-		false
-	)
+	vim.cmd([[
+    hi LspReferenceText  cterm=bold ctermbg=red guibg=#404040
+    hi LspReferenceRead  cterm=bold ctermbg=red guibg=#404040
+    hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
+    augroup LSPDocumentHighlight
+      autocmd! * <buffer>
+      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    augroup END
+  ]])
 end
 
 function M.on_attach(client, bufnr)
