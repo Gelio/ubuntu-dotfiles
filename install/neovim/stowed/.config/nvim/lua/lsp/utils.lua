@@ -23,6 +23,11 @@ local function setup_lsp_keymaps(client, bufnr)
 				capabilities.find_references,
 				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
 			),
+			["<Leader>c"] = if_enabled(capabilities.call_hierarchy, {
+				name = "Symbol calls",
+				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
+				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
+			}),
 			["<Leader>t"] = if_enabled(
 				capabilities.type_definition,
 				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
