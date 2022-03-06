@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 set -euo pipefail
 
-npm install -g typescript-language-server @fsouza/prettierd vscode-langservers-extracted
+npm install -g @fsouza/prettierd

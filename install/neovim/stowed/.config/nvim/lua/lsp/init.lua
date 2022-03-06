@@ -1,26 +1,49 @@
 local utils = require("lsp.utils")
-local nvim_lsp = require("lspconfig")
+local lsp_installer = require("nvim-lsp-installer")
 
-local servers_with_defaults = { "gopls", "rust_analyzer", "bashls", "cssls", "svelte", "eslint", "yamlls", "vimls" }
-for _, lsp in ipairs(servers_with_defaults) do
-	nvim_lsp[lsp].setup(utils.base_config)
+local function setup_server_with_config(config)
+	---@param server Server
+	return function(server)
+		return server:setup(config)
+	end
 end
 
--- Conflicts with prettier formatting in TS files.
-nvim_lsp.stylelint_lsp.setup(utils.base_config_without_formatting)
+---Custom handlers for known LSP servers.
+---`nil` will use the default handler with the default config.
+---Presence of a server in this config means it will get installed
+---by `:InstallDefaultLspServers`
+local server_handlers = {
+	-- Use null_ls for formatting
+	gopls = setup_server_with_config(utils.base_config_without_formatting),
+	jsonls = setup_server_with_config(require("lsp.jsonls").config),
+	-- Conflicts with prettier formatting in TS files.
+	stylelint_lsp = setup_server_with_config(utils.base_config_without_formatting),
+	sumneko_lua = setup_server_with_config(require("lsp.lua").config),
+	tsserver = setup_server_with_config(require("lsp.tsserver").config),
+	texlab = setup_server_with_config(require("lsp.tex").config),
+	rust_analyzer = nil,
+	bashls = nil,
+	cssls = nil,
+	svelte = nil,
+	eslint = nil,
+	yamlls = nil,
+	vimls = nil,
+}
 
--- Use null_ls for formatting
-nvim_lsp.gopls.setup(utils.base_config_without_formatting)
+lsp_installer.on_server_ready(function(server)
+	local custom_handler = server_handlers[server.name]
+	if custom_handler ~= nil then
+		custom_handler(server)
+	else
+		server:setup(utils.base_config)
+	end
+end)
 
-nvim_lsp.jsonls.setup(require("lsp.jsonls").config)
-
-nvim_lsp.graphql.setup(require("lsp.graphql").config)
-
-nvim_lsp.tsserver.setup(require("lsp.tsserver").config)
-
-nvim_lsp.sumneko_lua.setup(require("lsp.lua").config)
-
-nvim_lsp.texlab.setup(require("lsp.tex").config)
+vim.api.nvim_add_user_command("InstallDefaultLspServers", function()
+	for server_name in pairs(server_handlers) do
+		lsp_installer.install(server_name)
+	end
+end, {})
 
 require("lsp.java").setup()
 require("lsp.null-ls").setup()
