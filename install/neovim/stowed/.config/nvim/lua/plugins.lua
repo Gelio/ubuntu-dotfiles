@@ -991,13 +991,17 @@ local function setup_packer(packer_bootstrap)
 				vim.fn["firenvim#install"](0)
 			end,
 			config = function()
+				local default_settings = {
+					takeover = "never",
+					priority = 0,
+					cmdline = "neovim",
+				}
 				vim.g.firenvim_config = {
 					localSettings = {
-						[".*"] = {
-							takeover = "never",
-							priority = 0,
-							cmdline = "neovim",
-						},
+						["https://(github.com|gitlab.com|mattermost\\.).*"] = vim.tbl_extend("error", default_settings, {
+							filename = "{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.md",
+						}),
+						[".*"] = default_settings,
 					},
 				}
 
@@ -1024,8 +1028,7 @@ local function setup_packer(packer_bootstrap)
 
             autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
 
-            au BufEnter github.com_*.txt,gitlab.com_*.txt,mattermost.*.txt,mail.google.com_*.txt set filetype=markdown
-            au BufEnter mail.google.com_*.txt set tw=80
+            au BufEnter mail.google.com_*.txt set filetype=markdown tw=80
           ]])
 				end
 			end,
