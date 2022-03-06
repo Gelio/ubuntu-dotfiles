@@ -92,19 +92,16 @@ local function setup_document_highlight(client)
 		return
 	end
 
-	vim.cmd(
-		[[
-      hi LspReferenceText  cterm=bold ctermbg=red guibg=#404040
-      hi LspReferenceRead  cterm=bold ctermbg=red guibg=#404040
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
-      augroup LSPDocumentHighlight
-        autocmd! * <buffer>
-        autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-		false
-	)
+	vim.cmd([[
+    hi LspReferenceText  cterm=bold ctermbg=red guibg=#404040
+    hi LspReferenceRead  cterm=bold ctermbg=red guibg=#404040
+    hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
+    augroup LSPDocumentHighlight
+      autocmd! * <buffer>
+      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    augroup END
+  ]])
 end
 
 function M.on_attach(client, bufnr)
