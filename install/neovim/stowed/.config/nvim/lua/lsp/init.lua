@@ -8,6 +8,8 @@ local function setup_server_with_config(config)
 	end
 end
 
+local default_server_handler = setup_server_with_config(utils.base_config)
+
 ---Custom handlers for known LSP servers.
 ---`nil` will use the default handler with the default config.
 ---Presence of a server in this config means it will get installed
@@ -21,13 +23,13 @@ local server_handlers = {
 	sumneko_lua = setup_server_with_config(require("lsp.lua").config),
 	tsserver = setup_server_with_config(require("lsp.tsserver").config),
 	texlab = setup_server_with_config(require("lsp.tex").config),
-	rust_analyzer = nil,
-	bashls = nil,
-	cssls = nil,
-	svelte = nil,
-	eslint = nil,
-	yamlls = nil,
-	vimls = nil,
+	rust_analyzer = default_server_handler,
+	bashls = default_server_handler,
+	cssls = default_server_handler,
+	svelte = default_server_handler,
+	eslint = default_server_handler,
+	yamlls = default_server_handler,
+	vimls = default_server_handler,
 }
 
 lsp_installer.on_server_ready(function(server)
