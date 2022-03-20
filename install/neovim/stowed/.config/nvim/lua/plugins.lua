@@ -173,6 +173,9 @@ local function setup_packer(packer_bootstrap)
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = function()
+				---Use global status line instead of per-window status lines
+				local global_status = false
+
 				local dap_extension = {
 					sections = {
 						lualine_a = { "mode", "filename" },
@@ -210,7 +213,7 @@ local function setup_packer(packer_bootstrap)
 				--- return function that can format the component accordingly
 				local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
 					return function(str)
-						local win_width = vim.fn.winwidth(0)
+						local win_width = global_status and vim.go.columns or vim.fn.winwidth(0)
 						if hide_width and win_width < hide_width then
 							return ""
 						elseif trunc_width and trunc_len and win_width < trunc_width and #str > trunc_len then
@@ -221,7 +224,10 @@ local function setup_packer(packer_bootstrap)
 				end
 
 				require("lualine").setup({
-					options = { theme = "gruvbox-material" },
+					options = {
+						theme = "gruvbox-material",
+						globalstatus = global_status,
+					},
 					sections = {
 						lualine_a = { "mode" },
 						lualine_b = { { "branch", fmt = trunc(150, 20, 120) } },
