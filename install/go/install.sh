@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Get the name from https://golang.org/doc/install
-file=go1.17.linux-amd64.tar.gz
+file=go1.18.linux-amd64.tar.gz
 
 go_installed=$(command -v go || true)
 if [ -n "$go_installed" ]; then
