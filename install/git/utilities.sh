@@ -9,3 +9,6 @@ cargo install --locked git-branchless
 
 # https://github.com/epage/git-stack
 cargo install git-stack
+
+# https://github.com/Wilfred/difftastic
+cargo install difftastic
