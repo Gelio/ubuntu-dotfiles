@@ -276,6 +276,7 @@ local function setup_packer(packer_bootstrap)
 			"rickhowe/diffchar.vim",
 			after = "vim-unimpaired",
 		})
+		use("rhysd/conflict-marker.vim")
 		use({
 			"windwp/nvim-autopairs",
 			config = function()
