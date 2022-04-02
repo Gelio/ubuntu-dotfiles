@@ -19,6 +19,15 @@ function main {
     # This is normal when there are breaking changes on master and a previous
     # commit is used to build neovim.
     git pull || echo "Pulling latest changes failed. Continuing anyway"
+
+    # Sometimes there are ninja build permissions errors because some files
+    # are owned by root instead of the current user.
+    # [3/3] cd /home/voreny/.local/neovim/.deps && /usr/bin/cmake -E touch .third-party
+    # ninja  -C build
+    # ninja: Entering directory `build'
+    # ninja: error: opening build log: Permission denied
+    # make: *** [Makefile:92: nvim] Error 1
+    sudo chown -R "$USER" .
   else
     echo "* neovim repository not found in $HOME/.local/neovim, cloning..."
     git clone git@github.com:neovim/neovim.git
