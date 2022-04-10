@@ -12,3 +12,6 @@ cargo install git-stack
 
 # https://github.com/Wilfred/difftastic
 cargo install difftastic
+
+# https://github.com/jesseduffield/lazygit
+go install github.com/jesseduffield/lazygit@latest
