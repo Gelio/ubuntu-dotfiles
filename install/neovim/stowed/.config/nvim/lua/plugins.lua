@@ -278,6 +278,17 @@ local function setup_packer(packer_bootstrap)
 		})
 		use("rhysd/conflict-marker.vim")
 		use({
+			"voldikss/vim-floaterm",
+			config = function()
+				require("which-key").register({
+					["<Leader>G"] = {
+						":FloatermNew --width=0.85 --height=0.85 lazygit<CR>",
+						"lazygit in floating terminal",
+					},
+				})
+			end,
+		})
+		use({
 			"windwp/nvim-autopairs",
 			config = function()
 				local autopairs = require("nvim-autopairs")
