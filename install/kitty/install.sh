@@ -20,7 +20,7 @@ fi
 
 # Make sure SSH works
 # https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
-echo "alias ssh='kitty +kitten ssh'" >>~/.bash_aliases
+echo "alias kittyssh='kitty +kitten ssh'" >>~/.bash_aliases
 
 ./stow.sh
 
