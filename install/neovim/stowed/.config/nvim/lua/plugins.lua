@@ -305,6 +305,17 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
+			"AckslD/nvim-trevJ.lua",
+			config = function()
+				local trevj = require("trevj")
+				trevj.setup()
+				require("which-key").register({
+					["<Leader>J"] = { trevj.format_at_cursor, "Unjoin lines" },
+				})
+			end,
+		})
+
+		use({
 			"mbbill/undotree",
 			config = function()
 				vim.o.undofile = true
