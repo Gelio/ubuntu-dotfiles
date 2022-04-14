@@ -696,8 +696,6 @@ local function setup_packer(packer_bootstrap)
 				local sources, source_labels = prepare_sources()
 
 				local cmp = require("cmp")
-				-- NOTE: looks like cmp EmmyLua annotations are wrong
-				---@diagnostic disable-next-line:redundant-parameter
 				cmp.setup({
 					snippet = {
 						expand = function(args)
