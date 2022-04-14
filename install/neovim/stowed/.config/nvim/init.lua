@@ -45,11 +45,6 @@ local map = vim.api.nvim_set_keymap
 map("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { noremap = true, expr = true })
 map("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { noremap = true, expr = true })
 
--- Alt + vim keys for resizing windows
-map("n", "<A-h>", "<C-w><", { noremap = true })
-map("n", "<A-j>", "<C-w>-", { noremap = true })
-map("n", "<A-k>", "<C-w>+", { noremap = true })
-map("n", "<A-l>", "<C-w>>", { noremap = true })
 -- Easy yanking to clipboard
 map("n", "<Leader>y", '"+y', { noremap = true })
 map("v", "<Leader>y", '"+y', { noremap = true })

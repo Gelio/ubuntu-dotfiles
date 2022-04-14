@@ -333,8 +333,6 @@ local function setup_packer(packer_bootstrap)
 					},
 				})
 				ws.register({
-					J = { ":m '>+1<CR>gv=gv", "Move lines below" },
-					K = { ":m '<-2<CR>gv=gv", "Move lines above" },
 					["<"] = { "<gv", "Deindent lines" },
 					[">"] = { ">gv", "Indent lines" },
 					["<Leader>y"] = "Yank to clipboard",
@@ -891,7 +889,6 @@ local function setup_packer(packer_bootstrap)
 						enable = true,
 						keymaps = {
 							["."] = "textsubjects-smart",
-							[";"] = "textsubjects-container-outer",
 						},
 					},
 					textobjects = {
@@ -919,6 +916,84 @@ local function setup_packer(packer_bootstrap)
 						extended_mode = true,
 					},
 				})
+			end,
+		})
+		use({
+			"ziontee113/syntax-tree-surfer",
+			config = function()
+				local surfer = require("syntax-tree-surfer")
+				local wk = require("which-key")
+
+				wk.register({
+					J = {
+						function()
+							surfer.surf("next", "visual")
+						end,
+						"Surf to next node",
+					},
+					K = {
+						function()
+							surfer.surf("prev", "visual")
+						end,
+						"Surf to previous node",
+					},
+					H = {
+						function()
+							surfer.surf("parent", "visual")
+						end,
+						"Surf to parent node",
+					},
+					L = {
+						function()
+							surfer.surf("child", "visual")
+						end,
+						"Surf to child node",
+					},
+					["<A-J>"] = {
+						function()
+							surfer.surf("next", "visual", true)
+						end,
+						"Replace with next node",
+					},
+					["<A-K>"] = {
+						function()
+							surfer.surf("prev", "visual", true)
+						end,
+						"Replace with previous node",
+					},
+				}, { mode = "x" })
+
+				wk.register({
+					["<A-J>"] = {
+						function()
+							surfer.move("n", false)
+						end,
+						"Replace with next node",
+					},
+					["<A-K>"] = {
+						function()
+							surfer.move("n", true)
+						end,
+						"Replace with previous node",
+					},
+				})
+			end,
+		})
+		use({
+			"mfussenegger/nvim-treehopper",
+			config = function()
+				local wk = require("which-key")
+				local tsht = require("tsht")
+
+				-- NOTE: selection is lost when the keymap is registered using
+				-- which-key or using a Lua callback
+				vim.api.nvim_set_keymap("v", "<Leader>s", ":lua require('tsht').nodes()<CR>", {
+					noremap = true,
+				})
+
+				wk.register({
+					["<Leader>s"] = { tsht.nodes, "Select treesitter node" },
+				}, { mode = "o" })
 			end,
 		})
 
