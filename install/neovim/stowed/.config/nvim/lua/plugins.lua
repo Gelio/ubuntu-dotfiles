@@ -666,6 +666,9 @@ local function setup_packer(packer_bootstrap)
 
 		use({
 			"hrsh7th/nvim-cmp",
+			-- TODO: remove this constraint after a bug is fixed
+			-- https://github.com/hrsh7th/nvim-cmp/issues/899
+			commit = "3192a0c57837c1ec5bf298e4f3ec984c7d2d60c0",
 			config = function()
 				vim.opt.completeopt = { "menuone", "noselect" }
 
