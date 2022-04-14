@@ -664,9 +664,6 @@ local function setup_packer(packer_bootstrap)
 
 		use({
 			"hrsh7th/nvim-cmp",
-			-- TODO: remove this constraint after a bug is fixed
-			-- https://github.com/hrsh7th/nvim-cmp/issues/899
-			commit = "3192a0c57837c1ec5bf298e4f3ec984c7d2d60c0",
 			config = function()
 				vim.opt.completeopt = { "menuone", "noselect" }
 
@@ -703,13 +700,12 @@ local function setup_packer(packer_bootstrap)
 							vim.fn["vsnip#anonymous"](args.body)
 						end,
 					},
-					mapping = {
+					mapping = cmp.mapping.preset.insert({
 						["<C-Space>"] = cmp.mapping.complete(),
-						["<C-y>"] = cmp.mapping.close(),
 						["<C-d>"] = cmp.mapping.scroll_docs(4),
 						["<C-u>"] = cmp.mapping.scroll_docs(-4),
 						["<CR>"] = cmp.mapping.confirm({ select = false }),
-					},
+					}),
 					sources = sources,
 					formatting = {
 						format = require("lspkind").cmp_format({ mode = "symbol_text", menu = source_labels }),
