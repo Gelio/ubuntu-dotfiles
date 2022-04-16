@@ -41,7 +41,7 @@ lsp_installer.on_server_ready(function(server)
 	end
 end)
 
-vim.api.nvim_add_user_command("InstallDefaultLspServers", function()
+vim.api.nvim_create_user_command("InstallDefaultLspServers", function()
 	for server_name in pairs(server_handlers) do
 		lsp_installer.install(server_name)
 	end

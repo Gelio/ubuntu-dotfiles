@@ -1190,21 +1190,21 @@ local function setup_packer(packer_bootstrap)
 				})
 
 				local dap = require("dap")
-				local add_command = vim.api.nvim_add_user_command
+				local create_command = vim.api.nvim_create_user_command
 				local utils = require("utils")
 
 				-- TODO: support adding logpoints and conditional breakpoints
-				add_command("DapToggleBreakpoint", utils.execute_function_without_args(dap.toggle_breakpoint), {})
-				add_command("DapContinue", utils.execute_function_without_args(dap.continue), {})
-				add_command("DapStepOver", utils.execute_function_without_args(dap.step_over), {})
-				add_command("DapStepInto", utils.execute_function_without_args(dap.step_into), {})
-				add_command("DapStepOut", utils.execute_function_without_args(dap.step_out), {})
-				add_command("DapTerminate", utils.execute_function_without_args(dap.terminate), {})
-				add_command("DapRunToCursor", utils.execute_function_without_args(dap.run_to_cursor), {})
-				add_command("DapReplOpen", utils.execute_function_without_args(dap.repl.open), {})
-				add_command("DapReplToggle", utils.execute_function_without_args(dap.repl.toggle), {})
-				add_command("DapReplClose", utils.execute_function_without_args(dap.repl.close), {})
-				add_command("DapStatus", function()
+				create_command("DapToggleBreakpoint", utils.execute_function_without_args(dap.toggle_breakpoint), {})
+				create_command("DapContinue", utils.execute_function_without_args(dap.continue), {})
+				create_command("DapStepOver", utils.execute_function_without_args(dap.step_over), {})
+				create_command("DapStepInto", utils.execute_function_without_args(dap.step_into), {})
+				create_command("DapStepOut", utils.execute_function_without_args(dap.step_out), {})
+				create_command("DapTerminate", utils.execute_function_without_args(dap.terminate), {})
+				create_command("DapRunToCursor", utils.execute_function_without_args(dap.run_to_cursor), {})
+				create_command("DapReplOpen", utils.execute_function_without_args(dap.repl.open), {})
+				create_command("DapReplToggle", utils.execute_function_without_args(dap.repl.toggle), {})
+				create_command("DapReplClose", utils.execute_function_without_args(dap.repl.close), {})
+				create_command("DapStatus", function()
 					print(dap.status())
 				end, {})
 			end,
@@ -1216,13 +1216,13 @@ local function setup_packer(packer_bootstrap)
 				local dapui = require("dapui")
 				dapui.setup()
 
-				local add_command = vim.api.nvim_add_user_command
+				local create_command = vim.api.nvim_create_user_command
 				local utils = require("utils")
 
-				add_command("DapUIOpen", utils.execute_function_without_args(dapui.open), {})
-				add_command("DapUIClose", utils.execute_function_without_args(dapui.close), {})
-				add_command("DapUI", utils.execute_function_without_args(dapui.toggle), {})
-				add_command("DapUIEval", function(args)
+				create_command("DapUIOpen", utils.execute_function_without_args(dapui.open), {})
+				create_command("DapUIClose", utils.execute_function_without_args(dapui.close), {})
+				create_command("DapUI", utils.execute_function_without_args(dapui.toggle), {})
+				create_command("DapUIEval", function(args)
 					dapui.eval(string.len(args.args) > 0 and args.args or nil)
 				end, {
 					nargs = "?",
