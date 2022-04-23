@@ -600,7 +600,6 @@ local function setup_packer(packer_bootstrap)
 					o = { "<cmd>Telescope oldfiles<CR>", "Old files" },
 					r = { "<cmd>Telescope lsp_references<CR>", "LSP references" },
 					s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "LSP workspace symbols" },
-					["ac"] = { "<cmd>Telescope lsp_code_actions<CR>", "LSP code actions" },
 				}, {
 					prefix = "<Leader>f",
 				})
