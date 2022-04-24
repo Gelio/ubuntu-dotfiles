@@ -39,6 +39,7 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 		use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+		use({ "lewis6991/impatient.nvim" })
 
 		use({
 			"ojroques/vim-oscyank",

@@ -83,5 +83,28 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	})
 end
 
+local function load_impatient_nvim()
+	-- NOTE: use pcall to ignore errors if impatient has not been installed yet.
+	-- This happens during initial Neovim setup before :PackerSync is called.
+	local success, error = pcall(function()
+		require("impatient")
+	end)
+
+	if success then
+		return
+	end
+
+	if string.find(error, "module 'impatient' not found") then
+		print("The impatient.nvim is not installed and cannot be loaded. Run :PackerSync to install it.")
+		return
+	end
+
+	vim.fn.echoerr("Unexpected error while trying to load impatient.nvim")
+	print(error)
+end
+
 require("globals")
+-- NOTE: load impatient.nvim before loading any other plugin via packer
+-- See https://github.com/lewis6991/impatient.nvim
+load_impatient_nvim()
 require("plugins")(packer_bootstrap)
