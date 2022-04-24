@@ -23,6 +23,11 @@ vim.o.expandtab = true
 
 vim.opt.path:remove("/usr/include")
 
+-- NOTE: use filetype.lua
+-- See https://github.com/neovim/neovim/pull/16600
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
+
 vim.o.list = true
 -- Source: https://github.com/tjdevries/cyclist.vim
 vim.opt.listchars = {
