@@ -1,48 +1,42 @@
 local utils = require("lsp.utils")
 local lsp_installer = require("nvim-lsp-installer")
 
-local function setup_server_with_config(config)
-	---@param server Server
-	return function(server)
-		return server:setup(config)
+lsp_installer.setup({})
+
+local default_server_config = utils.base_config
+
+---Configs for known LSP servers.
+---Presence of a server in this table means it will get installed
+---by `:InstallDefaultLspServers`
+local server_configs = {
+	-- Use null_ls for formatting
+	gopls = utils.base_config_without_formatting,
+	jsonls = require("lsp.jsonls").config,
+	-- Conflicts with prettier formatting in TS files.
+	stylelint_lsp = utils.base_config_without_formatting,
+	sumneko_lua = require("lsp.lua").config,
+	tsserver = require("lsp.tsserver").config,
+	texlab = require("lsp.tex").config,
+	rust_analyzer = default_server_config,
+	bashls = default_server_config,
+	cssls = default_server_config,
+	svelte = default_server_config,
+	eslint = default_server_config,
+	yamlls = default_server_config,
+	vimls = default_server_config,
+}
+
+local lspconfig = require("lspconfig")
+local function setup_lsp_servers()
+	for server_name, server_config in pairs(server_configs) do
+		lspconfig[server_name].setup(server_config)
 	end
 end
 
-local default_server_handler = setup_server_with_config(utils.base_config)
-
----Custom handlers for known LSP servers.
----`nil` will use the default handler with the default config.
----Presence of a server in this config means it will get installed
----by `:InstallDefaultLspServers`
-local server_handlers = {
-	-- Use null_ls for formatting
-	gopls = setup_server_with_config(utils.base_config_without_formatting),
-	jsonls = setup_server_with_config(require("lsp.jsonls").config),
-	-- Conflicts with prettier formatting in TS files.
-	stylelint_lsp = setup_server_with_config(utils.base_config_without_formatting),
-	sumneko_lua = setup_server_with_config(require("lsp.lua").config),
-	tsserver = setup_server_with_config(require("lsp.tsserver").config),
-	texlab = setup_server_with_config(require("lsp.tex").config),
-	rust_analyzer = default_server_handler,
-	bashls = default_server_handler,
-	cssls = default_server_handler,
-	svelte = default_server_handler,
-	eslint = default_server_handler,
-	yamlls = default_server_handler,
-	vimls = default_server_handler,
-}
-
-lsp_installer.on_server_ready(function(server)
-	local custom_handler = server_handlers[server.name]
-	if custom_handler ~= nil then
-		custom_handler(server)
-	else
-		server:setup(utils.base_config)
-	end
-end)
+setup_lsp_servers()
 
 vim.api.nvim_create_user_command("InstallDefaultLspServers", function()
-	for server_name in pairs(server_handlers) do
+	for server_name in pairs(server_configs) do
 		lsp_installer.install(server_name)
 	end
 end, {})
