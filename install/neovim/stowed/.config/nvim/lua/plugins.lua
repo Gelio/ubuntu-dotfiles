@@ -282,7 +282,7 @@ local function setup_packer(packer_bootstrap)
 			config = function()
 				require("which-key").register({
 					["<Leader>G"] = {
-						":FloatermNew --width=0.85 --height=0.85 lazygit<CR>",
+						":FloatermNew --width=0.95 --height=0.95 lazygit<CR>",
 						"lazygit in floating terminal",
 					},
 				})
