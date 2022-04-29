@@ -1,8 +1,6 @@
 local utils = require("lsp.utils")
 local lsp_installer = require("nvim-lsp-installer")
 
-lsp_installer.setup({})
-
 local default_server_config = utils.base_config
 
 ---Configs for known LSP servers.
@@ -26,6 +24,10 @@ local server_configs = {
 	vimls = default_server_config,
 }
 
+lsp_installer.setup({
+	ensure_installed = vim.tbl_keys(server_configs),
+})
+
 local lspconfig = require("lspconfig")
 local function setup_lsp_servers()
 	for server_name, server_config in pairs(server_configs) do
@@ -34,12 +36,6 @@ local function setup_lsp_servers()
 end
 
 setup_lsp_servers()
-
-vim.api.nvim_create_user_command("InstallDefaultLspServers", function()
-	for server_name in pairs(server_configs) do
-		lsp_installer.install(server_name)
-	end
-end, {})
 
 require("lsp.java").setup()
 require("lsp.null-ls").setup()
