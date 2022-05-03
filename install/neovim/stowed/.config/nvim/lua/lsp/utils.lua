@@ -6,52 +6,58 @@ local function setup_lsp_keymaps(client, bufnr)
 	end
 
 	local wk = require("which-key")
-	local capabilities = client.resolved_capabilities
+	local capabilities = client.server_capabilities
 
 	wk.register({
 		g = {
-			D = if_enabled(capabilities.declaration, { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" }),
+			D = if_enabled(
+				capabilities.declarationProvider,
+				{ "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" }
+			),
 			d = if_enabled(
-				capabilities.goto_definition,
+				capabilities.definitionProvider,
 				{ "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" }
 			),
 			i = if_enabled(
-				capabilities.implementation,
+				capabilities.implementationProvider,
 				{ "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" }
 			),
 			r = if_enabled(
-				capabilities.find_references,
+				capabilities.referencesProvider,
 				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
 			),
-			["<Leader>c"] = if_enabled(capabilities.call_hierarchy, {
+			["<Leader>c"] = if_enabled(capabilities.callHierarchyProvide, {
 				name = "Symbol calls",
 				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
 				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
 			}),
 			["<Leader>t"] = if_enabled(
-				capabilities.type_definition,
+				capabilities.typeDefinitionProvider,
 				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
 			),
 		},
-		["<C-W>gd"] = if_enabled(capabilities.goto_definition, {
+		["<C-W>gd"] = if_enabled(capabilities.definitionProvider, {
 			"<cmd>tab split | norm gd<CR>",
 			"Go to definition in a new tab",
 		}),
 		["<Leader>"] = {
-			rn = if_enabled(capabilities.rename, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
+			rn = if_enabled(capabilities.renameProvider, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			d = {
 				function()
 					vim.diagnostic.open_float(0, { scope = "line" })
 				end,
 				"Show diagnostics for current line",
 			},
-			ac = if_enabled(capabilities.code_action, { "<cmd>CodeActionMenu<CR>", "Code actions" }),
+			ac = if_enabled(capabilities.codeActionProvider, { "<cmd>CodeActionMenu<CR>", "Code actions" }),
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
-			ar = if_enabled(capabilities.code_action, { "<cmd>CodeActionMenu<CR>", "Range code actions", mode = "v" }),
+			ar = if_enabled(
+				capabilities.codeActionProvider,
+				{ "<cmd>CodeActionMenu<CR>", "Range code actions", mode = "v" }
+			),
 		},
-		K = if_enabled(capabilities.hover, { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
+		K = if_enabled(capabilities.hoverProvider, { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
 		["<C-k>"] = if_enabled(
-			capabilities.signature_help,
+			capabilities.signatureHelpProvider,
 			{ "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" }
 		),
 		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
@@ -64,20 +70,25 @@ end
 local function setup_formatting(client, bufnr)
 	local wk = require("which-key")
 
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		wk.register({
-			["<Leader>F"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format" },
+			["<Leader>F"] = {
+				function()
+					vim.lsp.buf.format({ async = true })
+				end,
+				"Format",
+			},
 		}, {
 			buffer = bufnr,
 		})
 		vim.cmd([[
       augroup SyncFormatting
-        autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+        autocmd! BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })
       augroup END
     ]])
 	end
 
-	if client.resolved_capabilities.document_range_formatting then
+	if client.server_capabilities.documentRangeFormattingProvider then
 		wk.register({
 			["<Leader>F"] = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format range" },
 		}, {
@@ -88,7 +99,7 @@ local function setup_formatting(client, bufnr)
 end
 
 local function setup_document_highlight(client)
-	if not client.resolved_capabilities.document_highlight then
+	if not client.server_capabilities.documentHighlightProvider then
 		return
 	end
 
@@ -139,8 +150,8 @@ end
 -- Useful when multiple clients are capable of formatting
 -- but we want to enable only one of them.
 function M.disable_formatting(client)
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
+	client.server_capabilities.documentFormattingProvider = false
+	client.server_capabilities.documentRangeFormattingProvider = false
 end
 
 -- Base config for LSP's setup method
