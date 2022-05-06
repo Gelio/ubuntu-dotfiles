@@ -226,4 +226,8 @@ for_window [class=".*"] border pixel 1
 gaps inner 10
 gaps outer 10
 
+# Make zoom notifications floating
+# See https://www.reddit.com/r/i3wm/comments/mcwpur/how_do_i_make_zoom_notification_popups_floating/
+for_window [title="^zoom $" class="[zoom]*"] floating enable
+
 # vim: sw=4
