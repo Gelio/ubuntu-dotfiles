@@ -14,9 +14,18 @@ sudo apt install libxext-dev libxcb1-dev libxcb-damage0-dev \
 pip3 install --user meson
 
 cd ~/.local
-[[ ! -d picom ]] && git clone git@github.com:yshui/picom.git
-cd picom
+if [[ -d picom ]]; then
+  cd picom
+  git pull
+  # NOTE: cleans previous build artifacts. Not doing so sometimes causes
+  # Meson and Ninja to be confused.
+  git clean -xdf
+else
+  git clone git@github.com:yshui/picom.git
+  cd picom
+fi
+
 git submodule update --init --recursive
 meson --buildtype=release . build
 ninja -C build
-ln -s "$PWD/build/src/picom" ~/.local/bin
+[[ ! -f ~/.local/bin/picom ]] && ln -s "$PWD/build/src/picom" ~/.local/bin/picom || echo "Symlink already exists, skipping"
