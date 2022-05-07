@@ -144,9 +144,9 @@ bindsym $mod+r mode $resizeMode
 # System controls mode
 set $systemControlMode "system-control"
 mode $systemControlMode {
-    bindsym l exec --no-startup-id $exitMode && betterlockscreen -l dim
+    bindsym l exec --no-startup-id $exitMode && lock-screen.sh
     bindsym e exit
-    bindsym s exec --no-startup-id $exitMode && systemctl suspend
+    bindsym s exec --no-startup-id $exitMode && lock-screen.sh && systemctl suspend
     bindsym r exec --no-startup-id systemctl reboot
     bindsym p exec --no-startup-id systemctl poweroff
 
@@ -197,7 +197,7 @@ exec --no-startup-id redshift-gtk &
 exec --no-startup-id libinput-gestures-setup start
 
 exec --no-startup-id xidlehook --not-when-fullscreen \
-    --timer 300 "betterlockscreen -l dim" "" \
+    --timer 300 "lock-screen.sh" "" \
     --timer 60 "xset dpms force off" "" \
     --timer 3600 "systemctl suspend" "" \
     --socket "/tmp/xidlehook.sock" &

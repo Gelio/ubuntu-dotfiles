@@ -81,7 +81,7 @@
             "enabled": true,
             "id": "screensaver",
             "settings": {
-                "command": "betterlockscreen -l dim",
+                "command": "lock-screen.sh",
                 "min_seconds": 10.0
             },
             "version": "0.0.2"
