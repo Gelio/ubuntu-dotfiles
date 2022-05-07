@@ -15,7 +15,7 @@ sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
 echo "Run lxappearance and set the theme (perhaps Adwaita-dark)"
 echo "Run xfce4-power-manager-settings and set correct power-level behavior"
 
-# https://github.com/Mange/rofi-emoji
+# https://github.com/fdw/rofimoji
 echo "Installing rofimoji"
 pip install --user rofimoji
 
