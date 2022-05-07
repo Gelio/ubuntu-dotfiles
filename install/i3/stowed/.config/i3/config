@@ -146,7 +146,7 @@ set $systemControlMode "system-control"
 mode $systemControlMode {
     bindsym l exec --no-startup-id $exitMode && lock-screen.sh
     bindsym e exit
-    bindsym s exec --no-startup-id $exitMode && lock-screen.sh && systemctl suspend
+    bindsym s exec --no-startup-id $exitMode && lock-screen.sh --fork && systemctl suspend
     bindsym r exec --no-startup-id systemctl reboot
     bindsym p exec --no-startup-id systemctl poweroff
 
