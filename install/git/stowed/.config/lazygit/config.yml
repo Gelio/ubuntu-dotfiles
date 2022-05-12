@@ -3,6 +3,13 @@ gui:
   # diff
   scrollHeight: 10
   showIcons: true
+  theme:
+    # NOTE: the default blue background makes the selection unreadable because
+    # the contrast is too low
+    selectedLineBgColor:
+      - default
+    selectedRangeBgColor:
+      - default
 git:
   paging:
     colorArg: always
