@@ -2,6 +2,7 @@ gui:
   # NOTE: by default it scrolls by 2 lines. It is slow to scroll through a long
   # diff
   scrollHeight: 10
+  showIcons: true
 git:
   paging:
     colorArg: always
