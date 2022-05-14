@@ -606,7 +606,8 @@ local function setup_packer(packer_bootstrap)
 
 				require("telescope").setup({
 					defaults = {
-						file_ignore_patterns = { "\\.git/.*", "\\.yarn/.*" },
+						-- NOTE: Lua regexps https://www.lua.org/manual/5.1/manual.html#5.4.1
+						file_ignore_patterns = { "%.git/", "%.yarn/" },
 						path_display = { ["truncate"] = 2 },
 					},
 				})
