@@ -1164,7 +1164,7 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 		use({
-			"chentau/marks.nvim",
+			"chentoast/marks.nvim",
 			config = function()
 				require("marks").setup({})
 			end,
