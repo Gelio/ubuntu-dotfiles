@@ -609,6 +609,11 @@ local function setup_packer(packer_bootstrap)
 						-- NOTE: Lua regexps https://www.lua.org/manual/5.1/manual.html#5.4.1
 						file_ignore_patterns = { "%.git/", "%.yarn/" },
 						path_display = { ["truncate"] = 2 },
+						mappings = {
+							n = {
+								dd = require("telescope.actions").delete_buffer,
+							},
+						},
 					},
 				})
 			end,
