@@ -75,9 +75,6 @@ local function setup_packer(packer_bootstrap)
 			"kyazdani42/nvim-tree.lua",
 			requires = "kyazdani42/nvim-web-devicons",
 			config = function()
-				vim.g.nvim_tree_git_hl = 1
-				vim.g.nvim_tree_group_empty = 1
-
 				require("nvim-tree").setup({
 					hijack_netrw = true,
 					diagnostics = {
@@ -121,6 +118,10 @@ local function setup_packer(packer_bootstrap)
 								},
 							},
 						},
+					},
+					renderer = {
+						group_empty = true,
+						highlight_git = true,
 					},
 					actions = {
 						change_dir = {
