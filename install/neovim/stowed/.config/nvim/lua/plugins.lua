@@ -122,6 +122,9 @@ local function setup_packer(packer_bootstrap)
 					renderer = {
 						group_empty = true,
 						highlight_git = true,
+						indent_markers = {
+							enable = true,
+						},
 					},
 					actions = {
 						change_dir = {
