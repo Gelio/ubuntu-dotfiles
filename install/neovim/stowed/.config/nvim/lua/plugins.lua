@@ -119,14 +119,17 @@ local function setup_packer(packer_bootstrap)
 					end
 
 					local current_file_name = get_current_file_name()
+					-- NOTE: use noautocmd when restoring the alternate file because it
+					-- is only used to set the alternate file. We will not be editing it,
+					-- since we switch to the new file.
 					if current_file_name == alternate_file_info.file_name then
 						-- NOTE: when opening the file which the current NvimTree buffer
 						-- replaced, we should restore that buffer's alternate file.
-						vim.cmd("edit " .. alternate_file_info.alternate_file_name)
+						vim.cmd("noautocmd edit " .. alternate_file_info.alternate_file_name)
 					else
 						-- NOTE: use the file which the NvimTree replaced as the new
 						-- alternative file
-						vim.cmd("edit " .. alternate_file_info.file_name)
+						vim.cmd("noautocmd edit " .. alternate_file_info.file_name)
 					end
 
 					vim.cmd("edit " .. current_file_name)
