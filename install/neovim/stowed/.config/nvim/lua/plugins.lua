@@ -166,6 +166,7 @@ local function setup_packer(packer_bootstrap)
 									action = "split_right",
 									action_cb = function(node)
 										vim.cmd("vsplit " .. vim.fn.fnameescape(node.absolute_path))
+										vim.cmd("wincmd p")
 									end,
 								},
 								{
@@ -173,6 +174,7 @@ local function setup_packer(packer_bootstrap)
 									action = "split_bottom",
 									action_cb = function(node)
 										vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
+										vim.cmd("wincmd p")
 									end,
 								},
 								-- NOTE: override the "open in new tab" mapping to fix the error
