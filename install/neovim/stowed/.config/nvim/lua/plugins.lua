@@ -75,6 +75,63 @@ local function setup_packer(packer_bootstrap)
 			"kyazdani42/nvim-tree.lua",
 			requires = "kyazdani42/nvim-web-devicons",
 			config = function()
+				---@class AlternateFileInfo A structure to remember information about the alternate file when using NvimTree.
+				---@field file_name string
+				---@field alternate_file_name string
+
+				local alternate_file = {
+					variable_name = "nvim_tree_alternate_file",
+				}
+				---@return string
+				local function get_current_file_name()
+					return vim.api.nvim_buf_get_name(0)
+				end
+				---@return string
+				local function get_alternate_file_name()
+					return vim.fn.expand("#")
+				end
+
+				function alternate_file.remember()
+					---@type AlternateFileInfo
+					local alternate_file_info = {
+						alternate_file_name = get_alternate_file_name(),
+						file_name = get_current_file_name(),
+					}
+					vim.w[alternate_file.variable_name] = alternate_file_info
+				end
+
+				function alternate_file.restore()
+					if get_alternate_file_name() ~= "" then
+						vim.notify(
+							"Alternate file was present when trying to restore it. Maybe NvimTree added support for restoring alternate files?",
+							vim.log.levels.TRACE
+						)
+					end
+
+					---@type AlternateFileInfo
+					local alternate_file_info = vim.w[alternate_file.variable_name]
+					if alternate_file_info == nil then
+						-- NOTE: if no alternate file information was found, this means
+						-- that NvimTree was opened in a way that did not trigger
+						-- remembering that information. For example, via opening the
+						-- directory directly :e %:h
+						return
+					end
+
+					local current_file_name = get_current_file_name()
+					if current_file_name == alternate_file_info.file_name then
+						-- NOTE: when opening the file which the current NvimTree buffer
+						-- replaced, we should restore that buffer's alternate file.
+						vim.cmd("edit " .. alternate_file_info.alternate_file_name)
+					else
+						-- NOTE: use the file which the NvimTree replaced as the new
+						-- alternative file
+						vim.cmd("edit " .. alternate_file_info.file_name)
+					end
+
+					vim.cmd("edit " .. current_file_name)
+				end
+
 				require("nvim-tree").setup({
 					hijack_netrw = true,
 					diagnostics = {
@@ -88,7 +145,15 @@ local function setup_packer(packer_bootstrap)
 								-- NOTE: default to editing the file in place, netrw-style
 								{
 									key = { "<C-e>", "o", "<CR>" },
-									action = "edit_in_place",
+									action = "edit_in_place_preserving_alternate_file",
+									action_cb = function(node)
+										require("nvim-tree.actions").on_keypress("edit_in_place")
+
+										local regular_file = not node.nodes
+										if regular_file then
+											alternate_file.restore()
+										end
+									end,
 								},
 								-- NOTE: override the "split" to avoid treating nvim-tree
 								-- window as special. Splits will appear as if nvim-tree was a
@@ -146,7 +211,13 @@ local function setup_packer(packer_bootstrap)
 
 				require("which-key").register({
 					["-"] = {
-						require("nvim-tree").open_replacing_current_buffer,
+						function()
+							-- NOTE: remembering the alternate file only works for "-".
+							-- It does not work when opening a directory directly
+							-- (e.g. via :e %:h)
+							alternate_file.remember()
+							require("nvim-tree").open_replacing_current_buffer()
+						end,
 						"NvimTree in place",
 					},
 				})
