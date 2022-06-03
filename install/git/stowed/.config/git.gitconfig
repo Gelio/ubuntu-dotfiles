@@ -56,4 +56,7 @@
   # https://github.com/dandavison/delta/#merge-conflicts
   conflictstyle = diff3
 
+[init]
+	defaultBranch = main
+
 # vi: filetype=gitconfig
