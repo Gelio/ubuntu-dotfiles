@@ -22,6 +22,7 @@ local server_configs = {
 	eslint = default_server_config,
 	yamlls = default_server_config,
 	vimls = default_server_config,
+	marksman = default_server_config,
 }
 
 lsp_installer.setup({
