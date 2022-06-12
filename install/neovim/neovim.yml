@@ -1,0 +1,11 @@
+---
+# An STD for neovim API
+# https://kampfkarren.github.io/selene/usage/std.html
+base: lua52
+name: neovim
+globals:
+  TreeExplorer:
+    # Comes from nvim-tree
+    any: true
+  vim:
+    any: true
