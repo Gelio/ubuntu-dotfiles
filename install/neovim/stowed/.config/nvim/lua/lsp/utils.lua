@@ -44,7 +44,12 @@ local function setup_lsp_keymaps(client, bufnr)
 			rn = if_enabled(capabilities.renameProvider, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			d = {
 				function()
-					vim.diagnostic.open_float(0, { scope = "line" })
+					vim.diagnostic.open_float({
+						scope = "line",
+						format = function(diagnostic)
+							return string.format("%s [%s]: %s", diagnostic.source, diagnostic.code, diagnostic.message)
+						end,
+					})
 				end,
 				"Show diagnostics for current line",
 			},
