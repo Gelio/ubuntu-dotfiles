@@ -136,6 +136,15 @@ end
 -- Takes care of autocomplete support using snippets for some LSP servers (cssls, jsonls)
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require("cmp_nvim_lsp").update_capabilities(M.capabilities)
+-- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+M.capabilities = vim.tbl_deep_extend("force", M.capabilities, {
+	textDocument = {
+		foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		},
+	},
+})
 
 -- Return a function that runs functions passed in the argument.
 -- They will be called in the same order that they were passed in.

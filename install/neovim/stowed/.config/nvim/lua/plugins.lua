@@ -914,10 +914,6 @@ local function setup_packer(packer_bootstrap)
 				"JoosepAlviste/nvim-ts-context-commentstring",
 			},
 			config = function()
-				vim.o.foldmethod = "expr"
-				vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-				vim.o.foldlevel = 20
-
 				require("nvim-treesitter.configs").setup({
 					ensure_installed = {
 						"bash",
@@ -995,6 +991,16 @@ local function setup_packer(packer_bootstrap)
 						extended_mode = true,
 					},
 				})
+			end,
+		})
+		use({
+			"kevinhwang91/nvim-ufo",
+			requires = "kevinhwang91/promise-async",
+			config = function()
+				vim.o.foldlevel = 99
+				vim.o.foldenable = true
+
+				require("ufo").setup()
 			end,
 		})
 		use({
