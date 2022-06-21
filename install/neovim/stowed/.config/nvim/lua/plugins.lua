@@ -1084,8 +1084,19 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
+			"stevearc/dressing.nvim",
+			config = function()
+				require("dressing").setup({
+					input = {
+						-- NOTE: the input is usually too small to handle file paths in nvim-tree
+						-- and it does not support C-f to edit the value in a new window
+						enabled = false,
+					},
+				})
+			end,
+		})
+		use({
 			"ziontee113/icon-picker.nvim",
-			requires = { "stevearc/dressing.nvim" },
 			config = function()
 				require("icon-picker")
 
