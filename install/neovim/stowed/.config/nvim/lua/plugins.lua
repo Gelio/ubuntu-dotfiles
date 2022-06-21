@@ -1088,7 +1088,14 @@ local function setup_packer(packer_bootstrap)
 			config = function()
 				require("icon-picker")
 
-				vim.keymap.set("i", "<C-e>", "<cmd>PickIconsInsert<CR>", { noremap = true, silent = true })
+				vim.keymap.set(
+					"i",
+					-- Requires special terminal configuration to work
+					-- @see https://github.com/ziontee113/yt-tutorials/tree/nvim_key_combos_in_alacritty_and_kitty
+					"<C-i>",
+					"<cmd>PickIconsInsert<CR>",
+					{ noremap = true, silent = true }
+				)
 			end,
 		})
 
