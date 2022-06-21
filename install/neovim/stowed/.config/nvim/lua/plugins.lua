@@ -1082,6 +1082,16 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 
+		use({
+			"ziontee113/icon-picker.nvim",
+			requires = { "stevearc/dressing.nvim" },
+			config = function()
+				require("icon-picker")
+
+				vim.keymap.set("i", "<C-e>", "<cmd>PickIconsInsert<CR>", { noremap = true, silent = true })
+			end,
+		})
+
 		use("editorconfig/editorconfig-vim")
 		use("sudormrfbin/cheatsheet.nvim")
 		use("aklt/plantuml-syntax")
