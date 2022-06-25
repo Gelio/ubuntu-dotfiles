@@ -820,6 +820,7 @@ local function setup_packer(packer_bootstrap)
 				require("luasnip").config.set_config({
 					update_events = "TextChanged,TextChangedI",
 				})
+				require("snippets").setup()
 
 				-- https://github.com/L3MON4D3/LuaSnip#keymaps
 				vim.cmd([[
