@@ -759,7 +759,7 @@ local function setup_packer(packer_bootstrap)
 						{ name = "nvim_lsp", label = "LSP" },
 						{ name = "crates", label = "crates.nvim" },
 						{ name = "npm" },
-						{ name = "vsnip" },
+						{ name = "luasnip" },
 						{ name = "nvim_lua" },
 						{ name = "path" },
 						{ name = "buffer", keyword_length = 4 },
@@ -783,7 +783,7 @@ local function setup_packer(packer_bootstrap)
 				cmp.setup({
 					snippet = {
 						expand = function(args)
-							vim.fn["vsnip#anonymous"](args.body)
+							require("luasnip").lsp_expand(args.body)
 						end,
 					},
 					mapping = cmp.mapping.preset.insert({
@@ -797,19 +797,8 @@ local function setup_packer(packer_bootstrap)
 						format = require("lspkind").cmp_format({ mode = "symbol_text", menu = source_labels }),
 					},
 				})
-
-				-- https://github.com/hrsh7th/vim-vsnip#2-setting
-				vim.cmd([[
-          imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-          smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-          imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-          smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-        ]])
 			end,
 			requires = {
-				"hrsh7th/vim-vsnip",
-				"hrsh7th/vim-vsnip-integ",
-				"hrsh7th/cmp-vsnip",
 				"hrsh7th/cmp-buffer",
 				"Saecki/crates.nvim",
 				"hrsh7th/cmp-path",
@@ -820,7 +809,30 @@ local function setup_packer(packer_bootstrap)
 				"rafamadriz/friendly-snippets",
 				"hrsh7th/cmp-emoji",
 				"onsails/lspkind-nvim",
+				"L3MON4D3/LuaSnip",
+				"saadparwaiz1/cmp_luasnip",
 			},
+		})
+		use({
+			"L3MON4D3/LuaSnip",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip").config.set_config({
+					update_events = "TextChanged,TextChangedI",
+				})
+
+				-- https://github.com/L3MON4D3/LuaSnip#keymaps
+				vim.cmd([[
+          imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
+          inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+
+          snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+          snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+          imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+          smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+        ]])
+			end,
 		})
 		use({
 			"Saecki/crates.nvim",
