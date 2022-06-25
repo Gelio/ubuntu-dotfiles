@@ -707,6 +707,7 @@ local function setup_packer(packer_bootstrap)
 				vim.opt.shortmess:append("c")
 
 				require("lsp")
+				require("dim").setup({})
 			end,
 			requires = {
 				"jose-elias-alvarez/nvim-lsp-ts-utils",
@@ -714,6 +715,7 @@ local function setup_packer(packer_bootstrap)
 				"mfussenegger/nvim-jdtls",
 				"b0o/SchemaStore.nvim",
 				"williamboman/nvim-lsp-installer",
+				"narutoxy/dim.lua",
 			},
 		})
 
