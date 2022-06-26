@@ -3,7 +3,7 @@
 
 set $mod Mod4
 
-font pango:FiraCode Nerd Font Mono 16px
+font pango:FiraCode Nerd Font Mono 32px
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -157,7 +157,7 @@ bindsym $mod+Escape exec --no-startup-id i3-msg 'mode $systemControlMode' && not
     "L to lock\nE to exit i3\nS to suspend\nR to reboot\nP to power-off\nESC to return"
 
 bar {
-    font pango:FiraCode Nerd Font Mono, FontAwesome 16px
+    font pango:FiraCode Nerd Font Mono, FontAwesome 32px
     position top
     status_command ~/.cargo/bin/i3status-rs
     colors {
