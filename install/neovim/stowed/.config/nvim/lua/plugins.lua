@@ -954,6 +954,7 @@ local function setup_packer(packer_bootstrap)
 						"lua",
 						"make",
 						"markdown",
+						"markdown_inline",
 						"nix",
 						"python",
 						"regex",
