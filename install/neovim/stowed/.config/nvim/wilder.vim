@@ -19,7 +19,7 @@ call wilder#set_option('pipeline', [
       \ ])
 
 let s:search_renderer = wilder#wildmenu_renderer({
-	\	'highlighter': wilder#basic_highlighter(),
+    \ 'highlighter': wilder#basic_highlighter(),
     \   'right': [' ', wilder#wildmenu_index()],
     \   'apply_incsearch_fix': v:true,
     \ })
@@ -38,4 +38,4 @@ call wilder#set_option('renderer', wilder#renderer_mux({
     \ '?': s:search_renderer,
     \ }))
 
-" vim: tabstop=2,expandtab,softtabstop=2,shiftwidth=2
+" vim: set tabstop=2 expandtab softtabstop=2 shiftwidth=2:
