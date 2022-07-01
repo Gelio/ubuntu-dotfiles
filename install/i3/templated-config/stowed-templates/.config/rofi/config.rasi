@@ -3,7 +3,7 @@ configuration {
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/
-font: "mono 24";
+font: "mono {{ math.Mul 16 (ds "config").dpi }}px";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
