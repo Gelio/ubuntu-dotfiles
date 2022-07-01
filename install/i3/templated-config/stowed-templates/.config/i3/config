@@ -187,6 +187,7 @@ mouse_warping output
 exec --no-startup-id safeeyes
 exec --no-startup-id flameshot &
 exec --no-startup-id dunst &
+# TODO: start kitty and franz in specific workspaces https://stackoverflow.com/questions/65049414/in-i3wm-how-can-i-open-programs-on-another-workspace-at-startup
 exec --no-startup-id kitty &
 exec --no-startup-id franz &
 exec --no-startup-id xsettingsd &
