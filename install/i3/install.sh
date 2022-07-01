@@ -8,6 +8,7 @@ ROFIMOJI_PACKAGES="python3 python3-pip xdotool"
 LOCKSCREEN_PACKAGES="libxcb-screensaver0 libxcb-screensaver0-dev"
 
 sudo add-apt-repository ppa:regolith-linux/release
+# shellcheck disable=SC2086
 sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
   $ROFIMOJI_PACKAGES \
   $LOCKSCREEN_PACKAGES
@@ -38,3 +39,4 @@ echo "See https://github.com/phillipberndt/autorandr"
 ./install-redshift.sh
 ./update-safeeyes-config.sh
 ./install-ssh-ident.sh
+./install-gomplate.sh
