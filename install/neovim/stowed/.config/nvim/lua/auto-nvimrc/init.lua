@@ -13,11 +13,11 @@ local Path = require("plenary.path")
 local func = require("plenary.functional")
 
 ---Reads contents of a file.
----@param file_path "Path": A plenary Path
+---@param file_path Path: A plenary Path
 ---@return string "file contents"
 local read_file = async.wrap(Path.read, 2)
 
----@param path "Path"
+---@param path Path
 ---@return string
 local get_file_hash = function(path)
 	local contents = read_file(path)
@@ -46,7 +46,7 @@ local nvimrc_states = vim.tbl_add_reverse_lookup({
 
 ---@alias NvimrcConfig table<string, NvimrcInfo>
 
----@return "Path"
+---@return Path
 local function get_config_path()
 	return Path.new(vim.fn.stdpath("data"), "auto-nvimrc", "config.json")
 end
@@ -90,7 +90,7 @@ local choice_to_exec_status_mapping = {
 	[6] = "never_until_modified",
 }
 
----@param path "Path"
+---@param path Path
 ---@param ask_reason ask_reason
 ---@return NvimrcExecutionAnswer
 local function ask_for_file_execution(path, ask_reason)
@@ -120,13 +120,13 @@ local function ask_for_file_execution(path, ask_reason)
 end
 
 ---@class NvimrcProcessingResult
----@field path "Path"
+---@field path Path
 ---@field should_execute boolean
 ---@field new_info NvimrcInfo?
 
 ---Decides what to do about an nvimrc
 ---@param config NvimrcConfig
----@param nvimrc_path "Path"
+---@param nvimrc_path Path
 ---@return NvimrcProcessingResult[]
 local function process_nvimrc_path(config, nvimrc_path)
 	local nvimrc_info = config[nvimrc_path:absolute()]
