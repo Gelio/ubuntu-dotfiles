@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-stow -v --no-folding stowed -t "$HOME"
-sudo stow -v --no-folding systemd-stowed -t "/"
+stow -v --restow --no-folding stowed -t "$HOME"
+sudo stow -v --restow --no-folding systemd-stowed -t "/"
