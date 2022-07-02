@@ -23,7 +23,7 @@ scaled_height=$(bc <<<"($scale * $height + 0.5) / 1")
 laptop_output=$(xrandr | grep eDP | cut -d' ' -f1)
 xrandr --output "$laptop_output" --off
 
-xrandr --output HDMI-0 --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+0+0"
+xrandr --output HDMI-0 --auto --primary --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+0+0"
 xrandr --output DP-0 --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+${scaled_width}+0"
 ~/.fehbg
 
