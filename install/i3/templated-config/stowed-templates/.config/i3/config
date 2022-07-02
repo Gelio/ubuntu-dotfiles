@@ -187,8 +187,7 @@ mouse_warping output
 exec --no-startup-id safeeyes
 exec --no-startup-id flameshot &
 exec --no-startup-id dunst &
-# TODO: start kitty and franz in specific workspaces https://stackoverflow.com/questions/65049414/in-i3wm-how-can-i-open-programs-on-another-workspace-at-startup
-exec --no-startup-id kitty &
+exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
 exec --no-startup-id franz &
 exec --no-startup-id xsettingsd &
 exec --no-startup-id numlockx
@@ -215,12 +214,12 @@ client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
 # Set workspaces on correct displays
-set $laptopDisplay eDP1
-set $smallMonitor HDMI1
-set $largeMonitor DP1
-workspace $ws1 output $largeMonitor
-workspace $ws2 output $largeMonitor
-workspace $ws3 output $smallMonitor
+set $leftMonitor HDMI-0
+set $rightMonitor DP-0
+workspace $ws1 output $leftMonitor
+workspace $ws3 output $rightMonitor
+
+assign [class="^Franz$"] $ws3
 
 # i3-gaps
 for_window [class=".*"] border pixel 1
