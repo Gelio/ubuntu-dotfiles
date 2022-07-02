@@ -17,8 +17,12 @@ scale="1.333333333"
 scaled_width=$(bc <<<"($scale * $width + 0.5) / 1")
 scaled_height=$(bc <<<"($scale * $height + 0.5) / 1")
 
-# It is easier to disable the internal screen than make it usable
-xrandr --output eDP-1-0 --off
+# I could not get the internal screen to work when using --scale.
+# There were always xrandr errors related to RRSetPanning
+# NOTE: sometimes the laptop output is eDP-1-0 and sometimes eDP-1-1
+laptop_output=$(xrandr | grep eDP | cut -d' ' -f1)
+xrandr --output "$laptop_output" --off
+
 xrandr --output HDMI-0 --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+0+0"
 xrandr --output DP-0 --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+${scaled_width}+0"
 ~/.fehbg
