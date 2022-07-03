@@ -15,4 +15,5 @@ else
   echo "to change xrandr settings. Then, before 5 seconds pass, switch to the tty that has the X session."
 fi
 
-exec i3
+STARTUP=i3
+. /etc/X11/Xsession
