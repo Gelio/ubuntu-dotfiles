@@ -17,8 +17,8 @@ alternating_tint_bg = "#080808"
 
 [[block]]
 block = "memory"
-format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
-format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
+format_mem = "$mem_used.eng(3,B,M)/$mem_total.eng(3,B,M)($mem_used_percents.eng(2))"
+format_swap = "$swap_used.eng(3,B,M)/$swap_total.eng(3,B,M)($swap_used_percents.eng(2))"
 
 [[block]]
 block = "cpu"
@@ -27,29 +27,33 @@ interval = 1
 [[block]]
 block = "load"
 interval = 1
-format = "{1m}"
 
 [[block]]
 block = "music"
-buttons = ["play", "next"]
+format = "$combo.rot-str(25) $play $next|"
 
 [[block]]
 block = "battery"
-interval = 10
-format = "{percentage} {time}"
+format = "$percentage $time|$percentage"
 
 [[block]]
 block = "sound"
 device_kind = "sink"
-on_click = "pavucontrol"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
 
 [[block]]
 block = "sound"
 device_kind = "source"
-on_click = "pavucontrol"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
 
 [[block]]
 block = "time"
 # https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html#specifiers
 format = "%Y-%m-%d %k:%M"
-on_click = "gnome-calendar"
+[[block.click]]
+button = "left"
+cmd = "gnome-calendar"
