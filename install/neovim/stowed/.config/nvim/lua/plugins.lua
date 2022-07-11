@@ -150,7 +150,7 @@ local function setup_packer(packer_bootstrap)
 									key = { "<C-e>", "o", "<CR>" },
 									action = "edit_in_place_preserving_alternate_file",
 									action_cb = function(node)
-										require("nvim-tree.actions").on_keypress("edit_in_place")
+										require("nvim-tree.actions.dispatch").dispatch("edit_in_place")
 
 										local regular_file = not node.nodes
 										if regular_file then
