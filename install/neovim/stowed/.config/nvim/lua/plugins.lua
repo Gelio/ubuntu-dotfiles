@@ -217,11 +217,20 @@ local function setup_packer(packer_bootstrap)
 				require("which-key").register({
 					["-"] = {
 						function()
-							-- NOTE: remembering the alternate file only works for "-".
-							-- It does not work when opening a directory directly
-							-- (e.g. via :e %:h)
-							alternate_file.remember()
-							require("nvim-tree").open_replacing_current_buffer()
+							local buf_name = vim.api.nvim_buf_get_name(0)
+							if buf_name == "" then
+								-- NOTE: open nvim-tree for the current working directory
+								-- when pressing - on a new buffer.
+								-- This usually happens when opening nvim without arguments.
+								-- I then want `-` to open the directory tree.
+								vim.cmd(":edit .")
+							else
+								-- NOTE: remembering the alternate file only works for "-".
+								-- It does not work when opening a directory directly
+								-- (e.g. via :e %:h)
+								alternate_file.remember()
+								require("nvim-tree").open_replacing_current_buffer()
+							end
 						end,
 						"NvimTree in place",
 					},
