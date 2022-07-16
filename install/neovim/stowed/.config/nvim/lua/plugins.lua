@@ -1191,6 +1191,20 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
+			"nvim-lua/plenary.nvim",
+			config = function()
+				local group_id = vim.api.nvim_create_augroup("PlenaryTests", {})
+				vim.api.nvim_create_autocmd("BufEnter", {
+					pattern = { "*/tests/*_spec.lua", "*/test/*_spec.lua" },
+					group = group_id,
+					callback = function()
+						vim.keymap.set("n", "<Leader>te", "<Plug>PlenaryTestFile", { buffer = 0, remap = true })
+					end,
+				})
+			end,
+		})
+
+		use({
 			"petertriho/nvim-scrollbar",
 			config = function()
 				local function to_hex_color(num)
