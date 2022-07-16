@@ -11,7 +11,6 @@ local function setup_packer(packer_bootstrap)
 		use("wbthomason/packer.nvim")
 
 		use("tpope/vim-sensible")
-		use("tpope/vim-surround")
 		use("tpope/vim-repeat")
 		use("wellle/targets.vim")
 		use({
@@ -1105,6 +1104,13 @@ local function setup_packer(packer_bootstrap)
 				wk.register({
 					["<Leader>s"] = { tsht.nodes, "Select treesitter node" },
 				}, { mode = "o" })
+			end,
+		})
+
+		use({
+			"kylechui/nvim-surround",
+			config = function()
+				require("nvim-surround").setup({})
 			end,
 		})
 
