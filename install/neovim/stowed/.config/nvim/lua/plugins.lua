@@ -139,54 +139,58 @@ local function setup_packer(packer_bootstrap)
 					diagnostics = {
 						enable = true,
 					},
+					on_attach = function(bufnr)
+						local inject_node = require("nvim-tree.utils").inject_node
+
+						-- NOTE: default to editing the file in place, netrw-style
+						vim.keymap.set(
+							"n",
+							"o",
+							inject_node(function(node)
+								require("nvim-tree.actions.dispatch").dispatch("edit_in_place")
+
+								local regular_file = not node.nodes
+								if regular_file then
+									alternate_file.restore()
+								end
+							end),
+							{ buffer = bufnr, noremap = true }
+						)
+
+						-- NOTE: override the "split" to avoid treating nvim-tree
+						-- window as special. Splits will appear as if nvim-tree was a
+						-- regular window
+						vim.keymap.set(
+							"n",
+							"<C-v>",
+							inject_node(function(node)
+								vim.cmd("vsplit " .. vim.fn.fnameescape(node.absolute_path))
+								vim.cmd("wincmd p")
+							end),
+							{ buffer = bufnr, noremap = true }
+						)
+						vim.keymap.set(
+							"n",
+							"<C-x>",
+							inject_node(function(node)
+								vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
+								vim.cmd("wincmd p")
+							end),
+							{ buffer = bufnr, noremap = true }
+						)
+						vim.keymap.set(
+							"n",
+							"<C-t>",
+							inject_node(function(node)
+								vim.cmd("tabnew " .. vim.fn.fnameescape(node.absolute_path))
+							end),
+							{ buffer = bufnr, noremap = true }
+						)
+					end,
+					remove_keymaps = { "o", "<C-v>", "<C-x>", "<C-t>" },
 					view = {
 						number = true,
 						relativenumber = true,
-						mappings = {
-							list = {
-								-- NOTE: default to editing the file in place, netrw-style
-								{
-									key = { "<C-e>", "o", "<CR>" },
-									action = "edit_in_place_preserving_alternate_file",
-									action_cb = function(node)
-										require("nvim-tree.actions.dispatch").dispatch("edit_in_place")
-
-										local regular_file = not node.nodes
-										if regular_file then
-											alternate_file.restore()
-										end
-									end,
-								},
-								-- NOTE: override the "split" to avoid treating nvim-tree
-								-- window as special. Splits will appear as if nvim-tree was a
-								-- regular window
-								{
-									key = "<C-v>",
-									action = "split_right",
-									action_cb = function(node)
-										vim.cmd("vsplit " .. vim.fn.fnameescape(node.absolute_path))
-										vim.cmd("wincmd p")
-									end,
-								},
-								{
-									key = "<C-x>",
-									action = "split_bottom",
-									action_cb = function(node)
-										vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
-										vim.cmd("wincmd p")
-									end,
-								},
-								-- NOTE: override the "open in new tab" mapping to fix the error
-								-- that occurs there
-								{
-									key = "<C-t>",
-									action = "new_tab",
-									action_cb = function(node)
-										vim.cmd("tabnew " .. vim.fn.fnameescape(node.absolute_path))
-									end,
-								},
-							},
-						},
 					},
 					renderer = {
 						group_empty = true,
