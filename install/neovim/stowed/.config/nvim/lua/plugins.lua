@@ -731,6 +731,8 @@ local function setup_packer(packer_bootstrap)
 				vim.o.cmdheight = 2
 				vim.opt.shortmess:append("c")
 
+				require("mason").setup()
+				require("mason-lspconfig").setup()
 				require("lsp")
 				require("dim").setup({})
 			end,
@@ -739,7 +741,8 @@ local function setup_packer(packer_bootstrap)
 				"jose-elias-alvarez/null-ls.nvim",
 				"mfussenegger/nvim-jdtls",
 				"b0o/SchemaStore.nvim",
-				"williamboman/nvim-lsp-installer",
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
 				"narutoxy/dim.lua",
 			},
 		})

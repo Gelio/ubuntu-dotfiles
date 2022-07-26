@@ -1,5 +1,4 @@
 local utils = require("lsp.utils")
-local lsp_installer = require("nvim-lsp-installer")
 
 local default_server_config = utils.base_config
 
@@ -25,7 +24,7 @@ local server_configs = {
 	marksman = default_server_config,
 }
 
-lsp_installer.setup({
+require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(server_configs),
 })
 
