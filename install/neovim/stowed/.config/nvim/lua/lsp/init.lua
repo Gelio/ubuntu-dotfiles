@@ -33,6 +33,7 @@ require("mason-tool-installer").setup({
 		"hadolint",
 		"gofumpt",
 		"stylua",
+		"selene",
 		"markdownlint",
 		"write-good",
 		"misspell",
