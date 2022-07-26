@@ -252,6 +252,13 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
+			"miversen33/netman.nvim",
+			config = function()
+				require("netman")
+			end,
+		})
+
+		use({
 			"junegunn/vim-easy-align",
 			config = function()
 				-- NOTE: for some reason, which-key.nvim could not register this binding
