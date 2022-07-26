@@ -364,7 +364,20 @@ local function setup_packer(packer_bootstrap)
 			"rickhowe/diffchar.vim",
 			after = "vim-unimpaired",
 		})
-		use("rhysd/conflict-marker.vim")
+		use({
+			"akinsho/git-conflict.nvim",
+			config = function()
+				require("git-conflict").setup({
+					highlights = {
+						-- NOTE: the default `current` highlight color is too heavy
+						current = "DiffChange",
+					},
+				})
+			end,
+			-- NOTE: gruvbox-material resets highlights during its initialization.
+			-- git-conflict relies on its highlights to correctly highlight hunks
+			after = { "gruvbox-material" },
+		})
 		use({
 			"voldikss/vim-floaterm",
 			config = function()
