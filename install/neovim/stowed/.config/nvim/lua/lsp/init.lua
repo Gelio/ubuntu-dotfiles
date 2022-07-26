@@ -27,6 +27,19 @@ local server_configs = {
 require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(server_configs),
 })
+require("mason-tool-installer").setup({
+	ensure_installed = {
+		"prettierd",
+		"hadolint",
+		"gofumpt",
+		"stylua",
+		"markdownlint",
+		"write-good",
+		"misspell",
+		"shellcheck",
+		"shfmt",
+	},
+})
 
 local lspconfig = require("lspconfig")
 local function setup_lsp_servers()

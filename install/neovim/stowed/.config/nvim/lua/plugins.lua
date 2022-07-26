@@ -743,6 +743,7 @@ local function setup_packer(packer_bootstrap)
 				"b0o/SchemaStore.nvim",
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
+				"WhoIsSethDaniel/mason-tool-installer.nvim",
 				"narutoxy/dim.lua",
 			},
 		})
