@@ -1173,6 +1173,9 @@ local function setup_packer(packer_bootstrap)
 		use("editorconfig/editorconfig-vim")
 		use("sudormrfbin/cheatsheet.nvim")
 		use("aklt/plantuml-syntax")
+		use({
+			"Gelio/auto-nvimrc",
+		})
 		use({ "ekalinin/dockerfile.vim" })
 		use({
 			"vuki656/package-info.nvim",
