@@ -1331,29 +1331,33 @@ local function setup_packer(packer_bootstrap)
 
 				-- https://github.com/glacambre/firenvim#building-a-firenvim-specific-config
 				if vim.g.started_by_firenvim then
-					vim.o.cmdheight = 1
-					-- selene: allow(global_usage)
-					function _G.set_firenvim_settings()
-						local min_lines = 18
-						if vim.o.lines < min_lines then
-							vim.o.lines = min_lines
-						end
-						vim.o.wrap = true
-						vim.o.list = true
-						vim.o.linebreak = true
-					end
+					local group_id = vim.api.nvim_create_augroup("FirenvimConfig", {})
 
-					vim.cmd([[
-            function! OnUIEnter(event) abort
-              if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
-                lua _G.set_firenvim_settings()
-              endif
-            endfunction
+					vim.api.nvim_create_autocmd("BufEnter", {
+						pattern = "mail.google.com_*.txt",
+						group = group_id,
+						callback = function()
+							vim.bo.filetype = "markdown"
+							vim.o.textwidth = 80
+						end,
+					})
 
-            autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+					vim.api.nvim_create_autocmd("UIEnter", {
+						group = group_id,
+						callback = function()
+							vim.o.cmdheight = 1
 
-            au BufEnter mail.google.com_*.txt set filetype=markdown tw=80
-          ]])
+							local min_lines = 18
+							if vim.o.lines < min_lines then
+								vim.o.lines = min_lines
+							end
+
+							vim.o.wrap = true
+							vim.o.linebreak = true
+
+							-- TODO: disable textwidth rule for markdownlint
+						end,
+					})
 				end
 			end,
 		})
