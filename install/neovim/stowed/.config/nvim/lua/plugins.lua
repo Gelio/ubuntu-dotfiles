@@ -973,6 +973,7 @@ local function setup_packer(packer_bootstrap)
 						"comment",
 						"css",
 						"dockerfile",
+						"gitignore",
 						"go",
 						"gomod",
 						"gowork",
