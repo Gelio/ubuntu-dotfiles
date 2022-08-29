@@ -461,7 +461,12 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 		use({
-			"folke/todo-comments.nvim",
+			-- NOTE: use forked https://github.com/B4mbus/todo-comments.nvim
+			-- because the main repository (https://github.com/folke/todo-comments.nvim)
+			-- seems not to be maintained.
+			-- The most important fix is the cmdline window fix, which allows using
+			-- <C-F> again to edit vim.ui.input in a cmdline window.
+			"B4mbus/todo-comments.nvim",
 			config = function()
 				require("todo-comments").setup({
 					colors = {
