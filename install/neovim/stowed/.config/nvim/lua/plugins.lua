@@ -956,6 +956,7 @@ local function setup_packer(packer_bootstrap)
 						"markdown_inline",
 						"nix",
 						"python",
+						"query",
 						"regex",
 						"rust",
 						"scss",
@@ -981,6 +982,12 @@ local function setup_packer(packer_bootstrap)
 						keymaps = {
 							["."] = "textsubjects-smart",
 						},
+					},
+					playground = {
+						enable = true,
+					},
+					query_linter = {
+						enable = true,
 					},
 					textobjects = {
 						swap = {
