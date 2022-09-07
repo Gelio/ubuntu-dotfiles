@@ -736,23 +736,6 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"nvim-lua/lsp_extensions.nvim",
-			config = function()
-				local inlay_hints_options = {
-					prefix = "",
-					highlight = "Comment",
-					enabled = { "TypeHint", "ChainingHint", "ParameterHint" },
-				}
-				vim.cmd("augroup LspExtensions")
-				vim.cmd("autocmd!")
-				vim.cmd(
-					[[autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints ]]
-						.. vim.inspect(inlay_hints_options, { newline = "" })
-				)
-				vim.cmd("augroup END")
-			end,
-		})
-		use({
 			"simrat39/symbols-outline.nvim",
 			config = function()
 				require("which-key").register({ ["<Leader>so"] = { ":SymbolsOutline<CR>", "Symbols outline" } })
