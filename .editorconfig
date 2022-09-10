@@ -14,3 +14,6 @@ insert_final_newline = true
 [*.vim]
 indent_size = 4
 indent_style = tab
+
+[*.lua]
+indent_style = tab
