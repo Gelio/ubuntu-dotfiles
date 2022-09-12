@@ -340,12 +340,6 @@ local function setup_packer(packer_bootstrap)
 							{
 								"diagnostics",
 								sources = { "nvim_diagnostic" },
-								diagnostics_color = {
-									error = "VirtualTextError",
-									warn = "VirtualTextWarn",
-									info = "VirtualTextInfo",
-									hint = "VirtualTextHint",
-								},
 							},
 							{ "encoding", fmt = trunc(nil, nil, 150) },
 							{ "fileformat", fmt = trunc(nil, nil, 150) },
