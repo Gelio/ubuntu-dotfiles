@@ -1411,6 +1411,13 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
+			"AckslD/nvim-FeMaco.lua",
+			config = function()
+				require("femaco").setup()
+			end,
+		})
+
+		use({
 			"plasticboy/vim-markdown",
 			config = function()
 				vim.g.vim_markdown_no_extensions_in_markdown = true
