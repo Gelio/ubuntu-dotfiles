@@ -877,16 +877,12 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"kosayoda/nvim-lightbulb",
 			config = function()
-				-- selene: allow(global_usage)
-				function _G.update_lightbulb()
-					require("nvim-lightbulb").update_lightbulb()
-				end
-
-				vim.cmd([[
-          augroup LspLightBulb
-            autocmd! CursorHold,CursorHoldI * lua _G.update_lightbulb()
-          augroup END
-        ]])
+				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+					desc = "Show lightbulb in the signcolumn whenever an LSP action is available",
+					group = vim.api.nvim_create_augroup("LspLightBulb", {}),
+					callback = require("nvim-lightbulb").update_lightbulb,
+					pattern = "*",
+				})
 			end,
 		})
 
