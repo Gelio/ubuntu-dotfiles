@@ -874,7 +874,6 @@ local function setup_packer(packer_bootstrap)
 				require("lspkind").init()
 			end,
 		})
-		use("antoinemadec/FixCursorHold.nvim")
 		use({
 			"kosayoda/nvim-lightbulb",
 			config = function()
