@@ -371,6 +371,10 @@ local function setup_packer(packer_bootstrap)
 		})
 		use({
 			"akinsho/git-conflict.nvim",
+			-- NOTE: use stable releases.
+			-- This also fixes a bug which causes git-conflict.nvim only work when
+			-- neovim is opened in the root of the repository.
+			tag = "*",
 			config = function()
 				require("git-conflict").setup({
 					highlights = {
