@@ -660,7 +660,10 @@ local function setup_packer(packer_bootstrap)
 		-- Telescope
 		use({
 			"nvim-telescope/telescope.nvim",
-			requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"nvim-telescope/telescope-live-grep-args.nvim",
+			},
 			config = function()
 				local vimgrep_args_hidden_files = require("telescope.config").set_defaults().get("vimgrep_arguments")
 				table.insert(vimgrep_args_hidden_files, "--hidden")
@@ -670,9 +673,11 @@ local function setup_packer(packer_bootstrap)
 					f = { "<cmd>Telescope find_files hidden=true<CR>", "Files" },
 					g = {
 						function()
-							require("telescope.builtin").live_grep({ vimgrep_arguments = vimgrep_args_hidden_files })
+							require("telescope").extensions.live_grep_args.live_grep_args({
+								vimgrep_arguments = vimgrep_args_hidden_files,
+							})
 						end,
-						"Grep",
+						"Grep with rg",
 					},
 					G = {
 						name = "Git",
