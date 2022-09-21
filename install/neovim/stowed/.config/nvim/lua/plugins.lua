@@ -367,10 +367,6 @@ local function setup_packer(packer_bootstrap)
 		use("shumphrey/fugitive-gitlab.vim")
 		use("junegunn/gv.vim")
 		use({
-			"rickhowe/diffchar.vim",
-			after = "vim-unimpaired",
-		})
-		use({
 			"akinsho/git-conflict.nvim",
 			-- NOTE: use stable releases.
 			-- This also fixes a bug which causes git-conflict.nvim only work when
