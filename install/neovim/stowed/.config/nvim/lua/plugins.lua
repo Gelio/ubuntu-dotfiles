@@ -27,6 +27,7 @@ local function setup_packer(packer_bootstrap)
 					["[C"] = "",
 					["]C"] = "",
 				}
+				vim.g.xremap = vim.g.nremap
 			end,
 		})
 		use({
