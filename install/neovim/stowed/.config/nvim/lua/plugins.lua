@@ -1248,22 +1248,15 @@ local function setup_packer(packer_bootstrap)
 				local dial_map = require("dial.map")
 
 				ws.register({
-					["<C-a>"] = { dial_map.inc_normal },
-					["<C-x>"] = { dial_map.dec_normal },
+					["<C-a>"] = { dial_map.inc_normal(), "Increment" },
+					["<C-x>"] = { dial_map.dec_normal(), "Decrement" },
 				})
 				ws.register({
-					["<C-a>"] = { dial_map.inc_visual },
-					["<C-x>"] = { dial_map.dec_visual },
-				}, {
-					mode = "v",
-				})
-
-				-- NOTE: configuring these mappings using Lua did not work for me.
-				-- The mappings were no-ops
-				vim.cmd([[
-          vmap g<C-a> g<Plug>(dial-increment)
-          vmap g<C-x> g<Plug>(dial-decrement)
-        ]])
+					["<C-a>"] = { dial_map.inc_visual(), "Increment" },
+					["<C-x>"] = { dial_map.dec_visual(), "Decrement" },
+					["g<C-a>"] = { dial_map.inc_gvisual(), "Increment by count" },
+					["g<C-x>"] = { dial_map.dec_gvisual(), "Decrement by count" },
+				}, { mode = "v" })
 			end,
 		})
 		use({
