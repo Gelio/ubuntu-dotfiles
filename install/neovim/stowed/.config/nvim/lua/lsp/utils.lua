@@ -134,8 +134,7 @@ end
 
 -- See https://github.com/hrsh7th/cmp-nvim-lsp
 -- Takes care of autocomplete support using snippets for some LSP servers (cssls, jsonls)
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities = require("cmp_nvim_lsp").update_capabilities(M.capabilities)
+M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
 M.capabilities = vim.tbl_deep_extend("force", M.capabilities, {
 	textDocument = {
