@@ -463,6 +463,9 @@ local function setup_packer(packer_bootstrap)
 						info = { "VirtualTextInfo" },
 						default = { "Aqua" },
 					},
+					keywords = {
+						SAFETY = { color = "hint", icon = "" },
+					},
 				})
 			end,
 		})
