@@ -933,6 +933,7 @@ local function setup_packer(packer_bootstrap)
 						"c",
 						"comment",
 						"css",
+						"diff",
 						"dockerfile",
 						"gitattributes",
 						"gitignore",
