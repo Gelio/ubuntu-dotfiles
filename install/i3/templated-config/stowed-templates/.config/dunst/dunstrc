@@ -91,7 +91,7 @@
 
     ### Text ###
 
-    font = FiraCode Nerd Font Mono {{ math.Mul 13 (ds "config").dpi }}px
+    font = JetBrainsMono NF {{ math.Mul 13 (ds "config").dpi }}px
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.

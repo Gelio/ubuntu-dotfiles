@@ -29,9 +29,9 @@ stow -v .
 
 echo "kitty installed"
 
-HAS_FIRACODE=$(fc-list | grep "FiraCode Nerd Font" || true)
+font_installed=$(fc-list | grep "JetBrainsMono NF" || true)
 
-if [ -z "$HAS_FIRACODE" ]; then
-  echo "Make sure to install the FiraCode Nerd Font"
+if [ -z "$font_installed" ]; then
+  echo "Make sure to install the JetBrains Mono Nerd Font"
   echo "https://www.nerdfonts.com/"
 fi

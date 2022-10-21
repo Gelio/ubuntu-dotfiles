@@ -17,20 +17,15 @@ BACKGROUND=#00000000
 i3lock \
   --radius 120 \
   --ring-width 8 \
-  \
   --color=$BACKGROUND \
-  \
   --insidever-color=$CLEAR \
   --ringver-color=$VERIFYING \
-  \
   --insidewrong-color=$CLEAR \
   --ringwrong-color=$WRONG \
-  \
   --inside-color=$BLANK \
   --ring-color=$DEFAULT \
   --line-uses-inside \
   --separator-color=$DEFAULT \
-  \
   --verif-color=$TEXT \
   --wrong-color=$TEXT \
   --layout-color=$TEXT \
@@ -39,15 +34,13 @@ i3lock \
   --greeter-color=$TEXT \
   --keyhl-color=$KEY_INPUT \
   --bshl-color=$BACKSPACE \
-  \
   --clock \
   --indicator \
   --time-str="%H:%M" \
   --date-str="%A, %F" \
-  --{time,date,layout,verif,wrong,greeter}-font="FiraCode Nerd Font" \
+  --{time,date,layout,verif,wrong,greeter}-font="JetBrainsMono NF" \
   --keylayout 1 \
   --pointer=default \
-  \
   --pass-media-keys \
   --pass-power-keys \
   --pass-screen-keys \
