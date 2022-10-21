@@ -2,7 +2,25 @@
 
 set -euo pipefail
 
-sudo apt install tmux
+pushd ~/.local/ >/dev/null
+if [[ -d tmux ]]; then
+  cd tmux
+  echo "tmux repository found, pulling latest changes"
+  git pull
+else
+  echo "tmux repository not found, cloning it for the first time"
+  git clone git@github.com:tmux/tmux.git
+  cd tmux
+
+  # https://github.com/tmux/tmux/wiki/Installing#from-source-tarball
+  echo "Installing build dependencies"
+  sudo apt install libevent-devel
+fi
+echo "Compiling tmux"
+sh autogen.sh
+./configure && make && sudo make install
+popd >/dev/null
+
 ./stow.sh
 
 echo "> For tmux bottom bar to work correctly, powerline icons are required"
