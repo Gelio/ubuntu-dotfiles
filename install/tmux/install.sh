@@ -14,11 +14,13 @@ else
 
   # https://github.com/tmux/tmux/wiki/Installing#from-source-tarball
   echo "Installing build dependencies"
-  sudo apt install libevent-devel
+  sudo apt install libevent-dev bison
 fi
 echo "Compiling tmux"
 sh autogen.sh
-./configure && make && sudo make install
+./configure
+make
+sudo make install
 popd >/dev/null
 
 ./stow.sh
