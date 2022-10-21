@@ -22,6 +22,8 @@ local server_configs = {
 	yamlls = default_server_config,
 	vimls = default_server_config,
 	marksman = default_server_config,
+	terraformls = default_server_config,
+	tflint = default_server_config,
 }
 
 require("mason-lspconfig").setup({

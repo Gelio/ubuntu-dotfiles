@@ -941,6 +941,7 @@ local function setup_packer(packer_bootstrap)
 						"gomod",
 						"gowork",
 						"graphql",
+						"hcl",
 						"hjson",
 						"http",
 						"java",
