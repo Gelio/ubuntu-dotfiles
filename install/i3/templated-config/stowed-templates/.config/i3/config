@@ -70,9 +70,9 @@ bindsym $mod+c focus child
 
 bindsym $mod+Print exec flameshot gui
 
-set $ws1 "1: term "
-set $ws2 "2: www "
-set $ws3 "3: rambox "
+set $ws1 "1: term  "
+set $ws2 "2: www  "
+set $ws3 "3: rambox  "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
