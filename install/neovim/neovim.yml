@@ -4,8 +4,5 @@
 base: lua52
 name: neovim
 globals:
-  TreeExplorer:
-    # Comes from nvim-tree
-    any: true
   vim:
     any: true

@@ -83,184 +83,57 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"kyazdani42/nvim-tree.lua",
-			requires = "kyazdani42/nvim-web-devicons",
+			"nvim-neo-tree/neo-tree.nvim",
+			branch = "v2.x",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"kyazdani42/nvim-web-devicons",
+				"MunifTanjim/nui.nvim",
+			},
+			setup = function()
+				vim.g.neo_tree_remove_legacy_commands = 1
+			end,
 			config = function()
-				---@class AlternateFileInfo A structure to remember information about the alternate file when using NvimTree.
-				---@field file_name string
-				---@field alternate_file_name string
-
-				local alternate_file = {
-					variable_name = "nvim_tree_alternate_file",
-				}
-				---@return string
-				local function get_current_file_name()
-					return vim.api.nvim_buf_get_name(0)
-				end
-				---@return string
-				local function get_alternate_file_name()
-					return vim.fn.expand("#")
-				end
-
-				function alternate_file.remember()
-					---@type AlternateFileInfo
-					local alternate_file_info = {
-						alternate_file_name = get_alternate_file_name(),
-						file_name = get_current_file_name(),
-					}
-					vim.w[alternate_file.variable_name] = alternate_file_info
-				end
-
-				function alternate_file.restore()
-					if get_alternate_file_name() ~= "" then
-						vim.notify(
-							"Alternate file was present when trying to restore it. Maybe NvimTree added support for restoring alternate files?",
-							vim.log.levels.TRACE
-						)
-					end
-
-					---@type AlternateFileInfo
-					local alternate_file_info = vim.w[alternate_file.variable_name]
-					if alternate_file_info == nil then
-						-- NOTE: if no alternate file information was found, this means
-						-- that NvimTree was opened in a way that did not trigger
-						-- remembering that information. For example, via opening the
-						-- directory directly :e %:h
-						return
-					end
-
-					local current_file_name = get_current_file_name()
-					-- NOTE: use noautocmd when restoring the alternate file because it
-					-- is only used to set the alternate file. We will not be editing it,
-					-- since we switch to the new file.
-					if current_file_name == alternate_file_info.file_name then
-						-- NOTE: when opening the file which the current NvimTree buffer
-						-- replaced, we should restore that buffer's alternate file.
-						vim.cmd("noautocmd edit " .. alternate_file_info.alternate_file_name)
-					else
-						-- NOTE: use the file which the NvimTree replaced as the new
-						-- alternative file
-						vim.cmd("noautocmd edit " .. alternate_file_info.file_name)
-					end
-
-					vim.cmd("edit " .. current_file_name)
-				end
-
-				require("nvim-tree").setup({
-					hijack_netrw = true,
-					diagnostics = {
-						enable = true,
-					},
-					on_attach = function(bufnr)
-						local inject_node = require("nvim-tree.utils").inject_node
-
-						-- NOTE: default to editing the file in place, netrw-style
-						vim.keymap.set(
-							"n",
-							"o",
-							inject_node(function(node)
-								require("nvim-tree.actions.dispatch").dispatch("edit_in_place")
-
-								local regular_file = not node.nodes
-								if regular_file then
-									alternate_file.restore()
-								end
-							end),
-							{ buffer = bufnr, noremap = true }
-						)
-
-						-- NOTE: override the "split" to avoid treating nvim-tree
-						-- window as special. Splits will appear as if nvim-tree was a
-						-- regular window
-						vim.keymap.set(
-							"n",
-							"<C-v>",
-							inject_node(function(node)
-								vim.cmd("vsplit " .. vim.fn.fnameescape(node.absolute_path))
-								vim.cmd("wincmd p")
-							end),
-							{ buffer = bufnr, noremap = true }
-						)
-						vim.keymap.set(
-							"n",
-							"<C-x>",
-							inject_node(function(node)
-								vim.cmd("split " .. vim.fn.fnameescape(node.absolute_path))
-								vim.cmd("wincmd p")
-							end),
-							{ buffer = bufnr, noremap = true }
-						)
-						vim.keymap.set(
-							"n",
-							"<C-t>",
-							inject_node(function(node)
-								vim.cmd("tabnew " .. vim.fn.fnameescape(node.absolute_path))
-							end),
-							{ buffer = bufnr, noremap = true }
-						)
-					end,
-					remove_keymaps = { "o", "<C-v>", "<C-x>", "<C-t>" },
-					view = {
-						number = true,
-						relativenumber = true,
-					},
-					renderer = {
-						group_empty = true,
-						highlight_git = true,
-						indent_markers = {
-							enable = true,
-						},
-					},
-					actions = {
-						change_dir = {
-							-- NOTE: netrw-style, do not change the cwd when navigating
-							enable = false,
-						},
-						open_file = {
-							-- NOTE: prevent nvim-tree from re-appearing after opening a new window
-							-- (changes the way autocommands are registered)
-							quit_on_open = true,
-						},
-					},
-				})
-				-- NOTE: disable fixed nvim-tree width and height
-				-- to allow creating splits naturally
-				local winopts = require("nvim-tree.view").View.winopts
-				winopts.winfixwidth = false
-				winopts.winfixheight = false
-
 				require("which-key").register({
 					["-"] = {
 						function()
-							local buf_name = vim.api.nvim_buf_get_name(0)
-							if buf_name == "" then
-								-- NOTE: open nvim-tree for the current working directory
-								-- when pressing - on a new buffer.
-								-- This usually happens when opening nvim without arguments.
-								-- I then want `-` to open the directory tree.
-								vim.cmd(":edit .")
-							else
-								-- NOTE: remembering the alternate file only works for "-".
-								-- It does not work when opening a directory directly
-								-- (e.g. via :e %:h)
-								alternate_file.remember()
-								require("nvim-tree").open_replacing_current_buffer()
-							end
+							local directory = vim.fn.expand("%:p:h")
+
+							require("neo-tree.command").execute({
+								action = "show",
+								source = "filesystem",
+								reveal = true,
+								dir = directory,
+							})
 						end,
-						"NvimTree in place",
+						"Open neo-tree",
+					},
+				})
+
+				require("neo-tree").setup({
+					window = {
+						position = "current",
+						mappings = {
+							o = "open",
+						},
+					},
+					filesystem = {
+						bind_to_cwd = false,
+					},
+					nesting_rules = {
+						ts = { "test.ts" },
+					},
+					event_handlers = {
+						{
+							event = "neo_tree_buffer_enter",
+							handler = function()
+								vim.wo.number = true
+								vim.wo.relativenumber = true
+							end,
+						},
 					},
 				})
 			end,
-		})
-
-		use({
-			"tpope/vim-vinegar",
-			config = function()
-				vim.g.netrw_banner = 0
-				-- NOTE: enable number and relativenumber (disabled by default)
-				vim.g.netrw_bufsettings = "noma nomod nobl nowrap ro number relativenumber"
-			end,
-			disable = true,
 		})
 
 		use({
@@ -300,20 +173,6 @@ local function setup_packer(packer_bootstrap)
 						"dapui_stacks",
 						"dapui_breakpoints",
 						"dap-repl",
-					},
-				}
-				-- NOTE: the default nvim-tree extension is based on cwd
-				-- netrw-mode does not change cwd
-				local nvim_tree_extension = {
-					sections = {
-						lualine_a = {
-							function()
-								return vim.fn.fnamemodify(TreeExplorer.cwd, ":~")
-							end,
-						},
-					},
-					filetypes = {
-						"NvimTree",
 					},
 				}
 				--- Source: https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#truncating-components-in-smaller-window
@@ -360,7 +219,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_y = { { "progress", fmt = trunc(nil, nil, 120) } },
 						lualine_z = { "location" },
 					},
-					extensions = { "fugitive", nvim_tree_extension, "quickfix", dap_extension, "symbols-outline" },
+					extensions = { "fugitive", "quickfix", dap_extension, "symbols-outline" },
 				})
 			end,
 		})
