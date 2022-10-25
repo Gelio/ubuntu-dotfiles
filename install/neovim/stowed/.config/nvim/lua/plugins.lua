@@ -223,7 +223,7 @@ local function setup_packer(packer_bootstrap)
 						lualine_y = { { "progress", fmt = trunc(nil, nil, 120) } },
 						lualine_z = { "location" },
 					},
-					extensions = { "fugitive", "quickfix", dap_extension, "symbols-outline" },
+					extensions = { "fugitive", "quickfix", dap_extension, "symbols-outline", "neo-tree" },
 				})
 			end,
 		})
