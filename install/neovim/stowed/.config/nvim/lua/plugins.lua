@@ -109,6 +109,7 @@ local function setup_packer(packer_bootstrap)
 				})
 
 				require("neo-tree").setup({
+					use_popups_for_input = false,
 					window = {
 						position = "current",
 						mappings = {
