@@ -44,21 +44,15 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"ojroques/nvim-osc52",
 			config = function()
-				-- NOTE: automatically synchronize clipboard yanking to parent terminal when using SSH
-				vim.api.nvim_create_user_command("OSCYank", function()
-					local text = vim.fn.getreg("+")
-					require("osc52").copy(text)
-				end, {
-					bar = true,
+				vim.api.nvim_create_autocmd("TextYankPost", {
+					group = vim.api.nvim_create_augroup("OSCYank", {}),
+					desc = 'Use OSC52 to copy text from the "+ buffer from Neovim inside SSH',
+					callback = function()
+						if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
+							require("osc52").copy_register("+")
+						end
+					end,
 				})
-
-				-- NOTE: cannot use Lua API to create the autocmd because it does not support accessing v:event
-				vim.cmd([[
-					augroup OSCYank
-						autocmd!
-						autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYank | endif
-					augroup END
-				]])
 			end,
 			cond = function()
 				local ssh_connection = vim.env.SSH_CONNECTION
