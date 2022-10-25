@@ -106,7 +106,11 @@ local function setup_packer(packer_bootstrap)
 								dir = directory,
 							})
 						end,
-						"Open neo-tree",
+						"Open parent directory in neo-tree",
+					},
+					["<leader>-"] = {
+						":Neotree reveal<CR>",
+						"Open cwd in neo-tree",
 					},
 				})
 
