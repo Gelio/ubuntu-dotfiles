@@ -118,6 +118,11 @@ local function setup_packer(packer_bootstrap)
 					},
 					filesystem = {
 						bind_to_cwd = false,
+						window = {
+							mappings = {
+								["-"] = "navigate_up",
+							},
+						},
 					},
 					nesting_rules = {
 						ts = { "test.ts" },
