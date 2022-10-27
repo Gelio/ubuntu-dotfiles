@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
 # Enable both 4k monitors horizontally.
 # The logic goes like this:
 # 1. Use 4k resolution on each monitor. Set DPI to 2x the normal DPI.
@@ -27,5 +29,5 @@ xrandr --output HDMI-0 --auto --primary --scale "${scale}x${scale}" --panning "$
 xrandr --output DP-0 --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+${scaled_width}+0"
 ~/.fehbg
 
-# Enable pointer acceleration since the default mouse speed is hard to use
-xinput set-prop "pointer:Logitech MX Master 3" 327 0.7
+pushd "$script_dir" >/dev/null
+./fix-mouse-pointer-speed.sh
