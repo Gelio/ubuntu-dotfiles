@@ -809,6 +809,7 @@ local function setup_packer(packer_bootstrap)
 						"css",
 						"diff",
 						"dockerfile",
+						"git_rebase",
 						"gitattributes",
 						"gitignore",
 						"go",
