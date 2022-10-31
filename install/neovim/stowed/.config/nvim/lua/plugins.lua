@@ -416,7 +416,11 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"lukas-reineke/headlines.nvim",
 			config = function()
-				require("headlines").setup()
+				require("headlines").setup({
+					markdown = {
+						fat_headlines = false,
+					},
+				})
 			end,
 		})
 
