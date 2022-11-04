@@ -35,7 +35,12 @@ vim.opt.listchars = {
 }
 
 vim.o.termguicolors = true
-vim.opt.diffopt:append("algorithm:histogram,iwhite,indent-heuristic,vertical")
+vim.opt.diffopt:append({
+	"algorithm:histogram",
+	"iwhite",
+	"indent-heuristic",
+	"vertical",
+})
 
 local map = vim.api.nvim_set_keymap
 
