@@ -40,6 +40,7 @@ vim.opt.diffopt:append({
 	"iwhite",
 	"indent-heuristic",
 	"vertical",
+	"linematch:60",
 })
 
 local map = vim.api.nvim_set_keymap
