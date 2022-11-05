@@ -97,6 +97,9 @@ local function setup_packer(packer_bootstrap)
 								action = "show",
 								source = "filesystem",
 								reveal = true,
+								-- NOTE: prevent annoying "File not in cwd" prompts.
+								-- Always use file's parent directory as neo-tree's cwd
+								reveal_force_cwd = true,
 								dir = directory,
 							})
 						end,
