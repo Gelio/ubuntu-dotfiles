@@ -72,6 +72,8 @@ local function setup_lsp_keymaps(client, bufnr)
 	})
 end
 
+local sync_formatting_augroup = vim.api.nvim_create_augroup("SyncFormatting", {})
+
 local function setup_formatting(client, bufnr)
 	local wk = require("which-key")
 
@@ -86,11 +88,14 @@ local function setup_formatting(client, bufnr)
 		}, {
 			buffer = bufnr,
 		})
-		vim.cmd([[
-      augroup SyncFormatting
-        autocmd! BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })
-      augroup END
-    ]])
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			desc = "Format files on save",
+			callback = function()
+				vim.lsp.buf.format({ async = false })
+			end,
+			pattern = "<buffer>",
+			group = sync_formatting_augroup,
+		})
 	end
 
 	if client.server_capabilities.documentRangeFormattingProvider then
