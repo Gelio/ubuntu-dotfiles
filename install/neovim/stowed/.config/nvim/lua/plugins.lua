@@ -101,12 +101,13 @@ local function setup_packer(packer_bootstrap)
 								-- Always use file's parent directory as neo-tree's cwd
 								reveal_force_cwd = true,
 								dir = directory,
+								position = "current",
 							})
 						end,
 						"Open parent directory in neo-tree",
 					},
 					["<leader>-"] = {
-						":Neotree reveal dir=.<CR>",
+						":Neotree reveal dir=. position=current<CR>",
 						"Open cwd in neo-tree",
 					},
 				})
@@ -138,6 +139,7 @@ local function setup_packer(packer_bootstrap)
 								["-"] = "navigate_up",
 							},
 						},
+						hijack_netrw_behavior = "open_current",
 					},
 					nesting_rules = {
 						ts = { "test.ts" },
