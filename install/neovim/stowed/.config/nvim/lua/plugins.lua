@@ -117,6 +117,18 @@ local function setup_packer(packer_bootstrap)
 						position = "current",
 						mappings = {
 							o = "open",
+							a = {
+								"add",
+								config = {
+									show_path = "absolute",
+								},
+							},
+							m = {
+								"move",
+								config = {
+									show_path = "absolute",
+								},
+							},
 						},
 					},
 					filesystem = {
