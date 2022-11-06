@@ -112,6 +112,7 @@ local function setup_packer(packer_bootstrap)
 					},
 				})
 
+				local events = require("neo-tree.events")
 				require("neo-tree").setup({
 					use_popups_for_input = false,
 					window = {
@@ -146,7 +147,7 @@ local function setup_packer(packer_bootstrap)
 					},
 					event_handlers = {
 						{
-							event = "neo_tree_buffer_enter",
+							event = events.NEO_TREE_BUFFER_ENTER,
 							handler = function()
 								vim.wo.number = true
 								vim.wo.relativenumber = true
