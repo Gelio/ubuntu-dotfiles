@@ -25,6 +25,7 @@ local server_configs = {
 	terraformls = default_server_config,
 	tflint = default_server_config,
 	ansiblels = default_server_config,
+	clangd = default_server_config,
 }
 
 require("mason-lspconfig").setup({
