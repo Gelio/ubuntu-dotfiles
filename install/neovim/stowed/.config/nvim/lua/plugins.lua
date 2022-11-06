@@ -622,7 +622,7 @@ local function setup_packer(packer_bootstrap)
 				require("dim").setup({})
 			end,
 			requires = {
-				"jose-elias-alvarez/nvim-lsp-ts-utils",
+				"jose-elias-alvarez/typescript.nvim",
 				"jose-elias-alvarez/null-ls.nvim",
 				"mfussenegger/nvim-jdtls",
 				"b0o/SchemaStore.nvim",

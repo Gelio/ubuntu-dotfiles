@@ -54,6 +54,12 @@ end
 
 setup_lsp_servers()
 
+-- NOTE: typescript.nvim needs to be the last thing that calls
+-- lspconfig.tsserver.setup for tsserver
+require("typescript").setup({
+	server = server_configs.tsserver,
+})
+
 require("lsp.java").setup()
 require("lsp.null-ls").setup()
 
