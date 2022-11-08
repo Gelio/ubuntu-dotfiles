@@ -1165,7 +1165,8 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"j-hui/fidget.nvim",
+			"Gelio/fidget.nvim",
+			branch = "ignore-progress-on-vim-leave",
 			config = function()
 				require("fidget").setup({})
 			end,
