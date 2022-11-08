@@ -623,7 +623,18 @@ local function setup_packer(packer_bootstrap)
 					prefix = "<Leader>f",
 				})
 
+				local lga_actions = require("telescope-live-grep-args.actions")
 				require("telescope").setup({
+					extensions = {
+						live_grep_args = {
+							mappings = {
+								i = {
+									["<C-k>"] = lga_actions.quote_prompt(),
+									["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+								},
+							},
+						},
+					},
 					defaults = {
 						-- NOTE: Lua regexps https://www.lua.org/manual/5.1/manual.html#5.4.1
 						file_ignore_patterns = { "%.git/", "%.yarn/", "%.next/" },
