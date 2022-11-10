@@ -42,6 +42,8 @@ local function setup_packer(packer_bootstrap)
 		use({ "lewis6991/impatient.nvim" })
 
 		use({
+			-- NOTE: technically this plugin is not needed after https://github.com/neovim/neovim/pull/20936
+			-- I still keep it around for now.
 			"ojroques/nvim-osc52",
 			config = function()
 				vim.api.nvim_create_autocmd("TextYankPost", {
