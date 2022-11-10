@@ -1074,7 +1074,7 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 
-		use("editorconfig/editorconfig-vim")
+		use("gpanders/editorconfig.nvim")
 		use("aklt/plantuml-syntax")
 		use({
 			"Gelio/auto-nvimrc",
