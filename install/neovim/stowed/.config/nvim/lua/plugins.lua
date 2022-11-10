@@ -205,7 +205,7 @@ local function setup_packer(packer_bootstrap)
 
 		use({
 			"nvim-lualine/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			requires = { "kyazdani42/nvim-web-devicons" },
 			config = function()
 				---Use global status line instead of per-window status lines
 				local global_status = false
@@ -226,8 +226,8 @@ local function setup_packer(packer_bootstrap)
 					},
 				}
 				--- Source: https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#truncating-components-in-smaller-window
-				--- @param trunc_width number trunctates component when screen width is less than trunc_width
-				--- @param trunc_len number truncates component to trunc_len number of chars
+				--- @param trunc_width? number trunctates component when screen width is less than trunc_width
+				--- @param trunc_len? number truncates component to trunc_len number of chars
 				--- @param hide_width? number hides component when window width is smaller then hide_width
 				--- @param no_ellipsis? boolean whether to disable adding '...' at end after truncation
 				--- return function that can format the component accordingly
@@ -1076,9 +1076,7 @@ local function setup_packer(packer_bootstrap)
 
 		use("gpanders/editorconfig.nvim")
 		use("aklt/plantuml-syntax")
-		use({
-			"Gelio/auto-nvimrc",
-		})
+		use({ "Gelio/auto-nvimrc" })
 		use({ "ekalinin/dockerfile.vim" })
 		use({
 			"vuki656/package-info.nvim",
