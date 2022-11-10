@@ -31,11 +31,9 @@ local function setup_packer(packer_bootstrap)
 			end,
 		})
 		use({
-			"echasnovski/mini.nvim",
+			"echasnovski/mini.trailspace",
 			config = function()
-				require("mini.trailspace").setup({
-					only_in_normal_buffers = true,
-				})
+				require("mini.trailspace").setup({})
 			end,
 		})
 		use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
