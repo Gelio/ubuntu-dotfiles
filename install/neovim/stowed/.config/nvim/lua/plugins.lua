@@ -1075,7 +1075,6 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use("editorconfig/editorconfig-vim")
-		use("sudormrfbin/cheatsheet.nvim")
 		use("aklt/plantuml-syntax")
 		use({
 			"Gelio/auto-nvimrc",
@@ -1102,24 +1101,6 @@ local function setup_packer(packer_bootstrap)
             autocmd! BufEnter package.json lua _G.setup_package_info_mappings()
           augroup END
         ]])
-			end,
-		})
-
-		use({
-			"rmagatti/goto-preview",
-			config = function()
-				require("which-key").register({
-					["gpd"] = {
-						[[<cmd>lua require('goto-preview').goto_preview_definition()<CR>]],
-						"Preview definitions",
-					},
-					["gpi"] = {
-						[[<cmd>lua require('goto-preview').goto_preview_implementation()<CR>]],
-						"Preview implementations",
-					},
-					["gP"] = { [[<cmd>lua require('goto-preview').close_all_win()<CR>]], "Close preview windows" },
-				})
-				require("goto-preview").setup({})
 			end,
 		})
 
