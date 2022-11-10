@@ -574,12 +574,9 @@ local function setup_packer(packer_bootstrap)
 		use({
 			"gelguy/wilder.nvim",
 			config = function()
-				-- Use a vimscript file because of a bug with using line continuations
-				-- See https://github.com/gelguy/wilder.nvim/issues/53
-				-- TODO: use <sfile>
-				vim.cmd([[source $HOME/.config/nvim/wilder.vim]])
+				vim.cmd.runtime("wilder.vim")
 
-				vim.cmd([[call wilder#main#start()]])
+				vim.cmd.call("wilder#main#start()")
 			end,
 			run = ":UpdateRemotePlugins",
 			event = "CmdlineEnter",
