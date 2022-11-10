@@ -53,12 +53,11 @@ local function setup_lsp_keymaps(client, bufnr)
 				end,
 				"Show diagnostics for current line",
 			},
-			ac = if_enabled(capabilities.codeActionProvider, { "<cmd>CodeActionMenu<CR>", "Code actions" }),
-			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
-			ar = if_enabled(
+			ac = if_enabled(
 				capabilities.codeActionProvider,
-				{ "<cmd>CodeActionMenu<CR>", "Range code actions", mode = "v" }
+				{ "<cmd>CodeActionMenu<CR>", "Code actions", mode = { "v", "n" } }
 			),
+			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 		},
 		K = if_enabled(capabilities.hoverProvider, { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
 		["<C-k>"] = if_enabled(
