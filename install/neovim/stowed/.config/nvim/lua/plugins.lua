@@ -828,7 +828,8 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"weilbith/nvim-code-action-menu",
+			"Gelio/nvim-code-action-menu",
+			branch = "use-current-selection-for-range-actions",
 			cmd = "CodeActionMenu",
 		})
 
