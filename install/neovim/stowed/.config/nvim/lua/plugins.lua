@@ -1128,24 +1128,17 @@ local function setup_packer(packer_bootstrap)
 			"Gelio/nvim-scrollbar",
 			branch = "gitsigns-handler",
 			config = function()
-				local function to_hex_color(num)
-					return string.format("#%06x", num)
-				end
-				local function get_highlight(name)
-					return vim.api.nvim_get_hl_by_name(name, true)
-				end
-
 				require("scrollbar").setup({
 					handle = {
-						color = to_hex_color(get_highlight("Visual").background),
+						highlight = "Visual",
 					},
 					marks = {
-						Search = { color = to_hex_color(get_highlight("Orange").foreground) },
-						Error = { color = to_hex_color(get_highlight("VirtualTextError").foreground) },
-						Warn = { color = to_hex_color(get_highlight("VirtualTextWarning").foreground) },
-						Info = { color = to_hex_color(get_highlight("VirtualTextInfo").foreground) },
-						Hint = { color = to_hex_color(get_highlight("VirtualTextHint").foreground) },
-						Misc = { color = to_hex_color(get_highlight("Purple").foreground) },
+						Search = { highlight = "Orange" },
+						Error = { highlight = "VirtualTextError" },
+						Warn = { highlight = "VirtualTextWarning" },
+						Info = { highlight = "VirtualTextInfo" },
+						Hint = { highlight = "VirtualTextHint" },
+						Misc = { highlight = "Purple" },
 					},
 					handlers = {
 						gitsigns = true,
