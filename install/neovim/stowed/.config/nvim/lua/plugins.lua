@@ -1125,7 +1125,8 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"petertriho/nvim-scrollbar",
+			"Gelio/nvim-scrollbar",
+			branch = "gitsigns-handler",
 			config = function()
 				local function to_hex_color(num)
 					return string.format("#%06x", num)
@@ -1145,6 +1146,9 @@ local function setup_packer(packer_bootstrap)
 						Info = { color = to_hex_color(get_highlight("VirtualTextInfo").foreground) },
 						Hint = { color = to_hex_color(get_highlight("VirtualTextHint").foreground) },
 						Misc = { color = to_hex_color(get_highlight("Purple").foreground) },
+					},
+					handlers = {
+						gitsigns = true,
 					},
 				})
 			end,
