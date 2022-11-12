@@ -1125,8 +1125,7 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"Gelio/nvim-scrollbar",
-			branch = "gitsigns-handler",
+			"petertriho/nvim-scrollbar",
 			config = function()
 				require("scrollbar").setup({
 					handle = {
