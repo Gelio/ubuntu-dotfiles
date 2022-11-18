@@ -572,7 +572,8 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"gelguy/wilder.nvim",
+			"Gelio/wilder.nvim",
+			branch = "fix-last-arg-completion-for-lua",
 			config = function()
 				vim.cmd.runtime("wilder.vim")
 
