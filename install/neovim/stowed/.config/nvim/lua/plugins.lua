@@ -68,7 +68,7 @@ local function setup_packer(packer_bootstrap)
 		})
 
 		use({
-			"kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 			config = function()
 				require("nvim-web-devicons").setup({
 					default = true,
@@ -81,7 +81,7 @@ local function setup_packer(packer_bootstrap)
 			branch = "v2.x",
 			requires = {
 				"nvim-lua/plenary.nvim",
-				"kyazdani42/nvim-web-devicons",
+				"nvim-tree/nvim-web-devicons",
 				"MunifTanjim/nui.nvim",
 			},
 			setup = function()
@@ -205,7 +205,7 @@ local function setup_packer(packer_bootstrap)
 
 		use({
 			"nvim-lualine/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons" },
+			requires = { "nvim-tree/nvim-web-devicons" },
 			config = function()
 				---Use global status line instead of per-window status lines
 				local global_status = false
@@ -276,7 +276,7 @@ local function setup_packer(packer_bootstrap)
 
 		use({
 			"alvarosevilla95/luatab.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
+			requires = "nvim-tree/nvim-web-devicons",
 			config = function()
 				require("luatab").setup({})
 			end,
