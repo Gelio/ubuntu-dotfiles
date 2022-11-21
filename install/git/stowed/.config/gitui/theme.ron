@@ -1,7 +1,9 @@
 (
-    selected_tab: Reset,
+    selected_tab: Rgb(235, 219, 178),
     command_fg: Rgb(235, 219, 178),
     selection_bg: Rgb(40, 40, 40),
+    selection_fg: Rgb(235, 219, 178),
+    cmdbar_bg: Rgb(60, 56, 54),
     cmdbar_extra_lines_bg: Rgb(40, 40, 40),
     disabled_fg: Rgb(168, 153, 132),
     diff_line_add: Rgb(184, 187, 30),
@@ -16,4 +18,6 @@
     danger_fg: Red,
     push_gauge_bg: Blue,
     push_gauge_fg: Reset,
+    tag_fg: LightMagenta,
+    branch_fg: LightYellow,
 )
