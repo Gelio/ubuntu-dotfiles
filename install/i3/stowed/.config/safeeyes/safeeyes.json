@@ -68,7 +68,7 @@
             "version": "0.0.3"
         },
         {
-            "enabled": false,
+            "enabled": true,
             "id": "smartpause",
             "settings": {
                 "idle_time": 10.0,
@@ -87,7 +87,7 @@
             "version": "0.0.2"
         },
         {
-            "enabled": false,
+            "enabled": true,
             "id": "healthstats",
             "settings": {
                 "statistics_reset_cron": "0 0 * * *"
