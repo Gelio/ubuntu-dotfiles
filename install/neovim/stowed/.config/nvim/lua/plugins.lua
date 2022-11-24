@@ -871,6 +871,7 @@ local function setup_packer(packer_bootstrap)
 						"dockerfile",
 						"git_rebase",
 						"gitattributes",
+						"gitcommit",
 						"gitignore",
 						"go",
 						"gomod",
