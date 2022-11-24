@@ -614,6 +614,7 @@ local function setup_packer(packer_bootstrap)
 					b = { "<cmd>Telescope buffers<CR>", "Buffers" },
 					h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
 					t = { "<cmd>Telescope treesitter<CR>", "Treesitter" },
+					m = { "<cmd>Telescope marks<CR>", "Marks" },
 					o = { "<cmd>Telescope oldfiles<CR>", "Old files" },
 					r = { "<cmd>Telescope lsp_references<CR>", "LSP references" },
 					s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "LSP workspace symbols" },
