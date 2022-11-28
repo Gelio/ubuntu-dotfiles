@@ -22,6 +22,7 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 vim.opt.spell = true
+vim.opt.spelloptions:append("camel")
 
 vim.opt.path:remove("/usr/include")
 
