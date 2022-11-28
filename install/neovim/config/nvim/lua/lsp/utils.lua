@@ -26,7 +26,7 @@ local function setup_lsp_keymaps(client, bufnr)
 				capabilities.referencesProvider,
 				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
 			),
-			["<Leader>c"] = if_enabled(capabilities.callHierarchyProvide, {
+			["<Leader>c"] = if_enabled(capabilities.callHierarchyProvider, {
 				name = "Symbol calls",
 				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
 				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
