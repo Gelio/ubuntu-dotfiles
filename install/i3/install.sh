@@ -3,7 +3,7 @@ set -euxo pipefail
 
 I3_ADDITIONAL_PACKAGES="lxappearance hsetroot rofi xsettingsd \
   fonts-font-awesome numlockx xfce4-power-manager \
-  mpd playerctl xfce4-volumed autorandr feh pavucontrol arandr"
+  mpd playerctl xfce4-volumed feh pavucontrol arandr"
 ROFIMOJI_PACKAGES="python3 python3-pip xdotool"
 LOCKSCREEN_PACKAGES="libxcb-screensaver0 libxcb-screensaver0-dev"
 
@@ -12,6 +12,8 @@ sudo add-apt-repository ppa:regolith-linux/release
 sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
   $ROFIMOJI_PACKAGES \
   $LOCKSCREEN_PACKAGES
+
+pip install autorandr
 
 echo "Run lxappearance and set the theme (perhaps Adwaita-dark)"
 echo "Run xfce4-power-manager-settings and set correct power-level behavior"
