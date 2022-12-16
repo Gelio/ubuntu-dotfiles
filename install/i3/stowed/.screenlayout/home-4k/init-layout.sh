@@ -25,8 +25,10 @@ scaled_height=$(bc <<<"($scale * $height + 0.5) / 1")
 laptop_output=$(xrandr | grep eDP | cut -d' ' -f1)
 xrandr --output "$laptop_output" --off
 
+right_monitor_output=$(xrandr | grep 'DP-[0-9] connected' | cut -d' ' -f1)
+
 xrandr --output HDMI-0 --auto --primary --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+0+0"
-xrandr --output DP-0 --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+${scaled_width}+0"
+xrandr --output "$right_monitor_output" --auto --scale "${scale}x${scale}" --panning "${scaled_width}x${scaled_height}+${scaled_width}+0"
 ~/.fehbg
 
 pushd "$script_dir" >/dev/null
