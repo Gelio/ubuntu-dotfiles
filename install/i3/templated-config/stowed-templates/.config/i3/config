@@ -215,7 +215,7 @@ client.background           #2f343f
 
 # Set workspaces on correct displays
 set $leftMonitor HDMI-0
-set $rightMonitor DP-0
+set $rightMonitor DP-2
 workspace $ws1 output $leftMonitor
 workspace $ws3 output $rightMonitor
 
