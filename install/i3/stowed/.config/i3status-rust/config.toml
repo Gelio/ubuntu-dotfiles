@@ -1,7 +1,8 @@
+[icons]
 icons = "material-nf"
 
 [theme]
-name = "solarized-dark"
+theme = "solarized-dark"
 [theme.overrides]
 idle_bg = "#3c3846"
 idle_fg = "#ebdbb2"
@@ -17,8 +18,8 @@ alternating_tint_bg = "#080808"
 
 [[block]]
 block = "memory"
-format_mem = "$mem_used.eng(3,B,M)/$mem_total.eng(3,B,M)($mem_used_percents.eng(2))"
-format_swap = "$swap_used.eng(3,B,M)/$swap_total.eng(3,B,M)($swap_used_percents.eng(2))"
+format = " $icon $mem_used.eng(3,B,M)/$mem_total.eng(3,B,M)($mem_used_percents.eng(2)) "
+format_alt = " $icon $swap_used.eng(3,B,M)/$swap_total.eng(3,B,M)($swap_used_percents.eng(2)) "
 
 [[block]]
 block = "cpu"
@@ -30,11 +31,11 @@ interval = 1
 
 [[block]]
 block = "music"
-format = "$combo.rot-str(25) $play $next|"
+format = " $icon $combo.rot-str(25) $play $next|"
 
 [[block]]
 block = "battery"
-format = "$percentage $time|$percentage"
+format = " $icon $percentage $time | $icon $percentage "
 
 [[block]]
 block = "sound"
@@ -53,7 +54,7 @@ cmd = "pavucontrol"
 [[block]]
 block = "time"
 # https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html#specifiers
-format = "%Y-%m-%d %k:%M"
+format = " $icon %Y-%m-%d %k:%M "
 [[block.click]]
 button = "left"
 cmd = "gnome-calendar"
