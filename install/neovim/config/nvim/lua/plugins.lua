@@ -897,6 +897,7 @@ local function setup_packer(packer_bootstrap)
 						"rust",
 						"scss",
 						"svelte",
+						"terraform",
 						"toml",
 						"tsx",
 						"typescript",
