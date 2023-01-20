@@ -97,7 +97,12 @@ local function setup_formatting(client, bufnr)
 
 	if client.server_capabilities.documentRangeFormattingProvider then
 		wk.register({
-			["<Leader>F"] = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format range" },
+			["<Leader>F"] = {
+				function()
+					vim.lsp.buf.format({ async = true })
+				end,
+				"Format range",
+			},
 		}, {
 			mode = "v",
 			buffer = bufnr,
