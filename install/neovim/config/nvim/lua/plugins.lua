@@ -879,6 +879,7 @@ local function setup_packer(packer_bootstrap)
 						"hcl",
 						"hjson",
 						"http",
+						"ini",
 						"java",
 						"javascript",
 						"jsdoc",
