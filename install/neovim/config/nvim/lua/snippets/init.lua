@@ -1,6 +1,9 @@
 local ls = require("luasnip")
 local M = {}
 
+ls.filetype_extend("typescriptreact", { "javascriptreact", "typescript" })
+ls.filetype_extend("typescript", { "javascript" })
+
 ---@param index number
 local function copy_node(index)
 	return ls.function_node(function(args)
