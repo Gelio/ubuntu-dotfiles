@@ -11,7 +11,7 @@ local server_configs = {
 	jsonls = require("lsp.jsonls").config,
 	-- Conflicts with prettier formatting in TS files.
 	stylelint_lsp = utils.base_config_without_formatting,
-	sumneko_lua = require("lsp.lua").config,
+	lua_ls = require("lsp.lua").config,
 	tsserver = require("lsp.tsserver").config,
 	texlab = require("lsp.tex").config,
 	rust_analyzer = default_server_config,
