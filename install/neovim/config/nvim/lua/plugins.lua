@@ -14,20 +14,9 @@ local function setup_packer(packer_bootstrap)
 		use("tpope/vim-repeat")
 		use("wellle/targets.vim")
 		use({
-			"tpope/vim-unimpaired",
-			setup = function()
-				vim.g.nremap = {
-					-- Disable encoding and decoding maps
-					["[u"] = "",
-					["]u"] = "",
-					["[y"] = "",
-					["]y"] = "",
-					["[x"] = "",
-					["]x"] = "",
-					["[C"] = "",
-					["]C"] = "",
-				}
-				vim.g.xremap = vim.g.nremap
+			"echasnovski/mini.bracketed",
+			config = function()
+				require("mini.bracketed").setup()
 			end,
 		})
 		use({
