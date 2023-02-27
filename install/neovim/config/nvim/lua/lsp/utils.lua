@@ -62,6 +62,8 @@ local function setup_lsp_keymaps(client, bufnr)
 			capabilities.signatureHelpProvider,
 			{ "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" }
 		),
+		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
+		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
 	}, {
 		buffer = bufnr,
 	})
