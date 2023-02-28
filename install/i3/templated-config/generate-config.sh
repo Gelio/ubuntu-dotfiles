@@ -27,7 +27,7 @@ templates_dir=./stowed-templates/
 output_dir=stowed-generated
 
 rm "$output_dir" -rf
-gomplate \
+ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.20 gomplate \
   "--input-dir=${script_dir}/${templates_dir}" \
   "--output-dir=${script_dir}/${output_dir}/" \
   --datasource "config=$config"
