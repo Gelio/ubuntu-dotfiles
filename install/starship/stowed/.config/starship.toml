@@ -7,3 +7,7 @@ disabled = false
 
 [git_metrics]
 disabled = false
+
+[directory]
+# NOTE: show more directory levels than the default 3
+truncation_length = 8
