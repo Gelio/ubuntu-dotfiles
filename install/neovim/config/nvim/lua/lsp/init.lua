@@ -26,6 +26,7 @@ local server_configs = {
 	tflint = default_server_config,
 	ansiblels = default_server_config,
 	clangd = default_server_config,
+	taplo = default_server_config,
 }
 
 require("mason-lspconfig").setup({
