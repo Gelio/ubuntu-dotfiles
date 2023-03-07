@@ -10,3 +10,9 @@ graphql
 splitgraph
 SSR
 neovim
+memoized
+routable
+image/!
+resJson/!
+url/!
+const/!
