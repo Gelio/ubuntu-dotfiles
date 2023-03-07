@@ -68,11 +68,13 @@ else
 	vim.fn.echoerr("rg (ripgrep) is not installed. Thus, it will not be used for :grep")
 end
 
-vim.cmd([[
-  augroup HighlightYank
-    autocmd! TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=300 }
-  augroup END
-]])
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("HighlightYank", {}),
+	desc = "Highlight yanked text",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
+	end,
+})
 
 -- Bootstrap packer
 -- https://github.com/wbthomason/packer.nvim#bootstrapping
