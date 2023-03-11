@@ -50,17 +50,21 @@ vim.opt.diffopt:append({
 	"linematch:60",
 })
 
-local map = vim.api.nvim_set_keymap
-
--- NOTE: Those were hard to be set via which-key.nvim
-
 -- Mutate jumplist on longer jumps
-map("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { noremap = true, expr = true })
-map("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { noremap = true, expr = true })
+vim.keymap.set("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true })
+vim.keymap.set("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true })
+
+-- Line indentation
+vim.keymap.set("x", "<", "<gv", { desc = "Deindent lines" })
+vim.keymap.set("x", ">", ">gv", { desc = "Indent lines" })
+
+-- Better search and replace word under cursor
+vim.keymap.set("n", "cn", "*``cgn", { desc = "Change word under cursor (repeatable forward)" })
+vim.keymap.set("n", "cN", "*``cgN", { desc = "Change word under cursor (repeatable backward)" })
 
 -- Easy yanking to clipboard
-map("n", "<Leader>y", '"+y', { noremap = true })
-map("v", "<Leader>y", '"+y', { noremap = true })
+vim.keymap.set({ "n", "v" }, "<Leader>y", '"+y', { desc = "Yank to clipboard" })
+
 -- Use ripgrep instead of regular grep
 if vim.fn.executable("rg") then
 	vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
