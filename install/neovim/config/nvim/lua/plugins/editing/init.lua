@@ -40,10 +40,16 @@ return {
 	{
 		"ggandor/lightspeed.nvim",
 		keys = {
-			{ "s", mode = { "n", "x", "o" } },
-			{ "S", mode = { "n", "x", "o" } },
-			{ "gs", mode = { "n", "x", "o" } },
-			{ "gS", mode = { "n", "x", "o" } },
+			{ "s", mode = { "n", "x" } },
+			{ "S", mode = { "n", "x" } },
+			{ "z", mode = "o" },
+			{ "Z", mode = "o" },
+			{ "x", mode = "o" },
+			{ "X", mode = "o" },
+			-- NOTE: for some reason, lightspeed does not set these 2 automatically
+			{ "gs", "<Plug>Lightspeed_gs", mode = "n" },
+			{ "gS", "<Plug>Lightspeed_gS", mode = "n" },
+
 			{ "f", mode = { "n", "x", "o" } },
 			{ "F", mode = { "n", "x", "o" } },
 			{ "t", mode = { "n", "x", "o" } },
