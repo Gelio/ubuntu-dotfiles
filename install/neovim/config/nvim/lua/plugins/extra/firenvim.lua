@@ -4,7 +4,7 @@ return {
 		build = function()
 			vim.fn["firenvim#install"](0)
 		end,
-		conf = vim.g.started_by_firenvim,
+		cond = vim.g.started_by_firenvim ~= nil,
 		config = function()
 			local default_settings = {
 				takeover = "never",
