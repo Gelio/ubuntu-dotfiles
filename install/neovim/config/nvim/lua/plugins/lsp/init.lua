@@ -2,10 +2,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			-- TODO: extract these options elsewhere
-			vim.o.cmdheight = 2
-			vim.opt.shortmess:append("c")
-
 			require("lsp")
 		end,
 		dependencies = {

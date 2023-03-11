@@ -9,6 +9,7 @@ vim.o.wrap = false
 vim.o.mouse = "a"
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 8
+vim.o.cmdheight = 2
 vim.o.hidden = true
 vim.o.writebackup = false
 vim.o.swapfile = false

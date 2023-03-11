@@ -4,6 +4,7 @@ return {
 		event = "InsertEnter",
 		config = function()
 			vim.opt.completeopt = { "menuone", "noselect" }
+			vim.opt.shortmess:append("c")
 
 			local function prepare_sources()
 				-- NOTE: order matters. The order will be maintained in completions popup
