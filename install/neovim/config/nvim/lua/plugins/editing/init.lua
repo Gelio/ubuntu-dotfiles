@@ -27,7 +27,7 @@ return {
 	{
 		"junegunn/vim-easy-align",
 		keys = {
-			{ "ga", "<Plug>(EasyAlign)", mode = { "n", "x" } },
+			{ "gA", "<Plug>(EasyAlign)", mode = { "n", "x" }, desc = "Align" },
 		},
 	},
 	{
@@ -140,5 +140,16 @@ return {
 		"chentoast/marks.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
+	},
+
+	{
+		"johmsalas/text-case.nvim",
+		cmd = { "Subs" },
+		keys = {
+			{ "ga", mode = { "n", "v" }, desc = "Change text case" },
+		},
+		config = function()
+			require("textcase").setup()
+		end,
 	},
 }
