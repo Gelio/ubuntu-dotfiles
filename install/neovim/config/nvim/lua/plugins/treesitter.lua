@@ -126,7 +126,7 @@ return {
 		"mfussenegger/nvim-treehopper",
 		keys = {
 			{
-				"<Leader>s",
+				"<Leader>sn",
 				function()
 					require("tsht").nodes()
 				end,
