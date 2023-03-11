@@ -46,6 +46,7 @@ return {
 			{ "Z", mode = "o" },
 			{ "x", mode = "o" },
 			{ "X", mode = "o" },
+
 			-- NOTE: for some reason, lightspeed does not set these 2 automatically
 			{ "gs", "<Plug>Lightspeed_gs", mode = "n" },
 			{ "gS", "<Plug>Lightspeed_gS", mode = "n" },
@@ -57,20 +58,17 @@ return {
 		},
 	},
 	{
-		-- TODO: consider using mini-splitjoin instead
-		-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-splitjoin.md
-		"AckslD/nvim-trevJ.lua",
-		config = true,
+		"echasnovski/mini.splitjoin",
+		config = function()
+			require("mini.splitjoin").setup({
+				mappings = {
+					toggle = "<Leader>J",
+				},
+			})
+		end,
 		keys = {
-			{
-				"<Leader>J",
-				function()
-					require("trevj").format_at_cursor()
-				end,
-				desc = "Unjoin lines",
-			},
+			{ "<Leader>J", desc = "Split/join region" },
 		},
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 	{
 		"mbbill/undotree",
