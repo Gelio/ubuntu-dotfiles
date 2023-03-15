@@ -45,8 +45,8 @@ return {
 		"sindrets/winshift.nvim",
 		cmd = "WinShift",
 		keys = {
-			{ "<C-W>m", ":WinShift<CR>", "Window shift mode" },
-			{ "<C-W><C-M>", ":WinShift<CR>", "Window shift mode" },
+			{ "<C-W>m", "<cmd>WinShift<CR>", "Window shift mode" },
+			{ "<C-W><C-M>", "<cmd>WinShift<CR>", "Window shift mode" },
 		},
 		config = true,
 	},

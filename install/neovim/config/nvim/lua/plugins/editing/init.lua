@@ -73,7 +73,7 @@ return {
 	{
 		"mbbill/undotree",
 		keys = {
-			{ "<Leader>u", ":UndotreeToggle<CR>", desc = "Toggle undo tree" },
+			{ "<Leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle undo tree" },
 		},
 	},
 	{
@@ -158,7 +158,7 @@ return {
 		keys = {
 			{
 				"<Leader>sr",
-				":SSR<CR>",
+				"<cmd>SSR<CR>",
 				mode = { "n", "x" },
 				desc = "Structural search and replace",
 			},

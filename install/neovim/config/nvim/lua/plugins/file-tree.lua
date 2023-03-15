@@ -39,7 +39,7 @@ return {
 			},
 			{
 				"<Leader>-",
-				":Neotree reveal dir=. position=current<CR>",
+				"<cmd>Neotree reveal dir=. position=current<CR>",
 				desc = "Open cwd in neo-tree",
 			},
 		},

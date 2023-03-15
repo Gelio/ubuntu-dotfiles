@@ -2,12 +2,12 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		keys = {
-			{ "<Leader>xb", ":DapToggleBreakpoint<CR>", name = "Toggle breakpoint" },
-			{ "<Leader>xc", ":DapContinue<CR>", name = "Continue" },
-			{ "<Leader>xso", ":DapStepOut<CR>", name = "Step out" },
-			{ "<Leader>xsn", ":DapStepOver<CR>", name = "Step over" },
-			{ "<Leader>xsi", ":DapStepInto<CR>", name = "Step into" },
-			{ "<Leader>xsc", ":DapRunToCursor<CR>", name = "Run to cursor" },
+			{ "<Leader>xb", "<cmd>DapToggleBreakpoint<CR>", name = "Toggle breakpoint" },
+			{ "<Leader>xc", "<cmd>DapContinue<CR>", name = "Continue" },
+			{ "<Leader>xso", "<cmd>DapStepOut<CR>", name = "Step out" },
+			{ "<Leader>xsn", "<cmd>DapStepOver<CR>", name = "Step over" },
+			{ "<Leader>xsi", "<cmd>DapStepInto<CR>", name = "Step into" },
+			{ "<Leader>xsc", "<cmd>DapRunToCursor<CR>", name = "Run to cursor" },
 		},
 		cmd = { "DapToggleBreakpoint", "DapContinue" },
 		config = function()
@@ -38,8 +38,8 @@ return {
 	{
 		"rcarriga/nvim-dap-ui",
 		keys = {
-			{ "<Leader>xK", ":DapUIEval<CR>", desc = "Evaluate expression under cursor" },
-			{ "<Leader>xx", ":DapUI<CR>", desc = "Toggle Dap UI" },
+			{ "<Leader>xK", "<cmd>DapUIEval<CR>", desc = "Evaluate expression under cursor" },
+			{ "<Leader>xx", "<cmd>DapUI<CR>", desc = "Toggle Dap UI" },
 		},
 		cmd = { "DapUIOpen", "DapUI", "DapUIEval" },
 		dependencies = { "nvim-dap" },

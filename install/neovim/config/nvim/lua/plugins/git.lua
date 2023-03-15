@@ -31,7 +31,7 @@ return {
 		keys = {
 			{
 				"<Leader>G",
-				":FloatermNew --width=0.95 --height=0.95 lazygit<CR>",
+				"<cmd>FloatermNew --width=0.95 --height=0.95 lazygit<CR>",
 				desc = "lazygit in floating terminal",
 			},
 		},
@@ -49,11 +49,11 @@ return {
 					local function map(mode, l, r, desc)
 						vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
 					end
-					map("n", "[c", ":Gitsigns prev_hunk<CR>", "Previous hunk")
-					map("n", "]c", ":Gitsigns next_hunk<CR>", "Next hunk")
+					map("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", "Previous hunk")
+					map("n", "]c", "<cmd>Gitsigns next_hunk<CR>", "Next hunk")
 
-					map({ "n", "v" }, "<Leader>hs", ":Gitsigns stage_hunk<CR>", "Stage hunk")
-					map({ "n", "v" }, "<Leader>hr", ":Gitsigns reset_hunk<CR>", "Reset hunk")
+					map({ "n", "v" }, "<Leader>hs", "<cmd>Gitsigns stage_hunk<CR>", "Stage hunk")
+					map({ "n", "v" }, "<Leader>hr", "<cmd>Gitsigns reset_hunk<CR>", "Reset hunk")
 					map("n", "<Leader>htd", gitsigns.toggle_deleted, "Toggle deleted lines")
 					map("n", "<Leader>htb", gitsigns.toggle_current_line_blame, "Toggle current line blame")
 					map("n", "<Leader>hb", function()

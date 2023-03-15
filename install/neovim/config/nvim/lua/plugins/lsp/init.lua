@@ -22,7 +22,7 @@ return {
 		"simrat39/symbols-outline.nvim",
 		cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
 		keys = {
-			{ "<Leader>so", ":SymbolsOutline<CR>", "Symbols outline" },
+			{ "<Leader>so", "<cmd>SymbolsOutline<CR>", "Symbols outline" },
 		},
 		config = function()
 			require("symbols-outline").setup({

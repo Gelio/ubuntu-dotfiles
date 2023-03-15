@@ -23,11 +23,11 @@ return {
 		"folke/trouble.nvim",
 		cmd = { "Trouble", "TroubleToggle" },
 		keys = {
-			{ "<Leader>tx", ":TroubleToggle<CR>" },
-			{ "<Leader>tw", ":TroubleToggle workspace_diagnostics<CR>", desc = "Workspace diagnostics (Trouble)" },
-			{ "<Leader>td", ":TroubleToggle document_diagnostics<CR>", desc = "Document diagnostics (Trouble)" },
-			{ "<Leader>tq", ":TroubleToggle quickfix<CR>", desc = "Quickfix list (Trouble)" },
-			{ "gR", ":TroubleToggle lsp_references<CR>", desc = "LSP references (Trouble)" },
+			{ "<Leader>tx", "<cmd>TroubleToggle<CR>" },
+			{ "<Leader>tw", "<cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace diagnostics (Trouble)" },
+			{ "<Leader>td", "<cmd>TroubleToggle document_diagnostics<CR>", desc = "Document diagnostics (Trouble)" },
+			{ "<Leader>tq", "<cmd>TroubleToggle quickfix<CR>", desc = "Quickfix list (Trouble)" },
+			{ "gR", "<cmd>TroubleToggle lsp_references<CR>", desc = "LSP references (Trouble)" },
 		},
 	},
 
