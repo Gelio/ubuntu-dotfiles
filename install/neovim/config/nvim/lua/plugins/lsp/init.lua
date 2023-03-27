@@ -9,7 +9,11 @@ return {
 			"jose-elias-alvarez/null-ls.nvim",
 			"mfussenegger/nvim-jdtls",
 			"b0o/SchemaStore.nvim",
-			{ "williamboman/mason.nvim", config = true },
+			{
+				"williamboman/mason.nvim",
+				config = true,
+				build = ":MasonUpdate",
+			},
 			{ "williamboman/mason-lspconfig.nvim", config = true },
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{ "narutoxy/dim.lua", config = true },
