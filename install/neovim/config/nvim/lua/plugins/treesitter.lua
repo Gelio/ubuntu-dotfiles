@@ -70,6 +70,7 @@ return {
 				},
 				textsubjects = {
 					enable = true,
+					prev_selection = "<Leader>.",
 					keymaps = {
 						["."] = "textsubjects-smart",
 					},
