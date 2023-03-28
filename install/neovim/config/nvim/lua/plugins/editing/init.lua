@@ -182,4 +182,9 @@ return {
 			})
 		end,
 	},
+
+	{
+		"chrisgrieser/nvim-various-textobjs",
+		opts = { useDefaultKeymaps = true },
+	},
 }
