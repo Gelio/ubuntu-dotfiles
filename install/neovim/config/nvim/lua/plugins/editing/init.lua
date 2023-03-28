@@ -19,10 +19,16 @@ return {
 		end,
 	},
 	{
-		"bkad/camelcasemotion",
-		init = function()
-			vim.g.camelcasemotion_key = "<Leader>"
-		end,
+		"chrisgrieser/nvim-spider",
+		keys = vim.tbl_map(function(key)
+			return {
+				string.format("<Leader>%s", key),
+				function()
+					require("spider").motion(key)
+				end,
+				mode = { "n", "x", "o" },
+			}
+		end, { "w", "e", "b", "ge" }),
 	},
 	{
 		"junegunn/vim-easy-align",
