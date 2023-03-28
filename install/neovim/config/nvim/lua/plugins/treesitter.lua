@@ -127,9 +127,7 @@ return {
 		keys = {
 			{
 				"<Leader>sn",
-				function()
-					require("tsht").nodes()
-				end,
+				":<C-U>lua require('tsht').nodes()<CR>",
 				mode = { "x", "o" },
 				desc = "Select treesitter node",
 			},
