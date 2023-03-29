@@ -140,6 +140,21 @@ return {
 			{ "g<C-a>", "g<Plug>(dial-increment)", mode = "v", desc = "Increment by count", remap = true },
 			{ "g<C-x>", "g<Plug>(dial-decrement)", mode = "v", desc = "Decrement by count", remap = true },
 		},
+		config = function()
+			local augend = require("dial.augend")
+			local dial_config = require("dial.config")
+
+			dial_config.augends:register_group({
+				default = vim.list_extend({
+					augend.constant.alias.bool,
+					augend.constant.new({
+						elements = { "&&", "||" },
+						word = false,
+						cyclic = true,
+					}),
+				}, dial_config.augends:get("default")),
+			})
+		end,
 	},
 
 	{
