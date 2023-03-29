@@ -200,6 +200,34 @@ return {
 
 	{
 		"chrisgrieser/nvim-various-textobjs",
-		opts = { useDefaultKeymaps = true },
+		config = { useDefaultKeymaps = false },
+		keys = function()
+			local mappings = {
+				S = "subword",
+				v = "value",
+				k = "key",
+			}
+
+			---@type LazyKeys[]
+			local keys = {}
+			for key, textobj in pairs(mappings) do
+				table.insert(keys, {
+					string.format("a%s", key),
+					function()
+						require("various-textobjs")[textobj](false)
+					end,
+					mode = { "o", "x" },
+				})
+				table.insert(keys, {
+					string.format("i%s", key),
+					function()
+						require("various-textobjs")[textobj](true)
+					end,
+					mode = { "o", "x" },
+				})
+			end
+
+			return keys
+		end,
 	},
 }
