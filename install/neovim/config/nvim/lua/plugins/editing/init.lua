@@ -47,7 +47,7 @@ return {
 		"ggandor/lightspeed.nvim",
 		keys = {
 			{ "s", mode = { "n", "x" } },
-			{ "S", mode = { "n", "x" } },
+			{ "S", mode = "n" },
 			{ "z", mode = "o" },
 			{ "Z", mode = "o" },
 			{ "x", mode = "o" },
@@ -117,6 +117,8 @@ return {
 			"ys",
 			"ds",
 			"cs",
+			{ "S", "<Plug>(nvim-surround-visual)", mode = { "x" } },
+			{ "gS", "<Plug>(nvim-surround-visual-line)", mode = { "x" } },
 		},
 		config = true,
 	},
