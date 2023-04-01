@@ -249,12 +249,40 @@ return {
 			},
 			{
 				"[h",
-				"<cmd>lua require('harpoon.ui').nav_prev()<CR>",
+				function()
+					local Marked = require("harpoon.mark")
+					local UI = require("harpoon.ui")
+					local current_index = Marked.get_current_index()
+
+					if current_index == nil then
+						UI.nav_file(vim.v.count1)
+						return
+					end
+
+					local number_of_items = Marked.get_length()
+					-- NOTE: weird modulo logic because Lua uses 1-based indexing
+					local prev_index = (current_index - vim.v.count1 - 1) % number_of_items + 1
+					UI.nav_file(prev_index)
+				end,
 				desc = "(harpoon) Previous file",
 			},
 			{
 				"]h",
-				"<cmd>lua require('harpoon.ui').nav_next()<CR>",
+				function()
+					local Marked = require("harpoon.mark")
+					local UI = require("harpoon.ui")
+					local current_index = Marked.get_current_index()
+
+					if current_index == nil then
+						UI.nav_file(vim.v.count1)
+						return
+					end
+
+					local number_of_items = Marked.get_length()
+					-- NOTE: weird modulo logic because Lua uses 1-based indexing
+					local next_index = (current_index + vim.v.count1 - 1) % number_of_items + 1
+					UI.nav_file(next_index)
+				end,
 				desc = "(harpoon) Next file",
 			},
 		},
