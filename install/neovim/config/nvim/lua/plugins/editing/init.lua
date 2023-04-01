@@ -285,6 +285,18 @@ return {
 				end,
 				desc = "(harpoon) Next file",
 			},
+			{
+				"<Leader>H",
+				function()
+					local index = vim.v.count
+					if index == 0 then
+						return
+					end
+
+					require("harpoon.ui").nav_file(index)
+				end,
+				desc = "(harpoon) Jump to file (uses count)",
+			},
 		},
 	},
 }
