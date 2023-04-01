@@ -23,9 +23,7 @@ return {
 		keys = vim.tbl_map(function(key)
 			return {
 				string.format("<Leader>%s", key),
-				function()
-					require("spider").motion(key)
-				end,
+				string.format("<cmd>lua require('spider').motion('%s')<CR>", key),
 				mode = { "n", "x", "o" },
 			}
 		end, { "w", "e", "b", "ge" }),
@@ -210,21 +208,21 @@ return {
 				k = "key",
 			}
 
+			local function get_mapping_rhs(textobj, inner)
+				return string.format("<cmd>lua require('various-textobjs')['%s'](%s)<CR>", textobj, inner and "true" or "false")
+			end
+
 			---@type LazyKeys[]
 			local keys = {}
 			for key, textobj in pairs(mappings) do
 				table.insert(keys, {
 					string.format("a%s", key),
-					function()
-						require("various-textobjs")[textobj](false)
-					end,
+					get_mapping_rhs(textobj, false),
 					mode = { "o", "x" },
 				})
 				table.insert(keys, {
 					string.format("i%s", key),
-					function()
-						require("various-textobjs")[textobj](true)
-					end,
+					get_mapping_rhs(textobj, true),
 					mode = { "o", "x" },
 				})
 			end
