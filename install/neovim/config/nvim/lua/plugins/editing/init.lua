@@ -230,4 +230,33 @@ return {
 			return keys
 		end,
 	},
+
+	{
+		"ThePrimeagen/harpoon",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		keys = {
+			{
+				"<Leader>ha",
+				"<cmd>lua require('harpoon.mark').toggle_file()<CR>",
+				desc = "(harpoon) Toggle file",
+			},
+			{
+				"<Leader>hq",
+				"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>",
+				desc = "(harpoon) Quick menu",
+			},
+			{
+				"[h",
+				"<cmd>lua require('harpoon.ui').nav_prev()<CR>",
+				desc = "(harpoon) Previous file",
+			},
+			{
+				"]h",
+				"<cmd>lua require('harpoon.ui').nav_next()<CR>",
+				desc = "(harpoon) Next file",
+			},
+		},
+	},
 }
