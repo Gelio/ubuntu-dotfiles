@@ -7,7 +7,6 @@ return {
 		dependencies = {
 			"jose-elias-alvarez/typescript.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
-			"mfussenegger/nvim-jdtls",
 			"b0o/SchemaStore.nvim",
 			{
 				"williamboman/mason.nvim",
