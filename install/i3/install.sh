@@ -9,7 +9,7 @@ LOCKSCREEN_PACKAGES="libxcb-screensaver0 libxcb-screensaver0-dev"
 
 sudo add-apt-repository ppa:regolith-linux/release
 # shellcheck disable=SC2086
-sudo apt install i3-gaps $I3_ADDITIONAL_PACKAGES \
+sudo apt install i3-wm $I3_ADDITIONAL_PACKAGES \
   $ROFIMOJI_PACKAGES \
   $LOCKSCREEN_PACKAGES
 
