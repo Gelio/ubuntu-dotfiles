@@ -7,7 +7,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"romgrk/nvim-treesitter-context",
 			"RRethy/nvim-treesitter-textsubjects",
-			"p00f/nvim-ts-rainbow",
+			"HiPhish/nvim-ts-rainbow2",
 			"windwp/nvim-ts-autotag",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
@@ -103,7 +103,22 @@ return {
 				},
 				rainbow = {
 					enable = true,
-					extended_mode = true,
+					query = {
+						"rainbow-parens",
+						html = "rainbow-tags",
+						javascript = "rainbow-parens-react",
+					},
+					hlgroups = {
+						-- NOTE: use hlgroups from nvim-ts-rainbow since they are handled by gruvbox-material
+						-- https://github.com/sainnhe/gruvbox-material/blob/984d4bb876cccfeada376e86ba5babae59da1cce/colors/gruvbox-material.vim#L1230
+						"rainbowcol1",
+						"rainbowcol2",
+						"rainbowcol3",
+						"rainbowcol4",
+						"rainbowcol5",
+						"rainbowcol6",
+						"rainbowcol7",
+					},
 				},
 			})
 		end,
