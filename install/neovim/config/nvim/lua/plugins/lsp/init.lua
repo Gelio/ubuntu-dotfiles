@@ -26,7 +26,7 @@ return {
 				event = "LspAttach",
 			},
 			"Gelio/auto-nvimrc",
-			{ "ray-x/lsp_signature.nvim", config = true },
+			{ "ray-x/lsp_signature.nvim", config = true, event = "LspAttach" },
 		},
 	},
 
