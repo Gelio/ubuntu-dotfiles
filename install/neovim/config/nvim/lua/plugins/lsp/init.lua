@@ -18,6 +18,7 @@ return {
 			{
 				"zbirenbaum/neodim",
 				config = true,
+				branch = "v2",
 				opts = {
 					alpha = 0.5,
 					update_in_insert = { enable = false },
