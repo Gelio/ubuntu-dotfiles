@@ -15,17 +15,6 @@ return {
 			},
 			{ "williamboman/mason-lspconfig.nvim", config = true },
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			{
-				"zbirenbaum/neodim",
-				config = true,
-				branch = "v2",
-				opts = {
-					alpha = 0.5,
-					update_in_insert = { enable = false },
-					hide = { virtual_text = false, signs = false, underline = false },
-				},
-				event = "LspAttach",
-			},
 			"Gelio/auto-nvimrc",
 			{ "ray-x/lsp_signature.nvim", config = true, event = "LspAttach" },
 		},
