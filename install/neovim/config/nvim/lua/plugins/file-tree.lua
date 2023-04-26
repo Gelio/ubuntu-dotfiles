@@ -114,6 +114,20 @@ return {
 						event = events.FILE_RENAMED,
 						handler = on_file_remove,
 					},
+					-- NOTE: restore alternate file for files opened with NeoTree
+					-- Inspired by https://github.com/ajitid/dotfiles/compare/048b60ee6424d78ba3042a5426b388ecb8c758e4...abce737ea98e4f8bae3973d258e41ecb77583f5b
+					{
+						event = events.NEO_TREE_WINDOW_BEFORE_OPEN,
+						handler = function(arg)
+							vim.w.neo_tree_before_open_visible_buffer = vim.api.nvim_get_current_buf()
+						end,
+					},
+					{
+						event = events.FILE_OPENED,
+						handler = function(arg)
+							vim.fn.setreg("#", vim.w.neo_tree_before_open_visible_buffer)
+						end,
+					},
 				},
 			}
 		end,
