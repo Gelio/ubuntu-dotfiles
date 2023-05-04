@@ -14,11 +14,14 @@ fi
 
 pushd /tmp >/dev/null
 wget "$font_archive_url" -O "$archive_name"
-unzip "$archive_name" -d ./JetBrainsMono
+fonts_unzip_dir=./JetBrainsMono
+unzip "$archive_name" -d "$fonts_unzip_dir"
 fonts_destination_dir=~/.local/share/fonts
 mkdir -p "$fonts_destination_dir"
-cp ./JetBrainsMono/*.ttf "$fonts_destination_dir"
+cp $fonts_unzip_dir/*.ttf "$fonts_destination_dir"
 
 echo "Font installed. Testing installation"
 
 fc-list | grep "JetBrainsMono NF"
+
+# NOTE: no need to remove the archive and directory because it is in /tmp
