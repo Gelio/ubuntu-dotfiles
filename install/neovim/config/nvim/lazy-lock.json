@@ -2,7 +2,7 @@
   "Comment.nvim": { "branch": "master", "commit": "e1fe53117aab24c378d5e6deaad786789c360123" },
   "LuaSnip": { "branch": "master", "commit": "2f78933799ef1a8558057ea7d06d6ccb11140711" },
   "SchemaStore.nvim": { "branch": "main", "commit": "22f5e69f395eb9a47289b66af1ccb07e8f783016" },
-  "auto-nvimrc": { "branch": "main", "commit": "1dfccd55ae87f9a183de8ffc8866da355723b682" },
+  "auto-nvimrc": { "branch": "main", "commit": "c495413dd4b82d6b2fa888f20e5776b76c271f8e" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-calc": { "branch": "main", "commit": "50792f34a628ea6eb31d2c90e8df174671e4e7a0" },
   "cmp-emoji": { "branch": "main", "commit": "19075c36d5820253d32e2478b6aaf3734aeaafa0" },

@@ -15,7 +15,15 @@ return {
 			},
 			{ "williamboman/mason-lspconfig.nvim", config = true },
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			"Gelio/auto-nvimrc",
+			{
+				"Gelio/auto-nvimrc",
+				cmd = { "AutoNvimrcReset" },
+				init = function()
+					vim.api.nvim_create_user_command("AutoNvimrcReset", function()
+						require("auto-nvimrc").reset()
+					end, {})
+				end,
+			},
 			{ "ray-x/lsp_signature.nvim", config = true, event = "LspAttach" },
 		},
 	},
