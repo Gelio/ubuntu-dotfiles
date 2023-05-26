@@ -56,12 +56,7 @@ end
 
 setup_lsp_servers()
 
--- NOTE: typescript.nvim needs to be the last thing that calls
--- lspconfig.tsserver.setup for tsserver
-require("typescript").setup({
-	server = server_configs.tsserver,
-})
-
+require("lsp.tsserver").setup()
 require("lsp.null-ls").setup()
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })

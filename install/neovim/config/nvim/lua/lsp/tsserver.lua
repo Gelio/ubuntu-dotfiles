@@ -9,4 +9,16 @@ M.config = vim.tbl_extend("force", utils.base_config, {
 	on_attach = M.on_attach,
 })
 
+M.setup = function(config)
+	if config == nil then
+		config = M.config
+	end
+
+	-- NOTE: typescript.nvim needs to be the last thing that calls
+	-- lspconfig.tsserver.setup for tsserver
+	require("typescript").setup({
+		server = config,
+	})
+end
+
 return M
