@@ -1,47 +1,47 @@
 local M = {}
 
-local function setup_lsp_keymaps(client, bufnr)
-	local function if_enabled(condition, mapping)
-		return condition and mapping or nil
-	end
+local function if_enabled(condition, mapping)
+	return condition and mapping or nil
+end
 
+local function setup_lsp_keymaps(client, bufnr)
 	local wk = require("which-key")
-	local capabilities = client.server_capabilities
+
+	local function if_supports(method, mapping)
+		return if_enabled(client.supports_method(method), mapping)
+	end
 
 	wk.register({
 		g = {
-			D = if_enabled(
-				capabilities.declarationProvider,
-				{ "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" }
-			),
-			d = if_enabled(
-				capabilities.definitionProvider,
-				{ "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" }
-			),
-			i = if_enabled(
-				capabilities.implementationProvider,
+			D = if_supports("textDocument/declaration", { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" }),
+			d = if_supports("textDocument/definition", { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" }),
+			i = if_supports(
+				"textDocument/implementation",
 				{ "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" }
 			),
-			r = if_enabled(
-				capabilities.referencesProvider,
-				{ "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }
-			),
-			["<Leader>c"] = if_enabled(capabilities.callHierarchyProvider, {
-				name = "Symbol calls",
-				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
-				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
-			}),
-			["<Leader>t"] = if_enabled(
-				capabilities.typeDefinitionProvider,
+			r = if_supports("textDocument/references", { "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }),
+			["<Leader>c"] = {
+				name = "Call hierarchy",
+				i = if_supports(
+					"callHierarchy/incomingCalls",
+					{ "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" }
+				),
+				o = if_supports(
+					"callHierarchy/outgoingCalls",
+					{ "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" }
+				),
+			},
+			["<Leader>t"] = if_supports(
+				"textDocument/typeDefinition",
 				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
 			),
 		},
-		["<C-W>gd"] = if_enabled(capabilities.definitionProvider, {
+		["<C-W>gd"] = if_supports("textDocument/definition", {
 			"<cmd>tab split | norm gd<CR>",
 			"Go to definition in a new tab",
 		}),
 		["<Leader>"] = {
-			rn = if_enabled(capabilities.renameProvider, { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
+			rn = if_supports("textDocument/rename", { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
 			d = {
 				function()
 					vim.diagnostic.open_float({
@@ -51,15 +51,12 @@ local function setup_lsp_keymaps(client, bufnr)
 				end,
 				"Show diagnostics for current line",
 			},
-			ac = if_enabled(
-				capabilities.codeActionProvider,
-				{ "<cmd>CodeActionMenu<CR>", "Code actions", mode = { "v", "n" } }
-			),
+			ac = if_supports("codeAction/resolve", { "<cmd>CodeActionMenu<CR>", "Code actions", mode = { "v", "n" } }),
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 		},
-		K = if_enabled(capabilities.hoverProvider, { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
-		["<C-k>"] = if_enabled(
-			capabilities.signatureHelpProvider,
+		K = if_supports("textDocument/hover", { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
+		["<C-k>"] = if_supports(
+			"textDocument/signatureHelp",
 			{ "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" }
 		),
 		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
@@ -74,7 +71,7 @@ local sync_formatting_augroup = vim.api.nvim_create_augroup("SyncFormatting", {}
 local function setup_formatting(client, bufnr)
 	local wk = require("which-key")
 
-	if client.server_capabilities.documentFormattingProvider then
+	if client.supports_method("textDocument/formatting") then
 		wk.register({
 			["<Leader>F"] = {
 				function()
@@ -95,7 +92,7 @@ local function setup_formatting(client, bufnr)
 		})
 	end
 
-	if client.server_capabilities.documentRangeFormattingProvider then
+	if client.supports_method("textDocument/rangeFormatting") then
 		wk.register({
 			["<Leader>F"] = {
 				function()
@@ -111,7 +108,7 @@ local function setup_formatting(client, bufnr)
 end
 
 local function setup_document_highlight(client)
-	if not client.server_capabilities.documentHighlightProvider then
+	if not client.supports_method("textDocument/documentHighlight") then
 		return
 	end
 
@@ -121,7 +118,7 @@ local function setup_document_highlight(client)
     hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
     augroup LSPDocumentHighlight
       autocmd! * <buffer>
-      autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorHold,CursorHoldI  <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     augroup END
   ]])
@@ -141,7 +138,9 @@ end
 
 -- See https://github.com/hrsh7th/cmp-nvim-lsp
 -- Takes care of autocomplete support using snippets for some LSP servers (cssls, jsonls)
-local ok, cmp_capabilities = pcall(function() return require("cmp_nvim_lsp").default_capabilities() end)
+local ok, cmp_capabilities = pcall(function()
+	return require("cmp_nvim_lsp").default_capabilities()
+end)
 if ok then
 	M.capabilities = cmp_capabilities
 else
