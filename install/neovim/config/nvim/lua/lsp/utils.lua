@@ -1,47 +1,27 @@
 local M = {}
 
-local function if_enabled(condition, mapping)
-	return condition and mapping or nil
-end
-
-local function setup_lsp_keymaps(client, bufnr)
+local function setup_lsp_keymaps(_client, bufnr)
 	local wk = require("which-key")
-
-	local function if_supports(method, mapping)
-		return if_enabled(client.supports_method(method), mapping)
-	end
 
 	wk.register({
 		g = {
-			D = if_supports("textDocument/declaration", { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" }),
-			d = if_supports("textDocument/definition", { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" }),
-			i = if_supports(
-				"textDocument/implementation",
-				{ "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" }
-			),
-			r = if_supports("textDocument/references", { "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" }),
+			D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
+			d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+			i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
+			r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" },
 			["<Leader>c"] = {
 				name = "Call hierarchy",
-				i = if_supports(
-					"callHierarchy/incomingCalls",
-					{ "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" }
-				),
-				o = if_supports(
-					"callHierarchy/outgoingCalls",
-					{ "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" }
-				),
+				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
+				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
 			},
-			["<Leader>t"] = if_supports(
-				"textDocument/typeDefinition",
-				{ "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" }
-			),
+			["<Leader>t"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
 		},
-		["<C-W>gd"] = if_supports("textDocument/definition", {
+		["<C-W>gd"] = {
 			"<cmd>tab split | norm gd<CR>",
 			"Go to definition in a new tab",
-		}),
+		},
 		["<Leader>"] = {
-			rn = if_supports("textDocument/rename", { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" }),
+			rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
 			d = {
 				function()
 					vim.diagnostic.open_float({
@@ -51,14 +31,11 @@ local function setup_lsp_keymaps(client, bufnr)
 				end,
 				"Show diagnostics for current line",
 			},
-			ac = if_supports("codeAction/resolve", { "<cmd>CodeActionMenu<CR>", "Code actions", mode = { "v", "n" } }),
+			ac = { "<cmd>CodeActionMenu<CR>", "Code actions", mode = { "v", "n" } },
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 		},
-		K = if_supports("textDocument/hover", { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" }),
-		["<C-k>"] = if_supports(
-			"textDocument/signatureHelp",
-			{ "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" }
-		),
+		K = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" },
+		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" },
 		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
 		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
 	}, {
