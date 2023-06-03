@@ -35,7 +35,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 		},
 		K = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Show hover popup" },
-		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature kelp" },
+		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
 		["<C-j>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help", mode = "i" },
 		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
 		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
