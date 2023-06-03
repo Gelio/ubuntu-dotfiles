@@ -59,7 +59,10 @@ setup_lsp_servers()
 require("lsp.tsserver").setup()
 require("lsp.null-ls").setup()
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = "single",
+	zindex = utils.zindex.lsp_signature,
+})
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
 local function use_icons_for_diagnostic_signs()

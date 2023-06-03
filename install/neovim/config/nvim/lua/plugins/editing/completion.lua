@@ -33,7 +33,16 @@ return {
 			local sources, source_labels = prepare_sources()
 
 			local cmp = require("cmp")
+			local lsp_utils = require("lsp.utils")
 			cmp.setup({
+				window = {
+					completion = {
+						zindex = lsp_utils.zindex.completions_menu,
+					},
+					documentation = {
+						zindex = lsp_utils.zindex.completion_documentation,
+					},
+				},
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)

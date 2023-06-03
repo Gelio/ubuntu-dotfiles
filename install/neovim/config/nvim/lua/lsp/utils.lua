@@ -109,7 +109,7 @@ function M.on_attach(client, bufnr)
 	setup_document_highlight(client)
 
 	require("lsp_signature").on_attach({
-		zindex = 50, -- signature should appear below nvim-cmp completions
+		zindex = M.zindex.lsp_signature,
 	})
 end
 
@@ -167,5 +167,14 @@ M.base_config = {
 M.base_config_without_formatting = vim.tbl_extend("force", M.base_config, {
 	on_attach = M.run_all(M.disable_formatting, M.on_attach),
 })
+
+--- https://github.com/hrsh7th/nvim-cmp/blob/fc0f694af1a742ada77e5b1c91ff405c746f4a26/lua/cmp/view/custom_entries_view.lua#L207
+local completions_menu_zindex = 1001
+M.zindex = {
+	completions_menu = completions_menu_zindex,
+	--- https://github.com/hrsh7th/nvim-cmp/blob/fc0f694af1a742ada77e5b1c91ff405c746f4a26/lua/cmp/view/docs_view.lua#L104
+	completion_documentation = 50,
+	lsp_signature = completions_menu_zindex + 1,
+}
 
 return M
