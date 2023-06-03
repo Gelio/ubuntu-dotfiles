@@ -108,10 +108,6 @@ function M.on_attach(client, bufnr)
 	setup_lsp_keymaps(client, bufnr)
 	setup_formatting(client, bufnr)
 	setup_document_highlight(client)
-
-	require("lsp_signature").on_attach({
-		zindex = M.zindex.lsp_signature,
-	})
 end
 
 -- See https://github.com/hrsh7th/cmp-nvim-lsp
