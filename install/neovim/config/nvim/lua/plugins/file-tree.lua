@@ -95,6 +95,13 @@ return {
 							-- NOTE: unbind neo-tree filtering in favor of native search
 							["/"] = "",
 							f = "",
+
+							-- NOTE: use Telescope's keybinds for opening in splits and tabs
+							s = "",
+							S = "",
+							["<c-v>"] = "open_vsplit",
+							["<c-x>"] = "open_split",
+							["<c-t>"] = "open_tabnew",
 						},
 					},
 					hijack_netrw_behavior = "open_current",
