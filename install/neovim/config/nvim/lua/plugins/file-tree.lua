@@ -91,6 +91,10 @@ return {
 					window = {
 						mappings = {
 							["-"] = "navigate_up",
+
+							-- NOTE: unbind neo-tree filtering in favor of native search
+							["/"] = "",
+							f = "",
 						},
 					},
 					hijack_netrw_behavior = "open_current",
