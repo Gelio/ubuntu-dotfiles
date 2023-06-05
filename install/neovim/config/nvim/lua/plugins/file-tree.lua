@@ -12,7 +12,7 @@ return {
 			-- NOTE: load neo-tree when opening a directory with nvim from the cmdline
 			-- @see https://github.com/LazyVim/LazyVim/blob/b1b5b461bf9d853d8472ee5b968471695118958b/lua/lazyvim/plugins/editor.lua#L31-L37
 			if vim.fn.argc() == 1 then
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				local stat = vim.uv.fs_stat(vim.fn.argv(0))
 				if stat and stat.type == "directory" then
 					require("neo-tree")
 				end
