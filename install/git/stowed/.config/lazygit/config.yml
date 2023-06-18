@@ -15,4 +15,4 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
 os:
-  openCommand: "floaterm {{filename}}"
+  open: "floaterm {{filename}}"
