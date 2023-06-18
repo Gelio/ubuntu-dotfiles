@@ -153,4 +153,10 @@ return {
 		lazy = true,
 		opts = { default = true },
 	},
+
+	{
+		"tzachar/highlight-undo.nvim",
+		keys = { "u", "<C-r>" },
+		config = true,
+	},
 }
