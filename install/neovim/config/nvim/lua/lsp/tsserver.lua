@@ -10,15 +10,11 @@ M.config = vim.tbl_extend("force", utils.base_config, {
 })
 
 M.setup = function(config)
-	if config == nil then
-		config = M.config
-	end
+	config = config or M.config
 
-	-- NOTE: typescript.nvim needs to be the last thing that calls
+	-- NOTE: typescript-tools.nvim needs to be the last thing that calls
 	-- lspconfig.tsserver.setup for tsserver
-	require("typescript").setup({
-		server = config,
-	})
+	require("typescript-tools").setup(config)
 end
 
 return M

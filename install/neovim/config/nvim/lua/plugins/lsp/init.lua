@@ -5,7 +5,7 @@ return {
 			require("lsp")
 		end,
 		dependencies = {
-			"jose-elias-alvarez/typescript.nvim",
+			{ "pmizio/typescript-tools.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 			"jose-elias-alvarez/null-ls.nvim",
 			"b0o/SchemaStore.nvim",
 			{
