@@ -27,6 +27,7 @@ local server_configs = {
 	ansiblels = default_server_config,
 	clangd = default_server_config,
 	taplo = default_server_config,
+	prismals = default_server_config,
 }
 
 require("mason-lspconfig").setup({
