@@ -2,7 +2,7 @@ return {
 	{
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && yarn install",
-		cmd = { "MarkdownPreview" },
+		ft = "markdown",
 		config = function()
 			vim.g.mkdp_echo_preview_url = true
 		end,
