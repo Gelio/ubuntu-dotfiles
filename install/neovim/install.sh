@@ -6,19 +6,43 @@ script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 pushd "$script_dir" >/dev/null
 
 clean_before_build=false
-if [[ "${1-}" == "--clean" ]] || [[ "${1-}" == "-c" ]]; then
-  clean_before_build=true
-fi
+skip_pull=false
+
+while :; do
+  case "${1:-""}" in
+  -c | --clean)
+    clean_before_build=true
+    shift
+    ;;
+
+  --skip-pull)
+    skip_pull=true
+    shift
+    ;;
+
+  *)
+    break
+    ;;
+  esac
+
+done
 
 function main {
   pushd ~/.local >/dev/null
   if [[ -d neovim ]]; then
     cd neovim
-    echo "* neovim repository found at $PWD, pulling latest changes..."
-    # Pulling fails most likely when a hash is checked out, not a branch.
-    # This is normal when there are breaking changes on master and a previous
-    # commit is used to build neovim.
-    git pull || echo "Pulling latest changes failed. Continuing anyway"
+    echo "* neovim repository found at $PWD"
+
+    if [[ "$skip_pull" == false ]]; then
+
+      echo "  Pulling latest changes..."
+      # Pulling fails most likely when a hash is checked out, not a branch.
+      # This is normal when there are breaking changes on master and a previous
+      # commit is used to build neovim.
+      git pull || echo "Pulling latest changes failed. Continuing anyway"
+    else
+      echo "  Skipped pulling latest changes"
+    fi
 
     # Sometimes there are ninja build permissions errors because some files
     # are owned by root instead of the current user.
