@@ -65,14 +65,13 @@ return {
 	{
 		"kosayoda/nvim-lightbulb",
 		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-				desc = "Show lightbulb in the signcolumn whenever an LSP action is available",
-				group = vim.api.nvim_create_augroup("LspLightBulb", {}),
-				callback = require("nvim-lightbulb").update_lightbulb,
-				pattern = "*",
-			})
-		end,
+		opts = {
+			autocmd = {
+				enabled = true,
+				-- NOTE: do not override the `updatetime` which is set elsewhere
+				updatetime = -1,
+			},
+		},
 	},
 
 	{
