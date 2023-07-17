@@ -7,7 +7,6 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"romgrk/nvim-treesitter-context",
 			"RRethy/nvim-treesitter-textsubjects",
-			"p00f/nvim-ts-rainbow",
 			"windwp/nvim-ts-autotag",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
@@ -102,10 +101,6 @@ return {
 						},
 					},
 				},
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-				},
 			})
 		end,
 	},
@@ -134,5 +129,31 @@ return {
 				desc = "Select treesitter node",
 			},
 		},
+	},
+	{
+		"https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+		config = function()
+			local rainbow_delimiters = require("rainbow-delimiters")
+
+			vim.g.rainbow_delimiters = {
+				strategy = {
+					[""] = rainbow_delimiters.strategy["global"],
+					vim = rainbow_delimiters.strategy["local"],
+				},
+				query = {
+					[""] = "rainbow-delimiters",
+					lua = "rainbow-blocks",
+				},
+				highlight = {
+					"RainbowDelimiterRed",
+					"RainbowDelimiterYellow",
+					"RainbowDelimiterBlue",
+					"RainbowDelimiterOrange",
+					"RainbowDelimiterGreen",
+					"RainbowDelimiterViolet",
+					"RainbowDelimiterCyan",
+				},
+			}
+		end,
 	},
 }
