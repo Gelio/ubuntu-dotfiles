@@ -16,14 +16,20 @@ return {
 		-- This also fixes a bug which causes git-conflict.nvim only work when
 		-- neovim is opened in the root of the repository.
 		version = "*",
-		opts = function()
-			return {
-				highlights = {
-					-- NOTE: the default `current` highlight color is too heavy
-					current = "DiffChange",
-				},
-			}
-		end,
+		opts = {
+			highlights = {
+				-- NOTE: the default `current` highlight color is too heavy
+				current = "DiffChange",
+			},
+			default_mappings = {
+				ours = "co",
+				theirs = "ct",
+				none = "c0",
+				both = "cb",
+				next = "]x",
+				prev = "[x",
+			},
+		},
 	},
 	{
 		"voldikss/vim-floaterm",
