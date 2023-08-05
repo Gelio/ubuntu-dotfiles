@@ -1,3 +1,31 @@
+local function create_markdownlint_config()
+	local markdownlintrc_path = vim.fs.joinpath(vim.fn.getcwd(), ".markdownlintrc")
+	vim.print("Markdownlintrc path", markdownlintrc_path)
+
+	local async = require("plenary.async")
+	local err, fd = async.uv.fs_open(
+		markdownlintrc_path,
+		"w",
+		-- 0o666
+		438
+	)
+	assert(not err, err)
+
+	require("plenary.async.util").scheduler()
+	local markdownlintrc_content = vim.fn.trim([[
+{
+	"line-length": false,
+	"first-line-heading": false
+}
+]])
+
+	err, _ = async.uv.fs_write(fd, markdownlintrc_content)
+	assert(not err, err)
+
+	err = async.uv.fs_close(fd)
+	assert(not err, err)
+end
+
 return {
 	{
 		"glacambre/firenvim",
@@ -46,7 +74,7 @@ return {
 					vim.o.wrap = true
 					vim.o.linebreak = true
 
-					-- TODO: disable textwidth rule for markdownlint
+					require("plenary.async").void(create_markdownlint_config)()
 				end,
 			})
 		end,
