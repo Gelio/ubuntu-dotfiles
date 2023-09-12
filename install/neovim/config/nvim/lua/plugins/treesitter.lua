@@ -3,7 +3,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
-			"nvim-treesitter/playground",
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"romgrk/nvim-treesitter-context",
 			"RRethy/nvim-treesitter-textsubjects",
@@ -74,9 +73,6 @@ return {
 					keymaps = {
 						["."] = "textsubjects-smart",
 					},
-				},
-				playground = {
-					enable = true,
 				},
 				query_linter = {
 					enable = true,
