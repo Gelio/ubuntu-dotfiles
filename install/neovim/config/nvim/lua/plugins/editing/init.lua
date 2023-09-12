@@ -35,11 +35,10 @@ return {
 		},
 	},
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {
-			disable_in_macro = true,
-		},
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		branch = "v0.6",
+		opts = {},
 	},
 	{
 		"ggandor/lightspeed.nvim",
