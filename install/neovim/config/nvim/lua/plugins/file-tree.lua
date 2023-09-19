@@ -71,7 +71,7 @@ return {
 				window = {
 					position = "current",
 					mappings = {
-						o = "open",
+						l = "open",
 						a = {
 							"add",
 							config = {
