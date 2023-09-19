@@ -49,6 +49,7 @@ return {
 					"regex",
 					"rust",
 					"scss",
+					"ssh_config",
 					"svelte",
 					"terraform",
 					"toml",
