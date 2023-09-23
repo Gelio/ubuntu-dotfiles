@@ -71,7 +71,18 @@ return {
 				window = {
 					position = "current",
 					mappings = {
-						l = "open",
+						o = "open",
+
+						-- NOTE: disable default sort mappings.
+						-- I do not use them and they interfere with the "o" binding.
+						oc = "noop",
+						od = "noop",
+						og = "noop",
+						om = "noop",
+						on = "noop",
+						os = "noop",
+						ot = "noop",
+
 						a = {
 							"add",
 							config = {
