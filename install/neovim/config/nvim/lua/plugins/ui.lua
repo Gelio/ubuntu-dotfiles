@@ -36,6 +36,9 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		main = "ibl",
 		opts = function()
+			local ecma_node_types = { "object", "array", "switch_statement" }
+			local typescript_node_types = vim.list_extend({ "object_type" }, ecma_node_types)
+
 			return {
 				indent = {
 					char = "▎",
@@ -50,7 +53,12 @@ return {
 
 					include = {
 						node_type = {
-							lua = { "return_statement", "table_constructor", "else_statement" },
+							["*"] = { "return_statement" },
+							lua = { "table_constructor", "else_statement" },
+							ecma = ecma_node_types,
+							javascript = ecma_node_types,
+							typescript = typescript_node_types,
+							tsx = typescript_node_types,
 						},
 					},
 				},
