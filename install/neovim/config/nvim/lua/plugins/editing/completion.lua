@@ -15,7 +15,20 @@ return {
 					{ name = "luasnip" },
 					{ name = "nvim_lua" },
 					{ name = "path" },
-					{ name = "buffer", keyword_length = 4 },
+					{
+						name = "buffer",
+						keyword_length = 4,
+						-- See https://github.com/hrsh7th/cmp-buffer#visible-buffers
+						option = {
+							get_bufnrs = function()
+								local bufs = {}
+								for _, win in ipairs(vim.api.nvim_list_wins()) do
+									bufs[vim.api.nvim_win_get_buf(win)] = true
+								end
+								return vim.tbl_keys(bufs)
+							end,
+						},
+					},
 					{ name = "tmux", keyword_length = 4 },
 					{ name = "calc" },
 					{ name = "emoji" },
