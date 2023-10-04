@@ -20,8 +20,6 @@ return {
 					vim.keymap.set(mode, lhs, rhs, opts)
 				end
 
-				add_local_keymap("i", "<tab>", "<cmd>AutolistTab<cr>")
-				add_local_keymap("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
 				add_local_keymap("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
 				add_local_keymap("n", "o", "o<cmd>AutolistNewBullet<cr>")
 				add_local_keymap("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
