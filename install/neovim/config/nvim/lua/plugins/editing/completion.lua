@@ -5,12 +5,14 @@ return {
 		config = function()
 			vim.opt.completeopt = { "menuone", "noselect" }
 			vim.opt.shortmess:append("c")
+			require("cmp-natural-dates").setup()
 
 			local function prepare_sources()
 				-- NOTE: order matters. The order will be maintained in completions popup
 				local sources = {
 					{ name = "nvim_lsp", label = "LSP" },
 					{ name = "crates", label = "crates.nvim" },
+					{ name = "natural_dates", label = "date" },
 					{ name = "npm" },
 					{ name = "luasnip" },
 					{ name = "nvim_lua" },
