@@ -32,7 +32,6 @@ M.config = vim.tbl_extend("error", require("lsp.utils").base_config_without_form
 				workspace = {
 					library = vim.list_extend(plugins, {
 						vim.env.VIMRUNTIME,
-						vim.opt.runtimepath:get()[1],
 					}),
 					checkThirdParty = false,
 				},
