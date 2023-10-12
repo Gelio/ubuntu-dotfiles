@@ -125,10 +125,18 @@ return {
 		dependencies = { "kevinhwang91/promise-async", "nvim-treesitter" },
 		init = function()
 			vim.o.foldlevel = 99
+			vim.o.foldlevelstart = 99
 			vim.o.foldenable = true
 		end,
 		event = { "BufReadPost", "BufNewFile" },
-		config = true,
+		config = function()
+			local ufo = require("ufo")
+
+			vim.keymap.set("n", "zR", ufo.openAllFolds)
+			vim.keymap.set("n", "zM", ufo.closeAllFolds)
+
+			ufo.setup()
+		end,
 	},
 
 	{
