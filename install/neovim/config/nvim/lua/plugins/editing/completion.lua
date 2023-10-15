@@ -11,6 +11,7 @@ return {
 				local sources = {
 					{ name = "nvim_lsp", label = "LSP" },
 					{ name = "crates", label = "crates.nvim" },
+					{ name = "natdat" },
 					{ name = "npm" },
 					{ name = "luasnip" },
 					{ name = "nvim_lua" },
@@ -88,6 +89,7 @@ return {
 			"hrsh7th/cmp-calc",
 			"hrsh7th/cmp-nvim-lsp",
 			"rafamadriz/friendly-snippets",
+			{ "Gelio/cmp-natdat", config = true },
 			"hrsh7th/cmp-emoji",
 			{
 				"David-Kunz/cmp-npm",
