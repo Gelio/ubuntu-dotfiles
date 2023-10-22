@@ -52,4 +52,11 @@ return {
 		"mzlogin/vim-markdown-toc",
 		ft = "markdown",
 	},
+
+	{
+		"Gelio/nvim-relative-date",
+		config = true,
+		ft = "markdown",
+		cmd = { "RelativeDateAttach", "RelativeDateToggle" },
+	},
 }
