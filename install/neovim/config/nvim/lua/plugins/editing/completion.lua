@@ -89,7 +89,12 @@ return {
 			"hrsh7th/cmp-calc",
 			"hrsh7th/cmp-nvim-lsp",
 			"rafamadriz/friendly-snippets",
-			{ "Gelio/cmp-natdat", config = true },
+			{
+				"Gelio/cmp-natdat",
+				opts = {
+					cmp_kind_text = "NatDat",
+				},
+			},
 			"hrsh7th/cmp-emoji",
 			{
 				"David-Kunz/cmp-npm",
@@ -101,7 +106,11 @@ return {
 			{
 				"onsails/lspkind-nvim",
 				config = function()
-					require("lspkind").init()
+					require("lspkind").init({
+						symbol_map = {
+							NatDat = "📅",
+						},
+					})
 				end,
 			},
 			{
