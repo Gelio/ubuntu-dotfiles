@@ -11,9 +11,28 @@ return {
 	{
 		"AckslD/nvim-FeMaco.lua",
 		cmd = { "FeMaco" },
-		config = function()
-			require("femaco").setup()
-		end,
+		opts = {
+			ft_from_lang = function(lang)
+				if lang == "dataviewjs" then
+					return "javascript"
+				end
+
+				return lang
+			end,
+
+			create_tmp_filepath = function(filetype)
+				local extension = ""
+				if filetype == "javascript" then
+					extension = ".js"
+				end
+
+				return os.tmpname() .. extension
+			end,
+
+			ensure_newline = function(_base_filetype)
+				return true
+			end,
+		},
 	},
 
 	{
