@@ -24,6 +24,8 @@ return {
 				local extension = ""
 				if filetype == "javascript" then
 					extension = ".js"
+				elseif filetype == "lua" then
+					extension = ".lua"
 				end
 
 				return os.tmpname() .. extension
