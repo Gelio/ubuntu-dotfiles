@@ -3,10 +3,8 @@ local utils = require("lsp.utils")
 local default_server_config = utils.base_config
 
 ---Configs for known LSP servers.
----Presence of a server in this table means it will get installed
----by `:InstallDefaultLspServers`
 local server_configs = {
-	-- Use null_ls for formatting
+	-- Use gofumpt for formatting
 	gopls = utils.base_config_without_formatting,
 	jsonls = require("lsp.jsonls").config,
 	-- Conflicts with prettier formatting in TS files.
@@ -34,27 +32,40 @@ require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(server_configs),
 })
 
+---@param top_level_table table<string, unknown>
 ---@return string[]
-local function get_linters_to_install()
+local function get_all_values_deep(top_level_table)
 	---@type table<string, boolean>
-	local linters_to_install = {}
+	local values = {}
 
-	for _, linters in pairs(require("lsp.nvim-lint").linters_by_ft)do
-		for _, linter in ipairs(linters) do
-			linters_to_install[linter] = true
+	---@param tbl table<string, unknown>
+	local function walk_table(tbl)
+		for _, value_or_tbl in pairs(tbl) do
+			if type(value_or_tbl) == "table" then
+				walk_table(value_or_tbl)
+			else
+				values[value_or_tbl] = true
+			end
 		end
 	end
 
-	return vim.tbl_keys(linters_to_install)
+	walk_table(top_level_table)
+
+	return vim.tbl_keys(values)
+end
+
+local function get_linters_to_install()
+	return get_all_values_deep(require("lsp.nvim-lint").linters_by_ft)
+end
+
+local function get_formatters_to_install()
+	return get_all_values_deep(require("lsp.conform-nvim").formatters_by_ft)
 end
 
 require("mason-tool-installer").setup({
-	ensure_installed = vim.list_extend({
-		"prettierd",
-		"gofumpt",
-		"stylua",
-		"shfmt",
-	}, get_linters_to_install()),
+	ensure_installed = vim.tbl_filter(function(tool_name)
+		return require("mason-registry").has_package(tool_name)
+	end, vim.list_extend(get_formatters_to_install(), get_linters_to_install())),
 })
 
 local lspconfig = require("lspconfig")

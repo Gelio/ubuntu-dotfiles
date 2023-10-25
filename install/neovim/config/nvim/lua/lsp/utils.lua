@@ -43,47 +43,6 @@ local function setup_lsp_keymaps(_client, bufnr)
 	})
 end
 
-local sync_formatting_augroup = vim.api.nvim_create_augroup("SyncFormatting", {})
-
-local function setup_formatting(client, bufnr)
-	local wk = require("which-key")
-
-	if client.supports_method("textDocument/formatting") then
-		wk.register({
-			["<Leader>F"] = {
-				function()
-					vim.lsp.buf.format({ async = true })
-				end,
-				"Format",
-			},
-		}, {
-			buffer = bufnr,
-		})
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			desc = "Format files on save",
-			callback = function()
-				vim.lsp.buf.format({ async = false })
-			end,
-			pattern = "<buffer>",
-			group = sync_formatting_augroup,
-		})
-	end
-
-	if client.supports_method("textDocument/rangeFormatting") then
-		wk.register({
-			["<Leader>F"] = {
-				function()
-					vim.lsp.buf.format({ async = true })
-				end,
-				"Format range",
-			},
-		}, {
-			mode = "v",
-			buffer = bufnr,
-		})
-	end
-end
-
 local function setup_document_highlight(client)
 	if not client.supports_method("textDocument/documentHighlight") then
 		return
@@ -105,7 +64,6 @@ function M.on_attach(client, bufnr)
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	setup_lsp_keymaps(client, bufnr)
-	setup_formatting(client, bufnr)
 	setup_document_highlight(client)
 end
 

@@ -21,6 +21,24 @@ return {
 					})
 				end,
 			},
+			{
+				"stevearc/conform.nvim",
+				opts = {
+					formatters_by_ft = require("lsp.conform-nvim").formatters_by_ft,
+					format_on_save = true,
+				},
+				event = { "BufWritePre" },
+				keys = {
+					{
+						"<Leader>F",
+						function()
+							require("conform").format({ async = true })
+						end,
+						mode = { "n", "v" },
+						desc = "Format",
+					},
+				},
+			},
 			"b0o/SchemaStore.nvim",
 			{
 				"williamboman/mason.nvim",
