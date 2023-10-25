@@ -14,11 +14,9 @@ M.setup = function(config)
 		config = M.config
 	end
 
-	-- NOTE: typescript.nvim needs to be the last thing that calls
+	-- NOTE: typescript-tools.nvim needs to be the last thing that calls
 	-- lspconfig.tsserver.setup for tsserver
-	require("typescript").setup({
-		server = config,
-	})
+	require("typescript-tools").setup(config)
 end
 
 return M

@@ -10,7 +10,6 @@ local server_configs = {
 	-- Conflicts with prettier formatting in TS files.
 	stylelint_lsp = utils.base_config_without_formatting,
 	lua_ls = require("lsp.lua").config,
-	tsserver = require("lsp.tsserver").config,
 	texlab = require("lsp.tex").config,
 	rust_analyzer = default_server_config,
 	bashls = default_server_config,
@@ -76,8 +75,6 @@ local function setup_lsp_servers()
 end
 
 setup_lsp_servers()
-
-require("lsp.tsserver").setup()
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "single",

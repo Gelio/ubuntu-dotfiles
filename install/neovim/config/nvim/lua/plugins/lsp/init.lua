@@ -5,7 +5,13 @@ return {
 			require("lsp")
 		end,
 		dependencies = {
-			"jose-elias-alvarez/typescript.nvim",
+			{
+				"pmizio/typescript-tools.nvim",
+				dependencies = { "nvim-lua/plenary.nvim" },
+				config = function()
+					require("lsp.tsserver").setup()
+				end,
+			},
 			{
 				"mfussenegger/nvim-lint",
 				event = { "BufReadPost", "BufNewFile" },
