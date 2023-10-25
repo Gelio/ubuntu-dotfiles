@@ -11,15 +11,7 @@ return {
 				event = { "BufReadPost", "BufNewFile" },
 				config = function()
 					local nvim_lint = require("lint")
-					nvim_lint.linters_by_ft = {
-						lua = { "selene" },
-						sh = { "shellcheck" },
-						dockerfile = { "hadolint" },
-						markdown = {
-							"markdownlint",
-							"vale"
-						},
-					}
+					nvim_lint.linters_by_ft = require("lsp.nvim-lint").linters_by_ft
 
 					vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
 						group = vim.api.nvim_create_augroup("NvimLint", {}),

@@ -33,19 +33,28 @@ local server_configs = {
 require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(server_configs),
 })
+
+---@return string[]
+local function get_linters_to_install()
+	---@type table<string, boolean>
+	local linters_to_install = {}
+
+	for _, linters in pairs(require("lsp.nvim-lint").linters_by_ft)do
+		for _, linter in ipairs(linters) do
+			linters_to_install[linter] = true
+		end
+	end
+
+	return vim.tbl_keys(linters_to_install)
+end
+
 require("mason-tool-installer").setup({
-	ensure_installed = {
+	ensure_installed = vim.list_extend({
 		"prettierd",
-		"hadolint",
 		"gofumpt",
 		"stylua",
-		"selene",
-		"markdownlint",
-		"write-good",
-		"misspell",
-		"shellcheck",
 		"shfmt",
-	},
+	}, get_linters_to_install()),
 })
 
 local lspconfig = require("lspconfig")
