@@ -258,12 +258,12 @@ return {
 			},
 			{
 				"[h",
-				"<cmd>lua require('harpoon.ui').nav_prev(vim.v.count1)<CR>",
+				"<cmd>lua require('harpoon.ui').nav_prev()<CR>",
 				desc = "(harpoon) Previous file",
 			},
 			{
 				"]h",
-				"<cmd>lua require('harpoon.ui').nav_next(vim.v.count1)<CR>",
+				"<cmd>lua require('harpoon.ui').nav_next()<CR>",
 				desc = "(harpoon) Next file",
 			},
 			{
