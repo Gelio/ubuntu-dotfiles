@@ -28,7 +28,6 @@ local server_configs = {
 	clangd = default_server_config,
 	taplo = default_server_config,
 	prismals = default_server_config,
-	vale_ls = default_server_config,
 }
 
 require("mason-lspconfig").setup({
