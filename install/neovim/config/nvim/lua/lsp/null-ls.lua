@@ -8,16 +8,8 @@ M.sources = {
 		filetypes = { "plantuml" },
 	}),
 	null_ls.builtins.formatting.stylua,
-	null_ls.builtins.diagnostics.selene.with({
-		name = "selene",
-	}),
-	null_ls.builtins.diagnostics.shellcheck,
 	null_ls.builtins.code_actions.shellcheck,
 	null_ls.builtins.formatting.shfmt,
-	null_ls.builtins.diagnostics.hadolint,
-	null_ls.builtins.diagnostics.markdownlint,
-	null_ls.builtins.diagnostics.write_good,
-	null_ls.builtins.diagnostics.misspell,
 	null_ls.builtins.formatting.gofumpt,
 }
 
