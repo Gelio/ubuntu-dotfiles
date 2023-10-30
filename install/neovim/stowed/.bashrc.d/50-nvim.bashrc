@@ -2,3 +2,4 @@
 
 export VISUAL=nvim
 export MANPAGER='nvim +Man!'
+export EDITOR=nvim
