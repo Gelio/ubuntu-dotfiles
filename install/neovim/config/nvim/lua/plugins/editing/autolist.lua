@@ -28,7 +28,6 @@ return {
 				add_local_keymap("n", "o", "o<cmd>AutolistNewBullet<cr>")
 				add_local_keymap("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
 				add_local_keymap("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
-				add_local_keymap("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
 
 				-- cycle list types with dot-repeat
 				add_local_keymap("n", "<leader>ln", require("autolist").cycle_next_dr, { expr = true, desc = "Next list type" })
