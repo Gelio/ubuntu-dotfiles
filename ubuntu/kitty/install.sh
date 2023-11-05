@@ -22,7 +22,7 @@ fi
 # https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
 echo "alias kittyssh='kitty +kitten ssh'" >>~/.bash_aliases
 
-./stow.sh
+echo "Make sure to run the install script from the universal directory"
 
 cd ~/.local/kitty.app
 stow -v .

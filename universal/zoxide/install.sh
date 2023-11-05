@@ -6,4 +6,4 @@ set -euo pipefail
 cargo install zoxide
 
 stow -v --no-folding -t "$HOME" stowed
-echo "Source ~/.bashrc for zoxide to be initialized"
+echo "Reload your shell for zoxide to take effect"

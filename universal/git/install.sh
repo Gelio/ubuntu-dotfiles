@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
+set -euxo pipefail
 
-set -euo pipefail
-
-sudo apt install git
 ./stow.sh
 
 include_my_config=$(

@@ -79,14 +79,21 @@ function install_runtime_prerequisites {
   # See https://neovim.io/doc/user/provider.html
   python3 -m pip install --user --upgrade pynvim
 
-  # xsel for clipboard support
-  # g++ for compiling Treesitter parsers
-  sudo apt install xsel g++
+  if [[ "$(uname)" != "Darwin" ]]; then
+    # xsel for clipboard support
+    # g++ for compiling Treesitter parsers
+    sudo apt install xsel g++
+  fi
 }
 
 function install_build_prerequisites {
-  # https://github.com/neovim/neovim/wiki/Building-Neovim#ubuntu--debian
-  sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+  if [[ "$(uname)" == "Darwin" ]]; then
+    # https://github.com/neovim/neovim/wiki/Building-Neovim#macos--homebrew
+    brew install ninja cmake gettext curl
+  else
+    # https://github.com/neovim/neovim/wiki/Building-Neovim#ubuntu--debian
+    sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+  fi
 }
 
 function build_neovim {
