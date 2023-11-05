@@ -9,6 +9,9 @@ casks=(
   obsidian
   kitty
 )
+casks_no_quarantine=(
+  stretchly
+)
 
 formulae=(
   go
@@ -30,6 +33,7 @@ brew install ${formulae[@]}
 echo "# Installing casks"
 echo "${casks[@]}"
 brew install --cask ${casks[@]}
+brew install --cask --no-quarantine ${casks_no_quarantine[@]}
 
 cargo install cargo-update
 pipx ensurepath
