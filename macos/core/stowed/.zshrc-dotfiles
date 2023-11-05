@@ -9,3 +9,18 @@ export NVM_DIR="$HOME/.nvm"
 for file in ~/.zshrc.d/*(-.); do
   source "$file"
 done
+
+# Alt+Arrow for moving forward/back
+# https://stackoverflow.com/a/12403798
+bindkey "^[[1;3C" vi-forward-word
+bindkey "^[[1;3D" vi-backward-word
+
+# Alt+Delete to delete word stopping at slashes
+# https://unix.stackexchange.com/a/319854
+backward-kill-dir () {
+    local WORDCHARS=${WORDCHARS/\/}
+    zle backward-kill-word
+    zle -f kill
+}
+zle -N backward-kill-dir
+bindkey '^[^?' backward-kill-dir
