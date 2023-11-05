@@ -1,0 +1,13 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+
+padding=10
+yabai -m config top_padding $padding
+yabai -m config bottom_padding $padding
+yabai -m config left_padding $padding
+yabai -m config right_padding $padding
+yabai -m config window_gap $padding
+
+# vim: ft=sh
