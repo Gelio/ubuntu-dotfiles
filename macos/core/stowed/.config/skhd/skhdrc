@@ -1,0 +1,51 @@
+cmd - return : /Applications/kitty.app/Contents/MacOS/kitty
+
+fn - h : yabai -m window --focus west
+fn - j : yabai -m window --focus south
+fn - k : yabai -m window --focus north
+fn - l : yabai -m window --focus east
+
+fn + shift - h : yabai -m window --warp west
+fn + shift - j : yabai -m window --warp south
+fn + shift - k : yabai -m window --warp north
+fn + shift - l : yabai -m window --warp east
+
+# These do not work. See https://github.com/koekeishiya/yabai/issues/1937
+# Stop using Mission Control shortcuts after that issue is fixed
+# fn - n : yabai -m space --focus next || yabai -m space --focus first
+# fn - p : yabai -m space --focus prev || yabai -m space --focus last
+fn - n : skhd -k "ctrl + shift + alt - right"
+fn - p : skhd -k "ctrl + shift + alt - left"
+
+# Switching to a specific space/desktop is handled by Mission Control keyboard
+# shortcuts. Use "yabai -m space --focus N" after
+# https://github.com/koekeishiya/yabai/issues/1937 is fixed
+fn - 1 : skhd -k "ctrl - 1"
+fn - 2 : skhd -k "ctrl - 2"
+fn - 3 : skhd -k "ctrl - 3"
+fn - 4 : skhd -k "ctrl - 4"
+fn - 5 : skhd -k "ctrl - 5"
+fn - 6 : skhd -k "ctrl - 6"
+fn - 7 : skhd -k "ctrl - 7"
+fn - 8 : skhd -k "ctrl - 8"
+fn - 9 : skhd -k "ctrl - 9"
+
+fn + shift - 1 : yabai -m window --space 1
+fn + shift - 2 : yabai -m window --space 2
+fn + shift - 3 : yabai -m window --space 3
+fn + shift - 4 : yabai -m window --space 4
+fn + shift - 5 : yabai -m window --space 5
+fn + shift - 6 : yabai -m window --space 6
+fn + shift - 7 : yabai -m window --space 7
+fn + shift - 8 : yabai -m window --space 8
+fn + shift - 9 : yabai -m window --space 9
+
+fn + shift - space : yabai -m window --toggle float
+
+# Stacking support
+fn - w : yabai -m space --layout stack
+fn - e : yabai -m space --layout bsp
+fn + ctrl - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+fn + ctrl - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+
+# vim: commentstring=#\ %s

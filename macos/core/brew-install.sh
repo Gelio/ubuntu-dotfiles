@@ -38,3 +38,4 @@ brew install --cask --no-quarantine ${casks_no_quarantine[@]}
 
 cargo install cargo-update
 pipx ensurepath
+skhd --start-service
