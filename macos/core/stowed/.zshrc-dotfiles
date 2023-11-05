@@ -15,10 +15,10 @@ done
 bindkey "^[[1;3C" vi-forward-word
 bindkey "^[[1;3D" vi-backward-word
 
-# Alt+Delete to delete word stopping at slashes
+# Alt+Delete to delete word stopping at non-word characters
 # https://unix.stackexchange.com/a/319854
 backward-kill-dir () {
-    local WORDCHARS=${WORDCHARS/\/}
+    local WORDCHARS=""
     zle backward-kill-word
     zle -f kill
 }
