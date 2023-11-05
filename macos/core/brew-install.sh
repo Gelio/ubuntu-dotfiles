@@ -8,6 +8,7 @@ casks=(
   rambox
   obsidian
   kitty
+  aldente
 )
 casks_no_quarantine=(
   stretchly
