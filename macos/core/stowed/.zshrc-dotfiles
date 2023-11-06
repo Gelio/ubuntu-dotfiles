@@ -15,6 +15,11 @@ done
 bindkey "^[[1;3C" vi-forward-word
 bindkey "^[[1;3D" vi-backward-word
 
+# Ctrl+Arrow for moving forward/back
+# https://unix.stackexchange.com/a/140499
+bindkey "^[[1;5C" vi-forward-word
+bindkey "^[[1;5D" vi-backward-word
+
 # Alt+Delete to delete word stopping at non-word characters
 # https://unix.stackexchange.com/a/319854
 backward-kill-dir () {
