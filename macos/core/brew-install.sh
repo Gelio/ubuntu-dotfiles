@@ -10,6 +10,7 @@ casks=(
   kitty
   aldente
   raycast
+  kap
 )
 casks_no_quarantine=(
   stretchly
