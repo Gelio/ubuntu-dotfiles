@@ -46,4 +46,4 @@ fn - e : yabai -m space --layout bsp
 fn + ctrl - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 fn + ctrl - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
-# vim: commentstring=#\ %s
+# vim: ft=ini
