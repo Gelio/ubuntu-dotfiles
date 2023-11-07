@@ -40,7 +40,7 @@
 	"posLongitude": 0,
 	"useMonochromeTrayIcon": false,
 	"useMonochromeInvertedTrayIcon": false,
-	"silentNotifications": true,
+	"silentNotifications": false,
 	"monitorDnd": true,
 	"microbreakStartSoundPlaying": false,
 	"breakStartSoundPlaying": false,
