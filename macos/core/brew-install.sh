@@ -25,6 +25,8 @@ formulae=(
   findutils
   wget
   pipx
+  gnupg
+  jq
 )
 
 echo "# Installing formulae"
