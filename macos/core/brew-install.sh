@@ -39,5 +39,6 @@ brew install --cask ${casks[@]}
 brew install --cask --no-quarantine ${casks_no_quarantine[@]}
 
 cargo install cargo-update
+go install github.com/Gelio/go-global-update@latest
 pipx ensurepath
 skhd --start-service
