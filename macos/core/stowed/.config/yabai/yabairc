@@ -10,4 +10,7 @@ yabai -m config left_padding $padding
 yabai -m config right_padding $padding
 yabai -m config window_gap $padding
 
+simple_bar_height=20
+yabai -m config external_bar "all:0:$(bc <<<"$simple_bar_height + $padding")"
+
 # vim: ft=sh
