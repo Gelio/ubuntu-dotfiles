@@ -9,6 +9,7 @@ casks=(
   obsidian
   kitty
   aldente
+  raycast
 )
 casks_no_quarantine=(
   stretchly
