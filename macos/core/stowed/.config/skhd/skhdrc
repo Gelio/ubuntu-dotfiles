@@ -18,15 +18,15 @@ fn - p : skhd -k "ctrl + shift + alt - left"
 # Switching to a specific space/desktop is handled by Mission Control keyboard
 # shortcuts. Use "yabai -m space --focus N" after
 # https://github.com/koekeishiya/yabai/issues/1937 is fixed
-fn - 1 : skhd -k "ctrl + shift - 1"
-fn - 2 : skhd -k "ctrl + shift - 2"
-fn - 3 : skhd -k "ctrl + shift - 3"
-fn - 4 : skhd -k "ctrl + shift - 4"
-fn - 5 : skhd -k "ctrl + shift - 5"
-fn - 6 : skhd -k "ctrl + shift - 6"
-fn - 7 : skhd -k "ctrl + shift - 7"
-fn - 8 : skhd -k "ctrl + shift - 8"
-fn - 9 : skhd -k "ctrl + shift - 9"
+fn - 1 : yabaictl 1
+fn - 2 : yabaictl 2
+fn - 3 : yabaictl 3
+fn - 4 : yabaictl 4
+fn - 5 : yabaictl 5
+fn - 6 : yabaictl 6
+fn - 7 : yabaictl 7
+fn - 8 : yabaictl 8
+fn - 9 : yabaictl 9
 
 fn + shift - 1 : yabai -m window --space 1
 fn + shift - 2 : yabai -m window --space 2

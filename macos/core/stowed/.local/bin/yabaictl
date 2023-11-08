@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+arg="$1"
+
+if [[ "$arg" =~ ^[1-9]$ ]]; then
+  # Focus workspace $arg
+  space_info=$(yabai -m query --spaces --space "$arg")
+  is_visible=$(jq '.["is-visible"]' <<<"$space_info")
+
+  if [[ "$is_visible" == "false" ]]; then
+    echo "Focusing hidden workspace $arg using Mission Control"
+    skhd -k "ctrl + shift - $arg"
+  else
+    echo "Focusing visible workspace $arg using yabai"
+    yabai -m space --focus "$arg"
+  fi
+  exit 0
+fi
+
+echo "Unknown argument $arg"
+exit 1
