@@ -31,14 +31,20 @@ return {
 				"stevearc/conform.nvim",
 				opts = {
 					formatters_by_ft = require("lsp.conform-nvim").formatters_by_ft,
-					format_on_save = true,
+					format_on_save = {
+						lsp_fallback = true,
+						timeout_ms = 500,
+					},
 				},
 				event = { "BufWritePre" },
 				keys = {
 					{
 						"<Leader>F",
 						function()
-							require("conform").format({ async = true })
+							require("conform").format({
+								async = true,
+								lsp_fallback = true,
+							})
 						end,
 						mode = { "n", "v" },
 						desc = "Format",
