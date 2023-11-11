@@ -19,7 +19,6 @@ casks_no_quarantine=(
 
 formulae=(
   go
-  rust
   nvm
   koekeishiya/formulae/yabai
   stow
@@ -40,6 +39,12 @@ echo "# Installing casks"
 echo "${casks[@]}"
 brew install --cask ${casks[@]}
 brew install --cask --no-quarantine ${casks_no_quarantine[@]}
+
+if ! type rustup >/dev/null 2>&1; then
+  # Install rustup
+  echo "Installing rustup"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
 
 cargo install cargo-update
 cargo install git-stack
