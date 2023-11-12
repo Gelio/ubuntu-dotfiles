@@ -511,9 +511,13 @@
 	"timeToBreakInTray": false,
 	"currentTimeInBreaks": false,
 	"showTrayIcon": true,
+	"skipToNextScheduledBreakShortcut": "",
+	"skipToNextMiniBreakShortcut": "",
+	"skipToNextLongBreakShortcut": "",
+	"resetBreaksShortcut": "",
 	"__internal__": {
 		"migrations": {
-			"version": "1.14.1"
+			"version": "1.15.0"
 		}
 	}
 }
