@@ -29,3 +29,15 @@ backward-kill-dir () {
 }
 zle -N backward-kill-dir
 bindkey '^[^?' backward-kill-dir
+
+# Completions
+# Show hidden files in completions
+# https://unix.stackexchange.com/a/366137
+setopt globdots
+# Turn off cycling completions
+# https://superuser.com/a/1753574
+setopt noautomenu
+# Enable colors in completions
+zstyle ':completion:*:*' list-colors ''
+zstyle ':completion:*:directories' list-colors '=*=0;34;40'
+zstyle ':completion:*:local-directories' list-colors '=*=0;34;40'
