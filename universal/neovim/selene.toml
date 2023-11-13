@@ -1,1 +1,5 @@
 std = "neovim"
+
+[lints]
+# Mixed tables are the way to define plugins in lazy.nvim
+mixed_table = "allow"
