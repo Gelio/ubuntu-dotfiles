@@ -12,8 +12,5 @@ SSR
 neovim
 memoized
 routable
-image/!
-resJson/!
-url/!
-const/!
-capabilities/!
+JIRA
+capabilities
