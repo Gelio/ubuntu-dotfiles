@@ -7,7 +7,6 @@ return {
 			"romgrk/nvim-treesitter-context",
 			"RRethy/nvim-treesitter-textsubjects",
 			"windwp/nvim-ts-autotag",
-			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -65,9 +64,6 @@ return {
 				autotag = {
 					enable = true,
 				},
-				context_commentstring = {
-					enable = true,
-				},
 				textsubjects = {
 					enable = true,
 					prev_selection = "<Leader>.",
@@ -100,6 +96,9 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	{
 		"ziontee113/syntax-tree-surfer",
