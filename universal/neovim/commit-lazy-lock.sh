@@ -3,8 +3,15 @@ set -euo pipefail
 
 lazy_lock_path=./config/nvim/lazy-lock.json
 
+diff_staged=""
+
+if [[ -n "$(git diff --staged -- "$lazy_lock_path")" ]]; then
+  diff_staged="--staged"
+  echo "lazy-lock.json is staged. Looking only at staged changes"
+fi
+
 modified_packages=$(
-  git diff --unified=0 -- "$lazy_lock_path" |
+  git diff --unified=0 $diff_staged -- "$lazy_lock_path" |
     grep "^\\+ " |
     sed -E "s/^\\+[[:space:]]+\"([^\"]+)\":.*/\1/" || true
 )
@@ -22,5 +29,8 @@ commit_message="chore(nvim): update lazy-lock.json
 Updated packages:
 $formatted_packages"
 
-git add "$lazy_lock_path"
+if [[ -z $diff_staged ]]; then
+  # Only add the file if it has not been staged earlier
+  git add "$lazy_lock_path"
+fi
 git commit -m "$commit_message"
