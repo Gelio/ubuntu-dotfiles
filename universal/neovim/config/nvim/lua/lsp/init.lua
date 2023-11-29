@@ -8,7 +8,7 @@ local server_configs = {
 	gopls = utils.base_config_without_formatting,
 	jsonls = require("lsp.jsonls").config,
 	-- Conflicts with prettier formatting in TS files.
-	stylelint_lsp = utils.base_config_without_formatting,
+	stylelint_lsp = vim.tbl_extend("error", utils.base_config_without_formatting, { autostart = false }),
 	lua_ls = require("lsp.lua").config,
 	texlab = require("lsp.tex").config,
 	rust_analyzer = default_server_config,
