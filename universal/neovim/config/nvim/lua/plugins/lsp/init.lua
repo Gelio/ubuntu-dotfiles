@@ -97,7 +97,8 @@ return {
 	},
 
 	{
-		"weilbith/nvim-code-action-menu",
+		"Gelio/nvim-code-action-menu",
+		branch = "stabilize-windows-widths",
 		cmd = "CodeActionMenu",
 	},
 

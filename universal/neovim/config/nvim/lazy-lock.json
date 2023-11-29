@@ -47,7 +47,7 @@
   "nvim-FeMaco.lua": { "branch": "main", "commit": "6af458f0196215f397db31a6e1fb2df795811693" },
   "nvim-bqf": { "branch": "main", "commit": "8784eebf34371049b641646d00232c2603215297" },
   "nvim-cmp": { "branch": "main", "commit": "0b751f6beef40fd47375eaf53d3057e0bfa317e4" },
-  "nvim-code-action-menu": { "branch": "main", "commit": "e4399dbaf6eabff998d3d5f1cbcd8d9933710027" },
+  "nvim-code-action-menu": { "branch": "stabilize-windows-widths", "commit": "ceca4193d943322cf5fb97dc6698be4cce13accd" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
   "nvim-dap": { "branch": "master", "commit": "20af8b580a2253610f6f879b2aaae6e2c16f07d8" },
   "nvim-dap-ui": { "branch": "master", "commit": "34160a7ce6072ef332f350ae1d4a6a501daf0159" },
