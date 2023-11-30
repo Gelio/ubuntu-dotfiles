@@ -29,6 +29,7 @@ formulae=(
   pipx
   gnupg
   jq
+  highlight
 )
 
 echo "# Installing formulae"
