@@ -19,7 +19,6 @@ casks_no_quarantine=(
 
 formulae=(
   go
-  nvm
   koekeishiya/formulae/yabai
   stow
   koekeishiya/formulae/skhd
