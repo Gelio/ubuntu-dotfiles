@@ -6,6 +6,11 @@ for file in ~/.zshrc.d/*(-.); do
   source "$file"
 done
 
+# Ctrl P / Ctrl N
+# https://superuser.com/a/583584
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
 # Alt+Arrow for moving forward/back
 # https://stackoverflow.com/a/12403798
 bindkey "^[[1;3C" vi-forward-word
