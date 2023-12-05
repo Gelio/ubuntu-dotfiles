@@ -6,6 +6,10 @@ for file in ~/.zshrc.d/*(-.); do
   source "$file"
 done
 
+# Load completion
+# https://stackoverflow.com/a/58517668
+autoload -Uz compinit && compinit
+
 # Ctrl P / Ctrl N
 # https://superuser.com/a/583584
 bindkey "^P" up-line-or-search
