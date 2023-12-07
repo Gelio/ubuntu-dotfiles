@@ -66,6 +66,13 @@ vim.keymap.set("n", "cN", "*``cgN", { desc = "Change word under cursor (repeatab
 -- Easy yanking to clipboard
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"+y', { desc = "Yank to clipboard" })
 
+if vim.fn.has("mac") then
+	-- Bring back Alt-Left/Right in cmdline mode on Mac
+	-- https://stackoverflow.com/a/58055423
+	vim.keymap.set("c", "<M-Left>", "<S-Left>", { desc = "Move left by word" })
+	vim.keymap.set("c", "<M-Right>", "<S-Right>", { desc = "Move right by word" })
+end
+
 -- Use ripgrep instead of regular grep
 if vim.fn.executable("rg") then
 	vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
