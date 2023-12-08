@@ -10,10 +10,9 @@ done
 # https://stackoverflow.com/a/58517668
 autoload -Uz compinit && compinit
 
-# Ctrl P / Ctrl N
-# https://superuser.com/a/583584
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
+# Use pre-nvim-EDITOR keybinds in the shell
+# https://stackoverflow.com/a/43087047
+bindkey -e
 
 # Alt+Arrow for moving forward/back
 # https://stackoverflow.com/a/12403798
