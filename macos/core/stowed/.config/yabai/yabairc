@@ -18,6 +18,7 @@ simple_bar_height=20
 yabai -m config external_bar "all:0:$(bc <<<"$simple_bar_height + $padding")"
 
 yabai -m rule --add label="Float Okta Verify" app="^Okta Verify$" manage=off
+yabai -m rule --add label="Float Calculator" app="^Calculator$" manage=off
 yabai -m rule --add label="Semi-transparent kitty" app="^kitty$" opacity=0.93
 
 # vim: ft=sh
