@@ -2,9 +2,6 @@ path+=("$HOME/.cargo/bin/")
 path+=("$(go env GOPATH)/bin/")
 export path
 
-for file in ~/.zshrc.d/*(-.); do
-  source "$file"
-done
 
 # Load completion
 # https://stackoverflow.com/a/58517668
@@ -45,3 +42,7 @@ setopt noautomenu
 zstyle ':completion:*:*' list-colors ''
 zstyle ':completion:*:directories' list-colors '=*=0;34;40'
 zstyle ':completion:*:local-directories' list-colors '=*=0;34;40'
+
+for file in ~/.zshrc.d/*(-.); do
+  source "$file"
+done
