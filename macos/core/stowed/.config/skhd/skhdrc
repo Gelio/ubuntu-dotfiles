@@ -8,12 +8,8 @@ fn + shift - j : yabai -m window --warp south
 fn + shift - k : yabai -m window --warp north
 fn + shift - l : yabai -m window --warp east
 
-# These do not work. See https://github.com/koekeishiya/yabai/issues/1937
-# Stop using Mission Control shortcuts after that issue is fixed
-# fn - n : yabai -m space --focus next || yabai -m space --focus first
-# fn - p : yabai -m space --focus prev || yabai -m space --focus last
-fn - n : skhd -k "ctrl + shift + alt - right"
-fn - p : skhd -k "ctrl + shift + alt - left"
+fn - n : yabai -m space --focus next
+fn - p : yabai -m space --focus prev
 
 # Switching to a specific space/desktop is handled by Mission Control keyboard
 # shortcuts. Use "yabai -m space --focus N" after
