@@ -24,4 +24,6 @@ yabai -m rule --add label="Float AlDente" app="^AlDente$" manage=off
 yabai -m rule --add label="Float System Settings" app="^System Settings$" manage=off
 yabai -m rule --add label="Float Kap" app="^Kap$" manage=off
 
+yabaictl label-spaces
+
 # vim: ft=sh

@@ -1,28 +1,31 @@
-fn - h : yabai -m window --focus west
-fn - j : yabai -m window --focus south
-fn - k : yabai -m window --focus north
-fn - l : yabai -m window --focus east
+fn - h : yabaictl focus-window west
+fn - j : yabaictl focus-window south
+fn - k : yabaictl focus-window north
+fn - l : yabaictl focus-window east
 
 fn + shift - h : yabai -m window --warp west
 fn + shift - j : yabai -m window --warp south
 fn + shift - k : yabai -m window --warp north
 fn + shift - l : yabai -m window --warp east
 
-fn - n : yabai -m space --focus next
-fn - p : yabai -m space --focus prev
+fn + ctrl - h : yabaictl move-space west
+fn + ctrl - j : yabaictl move-space south
+fn + ctrl - k : yabaictl move-space north
+fn + ctrl - l : yabaictl move-space east
 
-# Switching to a specific space/desktop is handled by Mission Control keyboard
-# shortcuts. Use "yabai -m space --focus N" after
-# https://github.com/koekeishiya/yabai/issues/1937 is fixed
-fn - 1 : yabaictl 1
-fn - 2 : yabaictl 2
-fn - 3 : yabaictl 3
-fn - 4 : yabaictl 4
-fn - 5 : yabaictl 5
-fn - 6 : yabaictl 6
-fn - 7 : yabaictl 7
-fn - 8 : yabaictl 8
-fn - 9 : yabaictl 9
+fn - n : yabaictl focus-space next
+fn - p : yabaictl focus-space previous
+
+fn - 1 : yabaictl focus-space --stable-index 1
+fn - 2 : yabaictl focus-space --stable-index 2
+fn - 3 : yabaictl focus-space --stable-index 3
+fn - 4 : yabaictl focus-space --stable-index 4
+fn - 5 : yabaictl focus-space --stable-index 5
+fn - 6 : yabaictl focus-space --stable-index 6
+fn - 7 : yabaictl focus-space --stable-index 7
+fn - 8 : yabaictl focus-space --stable-index 8
+fn - 9 : yabaictl focus-space --stable-index 9
+fn - 0 : yabaictl focus-space --stable-index 10
 
 fn + shift - 1 : yabai -m window --space 1
 fn + shift - 2 : yabai -m window --space 2
