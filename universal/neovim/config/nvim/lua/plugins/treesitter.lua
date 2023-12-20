@@ -50,6 +50,7 @@ return {
 					"rust",
 					"scss",
 					"ssh_config",
+					"styled",
 					"svelte",
 					"terraform",
 					"toml",
