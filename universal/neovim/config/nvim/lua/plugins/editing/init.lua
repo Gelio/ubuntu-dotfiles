@@ -254,7 +254,7 @@ return {
 				"<Leader>ha",
 				function()
 					local harpoon_list = require("harpoon"):list()
-					local item_to_toggle = harpoon_list.config.add(harpoon_list.config)
+					local item_to_toggle = harpoon_list.config.create_list_item(harpoon_list.config)
 
 					---@type number?
 					local item_to_toggle_index = nil
