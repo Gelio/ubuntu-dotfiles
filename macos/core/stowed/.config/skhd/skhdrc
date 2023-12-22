@@ -27,15 +27,15 @@ fn - 8 : yabaictl focus-space --stable-index 8
 fn - 9 : yabaictl focus-space --stable-index 9
 fn - 0 : yabaictl focus-space --stable-index 10
 
-fn + shift - 1 : yabai -m window --space 1
-fn + shift - 2 : yabai -m window --space 2
-fn + shift - 3 : yabai -m window --space 3
-fn + shift - 4 : yabai -m window --space 4
-fn + shift - 5 : yabai -m window --space 5
-fn + shift - 6 : yabai -m window --space 6
-fn + shift - 7 : yabai -m window --space 7
-fn + shift - 8 : yabai -m window --space 8
-fn + shift - 9 : yabai -m window --space 9
+fn + shift - 1 : yabaictl move-window 1
+fn + shift - 2 : yabaictl move-window 2
+fn + shift - 3 : yabaictl move-window 3
+fn + shift - 4 : yabaictl move-window 4
+fn + shift - 5 : yabaictl move-window 5
+fn + shift - 6 : yabaictl move-window 6
+fn + shift - 7 : yabaictl move-window 7
+fn + shift - 8 : yabaictl move-window 8
+fn + shift - 9 : yabaictl move-window 9
 
 fn + shift - space : yabai -m window --toggle float
 
