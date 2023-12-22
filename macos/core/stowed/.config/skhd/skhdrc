@@ -13,19 +13,19 @@ fn + ctrl - j : yabaictl move-space south
 fn + ctrl - k : yabaictl move-space north
 fn + ctrl - l : yabaictl move-space east
 
-fn - n : yabaictl focus-space next
-fn - p : yabaictl focus-space previous
+fn - n : yabaictl focus-space next --destroy-empty-background-spaces
+fn - p : yabaictl focus-space previous --destroy-empty-background-spaces
 
-fn - 1 : yabaictl focus-space --stable-index 1 --create-if-not-found
-fn - 2 : yabaictl focus-space --stable-index 2 --create-if-not-found
-fn - 3 : yabaictl focus-space --stable-index 3 --create-if-not-found
-fn - 4 : yabaictl focus-space --stable-index 4 --create-if-not-found
-fn - 5 : yabaictl focus-space --stable-index 5 --create-if-not-found
-fn - 6 : yabaictl focus-space --stable-index 6 --create-if-not-found
-fn - 7 : yabaictl focus-space --stable-index 7 --create-if-not-found
-fn - 8 : yabaictl focus-space --stable-index 8 --create-if-not-found
-fn - 9 : yabaictl focus-space --stable-index 9 --create-if-not-found
-fn - 0 : yabaictl focus-space --stable-index 10 --create-if-not-found
+fn - 1 : yabaictl focus-space --stable-index 1 --create-if-not-found --destroy-empty-background-spaces
+fn - 2 : yabaictl focus-space --stable-index 2 --create-if-not-found --destroy-empty-background-spaces
+fn - 3 : yabaictl focus-space --stable-index 3 --create-if-not-found --destroy-empty-background-spaces
+fn - 4 : yabaictl focus-space --stable-index 4 --create-if-not-found --destroy-empty-background-spaces
+fn - 5 : yabaictl focus-space --stable-index 5 --create-if-not-found --destroy-empty-background-spaces
+fn - 6 : yabaictl focus-space --stable-index 6 --create-if-not-found --destroy-empty-background-spaces
+fn - 7 : yabaictl focus-space --stable-index 7 --create-if-not-found --destroy-empty-background-spaces
+fn - 8 : yabaictl focus-space --stable-index 8 --create-if-not-found --destroy-empty-background-spaces
+fn - 9 : yabaictl focus-space --stable-index 9 --create-if-not-found --destroy-empty-background-spaces
+fn - 0 : yabaictl focus-space --stable-index 10 --create-if-not-found --destroy-empty-background-spaces
 
 fn + shift - 1 : yabaictl move-window 1 --create-if-not-found
 fn + shift - 2 : yabaictl move-window 2 --create-if-not-found
