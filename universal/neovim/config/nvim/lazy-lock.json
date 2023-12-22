@@ -1,7 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "57c9f5c31b3d712376c704673eac8e948c82e9c1" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "84f22450913d05da3e7c5488a9761e1034fb43b6" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "e4c127ef3888bf8a05ff51879c1b44f96e100cd6" },
   "auto-nvimrc": { "branch": "main", "commit": "c495413dd4b82d6b2fa888f20e5776b76c271f8e" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-calc": { "branch": "main", "commit": "ce91d14d2e7a8b3f6ad86d85e34d41c1ae6268d9" },
@@ -81,7 +81,7 @@
   "targets.vim": { "branch": "master", "commit": "642d3a4ce306264b05ea3219920b13ea80931767" },
   "telescope-live-grep-args.nvim": { "branch": "master", "commit": "731a046da7dd3adff9de871a42f9b7fb85f60f47" },
   "telescope.nvim": { "branch": "master", "commit": "f336f8cfab38a82f9f00df380d28f0c2a572f862" },
-  "text-case.nvim": { "branch": "main", "commit": "f847b283ebbe8b98bc96fa29f1685244c42ce4cf" },
+  "text-case.nvim": { "branch": "main", "commit": "590d89b424e5355aa5a15845db2a520725fe043b" },
   "todo-comments.nvim": { "branch": "main", "commit": "4a6737a8d70fe1ac55c64dfa47fcb189ca431872" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
   "typescript-tools.nvim": { "branch": "master", "commit": "829b5dc4f6704b249624e5157ad094dcb20cdc6b" },
