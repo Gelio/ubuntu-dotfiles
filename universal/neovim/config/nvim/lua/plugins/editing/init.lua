@@ -1,5 +1,6 @@
 return {
 	{ "tpope/vim-repeat" },
+	{ "tpope/vim-abolish" },
 	{ "wellle/targets.vim" },
 	{
 		"tpope/vim-unimpaired",
