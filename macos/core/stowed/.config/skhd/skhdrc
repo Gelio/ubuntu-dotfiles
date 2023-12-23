@@ -40,6 +40,10 @@ fn + shift - 0 : yabaictl move-window 10 --create-if-not-found
 
 fn + shift - space : yabai -m window --toggle float
 
+# Manage splits
+fn + shift - t : yabai -m window --toggle split
+fn - b : yabai -m space --balance
+
 # Stacking support
 fn - w : yabai -m space --layout stack
 fn - e : yabai -m space --layout bsp
