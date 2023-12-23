@@ -8,10 +8,10 @@ fn + shift - j : yabaictl move-window in-direction south
 fn + shift - k : yabaictl move-window in-direction north
 fn + shift - l : yabaictl move-window in-direction east
 
-fn + ctrl - h : yabaictl move-space west
-fn + ctrl - j : yabaictl move-space south
-fn + ctrl - k : yabaictl move-space north
-fn + ctrl - l : yabaictl move-space east
+fn + ctrl - h : yabaictl move-space west --create-extra-space-if-last-on-display
+fn + ctrl - j : yabaictl move-space south --create-extra-space-if-last-on-display
+fn + ctrl - k : yabaictl move-space north --create-extra-space-if-last-on-display
+fn + ctrl - l : yabaictl move-space east --create-extra-space-if-last-on-display
 
 fn - n : yabaictl focus-space next --destroy-empty-background-spaces
 fn - p : yabaictl focus-space previous --destroy-empty-background-spaces
