@@ -3,10 +3,10 @@ fn - j : yabaictl focus-window south
 fn - k : yabaictl focus-window north
 fn - l : yabaictl focus-window east
 
-fn + shift - h : yabai -m window --warp west
-fn + shift - j : yabai -m window --warp south
-fn + shift - k : yabai -m window --warp north
-fn + shift - l : yabai -m window --warp east
+fn + shift - h : yabaictl move-window in-direction west
+fn + shift - j : yabaictl move-window in-direction south
+fn + shift - k : yabaictl move-window in-direction north
+fn + shift - l : yabaictl move-window in-direction east
 
 fn + ctrl - h : yabaictl move-space west
 fn + ctrl - j : yabaictl move-space south
@@ -27,16 +27,16 @@ fn - 8 : yabaictl focus-space --stable-index 8 --create-if-not-found --destroy-e
 fn - 9 : yabaictl focus-space --stable-index 9 --create-if-not-found --destroy-empty-background-spaces
 fn - 0 : yabaictl focus-space --stable-index 10 --create-if-not-found --destroy-empty-background-spaces
 
-fn + shift - 1 : yabaictl move-window 1 --create-if-not-found
-fn + shift - 2 : yabaictl move-window 2 --create-if-not-found
-fn + shift - 3 : yabaictl move-window 3 --create-if-not-found
-fn + shift - 4 : yabaictl move-window 4 --create-if-not-found
-fn + shift - 5 : yabaictl move-window 5 --create-if-not-found
-fn + shift - 6 : yabaictl move-window 6 --create-if-not-found
-fn + shift - 7 : yabaictl move-window 7 --create-if-not-found
-fn + shift - 8 : yabaictl move-window 8 --create-if-not-found
-fn + shift - 9 : yabaictl move-window 9 --create-if-not-found
-fn + shift - 0 : yabaictl move-window 10 --create-if-not-found
+fn + shift - 1 : yabaictl move-window to-space 1 --create-if-not-found
+fn + shift - 2 : yabaictl move-window to-space 2 --create-if-not-found
+fn + shift - 3 : yabaictl move-window to-space 3 --create-if-not-found
+fn + shift - 4 : yabaictl move-window to-space 4 --create-if-not-found
+fn + shift - 5 : yabaictl move-window to-space 5 --create-if-not-found
+fn + shift - 6 : yabaictl move-window to-space 6 --create-if-not-found
+fn + shift - 7 : yabaictl move-window to-space 7 --create-if-not-found
+fn + shift - 8 : yabaictl move-window to-space 8 --create-if-not-found
+fn + shift - 9 : yabaictl move-window to-space 9 --create-if-not-found
+fn + shift - 0 : yabaictl move-window to-space 10 --create-if-not-found
 
 fn + shift - space : yabai -m window --toggle float
 
