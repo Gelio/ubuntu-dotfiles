@@ -57,6 +57,7 @@ return {
 					"tsx",
 					"typescript",
 					"vim",
+					"vimdoc",
 					"vue",
 					"yaml",
 				},
