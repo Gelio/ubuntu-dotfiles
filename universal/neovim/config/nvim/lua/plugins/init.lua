@@ -58,6 +58,9 @@ return {
 			"HawtkeysAll",
 			"HawtkeysDupes",
 		},
+		opts = {
+			leader = "\\",
+		},
 		config = true,
 	},
 }
