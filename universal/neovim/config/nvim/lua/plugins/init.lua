@@ -50,4 +50,14 @@ return {
 		},
 		config = true,
 	},
+
+	{
+		"tris203/hawtkeys.nvim",
+		cmd = {
+			"Hawtkeys",
+			"HawtkeysAll",
+			"HawtkeysDupes",
+		},
+		config = true,
+	},
 }
