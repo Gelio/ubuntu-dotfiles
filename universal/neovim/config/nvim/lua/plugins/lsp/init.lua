@@ -101,39 +101,4 @@ return {
 		branch = "stabilize-windows-widths",
 		cmd = "CodeActionMenu",
 	},
-
-	{
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		init = function()
-			vim.diagnostic.config({
-				virtual_lines = false,
-				virtual_text = {
-					source = "always",
-				},
-			})
-		end,
-		config = function()
-			local lsp_lines = require("lsp_lines")
-			lsp_lines.setup()
-
-			vim.api.nvim_create_user_command("ToggleLspLines", function()
-				local lines_enabled = vim.diagnostic.config().virtual_lines
-
-				if lines_enabled then
-					vim.diagnostic.config({
-						virtual_lines = false,
-						virtual_text = {
-							source = "always",
-						},
-					})
-				else
-					vim.diagnostic.config({
-						virtual_lines = true,
-						virtual_text = false,
-					})
-				end
-			end, {})
-		end,
-		cmd = { "ToggleLspLines" },
-	},
 }
