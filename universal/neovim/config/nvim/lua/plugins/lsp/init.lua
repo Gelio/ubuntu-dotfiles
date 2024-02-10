@@ -95,10 +95,4 @@ return {
 			},
 		},
 	},
-
-	{
-		"Gelio/nvim-code-action-menu",
-		branch = "stabilize-windows-widths",
-		cmd = "CodeActionMenu",
-	},
 }

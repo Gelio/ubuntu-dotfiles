@@ -31,7 +31,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 				end,
 				"Show diagnostics for current line",
 			},
-			ac = { "<cmd>CodeActionMenu<CR>", "Code actions", mode = { "v", "n" } },
+			ac = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions", mode = { "v", "n" } },
 			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
 		},
 		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
