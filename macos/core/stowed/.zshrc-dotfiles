@@ -2,6 +2,10 @@ path+=("$HOME/.cargo/bin/")
 path+=("$(go env GOPATH)/bin/")
 export path
 
+# Set locale (otherwise, stow shows some warnings)
+# https://stackoverflow.com/a/7413863
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
 
 # Load completion
 # https://stackoverflow.com/a/58517668
