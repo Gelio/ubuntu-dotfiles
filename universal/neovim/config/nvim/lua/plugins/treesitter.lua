@@ -53,6 +53,7 @@ return {
 					"styled",
 					"svelte",
 					"terraform",
+					"tmux",
 					"toml",
 					"tsx",
 					"typescript",
