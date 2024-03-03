@@ -1,6 +1,5 @@
 local function create_markdownlint_config()
 	local markdownlintrc_path = vim.fs.joinpath(vim.fn.getcwd(), ".markdownlintrc")
-	vim.print("Markdownlintrc path", markdownlintrc_path)
 
 	local async = require("plenary.async")
 	local err, fd = async.uv.fs_open(
