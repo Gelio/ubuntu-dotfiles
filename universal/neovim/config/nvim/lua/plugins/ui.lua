@@ -155,4 +155,9 @@ return {
 		keys = { "u", "<C-r>" },
 		config = true,
 	},
+	{
+		"briangwaltney/paren-hint.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = true,
+	},
 }
