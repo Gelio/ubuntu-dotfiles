@@ -139,9 +139,9 @@ return {
 		event = "VeryLazy",
 		opts = {
 			disable = {
-				buftypes = { "nofile" }
-			}
-		}
+				buftypes = { "nofile" },
+			},
+		},
 	},
 
 	{
