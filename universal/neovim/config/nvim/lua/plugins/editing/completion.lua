@@ -117,22 +117,26 @@ return {
 				"L3MON4D3/LuaSnip",
 				config = function()
 					require("luasnip.loaders.from_vscode").lazy_load()
-					require("luasnip").config.set_config({
+					local ls = require("luasnip")
+					ls.config.set_config({
 						update_events = "TextChanged,TextChangedI",
 					})
 					require("snippets").setup()
 
 					-- https://github.com/L3MON4D3/LuaSnip#keymaps
-					vim.cmd([[
-	          imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-	          inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+					-- No mapping for expand - press <CR> in nvim-cmp
+					vim.keymap.set({ "i", "s" }, "<C-L>", function()
+						ls.jump(1)
+					end, { silent = true })
+					vim.keymap.set({ "i", "s" }, "<C-H>", function()
+						ls.jump(-1)
+					end, { silent = true })
 
-	          snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-	          snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-
-	          imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-	          smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-	        ]])
+					vim.keymap.set({ "i", "s" }, "<C-E>", function()
+						if ls.choice_active() then
+							ls.change_choice(1)
+						end
+					end, { silent = true })
 				end,
 			},
 			"saadparwaiz1/cmp_luasnip",
