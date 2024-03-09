@@ -244,74 +244,14 @@ return {
 	},
 
 	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("harpoon"):setup({})
-		end,
-		keys = {
-			{
-				"<Leader>ha",
-				function()
-					local harpoon_list = require("harpoon"):list()
-					local item_to_toggle = harpoon_list.config.create_list_item(harpoon_list.config)
-
-					---@type number?
-					local item_to_toggle_index = nil
-					for index, item in ipairs(harpoon_list.items) do
-						if harpoon_list.config.equals(item, item_to_toggle) then
-							item_to_toggle_index = index
-							break
-						end
-					end
-
-					if item_to_toggle_index ~= nil then
-						harpoon_list:removeAt(item_to_toggle_index)
-						vim.print("Removed file " .. item_to_toggle.value)
-					else
-						harpoon_list:append(item_to_toggle)
-						vim.print("Appended file " .. item_to_toggle.value)
-					end
-				end,
-				desc = "(harpoon) Toggle file",
-			},
-			{
-				"<Leader>hq",
-				function()
-					local harpoon = require("harpoon")
-					harpoon.ui:toggle_quick_menu(harpoon:list())
-				end,
-				desc = "(harpoon) Quick menu",
-			},
-			{
-				"[h",
-				function()
-					require("harpoon"):list():prev()
-				end,
-				desc = "(harpoon) Previous file",
-			},
-			{
-				"]h",
-				function()
-					require("harpoon"):list():next()
-				end,
-				desc = "(harpoon) Next file",
-			},
-			{
-				"<Leader>H",
-				function()
-					local harpoon_list = require("harpoon"):list()
-					local index = vim.v.count
-					if index == 0 or index > harpoon_list:length() then
-						return
-					end
-
-					harpoon_list:select(index)
-				end,
-				desc = "(harpoon) Jump to file (uses count)",
+		"otavioschwanck/arrow.nvim",
+		opts = {
+			show_icons = true,
+			leader_key = "<Leader>ar",
+			mappings = {
+				toggle = "t",
+				open_vertical = "v",
+				open_horizontal = "x", -- Matches Telescope
 			},
 		},
 	},
