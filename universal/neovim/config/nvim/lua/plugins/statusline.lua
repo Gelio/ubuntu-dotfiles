@@ -47,7 +47,10 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { { "branch", fmt = trunc(150, 20, 120) } },
+					lualine_b = {
+						{ "branch", fmt = trunc(150, 20, 120) },
+						"diff",
+					},
 					lualine_c = {
 						{
 							"filename",
