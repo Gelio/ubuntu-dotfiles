@@ -66,6 +66,17 @@ return {
 					},
 					lualine_c = {
 						{
+							function()
+								return require("arrow.statusline").text_for_statusline_with_icons()
+							end,
+							cond = function()
+								local success = pcall(function()
+									return require("arrow.statusline")
+								end)
+								return success
+							end,
+						},
+						{
 							"filename",
 							path = 1, -- NOTE: show relative file path
 						},
