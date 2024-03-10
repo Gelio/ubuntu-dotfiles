@@ -69,7 +69,18 @@ return {
 					lualine_y = { { "progress", fmt = trunc(nil, nil, 120) } },
 					lualine_z = { "location" },
 				},
-				extensions = { "fugitive", "quickfix", dap_extension, "symbols-outline", "neo-tree", "lazy", "trouble", "man" },
+				extensions = {
+					"fugitive",
+					"lazy",
+					"man",
+					"mason",
+					"oil",
+					"quickfix",
+					"symbols-outline",
+					"trouble",
+					-- TODO: consider using the "nvim-dap-ui" extension
+					dap_extension,
+				},
 			}
 		end,
 	},
