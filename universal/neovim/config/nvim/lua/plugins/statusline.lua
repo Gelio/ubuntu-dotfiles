@@ -49,7 +49,20 @@ return {
 					lualine_a = { "mode" },
 					lualine_b = {
 						{ "branch", fmt = trunc(150, 20, 120) },
-						"diff",
+						{
+							"diff",
+							source = function()
+								local gitsigns_stats = vim.b.gitsigns_status_dict
+								if not gitsigns_stats then
+									return {}
+								end
+								return {
+									added = gitsigns_stats.added,
+									modified = gitsigns_stats.changed,
+									removed = gitsigns_stats.removed,
+								}
+							end,
+						},
 					},
 					lualine_c = {
 						{
