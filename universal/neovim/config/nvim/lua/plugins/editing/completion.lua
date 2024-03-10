@@ -137,6 +137,11 @@ return {
 							ls.change_choice(1)
 						end
 					end, { silent = true })
+
+					vim.keymap.set("s", "<BS>", "<C-O>s", {
+						-- https://github.com/L3MON4D3/LuaSnip/issues/622#issuecomment-1275350599
+						desc = "Delete current selection without existing snippet mode",
+					})
 				end,
 			},
 			"saadparwaiz1/cmp_luasnip",
