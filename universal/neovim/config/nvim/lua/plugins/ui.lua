@@ -160,4 +160,23 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
 	},
+	{
+		"nvim-pack/nvim-spectre",
+		config = true,
+		cmd = "Spectre",
+		keys = {
+			{ "<Leader>spp", "<cmd>lua require('spectre').toggle()<CR>", desc = "Toggle Spectre" },
+			{
+				"<Leader>spw",
+				"<cmd>lua require('spectre').open_visual({ select_word = true })<CR>",
+				desc = "Search current word in Spectre",
+			},
+			{
+				"<Leader>spw",
+				"<cmd>lua require('spectre').open_visual()<CR>",
+				desc = "Search current word in Spectre",
+				mode = "v",
+			},
+		},
+	},
 }
