@@ -16,6 +16,9 @@ end
 M.config = vim.tbl_extend("error", require("lsp.utils").base_config_without_formatting, {
 	settings = {
 		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
 			runtime = {
 				version = "LuaJIT",
 				path = {
