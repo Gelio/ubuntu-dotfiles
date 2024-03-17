@@ -124,9 +124,8 @@ return {
 					require("snippets").setup()
 
 					-- https://github.com/L3MON4D3/LuaSnip#keymaps
-					-- No mapping for expand - press <CR> in nvim-cmp
 					vim.keymap.set({ "i", "s" }, "<C-L>", function()
-						ls.jump(1)
+						ls.expand_or_jump()
 					end, { silent = true })
 					vim.keymap.set({ "i", "s" }, "<C-H>", function()
 						ls.jump(-1)
