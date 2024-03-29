@@ -21,14 +21,16 @@ return {
 
 	{
 		"folke/trouble.nvim",
-		cmd = { "Trouble", "TroubleToggle" },
+		branch = "dev",
+		cmd = { "Trouble" },
 		keys = {
-			{ "<Leader>tx", "<cmd>TroubleToggle<CR>" },
-			{ "<Leader>tw", "<cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace diagnostics (Trouble)" },
-			{ "<Leader>td", "<cmd>TroubleToggle document_diagnostics<CR>", desc = "Document diagnostics (Trouble)" },
-			{ "<Leader>tq", "<cmd>TroubleToggle quickfix<CR>", desc = "Quickfix list (Trouble)" },
-			{ "gR", "<cmd>TroubleToggle lsp_references<CR>", desc = "LSP references (Trouble)" },
+			{ "<Leader>td", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics (Trouble)" },
+			{ "<Leader>tD", "<cmd>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics (Trouble)" },
+			{ "<Leader>ts", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols (Trouble)" },
+			{ "<Leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "Quickfix list (Trouble)" },
+			{ "<Leader>tq", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix list (Trouble)" },
 		},
+		opts = true,
 	},
 
 	{
