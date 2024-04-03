@@ -15,6 +15,7 @@ casks=(
 )
 casks_no_quarantine=(
   stretchly
+  hiddenbar
 )
 
 formulae=(
