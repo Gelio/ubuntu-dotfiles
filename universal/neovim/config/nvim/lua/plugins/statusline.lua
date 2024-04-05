@@ -110,9 +110,39 @@ return {
 	},
 
 	{
-		"alvarosevilla95/luatab.nvim",
+		"akinsho/bufferline.nvim",
+		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		event = "VeryLazy",
-		config = true,
+		opts = function()
+			local filetype_to_tab_name = {
+				TelescopePrompt = "Telescope",
+				quickfix = "quickfix",
+				fugitive = "Fugitive",
+				trouble = "Trouble",
+			}
+
+			return {
+				options = {
+					mode = "tabs",
+					numbers = "ordinal", -- matches the tab numbers
+					always_show_bufferline = false,
+					name_formatter = function(tab)
+						local winid = vim.api.nvim_tabpage_get_win(tab.tabnr)
+						local bufnr = vim.api.nvim_win_get_buf(winid)
+						local filetype = vim.bo[bufnr].filetype
+
+						---@type string | nil
+						local tab_name = filetype_to_tab_name[filetype]
+						if tab_name ~= nil then
+							return tab_name
+						end
+
+						-- NOTE: default name if it's not a special buffer
+						return nil
+					end,
+				},
+			}
+		end,
 	},
 }
