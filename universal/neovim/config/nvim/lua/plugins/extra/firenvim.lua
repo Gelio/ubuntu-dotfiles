@@ -60,6 +60,9 @@ return {
 				end,
 			})
 
+			-- WORKAROUND: on HiDPI screens, the font size is too large by default
+			vim.o.guifont = ":h20"
+
 			vim.api.nvim_create_autocmd("UIEnter", {
 				group = group_id,
 				callback = function()
