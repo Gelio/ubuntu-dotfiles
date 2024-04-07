@@ -55,8 +55,21 @@ return {
 					local function map(mode, l, r, desc)
 						vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
 					end
-					map("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", "Previous hunk")
-					map("n", "]c", "<cmd>Gitsigns next_hunk<CR>", "Next hunk")
+
+					map("n", "[c", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "[c", bang = true })
+						else
+							gitsigns.nav_hunk("prev")
+						end
+					end, "Previous hunk")
+					map("n", "]c", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "]c", bang = true })
+						else
+							gitsigns.nav_hunk("next")
+						end
+					end, "Next hunk")
 
 					map({ "n", "v" }, "<Leader>hs", "<cmd>Gitsigns stage_hunk<CR>", "Stage hunk")
 					map({ "n", "v" }, "<Leader>hr", "<cmd>Gitsigns reset_hunk<CR>", "Reset hunk")
