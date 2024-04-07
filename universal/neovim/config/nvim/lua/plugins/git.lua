@@ -81,6 +81,7 @@ return {
 					map("n", "<Leader>hR", gitsigns.reset_buffer, "Reset changes in buffer")
 					map("n", "<Leader>hp", gitsigns.preview_hunk, "Preview hunk")
 					map("n", "<Leader>hu", gitsigns.undo_stage_hunk, "Unstage last hunk")
+					map("n", "<Leader>hd", gitsigns.diffthis, "Diff this hunk")
 				end,
 			})
 		end,
