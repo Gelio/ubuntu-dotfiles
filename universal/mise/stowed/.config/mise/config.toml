@@ -1,3 +1,4 @@
 [tools]
 node = 'lts'
 java = "zulu-17.42.19"
+usage = "latest"
