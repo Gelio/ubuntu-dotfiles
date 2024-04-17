@@ -73,7 +73,8 @@ if vim.fn.has("mac") then
 	vim.keymap.set("c", "<M-Right>", "<S-Right>", { desc = "Move right by word" })
 end
 
--- Use ripgrep instead of regular grep
+-- Use ripgrep instead of regular grep (even though it's the default in Neovim
+-- now, because I want to use --smart-case)
 if vim.fn.executable("rg") then
 	vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
 	vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
