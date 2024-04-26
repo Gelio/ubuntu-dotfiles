@@ -36,8 +36,18 @@ local function setup_lsp_keymaps(_client, bufnr)
 		},
 		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
 		["<C-j>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help", mode = "i" },
-		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
-		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
+		["[d"] = {
+			function()
+				vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+			end,
+			"Go to previous diagnostic",
+		},
+		["]d"] = {
+			function()
+				vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+			end,
+			"Go to next diagnostic",
+		},
 	}, {
 		buffer = bufnr,
 	})
