@@ -16,6 +16,7 @@ casks=(
 casks_no_quarantine=(
   stretchly
   hiddenbar
+  flameshot
 )
 
 formulae=(
