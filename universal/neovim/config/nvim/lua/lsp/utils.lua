@@ -8,6 +8,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 			D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 			d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 			i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
+			r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" },
 			["<Leader>c"] = {
 				name = "Call hierarchy",
 				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
@@ -35,6 +36,18 @@ local function setup_lsp_keymaps(_client, bufnr)
 		},
 		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
 		["<C-j>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help", mode = "i" },
+		["[d"] = {
+			function()
+				vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+			end,
+			"Go to previous diagnostic",
+		},
+		["]d"] = {
+			function()
+				vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+			end,
+			"Go to next diagnostic",
+		},
 	}, {
 		buffer = bufnr,
 	})
