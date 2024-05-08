@@ -38,13 +38,13 @@ local function setup_lsp_keymaps(_client, bufnr)
 		["<C-j>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help", mode = "i" },
 		["[d"] = {
 			function()
-				vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+				vim.diagnostic.goto_prev()
 			end,
 			"Go to previous diagnostic",
 		},
 		["]d"] = {
 			function()
-				vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+				vim.diagnostic.goto_next()
 			end,
 			"Go to next diagnostic",
 		},
