@@ -65,3 +65,14 @@ yabai_symlink=/usr/local/bin/yabai
 if [[ ! -f "$yabai_symlink" ]]; then
   sudo ln -s /opt/homebrew/bin/yabai $yabai_symlink
 fi
+
+function install_znotch() {
+  # https://github.com/zkondor/znotch
+  brew tap zkondor/dist
+  brew install --cask znotch
+
+  # Install the extension
+  open 'raycast://extensions/zkondor/znotch?source=webstore'
+}
+
+install_znotch
