@@ -224,7 +224,7 @@ return {
 				return string.format("<cmd>lua require('various-textobjs')['%s'](%s)<CR>", textobj, inner and "true" or "false")
 			end
 
-			---@type LazyKeys[]
+			---@type LazyKeysSpec[]
 			local keys = {}
 			for key, textobj in pairs(mappings) do
 				table.insert(keys, {
@@ -255,5 +255,11 @@ return {
 				open_horizontal = "x", -- Matches Telescope
 			},
 		},
+	},
+
+	{
+		"nvim-ts-autotag",
+		event = "InsertEnter",
+		config = true,
 	},
 }

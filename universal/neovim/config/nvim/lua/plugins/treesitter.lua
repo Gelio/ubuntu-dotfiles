@@ -6,7 +6,6 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"romgrk/nvim-treesitter-context",
 			"RRethy/nvim-treesitter-textsubjects",
-			"windwp/nvim-ts-autotag",
 		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -63,9 +62,6 @@ return {
 					"yaml",
 				},
 				highlight = {
-					enable = true,
-				},
-				autotag = {
 					enable = true,
 				},
 				textsubjects = {
