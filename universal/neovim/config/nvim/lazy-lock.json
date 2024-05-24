@@ -50,7 +50,6 @@
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-dap": { "branch": "master", "commit": "c65c163daa47e0623dd85d2303fce0c22e52ad01" },
   "nvim-dap-ui": { "branch": "master", "commit": "334cf3038c4756e6ab999cbac67c847fb654c190" },
-  "nvim-lightbulb": { "branch": "master", "commit": "8f00b89dd1b1dbde16872bee5fbcee2e58c9b8e9" },
   "nvim-lint": { "branch": "master", "commit": "e19842a05aae484957ad20710444757bc0a61d63" },
   "nvim-lspconfig": { "branch": "master", "commit": "b972e7154bc94ab4ecdbb38c8edbccac36f83996" },
   "nvim-relative-date": { "branch": "main", "commit": "828a74c136adc369a95541282b9a886e3b4dcf26" },

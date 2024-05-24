@@ -84,15 +84,4 @@ return {
 			})
 		end,
 	},
-	{
-		"kosayoda/nvim-lightbulb",
-		event = { "BufReadPost", "BufNewFile" },
-		opts = {
-			autocmd = {
-				enabled = true,
-				-- NOTE: do not override the `updatetime` which is set elsewhere
-				updatetime = -1,
-			},
-		},
-	},
 }
