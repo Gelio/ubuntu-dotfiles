@@ -21,7 +21,6 @@ return {
 
 	{
 		"folke/trouble.nvim",
-		branch = "dev",
 		cmd = { "Trouble" },
 		keys = {
 			{ "<Leader>td", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics (Trouble)" },
@@ -30,7 +29,7 @@ return {
 			{ "<Leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "Quickfix list (Trouble)" },
 			{ "<Leader>tq", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix list (Trouble)" },
 		},
-		opts = true,
+		opts = {},
 	},
 
 	{
