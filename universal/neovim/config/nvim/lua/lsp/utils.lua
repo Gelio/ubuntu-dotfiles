@@ -24,10 +24,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 			rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
 			d = {
 				function()
-					vim.diagnostic.open_float({
-						scope = "line",
-						source = true,
-					})
+					vim.diagnostic.open_float()
 				end,
 				"Show diagnostics for current line",
 			},
@@ -36,18 +33,6 @@ local function setup_lsp_keymaps(_client, bufnr)
 		},
 		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
 		["<C-j>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help", mode = "i" },
-		["[d"] = {
-			function()
-				vim.diagnostic.goto_prev()
-			end,
-			"Go to previous diagnostic",
-		},
-		["]d"] = {
-			function()
-				vim.diagnostic.goto_next()
-			end,
-			"Go to next diagnostic",
-		},
 	}, {
 		buffer = bufnr,
 	})

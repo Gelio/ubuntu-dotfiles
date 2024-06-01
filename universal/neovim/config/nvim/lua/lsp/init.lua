@@ -95,6 +95,17 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
+vim.diagnostic.config({
+	float = {
+		scope = "line",
+		source = true,
+		border = "single",
+	},
+	jump = {
+		wrap = false,
+	},
+})
+
 local function use_icons_for_diagnostic_signs()
 	-- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
 	local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
