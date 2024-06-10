@@ -2,6 +2,12 @@
   email = voreny.gelio@gmail.com
   name = Grzegorz Rozdzialik
 
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
 [core]
   editor = nvim
 
