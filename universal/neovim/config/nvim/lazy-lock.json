@@ -15,7 +15,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp-tmux": { "branch": "main", "commit": "95b1b921802e6f60627b3e76afb9380fddd87f9a" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
-  "conform.nvim": { "branch": "master", "commit": "6e5d476e97dbd251cc2233d42fd238c810404701" },
+  "conform.nvim": { "branch": "master", "commit": "0d12c3781384d63909431297ed1a0f383008bb8f" },
   "copilot.vim": { "branch": "release", "commit": "88d08cf54f623341adde4b18362bffc95174dcd5" },
   "crates.nvim": { "branch": "main", "commit": "3ab99ade2c9a9d4291a8424c03db9a3be9862a72" },
   "dial.nvim": { "branch": "master", "commit": "7af2daaaf933b0617ded0f78b49f4d5fc45f9f64" },
