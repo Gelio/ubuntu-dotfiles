@@ -28,6 +28,7 @@ local server_configs = {
 	taplo = default_server_config,
 	prismals = default_server_config,
 	css_variables = default_server_config,
+	pbls = default_server_config,
 }
 
 local mason_lspconfig = require("mason-lspconfig")
