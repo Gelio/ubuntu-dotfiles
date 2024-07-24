@@ -1,41 +1,34 @@
 local M = {}
 
 local function setup_lsp_keymaps(_client, bufnr)
-	local wk = require("which-key")
+	require("which-key").add(vim.tbl_map(function(mapping)
+		return vim.tbl_extend("force", mapping, { buffer = bufnr })
+	end, {
+		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Go to declaration" },
+		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to definition" },
+		{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },
+		{ "gr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to references" },
+		{ "g<Leader>c", group = "Call hierarchy" },
+		{ "g<Leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", desc = "Go to incoming calls" },
+		{ "g<Leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", desc = "Go to outgoing calls" },
+		{ "g<Leader>t", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "Go to type definition" },
 
-	wk.register({
-		g = {
-			D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
-			d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-			i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
-			r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Go to references" },
-			["<Leader>c"] = {
-				name = "Call hierarchy",
-				i = { "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Go to incoming calls" },
-				o = { "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", "Go to outgoing calls" },
-			},
-			["<Leader>t"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition" },
+		{ "<C-W>gd", "<cmd>tab split | norm gd<CR>", desc = "Go to definition in a new tab" },
+
+		{ "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename" },
+		{
+			"<Leader>d",
+			function()
+				vim.diagnostic.open_float()
+			end,
+			desc = "Show diagnostics for current line",
 		},
-		["<C-W>gd"] = {
-			"<cmd>tab split | norm gd<CR>",
-			"Go to definition in a new tab",
-		},
-		["<Leader>"] = {
-			rn = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-			d = {
-				function()
-					vim.diagnostic.open_float()
-				end,
-				"Show diagnostics for current line",
-			},
-			ac = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions", mode = { "v", "n" } },
-			q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show diagnostics in location list" },
-		},
-		["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help" },
-		["<C-j>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature help", mode = "i" },
-	}, {
-		buffer = bufnr,
-	})
+		{ "<Leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions", mode = { "v", "n" } },
+		{ "<Leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "Show diagnostics in location list" },
+
+		{ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Show signature help" },
+		{ "<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Show signature help", mode = "i" },
+	}))
 end
 
 local function setup_document_highlight(client)
