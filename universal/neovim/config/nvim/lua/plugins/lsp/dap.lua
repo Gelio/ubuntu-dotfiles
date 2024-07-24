@@ -2,12 +2,12 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		keys = {
-			{ "<Leader>xb", "<cmd>DapToggleBreakpoint<CR>", name = "Toggle breakpoint" },
-			{ "<Leader>xc", "<cmd>DapContinue<CR>", name = "Continue" },
-			{ "<Leader>xso", "<cmd>DapStepOut<CR>", name = "Step out" },
-			{ "<Leader>xsn", "<cmd>DapStepOver<CR>", name = "Step over" },
-			{ "<Leader>xsi", "<cmd>DapStepInto<CR>", name = "Step into" },
-			{ "<Leader>xsc", "<cmd>DapRunToCursor<CR>", name = "Run to cursor" },
+			{ "<Leader>xb", "<cmd>DapToggleBreakpoint<CR>", desc = "Toggle breakpoint" },
+			{ "<Leader>xc", "<cmd>DapContinue<CR>", desc = "Continue" },
+			{ "<Leader>xso", "<cmd>DapStepOut<CR>", desc = "Step out" },
+			{ "<Leader>xsn", "<cmd>DapStepOver<CR>", desc = "Step over" },
+			{ "<Leader>xsi", "<cmd>DapStepInto<CR>", desc = "Step into" },
+			{ "<Leader>xsc", "<cmd>DapRunToCursor<CR>", desc = "Run to cursor" },
 		},
 		cmd = { "DapToggleBreakpoint", "DapContinue" },
 		config = function()
