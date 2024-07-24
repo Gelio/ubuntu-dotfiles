@@ -10,11 +10,12 @@ return {
 			{ "<Leader>xsc", "<cmd>DapRunToCursor<CR>", desc = "Run to cursor" },
 		},
 		cmd = { "DapToggleBreakpoint", "DapContinue" },
+		init = function()
+			require("which-key").add({
+				{ "<Leader>x", group = "Dap (debug)" },
+			})
+		end,
 		config = function()
-			require("which-key").register({
-				name = "Dap (debug)",
-			}, { prefix = "<Leader>x" })
-
 			local dap = require("dap")
 			local create_command = vim.api.nvim_create_user_command
 			local utils = require("utils")
