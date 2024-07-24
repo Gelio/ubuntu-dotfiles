@@ -7,7 +7,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Go to declaration" },
 		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to definition" },
 		{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },
-		{ "gr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to references" },
+		{ "grr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to references" },
 		{ "g<Leader>c", group = "Call hierarchy" },
 		{ "g<Leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", desc = "Go to incoming calls" },
 		{ "g<Leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", desc = "Go to outgoing calls" },
@@ -15,7 +15,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 
 		{ "<C-W>gd", "<cmd>tab split | norm gd<CR>", desc = "Go to definition in a new tab" },
 
-		{ "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename" },
+		{ "grn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename" },
 		{
 			"<Leader>d",
 			function()
@@ -23,7 +23,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 			end,
 			desc = "Show diagnostics for current line",
 		},
-		{ "<Leader>ac", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions", mode = { "v", "n" } },
+		{ "gra", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions", mode = { "v", "n" } },
 		{ "<Leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "Show diagnostics in location list" },
 
 		{ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Show signature help" },
