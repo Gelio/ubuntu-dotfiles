@@ -29,6 +29,11 @@ return {
 			{ "<Leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "Quickfix list (Trouble)" },
 			{ "<Leader>tq", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix list (Trouble)" },
 		},
+		init = function()
+			require("which-key").add({
+				{ "<Leader>t", group = "Trouble" },
+			})
+		end,
 		opts = {},
 	},
 

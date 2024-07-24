@@ -23,6 +23,11 @@ return {
 				desc = "LSP workspace symbols (Telescope)",
 			},
 		},
+		init = function()
+			require("which-key").add({
+				{ "<Leader>f", group = "Find (Telescope)" },
+			})
+		end,
 		opts = function()
 			local vimgrep_args_hidden_files = require("telescope.config").set_defaults().get("vimgrep_arguments")
 			table.insert(vimgrep_args_hidden_files, "--hidden")
