@@ -18,21 +18,6 @@
         },
         "rules": [
           {
-            "description": "Disable Cmd+H Hide (rev 2)",
-            "manipulators": [
-              {
-                "description": "",
-                "from": {
-                  "key_code": "h",
-                  "modifiers": {
-                    "mandatory": ["command"]
-                  }
-                },
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "Ctrl + Left/Right arrow Keys to Option + Left/Right arrow Keys",
             "manipulators": [
               {
@@ -63,6 +48,21 @@
                     "modifiers": ["option"]
                   }
                 ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Disable Cmd+H Hide (rev 2)",
+            "manipulators": [
+              {
+                "description": "",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["command"]
+                  }
+                },
                 "type": "basic"
               }
             ]
@@ -513,6 +513,50 @@
           "mouse_swap_xy": false,
           "simple_modifications": [],
           "treat_as_built_in_keyboard": false
+        },
+        {
+          "disable_built_in_keyboard_if_exists": false,
+          "fn_function_keys": [],
+          "game_pad_swap_sticks": false,
+          "identifiers": {
+            "is_game_pad": false,
+            "is_keyboard": true,
+            "is_pointing_device": false,
+            "product_id": 24926,
+            "vendor_id": 7504
+          },
+          "ignore": false,
+          "manipulate_caps_lock_led": true,
+          "mouse_flip_horizontal_wheel": false,
+          "mouse_flip_vertical_wheel": false,
+          "mouse_flip_x": false,
+          "mouse_flip_y": false,
+          "mouse_swap_wheels": false,
+          "mouse_swap_xy": false,
+          "simple_modifications": [],
+          "treat_as_built_in_keyboard": false
+        },
+        {
+          "disable_built_in_keyboard_if_exists": false,
+          "fn_function_keys": [],
+          "game_pad_swap_sticks": false,
+          "identifiers": {
+            "is_game_pad": false,
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 45091,
+            "vendor_id": 1133
+          },
+          "ignore": true,
+          "manipulate_caps_lock_led": true,
+          "mouse_flip_horizontal_wheel": false,
+          "mouse_flip_vertical_wheel": false,
+          "mouse_flip_x": false,
+          "mouse_flip_y": false,
+          "mouse_swap_wheels": false,
+          "mouse_swap_xy": false,
+          "simple_modifications": [],
+          "treat_as_built_in_keyboard": false
         }
       ],
       "fn_function_keys": [
@@ -649,7 +693,7 @@
           },
           "to": [
             {
-              "apple_vendor_top_case_key_code": "keyboard_fn"
+              "key_code": "left_option"
             }
           ]
         }
