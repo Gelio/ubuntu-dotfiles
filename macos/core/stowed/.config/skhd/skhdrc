@@ -1,53 +1,53 @@
-fn - h : yabaictl focus-window west
-fn - j : yabaictl focus-window south
-fn - k : yabaictl focus-window north
-fn - l : yabaictl focus-window east
+lalt - h : yabaictl focus-window west
+lalt - j : yabaictl focus-window south
+lalt - k : yabaictl focus-window north
+lalt - l : yabaictl focus-window east
 
-fn + shift - h : yabaictl move-window in-direction west
-fn + shift - j : yabaictl move-window in-direction south
-fn + shift - k : yabaictl move-window in-direction north
-fn + shift - l : yabaictl move-window in-direction east
+lalt + shift - h : yabaictl move-window in-direction west
+lalt + shift - j : yabaictl move-window in-direction south
+lalt + shift - k : yabaictl move-window in-direction north
+lalt + shift - l : yabaictl move-window in-direction east
 
-fn + ctrl - h : yabaictl move-space west --create-extra-space-if-last-on-display
-fn + ctrl - j : yabaictl move-space south --create-extra-space-if-last-on-display
-fn + ctrl - k : yabaictl move-space north --create-extra-space-if-last-on-display
-fn + ctrl - l : yabaictl move-space east --create-extra-space-if-last-on-display
+lalt + ctrl - h : yabaictl move-space west --create-extra-space-if-last-on-display
+lalt + ctrl - j : yabaictl move-space south --create-extra-space-if-last-on-display
+lalt + ctrl - k : yabaictl move-space north --create-extra-space-if-last-on-display
+lalt + ctrl - l : yabaictl move-space east --create-extra-space-if-last-on-display
 
-fn - n : yabaictl focus-space next --destroy-empty-background-spaces
-fn - p : yabaictl focus-space previous --destroy-empty-background-spaces
+lalt - n : yabaictl focus-space next --destroy-empty-background-spaces
+lalt - p : yabaictl focus-space previous --destroy-empty-background-spaces
 
-fn - 1 : yabaictl focus-space --stable-index 1 --create-if-not-found --destroy-empty-background-spaces
-fn - 2 : yabaictl focus-space --stable-index 2 --create-if-not-found --destroy-empty-background-spaces
-fn - 3 : yabaictl focus-space --stable-index 3 --create-if-not-found --destroy-empty-background-spaces
-fn - 4 : yabaictl focus-space --stable-index 4 --create-if-not-found --destroy-empty-background-spaces
-fn - 5 : yabaictl focus-space --stable-index 5 --create-if-not-found --destroy-empty-background-spaces
-fn - 6 : yabaictl focus-space --stable-index 6 --create-if-not-found --destroy-empty-background-spaces
-fn - 7 : yabaictl focus-space --stable-index 7 --create-if-not-found --destroy-empty-background-spaces
-fn - 8 : yabaictl focus-space --stable-index 8 --create-if-not-found --destroy-empty-background-spaces
-fn - 9 : yabaictl focus-space --stable-index 9 --create-if-not-found --destroy-empty-background-spaces
-fn - 0 : yabaictl focus-space --stable-index 10 --create-if-not-found --destroy-empty-background-spaces
+lalt - 1 : yabaictl focus-space --stable-index 1 --create-if-not-found --destroy-empty-background-spaces
+lalt - 2 : yabaictl focus-space --stable-index 2 --create-if-not-found --destroy-empty-background-spaces
+lalt - 3 : yabaictl focus-space --stable-index 3 --create-if-not-found --destroy-empty-background-spaces
+lalt - 4 : yabaictl focus-space --stable-index 4 --create-if-not-found --destroy-empty-background-spaces
+lalt - 5 : yabaictl focus-space --stable-index 5 --create-if-not-found --destroy-empty-background-spaces
+lalt - 6 : yabaictl focus-space --stable-index 6 --create-if-not-found --destroy-empty-background-spaces
+lalt - 7 : yabaictl focus-space --stable-index 7 --create-if-not-found --destroy-empty-background-spaces
+lalt - 8 : yabaictl focus-space --stable-index 8 --create-if-not-found --destroy-empty-background-spaces
+lalt - 9 : yabaictl focus-space --stable-index 9 --create-if-not-found --destroy-empty-background-spaces
+lalt - 0 : yabaictl focus-space --stable-index 10 --create-if-not-found --destroy-empty-background-spaces
 
-fn + shift - 1 : yabaictl move-window to-space 1 --create-if-not-found
-fn + shift - 2 : yabaictl move-window to-space 2 --create-if-not-found
-fn + shift - 3 : yabaictl move-window to-space 3 --create-if-not-found
-fn + shift - 4 : yabaictl move-window to-space 4 --create-if-not-found
-fn + shift - 5 : yabaictl move-window to-space 5 --create-if-not-found
-fn + shift - 6 : yabaictl move-window to-space 6 --create-if-not-found
-fn + shift - 7 : yabaictl move-window to-space 7 --create-if-not-found
-fn + shift - 8 : yabaictl move-window to-space 8 --create-if-not-found
-fn + shift - 9 : yabaictl move-window to-space 9 --create-if-not-found
-fn + shift - 0 : yabaictl move-window to-space 10 --create-if-not-found
+lalt + shift - 1 : yabaictl move-window to-space 1 --create-if-not-found
+lalt + shift - 2 : yabaictl move-window to-space 2 --create-if-not-found
+lalt + shift - 3 : yabaictl move-window to-space 3 --create-if-not-found
+lalt + shift - 4 : yabaictl move-window to-space 4 --create-if-not-found
+lalt + shift - 5 : yabaictl move-window to-space 5 --create-if-not-found
+lalt + shift - 6 : yabaictl move-window to-space 6 --create-if-not-found
+lalt + shift - 7 : yabaictl move-window to-space 7 --create-if-not-found
+lalt + shift - 8 : yabaictl move-window to-space 8 --create-if-not-found
+lalt + shift - 9 : yabaictl move-window to-space 9 --create-if-not-found
+lalt + shift - 0 : yabaictl move-window to-space 10 --create-if-not-found
 
-fn + shift - space : yabai -m window --toggle float
+lalt + shift - space : yabai -m window --toggle float
 
 # Manage splits
-fn + shift - t : yabai -m window --toggle split
-fn - b : yabai -m space --balance
+lalt + shift - t : yabai -m window --toggle split
+lalt - b : yabai -m space --balance
 
 # Stacking support
-fn - w : yabai -m space --layout stack
-fn - e : yabai -m space --layout bsp
-fn + ctrl - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
-fn + ctrl - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+lalt - w : yabai -m space --layout stack
+lalt - e : yabai -m space --layout bsp
+lalt + ctrl - n : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+lalt + ctrl - p : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
 # vim: ft=ini
