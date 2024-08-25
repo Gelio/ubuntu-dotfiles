@@ -5,7 +5,7 @@ sudo yabai --load-sa
 
 yabai -m config layout bsp
 yabai -m config mouse_follows_focus on
-yabai -m config mouse_modifier alt
+yabai -m config mouse_modifier ctrl
 yabai -m config window_opacity on
 
 padding=10
