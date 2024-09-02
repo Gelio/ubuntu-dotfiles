@@ -12,6 +12,7 @@ casks=(
   ubersicht
   raycast
   kap
+  obs
 )
 casks_no_quarantine=(
   stretchly
