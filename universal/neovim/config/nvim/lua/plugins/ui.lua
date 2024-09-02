@@ -74,14 +74,9 @@ return {
 	},
 
 	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		ft = { "markdown", "norg" },
-		opts = {
-			markdown = {
-				fat_headlines = false,
-			},
-		},
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {},
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 	},
 
 	{
