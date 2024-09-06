@@ -28,6 +28,13 @@ bindkey "^[[1;3D" vi-backward-word
 bindkey "^[[1;5C" vi-forward-word
 bindkey "^[[1;5D" vi-backward-word
 
+# Ctrl-X Ctrl-E to edit the current command line in $EDITOR
+# https://unix.stackexchange.com/a/34251
+# Same as in Bash
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # Alt+Delete to delete word stopping at non-word characters
 # https://unix.stackexchange.com/a/319854
 backward-kill-dir () {
