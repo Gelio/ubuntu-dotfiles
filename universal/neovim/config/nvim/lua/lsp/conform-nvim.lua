@@ -3,6 +3,7 @@ local formatters_by_ft = {
 	sh = { "shfmt" },
 	go = { "gofumpt" },
 	plantuml = { "trim_whitespace" },
+	proto = { "buf" },
 }
 
 local prettierd_filetypes = {
