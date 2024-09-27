@@ -13,6 +13,7 @@ casks=(
   raycast
   kap
   obs
+  linearmouse
 )
 casks_no_quarantine=(
   stretchly
