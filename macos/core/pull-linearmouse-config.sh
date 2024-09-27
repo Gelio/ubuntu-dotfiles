@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eou pipefail
 
-app_name=Karabiner
-config_location=.config/karabiner/karabiner.json
+app_name=Linearmouse
+config_location=.config/linearmouse/linearmouse.json
 config_path=~/$config_location
 
 if [ ! -f "$config_path" ]; then
