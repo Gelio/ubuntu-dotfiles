@@ -21,6 +21,8 @@ tsserver_lsp.setup(vim.tbl_extend("force", tsserver_lsp.config, {
   settings = {
     tsserver_file_preferences = {
       quotePreference = "single",
+      -- NOTE: use actual file extensions in auto-import paths
+      importModuleSpecifierEnding = "js",
     },
   },
   root_dir = function()
