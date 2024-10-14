@@ -1,6 +1,9 @@
 return {
 	{
-		"hrsh7th/nvim-cmp",
+		-- NOTE: use https://github.com/iguanacucumber/magazine.nvim until nvim-cmp
+		-- starts being maintained again
+		"iguanacucumber/magazine.nvim",
+		name = "nvim-cmp",
 		event = "InsertEnter",
 		config = function()
 			vim.opt.completeopt = { "menuone", "noselect" }
