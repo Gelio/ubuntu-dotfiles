@@ -6,7 +6,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 	end, {
 		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Go to declaration" },
 		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to definition" },
-		{ "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },
+		{ "gri", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },
 		{ "grr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to references" },
 		{ "g<Leader>c", group = "Call hierarchy" },
 		{ "g<Leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", desc = "Go to incoming calls" },
