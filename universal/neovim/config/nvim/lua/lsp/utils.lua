@@ -1,9 +1,23 @@
 local M = {}
 
 local function setup_lsp_keymaps(_client, bufnr)
+	local function signature_help()
+		vim.lsp.buf.signature_help({
+			border = "single",
+			zindex = M.zindex.lsp_signature,
+		})
+	end
+
+	local function hover()
+		vim.lsp.buf.hover({
+			border = "single",
+		})
+	end
+
 	require("which-key").add(vim.tbl_map(function(mapping)
 		return vim.tbl_extend("force", mapping, { buffer = bufnr })
 	end, {
+		{ "K", hover, desc = "Hover" },
 		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Go to declaration" },
 		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to definition" },
 		{ "gri", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },
@@ -26,8 +40,8 @@ local function setup_lsp_keymaps(_client, bufnr)
 		{ "gra", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions", mode = { "v", "n" } },
 		{ "<Leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "Show diagnostics in location list" },
 
-		{ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Show signature help" },
-		{ "<C-j>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Show signature help", mode = "i" },
+		{ "<C-k>", signature_help, desc = "Show signature help" },
+		{ "<C-j>", signature_help, desc = "Show signature help", mode = "i" },
 	}))
 end
 

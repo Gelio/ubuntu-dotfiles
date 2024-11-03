@@ -91,12 +91,6 @@ end
 
 setup_lsp_servers()
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "single",
-	zindex = utils.zindex.lsp_signature,
-})
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-
 vim.diagnostic.config({
 	float = {
 		scope = "line",
