@@ -19,9 +19,18 @@ return {
 					local nvim_lint = require("lint")
 					nvim_lint.linters_by_ft = require("lsp.nvim-lint").linters_by_ft
 
+					local function is_lsp_popup_window()
+						return not vim.o.buflisted and vim.o.buftype == "nofile"
+					end
+
 					vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
 						group = vim.api.nvim_create_augroup("NvimLint", {}),
 						callback = function()
+							if is_lsp_popup_window() then
+								-- NOTE: do not lint LSP popup windows (e.g. hover, signature help)
+								return
+							end
+
 							nvim_lint.try_lint()
 						end,
 					})
