@@ -5,6 +5,12 @@ return {
 	{
 		"tpope/vim-unimpaired",
 		init = function()
+			-- NOTE: despite Neovim adding some vim-unimpaired-inspired mappings, I
+			-- still need vim-unimpaired for:
+			-- * [e, ]e (exchange lines)
+			-- * [o, ]o (toggle options)
+			-- * ]p, [p (paste linewise)
+
 			vim.g.nremap = {
 				-- Disable encoding and decoding maps
 				["[u"] = "",
