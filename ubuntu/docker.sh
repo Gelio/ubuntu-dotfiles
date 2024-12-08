@@ -28,3 +28,12 @@ docker -h
 # https://docs.docker.com/engine/install/linux-postinstall/
 sudo groupadd docker
 sudo usermod -aG docker $USER
+
+# use local logging driver to prevent disk-exhaustion
+# local logging driver performs log-rotation & compresses log files by
+# default.
+# https://docs.docker.com/config/containers/logging/configure/
+# https://docs.docker.com/config/containers/logging/local/
+sudo touch /etc/docker/daemon.json
+echo '{"log-driver": "local", "log-opts": {"max-size": "10m"}}' \
+    | sudo tee /etc/docker/daemon.json >/dev/null
