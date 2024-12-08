@@ -73,6 +73,8 @@ if vim.fn.has("mac") then
 	vim.keymap.set("c", "<M-Right>", "<S-Right>", { desc = "Move right by word" })
 end
 
+vim.keymap.set("n", "yc", "yygccp", { desc = "Duplicate line and comment out the first one", remap = true })
+
 -- Use ripgrep instead of regular grep (even though it's the default in Neovim
 -- now, because I want to use --smart-case)
 if vim.fn.executable("rg") then
