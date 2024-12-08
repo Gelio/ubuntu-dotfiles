@@ -212,7 +212,9 @@ return {
 
 	{
 		"chrisgrieser/nvim-various-textobjs",
-		opts = { useDefaultKeymaps = false },
+		opts = {
+			keymaps = { useDefaults = false },
+		},
 		keys = function()
 			local mappings = {
 				S = "subword",
