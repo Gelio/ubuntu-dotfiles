@@ -11,3 +11,6 @@ disabled = false
 [directory]
 # NOTE: show more directory levels than the default 3
 truncation_length = 8
+
+[aws]
+disabled = true
