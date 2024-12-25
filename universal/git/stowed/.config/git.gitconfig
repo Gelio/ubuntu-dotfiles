@@ -38,6 +38,11 @@
   subup = submodule update --init --recursive
   push-current-stack = !git push origin $(git stack --format list --stack current)
 
+  # difftastic
+  dlog = -c diff.external=difft log --ext-diff
+  dshow = -c diff.external=difft show --ext-diff
+  ddiff = -c diff.external=difft diff
+
 [diff]
   colorMoved = default
 
