@@ -23,6 +23,7 @@
 	"mainColor": "#478484",
 	"miniBreakColor": "#478484",
 	"transparentMode": false,
+	"blurredBackground": false,
 	"opacity": 0.9,
 	"audio": "crystal-glass",
 	"miniBreakAudio": "crystal-glass",
@@ -520,10 +521,10 @@
 	"skipToNextMiniBreakShortcut": "",
 	"skipToNextLongBreakShortcut": "",
 	"resetBreaksShortcut": "",
-	"showBreakActionsInStrictMode": false,
+	"showTrayMenuInStrictMode": false,
 	"__internal__": {
 		"migrations": {
-			"version": "1.16.0"
+			"version": "1.17.1"
 		}
 	}
 }
