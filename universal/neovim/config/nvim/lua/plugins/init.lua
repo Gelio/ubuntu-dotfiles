@@ -16,17 +16,17 @@ return {
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "tpope/vim-obsession" },
 
-	{
-		"Gelio/wilder.nvim",
-		branch = "fix-last-arg-completion-for-lua",
-		config = function()
-			vim.cmd.runtime("wilder.vim")
-
-			vim.cmd.call("wilder#main#start()")
-		end,
-		build = ":UpdateRemotePlugins",
-		event = "CmdlineEnter",
-	},
+	-- {
+	-- 	"Gelio/wilder.nvim",
+	-- 	branch = "fix-last-arg-completion-for-lua",
+	-- 	config = function()
+	-- 		vim.cmd.runtime("wilder.vim")
+	--
+	-- 		vim.cmd.call("wilder#main#start()")
+	-- 	end,
+	-- 	build = ":UpdateRemotePlugins",
+	-- 	event = "CmdlineEnter",
+	-- },
 
 	{
 		"nvim-lua/plenary.nvim",

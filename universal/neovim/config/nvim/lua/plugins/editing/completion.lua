@@ -1,67 +1,27 @@
 return {
-
 	{
-		-- NOTE: use https://github.com/iguanacucumber/magazine.nvim until nvim-cmp
-		-- starts being maintained again
-		"iguanacucumber/magazine.nvim",
-		name = "nvim-cmp",
-		event = "InsertEnter",
-		config = function()
-			vim.opt.completeopt = { "menuone", "noselect" }
-			vim.opt.shortmess:append("c")
+		"saghen/blink.cmp",
+		version = "*",
+		event = { "InsertEnter", "CmdlineEnter" },
 
-			local sources, source_labels = require("lsp.cmp").prepare_sources()
-
-			local cmp = require("cmp")
-			local lsp_utils = require("lsp.utils")
-			cmp.setup({
-				window = {
-					completion = {
-						zindex = lsp_utils.zindex.completions_menu,
-					},
-					documentation = {
-						zindex = lsp_utils.zindex.completion_documentation,
-					},
-				},
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
-				}),
-				sources = sources,
-				formatting = {
-					format = require("lspkind").cmp_format({ mode = "symbol_text", menu = source_labels }),
-				},
-			})
-		end,
 		dependencies = {
-			"hrsh7th/cmp-buffer",
+			"rafamadriz/friendly-snippets",
 			{
-				"Saecki/crates.nvim",
-				event = "BufRead Cargo.toml",
-				branch = "main",
-				dependencies = { "nvim-lua/plenary.nvim" },
-				config = true,
+				"saghen/blink.compat",
+				version = "*",
+				lazy = true,
+				opts = {},
 			},
-			"hrsh7th/cmp-path",
-			"andersevenrud/cmp-tmux",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-calc",
-			"hrsh7th/cmp-nvim-lsp",
-			"rafamadriz/friendly-snippets",
 			{
 				"Gelio/cmp-natdat",
 				opts = {
 					cmp_kind_text = "NatDat",
+					highlight_group = "BlinkCmpKindText",
 				},
 			},
-			"hrsh7th/cmp-emoji",
+			"moyiz/blink-emoji.nvim",
 			{
 				"David-Kunz/cmp-npm",
 				lazy = true,
@@ -69,47 +29,79 @@ return {
 				config = true,
 				event = "BufRead package.json",
 			},
-			{
-				"onsails/lspkind-nvim",
-				config = function()
-					require("lspkind").init({
-						symbol_map = {
-							NatDat = "📅",
+		},
+
+		opts = {
+			keymap = {
+				preset = "default",
+				["<C-u>"] = { "scroll_documentation_up", "fallback" },
+				["<C-d>"] = { "scroll_documentation_down", "fallback" },
+				["<C-h>"] = { "snippet_backward", "fallback" },
+				["<C-l>"] = { "snippet_forward", "fallback" },
+			},
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+				kind_icons = {
+					-- TODO: fix me, so the UI uses this icon
+					NatDat = "📅",
+				},
+			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer", "natdat", "emoji", "nvim_lua", "calc", "npm" },
+				providers = {
+					natdat = {
+						name = "natdat",
+						module = "blink.compat.source",
+					},
+					buffer = {
+						min_keyword_length = 4,
+					},
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15,
+					},
+					["nvim_lua"] = {
+						name = "nvim_lua",
+						module = "blink.compat.source",
+					},
+					calc = {
+						name = "calc",
+						module = "blink.compat.source",
+					},
+					npm = {
+						name = "npm",
+						module = "blink.compat.source",
+					},
+				},
+			},
+
+			completion = {
+				menu = {
+					draw = {
+						columns = {
+							{ "label", "label_description", gap = 1 },
+							{ "kind_icon", "kind", gap = 1 },
+							{ "source_name" },
 						},
-					})
-				end,
+						components = {
+							source_name = {
+								highlight = "Normal",
+							},
+						},
+					},
+				},
+				documentation = {
+					auto_show = true,
+					window = { border = "single" },
+				},
 			},
-			{
-				"L3MON4D3/LuaSnip",
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-					local ls = require("luasnip")
-					ls.config.set_config({
-						update_events = "TextChanged,TextChangedI",
-					})
-					require("snippets").setup()
-
-					-- https://github.com/L3MON4D3/LuaSnip#keymaps
-					vim.keymap.set({ "i", "s" }, "<C-L>", function()
-						ls.expand_or_jump()
-					end, { silent = true })
-					vim.keymap.set({ "i", "s" }, "<C-H>", function()
-						ls.jump(-1)
-					end, { silent = true })
-
-					vim.keymap.set({ "i", "s" }, "<C-E>", function()
-						if ls.choice_active() then
-							ls.change_choice(1)
-						end
-					end, { silent = true })
-
-					vim.keymap.set("s", "<BS>", "<C-O>s", {
-						-- https://github.com/L3MON4D3/LuaSnip/issues/622#issuecomment-1275350599
-						desc = "Delete current selection without existing snippet mode",
-					})
-				end,
+			signature = {
+				-- NOTE: use build-in <C-j> signature
+				enabled = false,
+				window = { border = "single" },
 			},
-			"saadparwaiz1/cmp_luasnip",
 		},
 	},
 }

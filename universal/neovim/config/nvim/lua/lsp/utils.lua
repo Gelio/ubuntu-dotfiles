@@ -4,7 +4,6 @@ local function setup_lsp_keymaps(_client, bufnr)
 	local function signature_help()
 		vim.lsp.buf.signature_help({
 			border = "single",
-			zindex = M.zindex.lsp_signature,
 		})
 	end
 
@@ -69,10 +68,9 @@ function M.on_attach(client, bufnr)
 	setup_document_highlight(client)
 end
 
--- See https://github.com/hrsh7th/cmp-nvim-lsp
--- Takes care of autocomplete support using snippets for some LSP servers (cssls, jsonls)
+-- https://cmp.saghen.dev/installation.html
 local ok, cmp_capabilities = pcall(function()
-	return require("cmp_nvim_lsp").default_capabilities()
+	return require("blink.cmp").get_lsp_capabilities()
 end)
 if ok then
 	M.capabilities = cmp_capabilities
@@ -123,14 +121,5 @@ M.base_config = {
 M.base_config_without_formatting = vim.tbl_extend("force", M.base_config, {
 	on_attach = M.run_all(M.disable_formatting, M.on_attach),
 })
-
---- https://github.com/hrsh7th/nvim-cmp/blob/fc0f694af1a742ada77e5b1c91ff405c746f4a26/lua/cmp/view/custom_entries_view.lua#L207
-local completions_menu_zindex = 1001
-M.zindex = {
-	completions_menu = completions_menu_zindex,
-	--- https://github.com/hrsh7th/nvim-cmp/blob/fc0f694af1a742ada77e5b1c91ff405c746f4a26/lua/cmp/view/docs_view.lua#L104
-	completion_documentation = 50,
-	lsp_signature = completions_menu_zindex + 1,
-}
 
 return M
