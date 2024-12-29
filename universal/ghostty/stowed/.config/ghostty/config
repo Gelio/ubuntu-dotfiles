@@ -1,3 +1,6 @@
 font-family = "JetBrainsMono Nerd Font"
 theme = "Dracula"
 window-decoration = false
+
+# The default scroll speed is too fast.
+mouse-scroll-multiplier = 0.5
