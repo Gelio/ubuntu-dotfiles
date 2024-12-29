@@ -4,10 +4,12 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-live-grep-args.nvim",
+			{ "nvim-telescope/telescope-frecency.nvim", version = "*" },
 		},
 		cmd = { "Telescope", "TelescopeHiddenFiles" },
 		keys = {
 			{ "<Leader>ff", "<cmd>Telescope find_files hidden=true<CR>", desc = "Files (Telescope)" },
+			{ "<Leader>fF", "<cmd>Telescope frecency workspace=CWD<CR>", desc = "Files by frecency (Telescope)" },
 			{ "<Leader>fg", "<cmd>TelescopeHiddenFiles<CR>", desc = "Files (Telescope)" },
 			{ "<Leader>fGs", "<cmd>Telescope git_status<CR>", desc = "Git status (Telescope)" },
 			{ "<Leader>fGf", "<cmd>Telescope git_files<CR>", desc = "Git files (Telescope)" },
@@ -43,6 +45,12 @@ return {
 			local lga_actions = require("telescope-live-grep-args.actions")
 			return {
 				extensions = {
+					frecency = {
+						-- Always prune stale files in the database.
+						-- Temporary workaround for the "A" in the first prompt
+						-- https://github.com/nvim-telescope/telescope-frecency.nvim/issues/270#issuecomment-2448812758
+						db_safe_mode = false,
+					},
 					live_grep_args = {
 						mappings = {
 							i = {
