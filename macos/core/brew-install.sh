@@ -33,6 +33,7 @@ formulae=(
   jq
   highlight
   jordanbaird-ice
+  pkg-config
 )
 
 echo "# Installing formulae"

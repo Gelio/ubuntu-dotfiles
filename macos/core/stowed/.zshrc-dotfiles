@@ -57,6 +57,10 @@ zstyle ':completion:*:*' list-colors ''
 zstyle ':completion:*:directories' list-colors '=*=0;34;40'
 zstyle ':completion:*:local-directories' list-colors '=*=0;34;40'
 
+# Fix access to imagemagick for image.nvim (Neovim)
+# lhttps://github.com/3rd/image.nvim
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+
 for file in ~/.zshrc.d/*(-.); do
   source "$file"
 done
