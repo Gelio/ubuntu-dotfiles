@@ -1,4 +1,5 @@
 return {
+
 	{
 		-- NOTE: use https://github.com/iguanacucumber/magazine.nvim until nvim-cmp
 		-- starts being maintained again
@@ -31,7 +32,7 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-d>"] = cmp.mapping.scroll_docs(4),
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = sources,
 				formatting = {
