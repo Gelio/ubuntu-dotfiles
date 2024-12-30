@@ -2,5 +2,19 @@ font-family = "JetBrainsMono Nerd Font"
 theme = "Dracula"
 macos-titlebar-style = hidden
 
+macos-option-as-alt = left
+keybind = clear
+keybind = super+n=new_window
+keybind = super+t=new_tab
+keybind = super+q=quit
+keybind = super+comma=open_config
+keybind = super+shift+comma=reload_config
+keybind = super+w=close_surface
+keybind = super+plus=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+zero=reset_font_size
+keybind = super+v=paste_from_clipboard
+keybind = super+c=copy_to_clipboard
+
 # The default scroll speed is too fast.
 mouse-scroll-multiplier = 0.5
