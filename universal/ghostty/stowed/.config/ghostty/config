@@ -1,6 +1,6 @@
 font-family = "JetBrainsMono Nerd Font"
 theme = "Dracula"
-window-decoration = false
+macos-titlebar-style = hidden
 
 # The default scroll speed is too fast.
 mouse-scroll-multiplier = 0.5
