@@ -76,6 +76,10 @@ return {
 				},
 			},
 
+			snippets = {
+				preset = "default",
+			},
+
 			completion = {
 				accept = {
 					auto_brackets = {
