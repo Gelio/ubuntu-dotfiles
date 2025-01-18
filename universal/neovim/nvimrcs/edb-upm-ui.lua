@@ -66,7 +66,7 @@ local function run_eslint(params)
     "npx",
     "eslint",
     "--format",
-    "compact",
+    "stylish",
     "--cache",
     ".",
   })
