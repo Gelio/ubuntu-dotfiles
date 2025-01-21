@@ -73,14 +73,12 @@ return {
 
 					map({ "n", "v" }, "<Leader>hs", "<cmd>Gitsigns stage_hunk<CR>", "Stage hunk")
 					map({ "n", "v" }, "<Leader>hr", "<cmd>Gitsigns reset_hunk<CR>", "Reset hunk")
-					map("n", "<Leader>htd", gitsigns.toggle_deleted, "Toggle deleted lines")
 					map("n", "<Leader>htb", gitsigns.toggle_current_line_blame, "Toggle current line blame")
 					map("n", "<Leader>hb", function()
 						gitsigns.blame_line({ full = true })
 					end, "Blame current line")
 					map("n", "<Leader>hR", gitsigns.reset_buffer, "Reset changes in buffer")
 					map("n", "<Leader>hp", gitsigns.preview_hunk, "Preview hunk")
-					map("n", "<Leader>hu", gitsigns.undo_stage_hunk, "Unstage last hunk")
 					map("n", "<Leader>hd", gitsigns.diffthis, "Diff this hunk")
 				end,
 			})
