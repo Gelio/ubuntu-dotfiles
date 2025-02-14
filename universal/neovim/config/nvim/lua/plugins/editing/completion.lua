@@ -88,11 +88,19 @@ return {
 				},
 				menu = {
 					draw = {
-						columns = {
-							{ "label", "label_description", gap = 1 },
-							{ "kind_icon", "kind", gap = 1 },
-							{ "source_name" },
-						},
+						columns = function(ctx)
+							if ctx.mode == "cmdline" then
+								return {
+									{ "label" },
+								}
+							else
+								return {
+									{ "label", "label_description", gap = 1 },
+									{ "kind_icon", "kind", gap = 1 },
+									{ "source_name" },
+								}
+							end
+						end,
 						components = {
 							source_name = {
 								highlight = "Normal",
