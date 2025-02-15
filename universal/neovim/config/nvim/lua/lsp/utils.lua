@@ -45,7 +45,7 @@ local function setup_lsp_keymaps(_client, bufnr)
 end
 
 local function setup_document_highlight(client)
-	if not client.supports_method("textDocument/documentHighlight") then
+	if not client:supports_method("textDocument/documentHighlight") then
 		return
 	end
 
