@@ -16,18 +16,6 @@ return {
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "tpope/vim-obsession" },
 
-	-- {
-	-- 	"Gelio/wilder.nvim",
-	-- 	branch = "fix-last-arg-completion-for-lua",
-	-- 	config = function()
-	-- 		vim.cmd.runtime("wilder.vim")
-	--
-	-- 		vim.cmd.call("wilder#main#start()")
-	-- 	end,
-	-- 	build = ":UpdateRemotePlugins",
-	-- 	event = "CmdlineEnter",
-	-- },
-
 	{
 		"nvim-lua/plenary.nvim",
 		config = function()
@@ -47,19 +35,6 @@ return {
 		keys = {
 			{ "<C-W>m", "<cmd>WinShift<CR>", "Window shift mode" },
 			{ "<C-W><C-M>", "<cmd>WinShift<CR>", "Window shift mode" },
-		},
-		config = true,
-	},
-
-	{
-		"tris203/hawtkeys.nvim",
-		cmd = {
-			"Hawtkeys",
-			"HawtkeysAll",
-			"HawtkeysDupes",
-		},
-		opts = {
-			leader = "\\",
 		},
 		config = true,
 	},
