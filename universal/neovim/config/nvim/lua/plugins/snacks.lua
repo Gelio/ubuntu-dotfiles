@@ -4,6 +4,7 @@ return {
 		---@type snacks.Config
 		opts = {
 			bigfile = {},
+			picker = {},
 		},
 	},
 }

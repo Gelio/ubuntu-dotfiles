@@ -94,18 +94,6 @@ return {
 	},
 
 	{
-		"stevearc/dressing.nvim",
-		event = "VeryLazy",
-		opts = {
-			input = {
-				-- NOTE: the input is usually too small to handle file paths in nvim-tree
-				-- and it does not support C-f to edit the value in a new window
-				enabled = false,
-			},
-		},
-	},
-
-	{
 		"echasnovski/mini.trailspace",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
