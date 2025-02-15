@@ -88,28 +88,6 @@ return {
 	},
 
 	{
-		"petertriho/nvim-scrollbar",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = { "gitsigns.nvim" },
-		opts = {
-			handle = {
-				highlight = "Visual",
-			},
-			marks = {
-				Search = { highlight = "Orange" },
-				Error = { highlight = "VirtualTextError" },
-				Warn = { highlight = "VirtualTextWarning" },
-				Info = { highlight = "VirtualTextInfo" },
-				Hint = { highlight = "VirtualTextHint" },
-				Misc = { highlight = "Purple" },
-			},
-			handlers = {
-				gitsigns = true,
-			},
-		},
-	},
-
-	{
 		"j-hui/fidget.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = true,
