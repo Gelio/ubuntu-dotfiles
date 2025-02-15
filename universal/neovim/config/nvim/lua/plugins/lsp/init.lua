@@ -23,11 +23,21 @@ return {
 						return not vim.o.buflisted and vim.o.buftype == "nofile"
 					end
 
+					local function is_bigfile()
+						-- Relies on snacks.nvim/bigfile to change the filetype
+						-- See https://github.com/folke/snacks.nvim/blob/2e284e23d956767a50321de9c9bb0c005ea7c51f/lua/snacks/bigfile.lua#L40
+						return vim.o.filetype == "bigfile"
+					end
+
 					vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
 						group = vim.api.nvim_create_augroup("NvimLint", {}),
 						callback = function()
 							if is_lsp_popup_window() then
 								-- NOTE: do not lint LSP popup windows (e.g. hover, signature help)
+								return
+							end
+
+							if is_bigfile() then
 								return
 							end
 
