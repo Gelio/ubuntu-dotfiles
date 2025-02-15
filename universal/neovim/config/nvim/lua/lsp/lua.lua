@@ -49,7 +49,7 @@ M.config = vim.tbl_extend("error", require("lsp.utils").base_config_without_form
 			},
 		})
 
-		client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+		client:notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 	end,
 })
 
