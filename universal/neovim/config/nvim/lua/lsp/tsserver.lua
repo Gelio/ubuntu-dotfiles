@@ -7,6 +7,23 @@ M.on_attach = utils.run_all(utils.disable_formatting, utils.on_attach)
 
 M.config = vim.tbl_extend("force", utils.base_config, {
 	on_attach = M.on_attach,
+
+	-- NOTE: hardcode filetypes to include vue
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+		"vue",
+	},
+
+	settings = {
+		tsserver_plugins = {
+			"@vue/typescript-plugin",
+		},
+	},
 })
 
 M.setup = function(config)

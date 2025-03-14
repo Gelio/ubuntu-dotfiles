@@ -30,6 +30,7 @@ local server_configs = {
 	css_variables = default_server_config,
 	-- https://github.com/coder3101/protols
 	protols = default_server_config,
+	volar = default_server_config,
 }
 
 local mason_lspconfig = require("mason-lspconfig")
