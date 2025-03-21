@@ -91,16 +91,15 @@ return {
 	},
 
 	{
-		"simrat39/symbols-outline.nvim",
-		cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
+		"oskarrrrrrr/symbols.nvim",
+		version = "*",
+		cmd = { "Symbols", "SymbolsToggle", "SymbolsOpen", "SymbolsClose" },
 		keys = {
-			{ "<Leader>so", "<cmd>SymbolsOutline<CR>", "Symbols outline" },
+			{ "<Leader>so", "<cmd>Symbols<CR>", "Open symbols" },
 		},
 		config = function()
-			require("symbols-outline").setup({
-				show_numbers = true,
-				show_relative_numbers = true,
-			})
+			local recipes = require("symbols.recipes")
+			require("symbols").setup(recipes.DefaultFilters, recipes.AsciiSymbols, {})
 		end,
 	},
 }

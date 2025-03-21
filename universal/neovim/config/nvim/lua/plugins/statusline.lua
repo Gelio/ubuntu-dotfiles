@@ -100,7 +100,6 @@ return {
 					"mason",
 					"oil",
 					"quickfix",
-					"symbols-outline",
 					"trouble",
 					-- TODO: consider using the "nvim-dap-ui" extension
 					dap_extension,
