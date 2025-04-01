@@ -147,4 +147,15 @@ return {
 			},
 		},
 	},
+	{
+		"mcauley-penney/visual-whitespace.nvim",
+		opts = {
+			highlight = {
+				-- NOTE: use softer highlight for whitespace.
+				-- The default `Visual` hlgroup was too bright.
+				link = "PmenuExtra",
+			},
+		},
+		keys = { "v", "V", "<C-v>" },
+	},
 }
