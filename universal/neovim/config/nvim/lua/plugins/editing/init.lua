@@ -112,6 +112,27 @@ return {
 				mode = { "x", "n" },
 				desc = "Apply a refactor",
 			},
+			{
+				"<leader>rp",
+				function()
+					require("refactoring").debug.printf({ below = false })
+				end,
+				desc = "Insert debug print",
+			},
+			{
+				"<leader>rv",
+				function()
+					require("refactoring").debug.print_var({ below = true })
+				end,
+				mode = { "x", "n" },
+				desc = "Insert variable debug print",
+			},
+			{
+				"<leader>rc",
+				function()
+					require("refactoring").debug.cleanup()
+				end,
+				desc = "Clean debug prints",
 			},
 		},
 		cmd = "Refactor",
