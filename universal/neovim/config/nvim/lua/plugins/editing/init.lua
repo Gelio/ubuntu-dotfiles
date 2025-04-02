@@ -106,15 +106,17 @@ return {
 		keys = {
 			{
 				"<Leader>rt",
-				"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-				mode = "v",
-				desc = "Choose a refactor",
+				function()
+					require("refactoring").select_refactor()
+				end,
+				mode = { "x", "n" },
+				desc = "Apply a refactor",
+			},
 			},
 		},
 		cmd = "Refactor",
 		config = function()
 			require("refactoring").setup({})
-			require("telescope").load_extension("refactoring")
 		end,
 	},
 	{
