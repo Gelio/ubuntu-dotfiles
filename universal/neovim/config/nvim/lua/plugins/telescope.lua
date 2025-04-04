@@ -50,6 +50,8 @@ return {
 						-- Temporary workaround for the "A" in the first prompt
 						-- https://github.com/nvim-telescope/telescope-frecency.nvim/issues/270#issuecomment-2448812758
 						db_safe_mode = false,
+
+						matcher = "fuzzy",
 					},
 					live_grep_args = {
 						mappings = {
