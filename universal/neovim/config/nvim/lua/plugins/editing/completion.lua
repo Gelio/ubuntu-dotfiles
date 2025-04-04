@@ -41,10 +41,6 @@ return {
 			},
 			appearance = {
 				nerd_font_variant = "mono",
-				kind_icons = {
-					-- TODO: fix me, so the UI uses this icon
-					NatDat = "📅",
-				},
 			},
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer", "natdat", "emoji", "nvim_lua", "calc", "npm" },
@@ -110,6 +106,15 @@ return {
 							end
 						end,
 						components = {
+							kind_icon = {
+								text = function(ctx)
+									if ctx.source_name == "natdat" then
+										return "📅" .. ctx.icon_gap
+									end
+
+									return ctx.kind_icon .. ctx.icon_gap
+								end,
+							},
 							source_name = {
 								highlight = "Normal",
 							},
