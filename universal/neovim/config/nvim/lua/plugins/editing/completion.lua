@@ -115,9 +115,6 @@ return {
 									return ctx.kind_icon .. ctx.icon_gap
 								end,
 							},
-							source_name = {
-								highlight = "Normal",
-							},
 						},
 					},
 				},
