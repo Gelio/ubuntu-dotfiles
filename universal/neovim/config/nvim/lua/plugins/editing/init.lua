@@ -251,8 +251,8 @@ return {
 				k = "key",
 			}
 
-			local function get_mapping_rhs(textobj, inner)
-				return string.format("<cmd>lua require('various-textobjs')['%s'](%s)<CR>", textobj, inner and "true" or "false")
+			local function get_mapping_rhs(textobj, innerOuter)
+				return string.format("<cmd>lua require('various-textobjs').%s('%s')<CR>", textobj, innerOuter)
 			end
 
 			---@type LazyKeysSpec[]
@@ -260,12 +260,12 @@ return {
 			for key, textobj in pairs(mappings) do
 				table.insert(keys, {
 					string.format("a%s", key),
-					get_mapping_rhs(textobj, false),
+					get_mapping_rhs(textobj, "outer"),
 					mode = { "o", "x" },
 				})
 				table.insert(keys, {
 					string.format("i%s", key),
-					get_mapping_rhs(textobj, true),
+					get_mapping_rhs(textobj, "inner"),
 					mode = { "o", "x" },
 				})
 			end
