@@ -128,6 +128,9 @@ return {
 	},
 	{
 		"https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+		-- NOTE: this plugin uses submodules only for development.
+		-- Let's skip them to speed up the installation and update process.
+		submodules = false,
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
 
