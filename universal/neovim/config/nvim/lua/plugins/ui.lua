@@ -156,6 +156,7 @@ return {
 				link = "PmenuExtra",
 			},
 		},
-		keys = { "v", "V", "<C-v>" },
+		-- NOTE: lazy load on entering visual mode
+		event = "ModeChanged *:[vV\22]",
 	},
 }
