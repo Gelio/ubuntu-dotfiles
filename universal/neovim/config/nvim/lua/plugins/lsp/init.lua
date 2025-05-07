@@ -72,11 +72,11 @@ return {
 			},
 			"b0o/SchemaStore.nvim",
 			{
-				"williamboman/mason.nvim",
+				"mason-org/mason.nvim",
 				config = true,
 				build = ":MasonUpdate",
 			},
-			{ "williamboman/mason-lspconfig.nvim", config = true },
+			{ "mason-org/mason-lspconfig.nvim", config = true },
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{
 				"Gelio/auto-nvimrc",

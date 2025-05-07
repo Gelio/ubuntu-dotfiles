@@ -33,18 +33,8 @@ local server_configs = {
 	volar = default_server_config,
 }
 
-local mason_lspconfig = require("mason-lspconfig")
-local function get_servers_to_install()
-	local configured_server_names = vim.tbl_keys(server_configs)
-	local available_servers_map = mason_lspconfig.get_mappings().lspconfig_to_mason
-
-	return vim.tbl_filter(function(server_name)
-		return available_servers_map[server_name] ~= nil
-	end, configured_server_names)
-end
-
-mason_lspconfig.setup({
-	ensure_installed = get_servers_to_install(),
+require("mason-lspconfig").setup({
+	ensure_installed = vim.tbl_keys(server_configs),
 })
 
 ---@param top_level_table table<string, unknown>
