@@ -21,10 +21,10 @@ local function setup_lsp_keymaps(_client, bufnr)
 		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to definition" },
 		{ "gri", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },
 		{ "grr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go to references" },
-		{ "g<Leader>c", group = "Call hierarchy" },
-		{ "g<Leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", desc = "Go to incoming calls" },
-		{ "g<Leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", desc = "Go to outgoing calls" },
-		{ "g<Leader>t", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "Go to type definition" },
+		{ "g<leader>c", group = "Call hierarchy" },
+		{ "g<leader>ci", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", desc = "Go to incoming calls" },
+		{ "g<leader>co", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", desc = "Go to outgoing calls" },
+		{ "g<leader>t", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "Go to type definition" },
 
 		{ "<C-W>gd", "<cmd>tab split | norm gd<CR>", desc = "Go to definition in a new tab" },
 
