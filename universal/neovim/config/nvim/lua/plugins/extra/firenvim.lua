@@ -28,12 +28,12 @@ end
 return {
 	{
 		"glacambre/firenvim",
-		build = function()
-			require("lazy").load({ plugins = { "firenvim" }, wait = true })
-			vim.fn["firenvim#install"](0)
-		end,
-		cond = vim.g.started_by_firenvim ~= nil,
+		build = ":call firenvim#install(0)",
 		config = function()
+			if not vim.g.started_by_firenvim then
+				return
+			end
+
 			local default_settings = {
 				takeover = "never",
 				priority = 0,
