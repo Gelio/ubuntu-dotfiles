@@ -1,8 +1,6 @@
-local nvimrc_dir = vim.fn.expand("<sfile>:p:h") --[[@as string]]
+---@type string
+local nvimrc_dir = vim.fn.expand("<sfile>:p:h")
 
-local lua_ls_config = require("lsp.lua").config
-require("lspconfig").lua_ls.setup(vim.tbl_extend("error", lua_ls_config, {
-	root_dir = function()
-		return vim.fs.joinpath(nvimrc_dir, "config", "nvim")
-	end,
-}))
+vim.lsp.config("lua_ls", {
+	root_dir = vim.fs.joinpath(nvimrc_dir, "config", "nvim"),
+})
