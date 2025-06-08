@@ -72,12 +72,10 @@ local ok, cmp_capabilities = pcall(function()
 end)
 if ok then
 	M.capabilities = cmp_capabilities
-else
-	M.capabilities = vim.lsp.protocol.make_client_capabilities()
 end
 
 -- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-M.capabilities = vim.tbl_deep_extend("force", M.capabilities, {
+M.capabilities = vim.tbl_deep_extend("force", M.capabilities or {}, {
 	textDocument = {
 		foldingRange = {
 			dynamicRegistration = false,
