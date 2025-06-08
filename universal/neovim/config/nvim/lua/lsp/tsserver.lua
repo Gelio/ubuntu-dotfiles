@@ -2,18 +2,13 @@ local M = {}
 
 local utils = require("lsp.utils")
 
+local filetypes = vim.lsp.config.ts_ls.filetypes
+assert(#filetypes > 0, "ts_ls filetypes must be defined")
+-- NOTE: include vue
+table.insert(filetypes, "vue")
 
 M.config = vim.tbl_extend("force", utils.base_config, {
-	-- NOTE: hardcode filetypes to include vue
-	filetypes = {
-		"javascript",
-		"javascriptreact",
-		"javascript.jsx",
-		"typescript",
-		"typescriptreact",
-		"typescript.tsx",
-		"vue",
-	},
+	filetypes = filetypes,
 
 	settings = {
 		tsserver_plugins = {
