@@ -62,8 +62,6 @@ local function setup_document_highlight(client)
 end
 
 function M.on_attach(client, bufnr)
-	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-
 	setup_lsp_keymaps(client, bufnr)
 	setup_document_highlight(client)
 end
