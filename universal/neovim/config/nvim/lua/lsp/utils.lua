@@ -2,19 +2,21 @@ local M = {}
 
 local function setup_lsp_keymaps(_client, bufnr)
 	local function signature_help()
-		vim.lsp.buf.signature_help()
+		vim.lsp.buf.signature_help({
+			border = "single",
+		})
+	end
+
+	local function hover()
+		vim.lsp.buf.hover({
+			border = "single",
+		})
 	end
 
 	require("which-key").add(vim.tbl_map(function(mapping)
 		return vim.tbl_extend("force", mapping, { buffer = bufnr })
 	end, {
-		{
-			"K",
-			function()
-				vim.lsp.buf.hover()
-			end,
-			desc = "Hover",
-		},
+		{ "K", hover, desc = "Hover" },
 		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", desc = "Go to declaration" },
 		{ "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go to definition" },
 		{ "gri", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Go to implementation" },

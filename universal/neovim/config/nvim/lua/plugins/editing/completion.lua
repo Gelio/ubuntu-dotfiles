@@ -91,7 +91,6 @@ return {
 					},
 				},
 				menu = {
-					border = "none",
 					draw = {
 						columns = function(ctx)
 							if ctx.mode == "cmdline" then
@@ -121,11 +120,13 @@ return {
 				},
 				documentation = {
 					auto_show = true,
+					window = { border = "single" },
 				},
 			},
 			signature = {
 				-- NOTE: use build-in <C-j> signature
 				enabled = false,
+				window = { border = "single" },
 			},
 		},
 	},
