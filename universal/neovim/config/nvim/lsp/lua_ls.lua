@@ -43,13 +43,9 @@ local function set_plugin_dirs_in_settings()
 	})
 end
 
-return vim.tbl_extend(
-	"error",
-	require("lsp.utils").base_config_without_formatting,
-	{
-		settings = settings,
-		-- NOTE: read the list of plugins lazily,
-		-- so we don't incur this cost on each nvim startup
-		before_init = set_plugin_dirs_in_settings,
-	}
-)
+return {
+	settings = settings,
+	-- NOTE: read the list of plugins lazily,
+	-- so we don't incur this cost on each nvim startup
+	before_init = set_plugin_dirs_in_settings,
+}

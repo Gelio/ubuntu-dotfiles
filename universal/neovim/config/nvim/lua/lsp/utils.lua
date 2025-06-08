@@ -84,38 +84,10 @@ M.capabilities = vim.tbl_deep_extend("force", M.capabilities or {}, {
 	},
 })
 
--- Return a function that runs functions passed in the argument.
--- They will be called in the same order that they were passed in.
--- Useful for composing multiple `on_attach` functions.
----@diagnostic disable-next-line: unused-vararg
-function M.run_all(...)
-	local fns = { ... }
-
-	return function(...)
-		for _, fn in ipairs(fns) do
-			fn(...)
-		end
-	end
-end
-
--- Disables formatting for an LSP client
--- Useful when multiple clients are capable of formatting
--- but we want to enable only one of them.
-function M.disable_formatting(client)
-	client.server_capabilities.documentFormattingProvider = false
-	client.server_capabilities.documentRangeFormattingProvider = false
-end
-
 -- Base config for LSP's setup method
 M.base_config = {
 	on_attach = M.on_attach,
 	capabilities = M.capabilities,
 }
-
--- Base config for LSP's setup method that disables client's formatting
--- Useful when there is another client that is responsible for formatting.
-M.base_config_without_formatting = vim.tbl_extend("force", M.base_config, {
-	on_attach = M.run_all(M.disable_formatting, M.on_attach),
-})
 
 return M
