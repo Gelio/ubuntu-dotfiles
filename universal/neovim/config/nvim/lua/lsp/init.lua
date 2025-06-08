@@ -35,6 +35,7 @@ local server_configs = {
 
 require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(server_configs),
+	automatic_enable = false,
 })
 
 ---@param top_level_table table<string, unknown>

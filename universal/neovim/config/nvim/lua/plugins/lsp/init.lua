@@ -76,7 +76,7 @@ return {
 				config = true,
 				build = ":MasonUpdate",
 			},
-			{ "mason-org/mason-lspconfig.nvim", config = true },
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{
 				"Gelio/auto-nvimrc",
