@@ -100,3 +100,7 @@ local function get_npm_workspaces()
 end
 
 get_npm_workspaces()
+
+vim.lsp.config("stylelint_lsp", {
+  filetypes = { "typescript", "typescriptreact" },
+})
