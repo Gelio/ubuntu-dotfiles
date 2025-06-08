@@ -51,6 +51,8 @@ vim.opt.diffopt:append({
 	"linematch:60",
 })
 
+vim.o.winborder = "single"
+
 -- Mutate jumplist on longer jumps
 vim.keymap.set("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k']], { expr = true })
 vim.keymap.set("n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j']], { expr = true })
