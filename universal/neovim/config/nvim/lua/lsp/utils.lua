@@ -44,26 +44,56 @@ local function setup_lsp_keymaps(_client, bufnr)
 	}))
 end
 
-local function setup_document_highlight(client)
-	if not client:supports_method("textDocument/documentHighlight") then
-		return
-	end
-
+function M.setup_document_highlight()
 	vim.cmd([[
     hi LspReferenceText  cterm=bold ctermbg=red guibg=#404040
     hi LspReferenceRead  cterm=bold ctermbg=red guibg=#404040
     hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
-    augroup LSPDocumentHighlight
-      autocmd! * <buffer>
-      autocmd CursorHold,CursorHoldI  <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    augroup END
-  ]])
+	]])
+
+	local augroup = vim.api.nvim_create_augroup("LSPDocumentHighlight", { clear = true })
+	local supported_clients_count_variable_name = "lsp_document_highlight_supported_clients_count"
+
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		group = augroup,
+		callback = function()
+			if (vim.b[supported_clients_count_variable_name] or 0) > 0 then
+				vim.lsp.buf.document_highlight()
+			end
+		end,
+	})
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		group = augroup,
+		callback = function()
+			vim.lsp.buf.clear_references()
+		end,
+	})
+	vim.api.nvim_create_autocmd("LspAttach", {
+		group = augroup,
+		callback = function(event)
+			local client = vim.lsp.get_client_by_id(event.data.client_id)
+			if client and client:supports_method("textDocument/documentHighlight") then
+				vim.b[supported_clients_count_variable_name] = (vim.b[supported_clients_count_variable_name] or 0) + 1
+			end
+		end,
+	})
+	vim.api.nvim_create_autocmd("LspDetach", {
+		group = augroup,
+		callback = function(event)
+			local client = vim.lsp.get_client_by_id(event.data.client_id)
+			if
+				client
+				and client:supports_method("textDocument/documentHighlight")
+				and vim.b[supported_clients_count_variable_name] ~= nil
+			then
+				vim.b[supported_clients_count_variable_name] = vim.b[supported_clients_count_variable_name] - 1
+			end
+		end,
+	})
 end
 
 function M.on_attach(client, bufnr)
 	setup_lsp_keymaps(client, bufnr)
-	setup_document_highlight(client)
 end
 
 -- https://cmp.saghen.dev/installation.html

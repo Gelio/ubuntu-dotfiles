@@ -90,4 +90,6 @@ vim.diagnostic.config({
 	},
 })
 
+utils.setup_document_highlight()
+
 require("auto-nvimrc").execute_nvimrcs()
