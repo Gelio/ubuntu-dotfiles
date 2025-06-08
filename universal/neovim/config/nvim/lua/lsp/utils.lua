@@ -51,34 +51,40 @@ function M.setup_document_highlight()
     hi LspReferenceWrite cterm=bold ctermbg=red guibg=#404040
 	]])
 
-	local augroup = vim.api.nvim_create_augroup("LSPDocumentHighlight", { clear = true })
+	local lsp_attach_autocmd = vim.api.nvim_create_augroup("LSPDocumentHighlightAttachDetach", { clear = true })
+	local document_highlight_autocmd = vim.api.nvim_create_augroup("LSPDocumentHighlight", { clear = true })
 	local supported_clients_count_variable_name = "lsp_document_highlight_supported_clients_count"
 
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		group = augroup,
-		callback = function()
-			if (vim.b[supported_clients_count_variable_name] or 0) > 0 then
+	local function register_document_highlight_autocmds()
+		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+			group = document_highlight_autocmd,
+			callback = function()
 				vim.lsp.buf.document_highlight()
-			end
-		end,
-	})
-	vim.api.nvim_create_autocmd("CursorMoved", {
-		group = augroup,
-		callback = function()
-			vim.lsp.buf.clear_references()
-		end,
-	})
+			end,
+		})
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			group = document_highlight_autocmd,
+			callback = function()
+				vim.lsp.buf.clear_references()
+			end,
+		})
+	end
+
 	vim.api.nvim_create_autocmd("LspAttach", {
-		group = augroup,
+		group = lsp_attach_autocmd,
 		callback = function(event)
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			if client and client:supports_method("textDocument/documentHighlight") then
 				vim.b[supported_clients_count_variable_name] = (vim.b[supported_clients_count_variable_name] or 0) + 1
+
+				if vim.b[supported_clients_count_variable_name] == 1 then
+					register_document_highlight_autocmds()
+				end
 			end
 		end,
 	})
 	vim.api.nvim_create_autocmd("LspDetach", {
-		group = augroup,
+		group = lsp_attach_autocmd,
 		callback = function(event)
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			if
@@ -87,6 +93,12 @@ function M.setup_document_highlight()
 				and vim.b[supported_clients_count_variable_name] ~= nil
 			then
 				vim.b[supported_clients_count_variable_name] = vim.b[supported_clients_count_variable_name] - 1
+				if vim.b[supported_clients_count_variable_name] == 0 then
+					vim.api.nvim_clear_autocmds({ group = document_highlight_autocmd })
+					vim.lsp.buf.clear_references()
+				else
+					vim.lsp.buf.document_highlight()
+				end
 			end
 		end,
 	})
