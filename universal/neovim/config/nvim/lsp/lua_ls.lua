@@ -11,41 +11,31 @@ local function get_all_lazy_plugin_lua_dirs()
 	return plugins
 end
 
-local settings = {
-	Lua = {
-		diagnostics = {
-			globals = { "vim" },
-		},
-		runtime = {
-			version = "LuaJIT",
-			path = {
-				"?.lua",
-				"?/init.lua",
-				"lua/?.lua",
-				"lua/?/init.lua",
+return {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
 			},
-			pathStrict = true,
-		},
-		telemetry = {
-			enable = false,
+			runtime = {
+				version = "LuaJIT",
+				path = {
+					"?.lua",
+					"?/init.lua",
+					"lua/?.lua",
+					"lua/?/init.lua",
+				},
+				pathStrict = true,
+			},
+			workspace = {
+				library = vim.list_extend(get_all_lazy_plugin_lua_dirs(), {
+					vim.env.VIMRUNTIME,
+				}),
+				checkThirdParty = false,
+			},
+			telemetry = {
+				enable = false,
+			},
 		},
 	},
-}
-
-local function set_plugin_dirs_in_settings()
-	local plugins = get_all_lazy_plugin_lua_dirs()
-
-	settings.Lua.workspace = vim.tbl_deep_extend("force", settings.Lua.workspace or {}, {
-		library = vim.list_extend(plugins, {
-			vim.env.VIMRUNTIME,
-		}),
-		checkThirdParty = false,
-	})
-end
-
-return {
-	settings = settings,
-	-- NOTE: read the list of plugins lazily,
-	-- so we don't incur this cost on each nvim startup
-	before_init = set_plugin_dirs_in_settings,
 }
