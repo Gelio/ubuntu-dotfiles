@@ -1,0 +1,19 @@
+return vim.tbl_extend(
+	"error",
+	-- Conflicts with prettier formatting in JSON files.
+	require("lsp.utils").base_config_without_formatting,
+	{
+		get_language_id = function(_, filetype)
+			if filetype == "json" then
+				-- NOTE: allows comments in JSON files
+				return "jsonc"
+			end
+			return filetype
+		end,
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+			},
+		},
+	}
+)

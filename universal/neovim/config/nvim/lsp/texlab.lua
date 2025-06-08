@@ -1,6 +1,4 @@
-local M = {}
-
-M.config = vim.tbl_extend("error", require("lsp.utils").base_config, {
+return {
 	settings = {
 		texlab = {
 			build = {
@@ -21,6 +19,4 @@ M.config = vim.tbl_extend("error", require("lsp.utils").base_config, {
 			},
 		},
 	},
-})
-
-return M
+}
