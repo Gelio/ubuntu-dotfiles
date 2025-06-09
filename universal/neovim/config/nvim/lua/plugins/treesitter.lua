@@ -74,9 +74,6 @@ return {
 				end,
 			})
 
-			-- 	query_linter = {
-			-- 		enable = true,
-			-- 	},
 			-- 	textobjects = {
 			-- 		swap = {
 			-- 			enable = true,
