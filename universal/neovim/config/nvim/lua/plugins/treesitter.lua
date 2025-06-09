@@ -5,7 +5,6 @@ return {
 		branch = "main",
 		dependencies = {
 			-- "nvim-treesitter/nvim-treesitter-textobjects",
-			-- "romgrk/nvim-treesitter-context",
 		},
 		config = function()
 			require("nvim-treesitter").install({
@@ -97,6 +96,7 @@ return {
 			-- })
 		end,
 	},
+	{ "nvim-treesitter/nvim-treesitter-context", config = true },
 	{
 		"ziontee113/syntax-tree-surfer",
 		-- NOTE: https://github.com/ziontee113/syntax-tree-surfer is archived
