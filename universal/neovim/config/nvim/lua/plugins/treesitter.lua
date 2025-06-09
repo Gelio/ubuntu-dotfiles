@@ -6,7 +6,6 @@ return {
 		dependencies = {
 			-- "nvim-treesitter/nvim-treesitter-textobjects",
 			-- "romgrk/nvim-treesitter-context",
-			-- "RRethy/nvim-treesitter-textsubjects",
 		},
 		config = function()
 			require("nvim-treesitter").install({
@@ -75,13 +74,6 @@ return {
 				end,
 			})
 
-			-- 	textsubjects = {
-			-- 		enable = true,
-			-- 		prev_selection = "<Leader>.",
-			-- 		keymaps = {
-			-- 			["."] = "textsubjects-smart",
-			-- 		},
-			-- 	},
 			-- 	query_linter = {
 			-- 		enable = true,
 			-- 	},
