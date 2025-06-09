@@ -117,7 +117,6 @@ return {
 	},
 	{
 		"mfussenegger/nvim-treehopper",
-		enabled = false,
 		keys = {
 			{
 				"<Leader>sn",
