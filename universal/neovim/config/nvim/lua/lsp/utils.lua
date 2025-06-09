@@ -1,5 +1,7 @@
 local M = {}
 
+---@param _client vim.lsp.Client
+---@param bufnr number
 local function setup_lsp_keymaps(_client, bufnr)
 	local function signature_help()
 		vim.lsp.buf.signature_help({
@@ -100,6 +102,8 @@ function M.setup_document_highlight()
 	})
 end
 
+---@param client vim.lsp.Client
+---@param bufnr number
 function M.on_attach(client, bufnr)
 	setup_lsp_keymaps(client, bufnr)
 end
