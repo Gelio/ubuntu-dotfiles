@@ -2,106 +2,119 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		branch = "main",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			"romgrk/nvim-treesitter-context",
-			"RRethy/nvim-treesitter-textsubjects",
+			-- "nvim-treesitter/nvim-treesitter-textobjects",
+			-- "romgrk/nvim-treesitter-context",
+			-- "RRethy/nvim-treesitter-textsubjects",
 		},
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"bash",
-					"bibtex",
-					"c",
-					"comment",
-					"css",
-					"diff",
-					"dockerfile",
-					"git_rebase",
-					"gitattributes",
-					"gitcommit",
-					"gitignore",
-					"go",
-					"gomod",
-					"gowork",
-					"graphql",
-					"hcl",
-					"hjson",
-					"http",
-					"ini",
-					"java",
-					"javascript",
-					"jsdoc",
-					"json",
-					"json5",
-					"jsonc",
-					"latex",
-					"lua",
-					"luadoc",
-					"make",
-					"markdown",
-					"markdown_inline",
-					"nix",
-					"prisma",
-					"python",
-					"query",
-					"regex",
-					"rust",
-					"scss",
-					"ssh_config",
-					"styled",
-					"svelte",
-					"terraform",
-					"tmux",
-					"toml",
-					"tsx",
-					"typescript",
-					"vim",
-					"vimdoc",
-					"vue",
-					"yaml",
-				},
-				highlight = {
-					enable = true,
-				},
-				textsubjects = {
-					enable = true,
-					prev_selection = "<Leader>.",
-					keymaps = {
-						["."] = "textsubjects-smart",
-					},
-				},
-				query_linter = {
-					enable = true,
-				},
-				textobjects = {
-					swap = {
-						enable = true,
-						swap_next = {
-							["]a"] = "@parameter.inner",
-						},
-						swap_previous = {
-							["[a"] = "@parameter.inner",
-						},
-					},
-					select = {
-						enable = true,
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@call.outer",
-							["ic"] = "@call.inner",
-						},
-					},
-				},
+			require("nvim-treesitter").install({
+				"bash",
+				"bibtex",
+				"c",
+				"comment",
+				"css",
+				"diff",
+				"dockerfile",
+				"git_rebase",
+				"gitattributes",
+				"gitcommit",
+				"gitignore",
+				"go",
+				"gomod",
+				"gowork",
+				"graphql",
+				"hcl",
+				"hjson",
+				"http",
+				"ini",
+				"java",
+				"javascript",
+				"jsdoc",
+				"json",
+				"json5",
+				"jsonc",
+				"latex",
+				"lua",
+				"luadoc",
+				"make",
+				"markdown",
+				"markdown_inline",
+				"nix",
+				"prisma",
+				"python",
+				"query",
+				"regex",
+				"rust",
+				"scss",
+				"ssh_config",
+				"styled",
+				"svelte",
+				"terraform",
+				"tmux",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"vue",
+				"yaml",
 			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("TreesitterEnable", { clear = true }),
+				callback = function()
+					if vim.o.filetype == "bigfile" then
+						return
+					end
+
+					-- Start treesitter for the current buffer, and ignore errors
+					-- if there is no parser available.
+					pcall(vim.treesitter.start)
+				end,
+			})
+
+			-- 	textsubjects = {
+			-- 		enable = true,
+			-- 		prev_selection = "<Leader>.",
+			-- 		keymaps = {
+			-- 			["."] = "textsubjects-smart",
+			-- 		},
+			-- 	},
+			-- 	query_linter = {
+			-- 		enable = true,
+			-- 	},
+			-- 	textobjects = {
+			-- 		swap = {
+			-- 			enable = true,
+			-- 			swap_next = {
+			-- 				["]a"] = "@parameter.inner",
+			-- 			},
+			-- 			swap_previous = {
+			-- 				["[a"] = "@parameter.inner",
+			-- 			},
+			-- 		},
+			-- 		select = {
+			-- 			enable = true,
+			-- 			keymaps = {
+			-- 				["af"] = "@function.outer",
+			-- 				["if"] = "@function.inner",
+			-- 				["ac"] = "@call.outer",
+			-- 				["ic"] = "@call.inner",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 		end,
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
+		enabled = false,
 	},
 	{
 		"ziontee113/syntax-tree-surfer",
+		enabled = false,
 		dependencies = { "nvim-treesitter" },
 		keys = {
 			{ "J", "<cmd>STSSelectNextSiblingNode<CR>", mode = "x", desc = "Surf to next node" },
@@ -117,6 +130,7 @@ return {
 	},
 	{
 		"mfussenegger/nvim-treehopper",
+		enabled = false,
 		keys = {
 			{
 				"<Leader>sn",
@@ -128,6 +142,7 @@ return {
 	},
 	{
 		"https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+		enabled = false,
 		-- NOTE: this plugin uses submodules only for development.
 		-- Let's skip them to speed up the installation and update process.
 		submodules = false,

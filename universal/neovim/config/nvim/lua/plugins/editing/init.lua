@@ -88,6 +88,7 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
+		enabled = false,
 		opts = function()
 			return {
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -154,6 +155,7 @@ return {
 
 	{
 		"kevinhwang91/nvim-ufo",
+		enabled = false,
 		dependencies = { "kevinhwang91/promise-async", "nvim-treesitter" },
 		init = function()
 			vim.o.foldlevel = 99
@@ -290,6 +292,7 @@ return {
 
 	{
 		"nvim-ts-autotag",
+		enabled = false,
 		event = "InsertEnter",
 		config = true,
 	},
