@@ -59,6 +59,8 @@ function M.setup_document_highlight()
 		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 			group = document_highlight_autocmd,
 			callback = function()
+				-- TODO: running :EditQuery does not trigger LspDetach and the line
+				-- below keeps failing
 				vim.lsp.buf.document_highlight()
 			end,
 		})
@@ -92,11 +94,12 @@ function M.setup_document_highlight()
 				and client:supports_method("textDocument/documentHighlight")
 				and vim.b[supported_clients_count_variable_name] ~= nil
 			then
-				vim.b[supported_clients_count_variable_name] = vim.b[supported_clients_count_variable_name] - 1
-				if vim.b[supported_clients_count_variable_name] == 0 then
+				if vim.b[supported_clients_count_variable_name] == 1 then
+					vim.b[supported_clients_count_variable_name] = nil
 					vim.api.nvim_clear_autocmds({ group = document_highlight_autocmd })
 					vim.lsp.buf.clear_references()
 				else
+					vim.b[supported_clients_count_variable_name] = vim.b[supported_clients_count_variable_name] - 1
 					vim.lsp.buf.document_highlight()
 				end
 			end
