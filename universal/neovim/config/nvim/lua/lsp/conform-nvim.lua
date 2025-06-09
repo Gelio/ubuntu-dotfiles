@@ -4,6 +4,7 @@ local formatters_by_ft = {
 	go = { "gofumpt" },
 	plantuml = { "trim_whitespace" },
 	proto = { "buf" },
+	query = { "format-queries" },
 }
 
 local prettierd_filetypes = {
