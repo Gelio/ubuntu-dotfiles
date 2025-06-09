@@ -145,10 +145,11 @@ return {
 		"kylechui/nvim-surround",
 		keys = {
 			"ys",
+			"yS",
 			"ds",
 			"cs",
-			{ "S", "<Plug>(nvim-surround-visual)", mode = { "x" } },
-			{ "gS", "<Plug>(nvim-surround-visual-line)", mode = { "x" } },
+			{ "S", mode = "x" },
+			{ "gS", mode = "x" },
 		},
 		config = true,
 	},
