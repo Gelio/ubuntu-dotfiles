@@ -38,6 +38,7 @@ return {
 				"markdown_inline",
 				"nix",
 				"prisma",
+				"proto",
 				"python",
 				"query",
 				"regex",
