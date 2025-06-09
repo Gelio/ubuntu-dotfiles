@@ -291,9 +291,7 @@ return {
 	},
 
 	{
-		"nvim-ts-autotag",
-		enabled = false,
-		event = "InsertEnter",
+		"windwp/nvim-ts-autotag",
 		config = true,
 	},
 }
