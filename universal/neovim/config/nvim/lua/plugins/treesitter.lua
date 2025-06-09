@@ -98,10 +98,6 @@ return {
 		end,
 	},
 	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		enabled = false,
-	},
-	{
 		"ziontee113/syntax-tree-surfer",
 		enabled = false,
 		dependencies = { "nvim-treesitter" },
