@@ -30,7 +30,7 @@ return {
 					end
 
 					vim.api.nvim_create_autocmd({ "BufWinEnter", "BufWritePost" }, {
-						group = vim.api.nvim_create_augroup("NvimLint", {}),
+						group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
 						callback = function()
 							if is_lsp_popup_window() then
 								-- NOTE: do not lint LSP popup windows (e.g. hover, signature help)

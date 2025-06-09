@@ -13,14 +13,9 @@ return {
 					local buffer = vim.fn.bufnr()
 
 					vim.keymap.set("n", "<Leader>pd", package_info.delete, { desc = "Delete package", buffer = buffer })
-					vim.keymap.set(
-						"n",
-						"<Leader>pc",
-						package_info.change_version,
-						{ desc = "Change version", buffer = buffer }
-					)
+					vim.keymap.set("n", "<Leader>pc", package_info.change_version, { desc = "Change version", buffer = buffer })
 				end,
-				group = vim.api.nvim_create_augroup("PackageInfoMappings", {}),
+				group = vim.api.nvim_create_augroup("PackageInfoMappings", { clear = true }),
 			})
 		end,
 	},

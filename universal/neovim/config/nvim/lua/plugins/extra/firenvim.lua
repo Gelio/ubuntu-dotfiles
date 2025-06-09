@@ -49,7 +49,7 @@ return {
 			}
 
 			-- https://github.com/glacambre/firenvim#building-a-firenvim-specific-config
-			local group_id = vim.api.nvim_create_augroup("FirenvimConfig", {})
+			local group_id = vim.api.nvim_create_augroup("FirenvimConfig", { clear = true })
 
 			vim.api.nvim_create_autocmd("BufEnter", {
 				pattern = "mail.google.com_*.txt",

@@ -21,7 +21,7 @@ return {
 		config = function()
 			vim.api.nvim_create_autocmd("BufEnter", {
 				pattern = { "*/tests/*_spec.lua", "*/test/*_spec.lua" },
-				group = vim.api.nvim_create_augroup("PlenaryTests", {}),
+				group = vim.api.nvim_create_augroup("PlenaryTests", { clear = true }),
 				callback = function()
 					vim.keymap.set("n", "<Leader>te", "<Plug>PlenaryTestFile", { buffer = 0, remap = true })
 				end,
