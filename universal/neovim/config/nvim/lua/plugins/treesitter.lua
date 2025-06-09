@@ -3,9 +3,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		branch = "main",
-		dependencies = {
-			-- "nvim-treesitter/nvim-treesitter-textobjects",
-		},
 		config = function()
 			require("nvim-treesitter").install({
 				"bash",
@@ -72,31 +69,68 @@ return {
 					pcall(vim.treesitter.start)
 				end,
 			})
-
-			-- 	textobjects = {
-			-- 		swap = {
-			-- 			enable = true,
-			-- 			swap_next = {
-			-- 				["]a"] = "@parameter.inner",
-			-- 			},
-			-- 			swap_previous = {
-			-- 				["[a"] = "@parameter.inner",
-			-- 			},
-			-- 		},
-			-- 		select = {
-			-- 			enable = true,
-			-- 			keymaps = {
-			-- 				["af"] = "@function.outer",
-			-- 				["if"] = "@function.inner",
-			-- 				["ac"] = "@call.outer",
-			-- 				["ic"] = "@call.inner",
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
 		end,
 	},
 	{ "nvim-treesitter/nvim-treesitter-context", config = true },
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		config = true,
+		keys = function()
+			local select_keys = vim
+				.iter({
+					{ keymap = "f", textobject = "function", label = "function" },
+					{ keymap = "c", textobject = "call", label = "function call" },
+				})
+				:map(function(textobject)
+					return {
+						{
+							"a" .. textobject.keymap,
+							function()
+								require("nvim-treesitter-textobjects.select").select_textobject(
+									"@" .. textobject.textobject .. ".outer",
+									"textobjects"
+								)
+							end,
+							mode = { "x", "o" },
+							desc = "Select " .. textobject.label .. " (outer)",
+						},
+						{
+							"i" .. textobject.keymap,
+							function()
+								require("nvim-treesitter-textobjects.select").select_textobject(
+									"@" .. textobject.textobject .. ".inner",
+									"textobjects"
+								)
+							end,
+							mode = { "x", "o" },
+							desc = "Select " .. textobject.label .. " (inner)",
+						},
+					}
+				end)
+				:flatten()
+				:totable()
+
+			local swap_keys = {
+				{
+					"[a",
+					function()
+						require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
+					end,
+					desc = "Swap with previous parameter",
+				},
+				{
+					"]a",
+					function()
+						require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
+					end,
+					desc = "Swap with next parameter",
+				},
+			}
+
+			return vim.list_extend(select_keys, swap_keys)
+		end,
+	},
 	{
 		"ziontee113/syntax-tree-surfer",
 		-- NOTE: https://github.com/ziontee113/syntax-tree-surfer is archived
