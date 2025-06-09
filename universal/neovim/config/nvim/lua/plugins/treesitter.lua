@@ -99,6 +99,8 @@ return {
 	},
 	{
 		"ziontee113/syntax-tree-surfer",
+		-- NOTE: https://github.com/ziontee113/syntax-tree-surfer is archived
+		-- and it relies on `nvim-treesitter` for its functionality.
 		enabled = false,
 		dependencies = { "nvim-treesitter" },
 		keys = {
