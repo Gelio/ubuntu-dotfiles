@@ -128,7 +128,6 @@ return {
 	},
 	{
 		"https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-		enabled = false,
 		-- NOTE: this plugin uses submodules only for development.
 		-- Let's skip them to speed up the installation and update process.
 		submodules = false,
