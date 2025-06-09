@@ -66,7 +66,9 @@ return {
 
 					-- Start treesitter for the current buffer, and ignore errors
 					-- if there is no parser available.
-					pcall(vim.treesitter.start)
+					if pcall(vim.treesitter.start) then
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
 				end,
 			})
 		end,
