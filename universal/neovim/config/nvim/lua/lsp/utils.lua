@@ -56,7 +56,7 @@ function M.setup_document_highlight()
 	local supported_clients_count_variable_name = "lsp_document_highlight_supported_clients_count"
 
 	local function register_document_highlight_autocmds()
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		vim.api.nvim_create_autocmd("CursorHold", {
 			group = document_highlight_autocmd,
 			callback = function()
 				-- TODO: running :EditQuery does not trigger LspDetach and the line
