@@ -89,6 +89,11 @@ vim.diagnostic.config({
 		},
 	},
 })
+vim.keymap.set("n", "<Leader>d", function()
+	vim.diagnostic.open_float()
+end, {
+	desc = "Show diagnostics for current line",
+})
 
 utils.setup_document_highlight()
 

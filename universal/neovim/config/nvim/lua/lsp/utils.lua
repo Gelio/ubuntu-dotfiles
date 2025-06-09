@@ -29,13 +29,6 @@ local function setup_lsp_keymaps(_client, bufnr)
 		{ "<C-W>gd", "<cmd>tab split | norm gd<CR>", desc = "Go to definition in a new tab" },
 
 		{ "grn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename" },
-		{
-			"<Leader>d",
-			function()
-				vim.diagnostic.open_float()
-			end,
-			desc = "Show diagnostics for current line",
-		},
 		{ "gra", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions", mode = { "v", "n" } },
 		{ "<Leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "Show diagnostics in location list" },
 
