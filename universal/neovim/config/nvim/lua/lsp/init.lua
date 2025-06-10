@@ -33,6 +33,11 @@ require("mason-lspconfig").setup({
 
 vim.lsp.config("*", utils.base_config)
 
+-- NOTE: avoid using clangd for proto files
+vim.lsp.config("clangd", {
+	filetypes = { "c", "cpp" },
+})
+
 vim.lsp.enable(enabled_lsp_clients)
 
 ---@param top_level_table table<string, unknown>
