@@ -14,6 +14,12 @@ return {
 	},
 
 	{ "kevinhwang91/nvim-bqf", ft = "qf" },
+	{ "stevearc/quicker.nvim", ft = "qf", opts = {
+		opts = {
+			number = true,
+			relativenumber = true,
+		},
+	} },
 	{ "tpope/vim-obsession" },
 
 	{
