@@ -3,6 +3,7 @@ local utils = require("lsp.utils")
 local enabled_lsp_clients = {
 	"ansiblels",
 	"bashls",
+	"buf_ls",
 	"clangd",
 	"css_variables",
 	"cssls",
