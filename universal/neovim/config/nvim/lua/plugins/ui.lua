@@ -9,10 +9,6 @@ return {
 		},
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
-			colors = {
-				info = { "VirtualTextInfo" },
-				default = { "Aqua" },
-			},
 			keywords = {
 				SAFETY = { color = "hint", icon = "" },
 			},
@@ -55,7 +51,7 @@ return {
 					highlight = { "Normal", "StatusLine" },
 				},
 				scope = {
-					highlight = "Blue",
+					highlight = "Special",
 
 					include = {
 						node_type = {

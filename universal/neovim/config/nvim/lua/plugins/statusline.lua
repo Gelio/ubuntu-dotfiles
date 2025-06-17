@@ -42,7 +42,6 @@ return {
 
 			return {
 				options = {
-					theme = "gruvbox-material",
 					globalstatus = global_status,
 				},
 				sections = {
