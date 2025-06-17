@@ -124,7 +124,7 @@ return {
 				},
 			},
 			signature = {
-				-- NOTE: use build-in <C-j> signature
+				-- NOTE: use built-in <C-j> signature
 				enabled = false,
 				window = { border = "single" },
 			},
