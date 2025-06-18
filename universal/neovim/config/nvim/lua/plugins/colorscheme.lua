@@ -5,7 +5,7 @@ return {
 			require("kanagawa").setup({
 				overrides = function(colors)
 					return {
-						LineNr = { fg = colors.theme.ui.fg_dim },
+						LineNr = { fg = colors.palette.boatYellow1 },
 					}
 				end,
 			})
