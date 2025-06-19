@@ -5,7 +5,7 @@ return {
 			"TodoTrouble",
 			"TodoQuickFix",
 			"TodoLocList",
-			"TodoTelescope",
+			"TodoFzfLua",
 		},
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
