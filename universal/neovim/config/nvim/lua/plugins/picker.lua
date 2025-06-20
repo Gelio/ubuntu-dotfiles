@@ -28,6 +28,7 @@ return {
 			{ "<Leader>fh", "<cmd>FzfLua helptags<CR>", desc = "Help tags (FzfLua)" },
 
 			{ "<Leader>fg", "<cmd>FzfLua live_grep_native<CR>", desc = "Live grep (FzfLua)" },
+			{ "<Leader>fg", "<cmd>FzfLua grep_visual<CR>", desc = "Grep selection (FzfLua)", mode = "x" },
 
 			{ "<Leader>fGs", "<cmd>FzfLua git_status<CR>", desc = "Git status (FzfLua)" },
 			{ "<Leader>fGf", "<cmd>FzfLua git_files<CR>", desc = "Git files (FzfLua)" },
