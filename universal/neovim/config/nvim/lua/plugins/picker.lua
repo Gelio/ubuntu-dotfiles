@@ -2,24 +2,32 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			keymap = {
-				fzf = {
-					-- NOTE: inherit the default keymaps
-					true,
-					-- NOTE: ctrl-b (the default keymap for half-page-down) is
-					-- inconvenient to use because it's also the tmux prefix.
-					-- Thus, let's use ctrl-B (ctrl-shift-b) for half-page-up.
-					["ctrl-B"] = "half-page-up",
-					-- NOTE: use ctrl=F to match ctrl-B
-					["ctrl-F"] = "half-page-down",
+		opts = function()
+			local actions = require("fzf-lua").actions
+			return {
+				keymap = {
+					fzf = {
+						-- NOTE: inherit the default keymaps
+						true,
+						-- NOTE: ctrl-b (the default keymap for half-page-down) is
+						-- inconvenient to use because it's also the tmux prefix.
+						-- Thus, let's use ctrl-B (ctrl-shift-b) for half-page-up.
+						["ctrl-B"] = "half-page-up",
+						-- NOTE: use ctrl=F to match ctrl-B
+						["ctrl-F"] = "half-page-down",
 
-					-- NOTE: open all in quickfix list
-					-- https://github.com/ibhagwan/fzf-lua/blob/743647f639a83e41e283d2d7daa03a85e1fbf951/lua/fzf-lua/profiles/telescope.lua#L81C7-L81C40
-					["ctrl-q"] = "select-all+accept",
+						-- NOTE: open all in quickfix list
+						-- https://github.com/ibhagwan/fzf-lua/blob/743647f639a83e41e283d2d7daa03a85e1fbf951/lua/fzf-lua/profiles/telescope.lua#L81C7-L81C40
+						["ctrl-q"] = "select-all+accept",
+					},
 				},
-			},
-		},
+				actions = {
+					files = {
+						["ctrl-x"] = actions.file_split,
+					},
+				},
+			}
+		end,
 		cmd = { "FzfLua" },
 		keys = {
 			{ "<Leader>ff", "<cmd>FzfLua files<CR>", desc = "Files (FzfLua)" },
