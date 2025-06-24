@@ -109,6 +109,7 @@ return {
 
 	{
 		"akinsho/bufferline.nvim",
+		after = "catppuccin",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		event = "VeryLazy",
 		opts = function()
@@ -120,6 +121,7 @@ return {
 			}
 
 			return {
+				highlights = require("catppuccin.groups.integrations.bufferline").get(),
 				options = {
 					mode = "tabs",
 					numbers = "ordinal", -- matches the tab numbers
