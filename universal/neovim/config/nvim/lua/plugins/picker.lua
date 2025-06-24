@@ -23,6 +23,7 @@ return {
 				},
 				actions = {
 					files = {
+						true,
 						["ctrl-x"] = actions.file_split,
 					},
 				},
