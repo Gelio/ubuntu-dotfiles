@@ -2,6 +2,20 @@ local colorscheme_priority = 1000
 
 return {
 	{
+		"sainnhe/gruvbox-material",
+		enabled = true,
+		priority = colorscheme_priority,
+		config = function()
+			vim.g.gruvbox_material_better_performance = 1
+			vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+			vim.g.gruvbox_material_diagnostic_text_highlight = 1
+			vim.g.gruvbox_material_diagnostic_line_highlight = 1
+			vim.g.gruvbox_material_ui_contrast = "high"
+			vim.cmd.colorscheme("gruvbox-material")
+		end,
+	},
+
+	{
 		"rebelot/kanagawa.nvim",
 		enabled = false,
 		priority = colorscheme_priority,
@@ -50,6 +64,7 @@ return {
 
 	{
 		"folke/tokyonight.nvim",
+		enabled = false,
 		priority = colorscheme_priority,
 		config = function()
 			require("tokyonight").setup({
