@@ -20,6 +20,7 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		enabled = false,
 		priority = colorscheme_priority,
 		config = function()
 			require("catppuccin").setup({
@@ -44,6 +45,22 @@ return {
 			})
 
 			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+
+	{
+		"folke/tokyonight.nvim",
+		priority = colorscheme_priority,
+		config = function()
+			require("tokyonight").setup({
+				on_highlights = function(highlights, colors)
+					highlights.LineNr = { fg = colors.dark5 }
+					highlights.LineNrAbove = highlights.LineNr
+					highlights.LineNrBelow = highlights.LineNr
+				end,
+			})
+
+			vim.cmd.colorscheme("tokyonight")
 		end,
 	},
 }
