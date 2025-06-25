@@ -3,7 +3,7 @@ local colorscheme_priority = 1000
 return {
 	{
 		"sainnhe/gruvbox-material",
-		enabled = true,
+		enabled = false,
 		priority = colorscheme_priority,
 		config = function()
 			vim.g.gruvbox_material_better_performance = 1
@@ -16,25 +16,9 @@ return {
 	},
 
 	{
-		"rebelot/kanagawa.nvim",
-		enabled = false,
-		priority = colorscheme_priority,
-		config = function()
-			require("kanagawa").setup({
-				overrides = function(colors)
-					return {
-						LineNr = { fg = colors.palette.boatYellow1 },
-					}
-				end,
-			})
-			vim.cmd.colorscheme("kanagawa")
-		end,
-	},
-
-	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		enabled = false,
+		enabled = true,
 		priority = colorscheme_priority,
 		config = function()
 			require("catppuccin").setup({
@@ -59,23 +43,6 @@ return {
 			})
 
 			vim.cmd.colorscheme("catppuccin")
-		end,
-	},
-
-	{
-		"folke/tokyonight.nvim",
-		enabled = false,
-		priority = colorscheme_priority,
-		config = function()
-			require("tokyonight").setup({
-				on_highlights = function(highlights, colors)
-					highlights.LineNr = { fg = colors.dark5 }
-					highlights.LineNrAbove = highlights.LineNr
-					highlights.LineNrBelow = highlights.LineNr
-				end,
-			})
-
-			vim.cmd.colorscheme("tokyonight")
 		end,
 	},
 }
