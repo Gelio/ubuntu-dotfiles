@@ -1,7 +1,10 @@
+local colorscheme_priority = 1000
+
 return {
 	{
 		"rebelot/kanagawa.nvim",
 		enabled = false,
+		priority = colorscheme_priority,
 		config = function()
 			require("kanagawa").setup({
 				overrides = function(colors)
@@ -17,7 +20,7 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1000,
+		priority = colorscheme_priority,
 		config = function()
 			require("catppuccin").setup({
 				highlight_overrides = {
