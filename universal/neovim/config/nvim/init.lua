@@ -19,6 +19,7 @@ vim.o.signcolumn = "yes:2"
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+vim.o.cursorline = true
 vim.o.colorcolumn = "+1,120"
 vim.o.updatetime = 100
 
