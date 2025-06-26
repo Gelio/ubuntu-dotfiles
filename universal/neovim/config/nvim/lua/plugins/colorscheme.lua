@@ -18,7 +18,7 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		enabled = true,
+		enabled = false,
 		priority = colorscheme_priority,
 		config = function()
 			require("catppuccin").setup({
@@ -43,6 +43,23 @@ return {
 			})
 
 			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+	{
+		"navarasu/onedark.nvim",
+		priority = colorscheme_priority,
+		enabled = true,
+		config = function()
+			require("onedark").setup({
+				style = "warm",
+				highlights = {
+					-- NOTE: a raw hex color to be brighter than `$grey` but darker than `$light_grey`.
+					--`$light_grey` is too close to `$fg`, so I cannot use it.
+					LineNr = { fg = "#7D7E81" },
+				},
+			})
+
+			vim.cmd.colorscheme("onedark")
 		end,
 	},
 }
