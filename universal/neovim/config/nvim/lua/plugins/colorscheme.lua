@@ -18,14 +18,16 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		enabled = false,
+		enabled = true,
 		priority = colorscheme_priority,
 		config = function()
+			local color_utils = require("catppuccin.utils.colors")
+
 			require("catppuccin").setup({
 				highlight_overrides = {
 					all = function(colors)
 						return {
-							LineNr = { fg = colors.overlay0 },
+							LineNr = { fg = color_utils.brighten(colors.overlay0, 0.1) },
 						}
 					end,
 				},
@@ -48,7 +50,7 @@ return {
 	{
 		"navarasu/onedark.nvim",
 		priority = colorscheme_priority,
-		enabled = true,
+		enabled = false,
 		config = function()
 			require("onedark").setup({
 				style = "warm",
