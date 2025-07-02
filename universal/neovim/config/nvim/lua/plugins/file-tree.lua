@@ -21,6 +21,8 @@ return {
 				},
 				win_options = {
 					winbar = "%{%v:lua.oil_winbar()%}",
+					-- NOTE: needed for oil-git-status.nvim icons
+					signcolumn = "yes:2",
 				},
 			}
 		end,
@@ -30,5 +32,13 @@ return {
 		},
 		-- Load the plugin eagerly so oil takes over netrw when `nvim .`
 		lazy = false,
+	},
+	{
+		"refractalize/oil-git-status.nvim",
+		dependencies = {
+			"stevearc/oil.nvim",
+		},
+		ft = "oil",
+		config = true,
 	},
 }
