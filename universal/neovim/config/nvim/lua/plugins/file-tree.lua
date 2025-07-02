@@ -13,6 +13,7 @@ return {
 			return {
 				columns = {
 					"icon",
+					"size",
 				},
 				keymaps = {
 					["<C-v>"] = "actions.select_vsplit",
