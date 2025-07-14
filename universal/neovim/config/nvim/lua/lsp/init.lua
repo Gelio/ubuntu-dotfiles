@@ -81,7 +81,6 @@ vim.diagnostic.config({
 	float = {
 		scope = "line",
 		source = true,
-		border = "single",
 	},
 	jump = {
 		wrap = false,
