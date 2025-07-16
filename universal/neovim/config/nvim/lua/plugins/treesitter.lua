@@ -74,7 +74,9 @@ return {
 			})
 		end,
 	},
-	{ "nvim-treesitter/nvim-treesitter-context", config = true },
+	{ "nvim-treesitter/nvim-treesitter-context", opts = {
+		max_lines = "20%",
+	} },
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		branch = "main",
